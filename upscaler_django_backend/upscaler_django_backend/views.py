@@ -1,15 +1,19 @@
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from .models import Image
+from django.http import JsonResponse
+
 
 @csrf_exempt
 def upload_image(request):
-    if request.method == 'POST':
+    try:
+        
         form = Image(image=request.FILES['image'])
         form.save()
 
-        # Tutaj możesz przetwarzać obraz za pomocą Pythona
+#         # Tutaj możesz przetwarzać obraz za pomocą Pythona
 
-        return JsonResponse({'message': 'Obraz został przesłany i przetworzony!'})
 
-    return JsonResponse({'message': 'Niepoprawna metoda.'})
+        return JsonResponse({'message': 'Image uploaded successfully'})
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=400)
