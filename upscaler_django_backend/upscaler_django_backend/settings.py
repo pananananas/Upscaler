@@ -45,9 +45,11 @@ INSTALLED_APPS = [
     'djoser',
 ]
 
-CORS_ALLOWER_ORIGINS = [
-    'http://localhost:8080',        # Vue dev server
-]
+# CORS_ALLOWER_ORIGINS = [
+#     'http://localhost:8000',        # Vue dev server
+# ]
+CORS_ALLOW_ALL_ORIGINS = True
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
