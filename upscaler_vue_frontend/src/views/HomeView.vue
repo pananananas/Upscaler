@@ -32,13 +32,13 @@
 </div>
 
 <svg>
-    <filter id="grainy">
-      <feTurbulence type="fractalNoise" baseFrequency="0.01" />
-      <feComposite operator="in" in2="SourceGraphic" />
+  <filter id="grainy">
+    <feTurbulence type="fractalNoise" baseFrequency="0.01" />
+    <feComposite operator="in" in2="SourceGraphic" />
 
-    </filter>
+  </filter>
 
-    <rect x="0.5" y="0.5" width="415" height="281" rx="9.5" fill="#054049" fill-opacity="0.9" stroke="#6D6D6D" stroke-dasharray="6 4"/>
+  <rect x="0.5" y="0.5" width="415" height="281" rx="9.5" fill="#054049" fill-opacity="0.9" stroke="#6D6D6D" stroke-dasharray="6 4"/>
 </svg>
 
 
@@ -51,20 +51,29 @@
 
 
 <script lang="ts">
+interface Data {
+  selectedFile: File | null;
+}
+
 export default {
-  data() {
+  data(): Data {
     return {
       selectedFile: null
     };
   },
   methods: {
-    async uploadImage(event: { target: { files: null[]; }; }) {
-      
-      this.selectedFile = event.target.files[0];
-      if (!this.selectedFile) return;
+    async uploadImage(event: Event) {
+      const input = event.target as HTMLInputElement;
+      const files = input.files;
+
+      if (files) {
+        (this as any).selectedFile = files[0];
+      }
+
+      if (!(this as any).selectedFile) return;
 
       const formData = new FormData();
-      formData.append('image', this.selectedFile);
+      formData.append('image', (this as any).selectedFile);
 
       try {
         const response = await fetch('http://localhost:8000/upload/', {
@@ -81,6 +90,7 @@ export default {
   }
 };
 </script>
+
 
 <style>
 /* .container{
