@@ -31,15 +31,15 @@
   </div>
 </div>
 
-<svg>
+<!-- <svg>
   <filter id="grainy">
     <feTurbulence type="fractalNoise" baseFrequency="0.01" />
     <feComposite operator="in" in2="SourceGraphic" />
 
   </filter>
 
-  <rect x="0.5" y="0.5" width="415" height="281" rx="9.5" fill="#054049" fill-opacity="0.9" stroke="#6D6D6D" stroke-dasharray="6 4"/>
-</svg>
+  <rect x="0.5" y="0.5" width="415" height="281" rx="9.5" fill-opacity="0.9" stroke="#6D6D6D" stroke-dasharray="6 4"/>
+</svg> -->
 
 
 
