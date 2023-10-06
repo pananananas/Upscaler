@@ -7,15 +7,19 @@ import numpy as np
 import torch
 import threading
 from upscaler_django_backend.upscale_models.ESRGAN import RRDBNet_arch as arch
+from upscaler_django_backend.upscale_models.DWSRx2 import DWSRx2
+from upscaler_django_backend.upscale_models.DWSRx2.run_DWSRx2 import run_dwsr
+
 
 # Initialize the ESRGAN model (Better to do this once rather than for each request)
 model_path = 'upscaler_django_backend/upscale_models/ESRGAN/models/RRDB_ESRGAN_x4.pth'
 device = torch.device('cpu')
-
 model = arch.RRDBNet(3, 3, 64, 23, gc=32)
 model.load_state_dict(torch.load(model_path), strict=True)
 model.eval()
 model = model.to(device)
+
+
 
 def run_esrgan(input_image_path):
     # Read the uploaded image
@@ -51,8 +55,10 @@ def upload_image(request):
         input_image_path = form.image.path
 
         # Run ESRGAN on another thread
-        thread = threading.Thread(target=run_esrgan, args=(input_image_path,))
-        thread.start()
+        thread1 = threading.Thread(target=run_dwsr, args=(input_image_path,)) # fixed missing closing parenthesis and added missing kwargs
+        thread2 = threading.Thread(target=run_esrgan, args=(input_image_path,))
+        thread1.start()
+        # thread2.start()
 
         return JsonResponse({'message': 'Image uploaded and processing started'})
 
