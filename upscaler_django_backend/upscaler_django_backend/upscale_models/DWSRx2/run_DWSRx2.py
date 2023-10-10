@@ -26,3 +26,7 @@ def run_dwsr(input_image_path):
 
     # 3. Generate color SR
     generate_color_sr(input_image_path, sr_lum_dir, output_dir, scale=2) 
+
+
+
+    # TODO: Umieść obraz finalny w bazie danych, wyślij go na front

@@ -41,8 +41,7 @@ def run_esrgan(input_image_path):
     output_image_path = os.path.join('images', 'output', f"{base_name}_esrgan.png")
     cv2.imwrite(output_image_path, output)
     
-    # For the sake of this example, the output_image_path is simply returned.
-    # In a real-world scenario, you might want to send a notification to the user, store the result in a database, etc.
+    # TODO: Umieść obraz finalny w bazie danych, wyślij go na front
     return output_image_path
 
 @csrf_exempt
@@ -54,8 +53,8 @@ def upload_image(request):
         # Get the path where the image was saved
         input_image_path = form.image.path
 
-        # Run ESRGAN on another thread
-        thread1 = threading.Thread(target=run_dwsr, args=(input_image_path,)) # fixed missing closing parenthesis and added missing kwargs
+
+        thread1 = threading.Thread(target=run_dwsr, args=(input_image_path,))
         thread2 = threading.Thread(target=run_esrgan, args=(input_image_path,))
         thread1.start()
         # thread2.start()
