@@ -25,4 +25,4 @@ def run_dwsr(input_image_path):
         process_image(input_path, sr_lum_dir)
 
     # 3. Generate color SR
-    generate_color_sr(input_image_path, sr_lum_dir + "/" + fileName, output_dir, scale=2) 
+    generate_color_sr(input_image_path, sr_lum_dir, output_dir, scale=2) 
