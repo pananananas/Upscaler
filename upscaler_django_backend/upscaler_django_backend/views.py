@@ -20,6 +20,15 @@ model.eval()
 model = model.to(device)
 
 
+def clear_output_folders():
+    # delete every item in folders:
+    folder = ['images', 'images/output', 'images/enlargedLR', 'images/greyscaleSR']
+    for f in folder:
+        for file in os.listdir(f):
+            file_path = os.path.join(f, file)
+            if os.path.isfile(file_path):
+                os.unlink(file_path)
+
 
 def run_esrgan(input_image_path):
     # Read the uploaded image
@@ -44,20 +53,21 @@ def run_esrgan(input_image_path):
     # TODO: Umieść obraz finalny w bazie danych, wyślij go na front
     return output_image_path
 
+
 @csrf_exempt
 def upload_image(request):
     try:
+        clear_output_folders()
+
         form = Image(image=request.FILES['image'])
         form.save()
 
-        # Get the path where the image was saved
         input_image_path = form.image.path
-
 
         thread1 = threading.Thread(target=run_dwsr, args=(input_image_path,))
         thread2 = threading.Thread(target=run_esrgan, args=(input_image_path,))
         thread1.start()
-        # thread2.start()
+        thread2.start()
 
         return JsonResponse({'message': 'Image uploaded and processing started'})
 
