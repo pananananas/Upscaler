@@ -7,8 +7,7 @@ import numpy as np
 import torch
 import threading
 from upscaler_django_backend.upscale_models.ESRGAN import RRDBNet_arch as arch
-from upscaler_django_backend.upscale_models.DWSRx2 import DWSRx2
-from upscaler_django_backend.upscale_models.DWSRx2.run_DWSRx2 import run_dwsr
+from upscaler_django_backend.upscale_models.DWSR.run_DWSR import run_dwsr
 
 
 # Initialize the ESRGAN model (Better to do this once rather than for each request)
@@ -64,7 +63,7 @@ def upload_image(request):
 
         input_image_path = form.image.path
 
-        thread1 = threading.Thread(target=run_dwsr, args=(input_image_path,))
+        thread1 = threading.Thread(target=run_dwsr, args=(input_image_path, 2))
         thread2 = threading.Thread(target=run_esrgan, args=(input_image_path,))
         thread1.start()
         thread2.start()

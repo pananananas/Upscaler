@@ -1,10 +1,10 @@
 import os
 import threading
-from upscaler_django_backend.upscale_models.DWSRx2.GenerateEnlargedLR import generate_enlarged_lr  
-from upscaler_django_backend.upscale_models.DWSRx2.DWSRx2 import process_image
-from upscaler_django_backend.upscale_models.DWSRx2.FinalColorSR import generate_color_sr
+from upscaler_django_backend.upscale_models.DWSR.GenerateEnlargedLR import generate_enlarged_lr  
+from upscaler_django_backend.upscale_models.DWSR.DWSRx2 import process_image
+from upscaler_django_backend.upscale_models.DWSR.FinalColorSR import generate_color_sr
 
-def run_dwsr(input_image_path):
+def run_dwsr(input_image_path, scale):
     # Define paths
     enlarged_lr_dir = 'images/enlargedLR'
     sr_lum_dir = 'images/greyscaleSR'
@@ -16,8 +16,9 @@ def run_dwsr(input_image_path):
         if not os.path.exists(dir_path):
             os.makedirs(dir_path)
 
+
     # 1. Generate enlarged LR images
-    generate_enlarged_lr(input_image_path, enlarged_lr_dir, scale=2) 
+    generate_enlarged_lr(input_image_path, enlarged_lr_dir, scale) 
 
     # 2. Process image with DWSR
     for image_filename in os.listdir(enlarged_lr_dir):
@@ -25,7 +26,7 @@ def run_dwsr(input_image_path):
         process_image(input_path, sr_lum_dir)
 
     # 3. Generate color SR
-    generate_color_sr(input_image_path, sr_lum_dir, output_dir, scale=2) 
+    generate_color_sr(input_image_path, sr_lum_dir, output_dir, scale) 
 
 
 

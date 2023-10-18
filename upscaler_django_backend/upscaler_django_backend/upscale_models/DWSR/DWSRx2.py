@@ -3,13 +3,13 @@ import os, time
 import tensorflow.compat.v1 as tf
 tf.disable_v2_behavior()
 import numpy as np
-from upscaler_django_backend.upscale_models.DWSRx2.netx2 import model
+from upscaler_django_backend.upscale_models.DWSR.netx2 import model
 import cv2
 import pywt as pw
 import ntpath
 
 TEST_EXPERIMENT = True
-MODEL_PATH = 'upscaler_django_backend/upscale_models/DWSRx2/Weightx2/x2.ckpt'
+MODEL_PATH = 'upscaler_django_backend/upscale_models/DWSR/Weightx2/x2.ckpt'
 WV = 'db1'
 
 
