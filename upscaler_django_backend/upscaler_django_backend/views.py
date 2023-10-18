@@ -64,9 +64,11 @@ def upload_image(request):
         input_image_path = form.image.path
 
         thread1 = threading.Thread(target=run_dwsr, args=(input_image_path, 2))
-        thread2 = threading.Thread(target=run_esrgan, args=(input_image_path,))
-        thread1.start()
+        thread2 = threading.Thread(target=run_dwsr, args=(input_image_path, 4))
+        thread3 = threading.Thread(target=run_esrgan, args=(input_image_path,))
+        # thread1.start()
         thread2.start()
+        thread3.start()
 
         return JsonResponse({'message': 'Image uploaded and processing started'})
 

@@ -2,6 +2,7 @@ import os
 import threading
 from upscaler_django_backend.upscale_models.DWSR.GenerateEnlargedLR import generate_enlarged_lr  
 from upscaler_django_backend.upscale_models.DWSR.DWSRx2 import process_image
+from upscaler_django_backend.upscale_models.DWSR.DWSRx4 import process_image_x4
 from upscaler_django_backend.upscale_models.DWSR.FinalColorSR import generate_color_sr
 
 def run_dwsr(input_image_path, scale):
@@ -23,7 +24,10 @@ def run_dwsr(input_image_path, scale):
     # 2. Process image with DWSR
     for image_filename in os.listdir(enlarged_lr_dir):
         input_path = os.path.join(enlarged_lr_dir, image_filename)
-        process_image(input_path, sr_lum_dir)
+        if scale == 2:
+            process_image(input_path, sr_lum_dir)   
+        elif scale == 4:
+            process_image_x4(input_path, sr_lum_dir)
 
     # 3. Generate color SR
     generate_color_sr(input_image_path, sr_lum_dir, output_dir, scale) 
