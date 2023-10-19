@@ -1,0 +1,90 @@
+<template>
+    <!-- <body class="bg-gray-800"> -->
+    <!-- <div className="overflow-hidden bg-[#1a1a1a] relative flex flex-row gap-4 w-full items-end"  id="LoadPhotoRoot">
+  
+      <svg
+        class="relative overflow-visible"
+        style=""
+        width="795"
+        height="593"
+        viewBox="0 0 795 593"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+        <path d="M424 428C311.5 529 62.5 438.5 0 577V-3.8147e-06L791 0C791 0 691.5 4.50001 620 117C548.5 229.5 536.5 327 424 428Z" fill="#054049"/>
+      </svg> -->
+  
+        <div class="text-6xl font-port-lligat-slab leading-[50px] text-white w-full">
+            Upscale your
+            <br />
+            <div class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600" id="UpscaleYourImages">
+            images
+            </div>
+        </div>
+
+        
+      
+        <div>
+            <input type="file" ref="fileInput" @change="uploadImage">
+        </div>
+
+        <gradient-button label="Upload Image" 
+                         class="m-5" 
+                         type="file" 
+                         ref="fileInput" 
+                         @change="uploadImage">
+        </gradient-button>
+  <!-- </body> -->
+  </template>
+  
+  
+<script lang="ts">
+import GradientButton from '@/components/GradientButton.vue';
+
+
+interface Data {
+    selectedFile: File | null;
+}
+
+export default {
+    data(): Data {
+        return {
+            selectedFile: null
+        };
+    },
+    methods: {
+        async uploadImage(event: Event) {
+            const input = event.target as HTMLInputElement;
+            const files = input.files;
+            if (files) {
+                (this as any).selectedFile = files[0];
+            }
+            if (!(this as any).selectedFile)
+                return;
+            const formData = new FormData();
+            formData.append('image', (this as any).selectedFile);
+            try {
+                const response = await fetch('http://localhost:8000/upload/', {
+                    method: 'POST',
+                    body: formData
+                });
+                const data = await response.json();
+                console.log(data);
+            }
+            catch (error) {
+                console.error("Błąd podczas wysyłania obrazu:", error);
+            }
+        }
+    },
+    components: { GradientButton }
+};
+</script>
+
+
+<style>
+/* .container{
+filter: url(#grainy);
+} */
+
+
+</style>
+```

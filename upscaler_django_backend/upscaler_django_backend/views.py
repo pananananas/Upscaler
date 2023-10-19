@@ -46,7 +46,9 @@ def run_esrgan(input_image_path):
 
     # Save the output image to images/output
     base_name = os.path.splitext(os.path.basename(input_image_path))[0]
-    output_image_path = os.path.join('images', 'output', f"{base_name}_esrgan.png")
+    image_format = os.path.splitext(os.path.basename(input_image_path))[1]
+
+    output_image_path = os.path.join('images', 'output', f"{base_name}_esrgan{image_format}")
     cv2.imwrite(output_image_path, output)
     
     # TODO: Umieść obraz finalny w bazie danych, wyślij go na front
@@ -63,7 +65,7 @@ def upload_image(request):
 
         input_image_path = form.image.path
 
-        thread1 = threading.Thread(target=run_dwsr, args=(input_image_path, 2))
+        # thread1 = threading.Thread(target=run_dwsr, args=(input_image_path, 2))
         thread2 = threading.Thread(target=run_dwsr, args=(input_image_path, 4))
         thread3 = threading.Thread(target=run_esrgan, args=(input_image_path,))
         # thread1.start()
