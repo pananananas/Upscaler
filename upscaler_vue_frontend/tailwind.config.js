@@ -8,6 +8,7 @@ module.exports = {
         'backgroundcolor': '#1A1A1A',
       },
       fontSize: {
+        '2xsm': '0.5rem',
         xsm: '0.6rem',
         sm: '0.8rem',
         base: '1rem',

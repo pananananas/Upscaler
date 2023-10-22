@@ -29,6 +29,9 @@
                 @dragover.prevent="onDragOver" 
                 @drop.prevent="onDrop"
             >
+                <div></div>
+                <div></div>
+                <div></div>
                 <div>
                     <input type="file" ref="fileInput" class="hidden" id="fileInput" @change="uploadImage" accept="image/*">
                     <gradient-button label="Upload image" shape="round"/>
@@ -36,10 +39,17 @@
                 <span class="text-[#dddddd] text-center relative z-10 font-port-lligat-sans text-xsm leading-6">
                     Drop your images here
                 </span>
-                <div class="bg-[rgba(30,30,30,0.80)] rounded-lg shrink-0 w-[160px] h-[50px] z-10 relative">
+                <div class="bg-[rgba(30,30,30,0.80)] hover:bg-[rgba(30,30,30,0.9)] transition ease-in-out duration-300 rounded-lg shrink-0 w-[180px] h-[54px] z-10 relative">
                     <span class="text-white text-center relative z-10 font-port-lligat-sans text-xsm leading-6 px-3">
                         Supported formats
                     </span>
+                    <div class="grid grid-cols-3 justify-items-center gap-0">
+
+                        <gradient-info label="jpg"/>
+                        <gradient-info label="webp"/>
+                        <gradient-info label="png"/>
+
+                    </div>
                 </div>
 
                 <canvas ref="canvas" class="absolute top-0 left-0 aspect-[4/3] h-[280px]" ></canvas>
@@ -52,9 +62,11 @@
 <script lang="ts">
 import { defineComponent, onMounted, ref, nextTick } from 'vue';
 import GradientButton from '@/components/GradientButton.vue';
+import GradientInfo from '@/components/GradientInfo.vue';
 
 export default defineComponent({
-    components: { GradientButton },
+    components: { GradientButton, GradientInfo },
+
 
     setup() {
         const canvas = ref<HTMLCanvasElement | null>(null);
@@ -62,22 +74,21 @@ export default defineComponent({
         onMounted(() => {            
             if (canvas.value) {
                 
-                // TypeScript teraz wie, że canvas.value jest typu HTMLCanvasElement
                 const context = canvas.value.getContext('2d');
-                if (context) {
-                    const centerX = canvas.value.width / 2;
-                    const centerY = canvas.value.height / 2;
-                    const radius = 70;
+                // if (context) {
+                //     const centerX = canvas.value.width / 2;
+                //     const centerY = canvas.value.height / 2;
+                //     const radius = 70;
 
-                    context.beginPath();
-                    context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
-                    context.fillStyle = 'green';
-                    context.fill();
-                    context.lineWidth = 5;
-                    context.strokeStyle = '#003300';
-                    context.stroke();
+                //     context.beginPath();
+                //     context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+                //     context.fillStyle = 'green';
+                //     context.fill();
+                //     context.lineWidth = 5;
+                //     context.strokeStyle = '#003300';
+                //     context.stroke();
                     
-                }
+                // }
             }
         });
 
