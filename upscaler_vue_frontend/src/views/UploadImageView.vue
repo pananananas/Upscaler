@@ -4,9 +4,9 @@
             <path d="M467 404.5C354.5 505.5 62.5 438.5 0 577V-3.8147e-06L791 -1.20013e-07C791 -1.20013e-07 691.5 4.50001 620 117C548.5 229.5 579.5 303.5 467 404.5Z" fill="#054049"/>
         </svg>
 
-        <div class="container relative mx-40 z-10 py-40">
-
-            <div class="justify-self-start">
+        <div class="relative mt-24 z-10 mx-auto py-10 px-5 grid grid-cols-1 md:grid-cols-2 gap-6 justify-items-center items-center">
+            <!-- TODO: Fix this grid -->
+            <div class="">
                 <div class="text-7xl font-port-lligat-slab leading-[60px] text-white w-full">
                     Upscale your
                     <br />
@@ -25,7 +25,7 @@
                 </div>
             </div>
 
-            <div class="bg-[rgba(5,64,73,0.90)] aspect-[4/3] h-[280px] z-10 rounded-[10px] border-dashed border-[transparent] border flex flex-col gap-2.5  relative overflow-hidden items-center justify-center"
+            <div class="bg-[rgba(5,64,73,0.90)] aspect-[4/3] h-[280px] z-10 rounded-[10px] border-dashed border-[transparent] border flex flex-col gap-1  relative overflow-hidden items-center justify-center"
                 @dragover.prevent="onDragOver" 
                 @drop.prevent="onDrop"
             >
@@ -39,6 +39,9 @@
                 <span class="text-[#dddddd] text-center relative z-10 font-port-lligat-sans text-xsm leading-6">
                     Drop your images here
                 </span>
+                <div></div>
+                <div class="pt-2"></div>
+                
                 <div class="bg-[rgba(30,30,30,0.80)] hover:bg-[rgba(30,30,30,0.9)] transition ease-in-out duration-300 rounded-lg shrink-0 w-[180px] h-[54px] z-10 relative">
                     <span class="text-white text-center relative z-10 font-port-lligat-sans text-xsm leading-6 px-3">
                         Supported formats
@@ -51,10 +54,12 @@
 
                     </div>
                 </div>
-
                 <canvas ref="canvas" class="absolute top-0 left-0 aspect-[4/3] h-[280px]" ></canvas>
             </div>
         </div>
+        <!-- <span class="relative text-white mt-7 mb-4 font-port-lligat-sans text-2xl leading-6" > 
+            Test our service with these images  
+        </span> -->
     </body>
 </template>
   
@@ -79,7 +84,6 @@ export default defineComponent({
                 //     const centerX = canvas.value.width / 2;
                 //     const centerY = canvas.value.height / 2;
                 //     const radius = 70;
-
                 //     context.beginPath();
                 //     context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
                 //     context.fillStyle = 'green';
@@ -93,12 +97,12 @@ export default defineComponent({
         });
 
         return {
-            canvas,  // upewnij się, że zwracasz canvas jako część obiektu API setup
+            canvas, 
         };
     },
     data() {
         return {
-            selectedFile: null as File | null, // określamy, że selectedFile może być typu 'File' lub 'null'
+            selectedFile: null as File | null,
         };
     },
     methods: {
@@ -106,23 +110,36 @@ export default defineComponent({
             event.preventDefault();
             // Tutaj można dodać kod, aby zmienić styl lub wyświetlić informacje zwrotne dla użytkownika
         },
-        async onDrop(event: DragEvent) { // Używamy 'DragEvent' zamiast 'Event'
+        async onDrop(event: DragEvent) { 
             event.preventDefault();
             if (event.dataTransfer) {
                 const files = event.dataTransfer.files;
-                if (files.length > 0) {
+                if (files.length > 0 && files.length < 2) {
                     this.selectedFile = files[0];
-                    await this.uploadImage(); 
+                    if (!this.selectedFile)
+                        return;
+
+                    const formData = new FormData();
+                    formData.append('image', this.selectedFile);
+                    await this.sendImageToDataBase(formData);
+                } else if (files.length > 1) {
+                    alert("You can only upload one image at a time");
                 }
             }
         },
-        async uploadImage() {
-            if (!this.selectedFile)
+        async uploadImage(event: Event) {
+            const input = event.target as HTMLInputElement;
+            const files = input.files;
+            if (files) {
+                (this as any).selectedFile = files[0];
+            }
+            if (!(this as any).selectedFile)
                 return;
-
             const formData = new FormData();
-            formData.append('image', this.selectedFile);
-
+            formData.append('image', (this as any).selectedFile);
+            await this.sendImageToDataBase(formData);
+        }, 
+        async sendImageToDataBase(formData: any) {
             try {
                 const response = await fetch('http://localhost:8000/upload/', {
                     method: 'POST',
@@ -140,7 +157,6 @@ export default defineComponent({
 </script>
 
 
-
 <style>
 body {
     background-color: #1A1A1A;
@@ -154,15 +170,6 @@ body {
     flex-shrink: 0;
     border-radius: 10px;
     background: rgba(5, 64, 73, 0.90);
-}
-
-.container {
-    display: grid;
-    grid-template-rows: 280px;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 1rem 1rem;
-    justify-items: center;
-    align-items: center;
 }
 
 :root {
@@ -189,6 +196,7 @@ body {
     );
     background-size: 200%;
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     white-space: nowrap;
 }
