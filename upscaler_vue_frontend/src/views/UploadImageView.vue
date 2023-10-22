@@ -31,9 +31,7 @@
 
             <div class="card">
                 <input type="file" ref="fileInput" class="hidden" id="fileInput" @change="uploadImage" accept="image/*">
-                <label for="fileInput" class="btn" shape="round">
-                    <span> Upload Image </span>
-                </label>
+                <gradient-button label="Upload Image" shape="round"/>
             </div>
             
         </div>
@@ -86,16 +84,15 @@ export default {
 </script>
 
 
-<style>
+<style scoped>
 body {
     background-color: #1A1A1A;
-    
     display: flex;
-  align-items: center;
-  justify-content: center;
-  
-  height: 100vh;
-  width: 100vw;
+    align-items: center;
+    justify-content: center;
+    
+    height: 100vh;
+    width: 100vw;
 }
 
 .container {
@@ -135,61 +132,4 @@ body {
     white-space: nowrap;
 }
 
-.btn {
-    line-height: 1.3rem;
-    border-radius: 90px;
-    display: inline-flex;
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    position: relative;
-    background-color: #18181b;
-    color: #f4f4f5;
-    font-family: Port Lligat Sans;
-    transition: background-color 0.2s ease-in-out;
-    justify-content: center;
-    text-align: center;
-    cursor: pointer;
-}
-
-.btn:before {
-    content: "";
-    position: absolute;
-    background: linear-gradient(
-        to right,
-        #FF9F9F,
-        #8B5CF6
-    );
-    inset: -2px;
-    z-index: 1;
-    border-radius: 90px;
-    transition: all 0.2s ease 0s;
-}
-.btn:after {
-    content: "";
-    position: absolute;
-    background-color: #18181b;
-    inset: 1px;
-    z-index: 2;
-    border-radius: 90px;
-    /* transition: all 0.2s ease 0s; */
-}
-
-.btn:hover:before {
-    box-shadow: rgba(255, 159, 159, 0.7)  0px 0px 10px 0px,
-                rgba(139, 92, 246, 0.7)   0px 0px 20px 0px;
-}
-
-.btn:hover:after {
-    background-color: #0c0c0d;
-}
-
-.btn > span {
-    text-align: left;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 1;
-    word-break: break-all;
-    z-index: 3;
-}
 </style>
