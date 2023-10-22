@@ -1,9 +1,7 @@
 <template>
-    <!-- <body class="bg-gray-800"> -->
-    <!-- <div className="overflow-hidden bg-[#1a1a1a] relative flex flex-row gap-4 w-full items-end"  id="LoadPhotoRoot">
-  
-      <svg
-        class="relative overflow-visible"
+    <body class="bg-backgroundcolor">
+        <!-- <svg
+        class="absolute overflow-visible"
         style=""
         width="795"
         height="593"
@@ -11,14 +9,13 @@
         fill="none"
         xmlns="http://www.w3.org/2000/svg">
         <path d="M424 428C311.5 529 62.5 438.5 0 577V-3.8147e-06L791 0C791 0 691.5 4.50001 620 117C548.5 229.5 536.5 327 424 428Z" fill="#054049"/>
-      </svg> -->
-    <body>
+      </svg>  -->
 
         <div class="container">
 
-            <div class="my-5">
+            <div class="my-5 justify-self-start">
                 
-                <div class="text-6xl font-port-lligat-slab leading-[50px] text-white w-full justify-self-start ">
+                <div class="text-6xl font-port-lligat-slab leading-[50px] text-white w-full">
                     Upscale your
                     <br />
                     <span class="magic_text">
@@ -32,10 +29,6 @@
                     using fast and reliable AI algorithms
                 </div>
             </div>
-
-
-
-
 
             <gradient-button label="Upload Image" class="m-5"/>
         </div>
@@ -95,7 +88,11 @@ export default {
 
 <style>
 body {
-  /* background-color: rgba(28, 28, 28); */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
 }
 
 .container {

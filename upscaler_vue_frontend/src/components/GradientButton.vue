@@ -18,18 +18,6 @@ const props = defineProps({
 
 
 <style>
-body {
-  margin: 5;
-  padding: 5;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  background-color: rgba(28, 28, 28, 0.90);
-  font-family: Port Lligat Sans;
-  font-weight: 500;
-}
-
 .btn {
   line-height: 1.3rem;
   border-radius: 90px;
@@ -39,10 +27,11 @@ body {
   position: relative;
   background-color: #18181b;
   color: #f4f4f5;
+  font-family: Port Lligat Sans;
   transition: background-color 0.2s ease-in-out;
   justify-content: center;
   text-align: center;
-  cursor: pointer; /* Not included according to website */
+  cursor: pointer;
 }
 
 .btn:hover {
@@ -56,12 +45,10 @@ body {
     to right,
     #FF9F9F,
     #8B5CF6
-    /* rgb(0, 220, 130),
-    rgb(54, 228, 218) */
   );
   inset: -2px;
   z-index: -1;
-  border-radius: 90.5px;
+  border-radius: 90px;
   transition: all 0.2s ease 0s;
 }
 
