@@ -25,11 +25,18 @@
                 </div>
             </div>
 
-            <div class="card">
-                <input type="file" ref="fileInput" class="hidden" id="fileInput" @change="uploadImage" accept="image/*">
-                <gradient-button label="Upload Image" shape="round"/>
+            <div class="bg-[rgba(5,64,73,0.90)] aspect-[4/3] h-[280px] rounded-[10px] border-dashed border-[transparent] border flex flex-col gap-2.5  relative overflow-hidden items-center justify-center">
+                <div>
+                    <input type="file" ref="fileInput" class="hidden" id="fileInput" @change="uploadImage" accept="image/*">
+                    <gradient-button label="Upload image" shape="round"/>
+                </div>
+                <span class="text-[#dddddd] text-center relative font-port-lligat-sans text-xsm leading-6">
+                    Drop your images here
+                </span>
+                <div class="bg-[rgba(30,30,30,0.80)] rounded-lg shrink-0 w-[160px] h-[50px] relative">
+
+                </div>
             </div>
-            
         </div>
     </body>
 </template>
@@ -95,7 +102,7 @@ body {
 
 .container {
     display: grid;
-    grid-template-rows: 1fr;
+    grid-template-rows: 280px;
     grid-template-columns: 1fr 1fr;
     grid-gap: 1rem 1rem;
     justify-items: center;
