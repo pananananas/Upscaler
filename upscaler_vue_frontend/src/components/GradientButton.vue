@@ -33,14 +33,31 @@ const props = defineProps({
     cursor: pointer;
 }
 
+:root {
+    --orange: #FF9F9F;
+    --purple: #8B5CF6;
+}
+
+@keyframes background-button {
+    from {
+        background-position: 0% center;
+    }
+    to {
+        background-position: -200% center;
+    }
+}
+
 .btn:before {
     content: "";
     position: absolute;
+    animation: background-button 3s linear infinite;
     background: linear-gradient(
-        to right,
-        rgba(255, 159, 159),
-        rgba(139, 92, 246)
+        to right, 
+        var(--orange),
+        var(--purple),
+        var(--orange)
     );
+    background-size: 200%;
     inset: -2px;
     z-index: 11;
     border-radius: 90px;
@@ -58,8 +75,8 @@ const props = defineProps({
 }
 
 .btn:hover:before {
-    box-shadow: rgba(255, 159, 159, 0.7)  0px 0px 15px 0px,
-                rgba(139, 92, 246, 0.7)   0px 0px 25px 0px;
+    box-shadow: rgba(255, 159, 159, 0.7)  0px 0px 10px 0px,
+                rgba(139, 92, 246, 0.7)   0px 0px 20px 0px;
 }
 
 .btn:hover:after {

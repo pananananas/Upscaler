@@ -32,15 +32,22 @@ const props = defineProps({
     justify-content: center;
     text-align: center;
 }
+:root {
+    --orange2: #f89494;
+    --purple2: #aa8ded;
+}
 
 .gradientinfo:before {
     content: "";
     position: absolute;
+    animation: background-button 4s linear infinite;
     background: linear-gradient(
-        to right,
-        rgba(255, 159, 159),
-        rgba(139, 92, 246)
+        to right, 
+        var(--orange2),
+        var(--purple2),
+        var(--orange2)
     );
+    background-size: 200%;
     inset: -0.5px;
     z-index: 11;
     border-radius: 90px;
