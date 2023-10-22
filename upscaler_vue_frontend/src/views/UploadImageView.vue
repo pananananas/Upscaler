@@ -6,7 +6,7 @@
 
         <div class="container relative mx-40 z-10 py-40">
 
-            <div class="my-5 justify-self-start">
+            <div class="justify-self-start">
                 <div class="text-7xl font-port-lligat-slab leading-[60px] text-white w-full">
                     Upscale your
                     <br />
@@ -15,14 +15,14 @@
                     </span>
                     
                 </div>
-                <div class="text-white my-5" style="font: 400 18px/20px 'Port Lligat Sans', sans-serif">
-                    Enhance resolution of your images 
+                <div class="text-white mt-7 mb-4 font-port-lligat-sans text-xl leading-6" >
+                    Enhance resolution of your images using 
                     <br/>
-                    using fast and reliable AI algorithms
+                    fast and reliable AI powered algorithms.
                 </div>
-                <a class=" text-white font-port-lligat-sans cursor-pointer box-content">
-                    <span> How does it work? </span>
-                </a>
+                <div class="bg-[rgba(22,22,22,0.80)] hover:bg-[rgba(22,22,22,0.9)] transition ease-in-out duration-300 rounded-[10px] w-[200px] h-9 text-white font-port-lligat-sans cursor-pointer flex items-center justify-center">
+                    <span class="  "> How does it work? </span>
+                </div>
             </div>
 
             <div class="card">

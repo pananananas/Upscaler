@@ -46,6 +46,7 @@ const props = defineProps({
     border-radius: 90px;
     transition: all 0.2s ease 0s;
 }
+
 .btn:after {
     content: "";
     position: absolute;
