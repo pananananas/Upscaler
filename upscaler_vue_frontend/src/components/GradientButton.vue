@@ -42,7 +42,7 @@ const props = defineProps({
         #8B5CF6
     );
     inset: -2px;
-    z-index: 1;
+    z-index: 11;
     border-radius: 90px;
     transition: all 0.2s ease 0s;
 }
@@ -51,7 +51,7 @@ const props = defineProps({
     position: absolute;
     background-color: #18181b;
     inset: 1px;
-    z-index: 2;
+    z-index: 12;
     border-radius: 90px;
     /* transition: all 0.2s ease 0s; */
 }
@@ -72,7 +72,7 @@ const props = defineProps({
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
     word-break: break-all;
-    z-index: 3;
+    z-index: 13;
 }
 
 </style>

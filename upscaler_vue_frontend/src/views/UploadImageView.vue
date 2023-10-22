@@ -1,17 +1,10 @@
 <template>
     <body>
-        <!-- <svg
-        class="absolute overflow-visible"
-        style=""
-        width="795"
-        height="593"
-        viewBox="0 0 795 593"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg">
-        <path d="M424 428C311.5 529 62.5 438.5 0 577V-3.8147e-06L791 0C791 0 691.5 4.50001 620 117C548.5 229.5 536.5 327 424 428Z" fill="#054049"/>
-      </svg>  -->
+        <svg class="absolute top-0 left-0 z-0" width="791" height="577" viewBox="0 0 791 577" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M467 404.5C354.5 505.5 62.5 438.5 0 577V-3.8147e-06L791 -1.20013e-07C791 -1.20013e-07 691.5 4.50001 620 117C548.5 229.5 579.5 303.5 467 404.5Z" fill="#054049"/>
+        </svg>
 
-        <div class="container">
+        <div class="container relative mx-40 z-10 py-40">
 
             <div class="my-5 justify-self-start">
                 <div class="text-7xl font-port-lligat-slab leading-[60px] text-white w-full">
@@ -27,6 +20,9 @@
                     <br/>
                     using fast and reliable AI algorithms
                 </div>
+                <a class=" text-white font-port-lligat-sans cursor-pointer box-content">
+                    <span> How does it work? </span>
+                </a>
             </div>
 
             <div class="card">
@@ -35,8 +31,6 @@
             </div>
             
         </div>
-
-
     </body>
 </template>
   
@@ -84,15 +78,19 @@ export default {
 </script>
 
 
-<style scoped>
+<style>
 body {
     background-color: #1A1A1A;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
-    height: 100vh;
-    width: 100vw;
+}
+
+.card {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background: rgba(5, 64, 73, 0.90);
 }
 
 .container {
@@ -131,5 +129,4 @@ body {
     -webkit-text-fill-color: transparent;
     white-space: nowrap;
 }
-
 </style>
