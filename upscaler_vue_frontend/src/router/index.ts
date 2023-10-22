@@ -1,20 +1,24 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import UploadImageView from '../views/UploadImageView.vue'
+import DisplayResultView from '../views/DisplayResultView.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'home',
-    component: HomeView
+    component: HomeView,
   },
   {
     path: '/upload-image',
     name: 'upload-image',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/UploadImageView.vue')
-  }
+    component: UploadImageView,
+  },
+  {
+    path: '/display-result',
+    name: 'display-result',
+    component: DisplayResultView,
+  },
 ]
 
 const router = createRouter({

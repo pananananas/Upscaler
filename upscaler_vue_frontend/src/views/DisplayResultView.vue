@@ -11,4 +11,19 @@
   
 <script lang="ts">
 import GradientButton from '@/components/GradientButton.vue';
+
+
+
+// write export default:
+export default {
+    data() {
+        return {
+            selectedFile: null
+        };
+    },
+    methods: {
+        
+    },
+    components: { GradientButton }
+};
 </script>

@@ -1,15 +1,11 @@
 <template>
-
-    <a class="btn" shape="round" >
+    <button class="btn" shape="round" >
         <span>{{ label }}</span>
-    </a>
-
+    </button>
 </template>
 
 
-
 <script setup>
-
 import { defineProps, } from 'vue';
 
 const props = defineProps({
@@ -18,7 +14,6 @@ const props = defineProps({
     },
 }
 );
-
 </script>
 
 
