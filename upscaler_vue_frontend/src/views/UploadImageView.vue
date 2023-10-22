@@ -88,10 +88,12 @@ export default {
 
 <style>
 body {
-  display: flex;
+    background-color: #1A1A1A;
+    
+    display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #1A1A1A;
+  
   height: 100vh;
   width: 100vw;
 }
@@ -149,10 +151,6 @@ body {
     cursor: pointer;
 }
 
-.btn:hover {
-    background-color: #0c0c0d;
-}
-
 .btn:before {
     content: "";
     position: absolute;
@@ -162,14 +160,27 @@ body {
         #8B5CF6
     );
     inset: -2px;
-    z-index: -1;
+    z-index: 1;
     border-radius: 90px;
     transition: all 0.2s ease 0s;
+}
+.btn:after {
+    content: "";
+    position: absolute;
+    background-color: #18181b;
+    inset: 1px;
+    z-index: 2;
+    border-radius: 90px;
+    /* transition: all 0.2s ease 0s; */
 }
 
 .btn:hover:before {
     box-shadow: rgba(255, 159, 159, 0.7)  0px 0px 10px 0px,
                 rgba(139, 92, 246, 0.7)   0px 0px 20px 0px;
+}
+
+.btn:hover:after {
+    background-color: #0c0c0d;
 }
 
 .btn > span {
@@ -179,5 +190,6 @@ body {
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
     word-break: break-all;
+    z-index: 3;
 }
 </style>
