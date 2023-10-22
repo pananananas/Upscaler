@@ -30,6 +30,7 @@ const props = defineProps({
   font-family: Port Lligat Sans;
   transition: background-color 0.2s ease-in-out;
   justify-content: center;
+  
   text-align: center;
   cursor: pointer;
 }

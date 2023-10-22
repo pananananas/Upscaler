@@ -1,5 +1,5 @@
 <template>
-    <body class="bg-backgroundcolor">
+    <body>
         <!-- <svg
         class="absolute overflow-visible"
         style=""
@@ -14,8 +14,7 @@
         <div class="container">
 
             <div class="my-5 justify-self-start">
-                
-                <div class="text-6xl font-port-lligat-slab leading-[50px] text-white w-full">
+                <div class="text-7xl font-port-lligat-slab leading-[60px] text-white w-full">
                     Upscale your
                     <br />
                     <span class="magic_text">
@@ -30,10 +29,14 @@
                 </div>
             </div>
 
-            <gradient-button label="Upload Image" class="m-5"/>
+            <div class="card">
+
+                <button class="btn" shape="round" >
+                    <span>Upload Image</span>
+                </button>
+            </div>
+            
         </div>
-
-
 
 
   </body>
@@ -91,6 +94,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #1A1A1A;
   height: 100vh;
   width: 100vw;
 }
@@ -103,6 +107,7 @@ body {
     justify-items: center;
     align-items: center;
 }
+
 :root {
     --orange: #FF9F9F;
     --purple: #8B5CF6;
@@ -129,5 +134,53 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     white-space: nowrap;
+}
+
+.btn {
+  line-height: 1.3rem;
+  border-radius: 90px;
+  display: inline-flex;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  position: relative;
+  background-color: #18181b;
+  color: #f4f4f5;
+  font-family: Port Lligat Sans;
+  transition: background-color 0.2s ease-in-out;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #0c0c0d;
+}
+
+.btn:before {
+  content: "";
+  position: absolute;
+  background: linear-gradient(
+    to right,
+    #FF9F9F,
+    #8B5CF6
+  );
+  inset: -2px;
+  z-index: -1;
+  border-radius: 90px;
+  transition: all 0.2s ease 0s;
+}
+
+.btn:hover:before {
+  box-shadow: rgba(255, 159, 159, 0.7)  0px 0px 10px 0px,
+              rgba(139, 92, 246, 0.7)   0px 0px 20px 0px;
+}
+
+.btn > span {
+  text-align: left;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  word-break: break-all;
 }
 </style>
