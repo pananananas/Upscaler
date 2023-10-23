@@ -38,16 +38,11 @@ def generate_color_sr(input_dir, lum_dir, output_dir, scale=2):
     # Convert back to BGR color space
     sr_color = cv2.cvtColor(test_img_ycbcr, cv2.COLOR_YCrCb2BGR)
     
+    # Add suffix to the file name
+    bic_test_file_name = os.path.splitext(bic_test_file_name)[0] + '_DWSRx4.png'
+
     # Write the final super-resolved color image
     cv2.imwrite(os.path.join(output_dir, bic_test_file_name), sr_color)
 
-
-
-
-# input_image_path = '/Users/erykwojcik/Documents/GitHub/Upscaler/upscaler_django_backend/images/comic.png'
-# sr_lum_dir = '/Users/erykwojcik/Documents/GitHub/Upscaler/upscaler_django_backend/images/greyscaleSR'
-# output_dir = '/Users/erykwojcik/Documents/GitHub/Upscaler/upscaler_django_backend/images/output'
-
-# fileName = os.path.basename(input_image_path)
-
-# generate_color_sr(input_image_path, sr_lum_dir, output_dir, scale=2) 
+    # Retun the final super-resolved color image
+    return sr_color

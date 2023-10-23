@@ -1,5 +1,4 @@
 import os
-import threading
 from upscaler_django_backend.upscale_models.DWSR.GenerateEnlargedLR import generate_enlarged_lr  
 from upscaler_django_backend.upscale_models.DWSR.DWSRx2 import process_image
 from upscaler_django_backend.upscale_models.DWSR.DWSRx4 import process_image_x4
@@ -30,8 +29,6 @@ def run_dwsr(input_image_path, scale):
             process_image_x4(input_path, sr_lum_dir)
 
     # 3. Generate color SR
-    generate_color_sr(input_image_path, sr_lum_dir, output_dir, scale) 
+    final_img = generate_color_sr(input_image_path, sr_lum_dir, output_dir, scale) 
 
-
-
-    # TODO: Umieść obraz finalny w bazie danych, wyślij go na front
+    # 4. Save image to database

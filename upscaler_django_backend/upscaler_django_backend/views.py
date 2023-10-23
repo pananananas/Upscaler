@@ -29,6 +29,26 @@ def clear_output_folders():
                 os.unlink(file_path)
 
 
+def run_bilinear(input_image_path, scale):
+    # Read the uploaded image file
+    img = cv2.imread(input_image_path, cv2.IMREAD_COLOR)
+    
+    # Calculate the new dimensions
+    height, width = img.shape[:2]
+    new_width, new_height = width * scale, height * scale
+
+    # Resize the image using bilinear interpolation
+    img_resized = cv2.resize(img, (new_width, new_height), interpolation=cv2.INTER_LINEAR)
+
+    # Construct the output file path
+    base_name = os.path.splitext(os.path.basename(input_image_path))[0]
+    image_format = os.path.splitext(os.path.basename(input_image_path))[1]
+    output_image_path = os.path.join('images', 'output', f"{base_name}_BILINEARx{scale}{image_format}")
+
+    # Save the output image to the specified path
+    cv2.imwrite(output_image_path, img_resized)
+
+
 def run_esrgan(input_image_path):
     # Read the uploaded image
     img = cv2.imread(input_image_path, cv2.IMREAD_COLOR)
@@ -48,31 +68,37 @@ def run_esrgan(input_image_path):
     base_name = os.path.splitext(os.path.basename(input_image_path))[0]
     image_format = os.path.splitext(os.path.basename(input_image_path))[1]
 
-    output_image_path = os.path.join('images', 'output', f"{base_name}_esrgan{image_format}")
+    output_image_path = os.path.join('images', 'output', f"{base_name}_ESRGANx4{image_format}")
     cv2.imwrite(output_image_path, output)
     
     # TODO: Umieść obraz finalny w bazie danych, wyślij go na front
-    return output_image_path
+    return output
 
 
 @csrf_exempt
 def upload_image(request):
     try:
         clear_output_folders()
-
+        
         form = Image(image=request.FILES['image'])
         form.save()
 
         input_image_path = form.image.path
 
-        # thread1 = threading.Thread(target=run_dwsr, args=(input_image_path, 2))
+        thread1 = threading.Thread(target=run_bilinear, args=(input_image_path, 4))
         thread2 = threading.Thread(target=run_dwsr, args=(input_image_path, 4))
         thread3 = threading.Thread(target=run_esrgan, args=(input_image_path,))
-        # thread1.start()
+        thread1.start()
         thread2.start()
         thread3.start()
 
-        return JsonResponse({'message': 'Image uploaded and processing started'})
+        JsonResponse({'message': 'Image uploaded and processing started'})
+
+        thread1.join()
+        thread2.join()
+        thread3.join()
+
+        return JsonResponse({'message': 'Image uploaded and processing ended'})
 
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=400)
