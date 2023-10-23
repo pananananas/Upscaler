@@ -1,8 +1,8 @@
 import cv2
 import os
+from django.core.files import File
 
-
-def run_bilinear(input_image_path, scale):
+def run_bilinear(input_image_path, scale, image_instance):
     # Read the uploaded image file
     img = cv2.imread(input_image_path, cv2.IMREAD_COLOR)
     
@@ -20,3 +20,7 @@ def run_bilinear(input_image_path, scale):
 
     # Save the output image to the specified path
     cv2.imwrite(output_image_path, img_resized)
+    
+    with open(output_image_path, 'rb') as file:
+        django_file = File(file)
+        image_instance.bilinear_image.save(os.path.basename(output_image_path), django_file, save=True)

@@ -1,6 +1,8 @@
+from upscaler_django_backend.helper_methods.helper_methods import clear_helper_folders
+import glob
 import cv2
 import os
-import glob
+
 
 def generate_color_sr(input_dir, lum_dir, output_dir, scale=2):
 
@@ -44,5 +46,8 @@ def generate_color_sr(input_dir, lum_dir, output_dir, scale=2):
     # Write the final super-resolved color image
     cv2.imwrite(os.path.join(output_dir, bic_test_file_name), sr_color)
 
-    # Retun the final super-resolved color image
-    return sr_color
+    # Clear the helper folders
+    clear_helper_folders()
+
+    # Retun the output path
+    return os.path.join(output_dir, bic_test_file_name)

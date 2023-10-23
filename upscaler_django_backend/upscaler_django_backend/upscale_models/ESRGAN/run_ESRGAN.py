@@ -1,4 +1,5 @@
 from upscaler_django_backend.upscale_models.ESRGAN import RRDBNet_arch as arch
+from django.core.files import File
 import numpy as np
 import torch
 import cv2
@@ -13,7 +14,7 @@ model.eval()
 model = model.to(device)
 
 
-def run_esrgan(input_image_path):
+def run_esrgan(input_image_path, image_instance):
     # Read the uploaded image
     img = cv2.imread(input_image_path, cv2.IMREAD_COLOR)
     img = img * 1.0 / 255
@@ -35,5 +36,6 @@ def run_esrgan(input_image_path):
     output_image_path = os.path.join('images', 'output', f"{base_name}_ESRGANx4{image_format}")
     cv2.imwrite(output_image_path, output)
     
-    # TODO: Umieść obraz finalny w bazie danych, wyślij go na front
-    return output
+    with open(output_image_path, 'rb') as file:
+        django_file = File(file)
+        image_instance.esrgan_image.save(os.path.basename(output_image_path), django_file, save=True)
