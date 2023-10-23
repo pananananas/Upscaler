@@ -27,8 +27,7 @@
 
             <div class="bg-[rgba(5,64,73,0.90)] aspect-[4/3] h-[280px] z-10 rounded-[10px] border-dashed border-[transparent] border flex flex-col gap-1  relative overflow-hidden items-center justify-center"
                 @dragover.prevent="onDragOver" 
-                @drop.prevent="onDrop"
-            >
+                @drop.prevent="onDrop">
                 <div></div>
                 <div></div>
                 <div></div>
@@ -54,7 +53,7 @@
 
                     </div>
                 </div>
-                <canvas ref="canvas" class="absolute top-0 left-0 aspect-[4/3] h-[280px]" ></canvas>
+                <!-- <canvas ref="canvas" class="absolute top-0 left-0 aspect-[4/3] h-[280px]" ></canvas> -->
             </div>
         </div>
         <!-- <span class="relative text-white mt-7 mb-4 font-port-lligat-sans text-2xl leading-6" > 
@@ -77,23 +76,21 @@ export default defineComponent({
         const canvas = ref<HTMLCanvasElement | null>(null);
 
         onMounted(() => {            
-            if (canvas.value) {
-                
-                const context = canvas.value.getContext('2d');
-                // if (context) {
-                //     const centerX = canvas.value.width / 2;
-                //     const centerY = canvas.value.height / 2;
-                //     const radius = 70;
-                //     context.beginPath();
-                //     context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
-                //     context.fillStyle = 'green';
-                //     context.fill();
-                //     context.lineWidth = 5;
-                //     context.strokeStyle = '#003300';
-                //     context.stroke();
-                    
-                // }
-            }
+            // if (canvas.value) {
+            //     const context = canvas.value.getContext('2d');
+            //     if (context) {
+            //         const centerX = canvas.value.width / 2;
+            //         const centerY = canvas.value.height / 2;
+            //         const radius = 70;
+            //         context.beginPath();
+            //         context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+            //         context.fillStyle = 'green';
+            //         context.fill();
+            //         context.lineWidth = 5;
+            //         context.strokeStyle = '#003300';
+            //         context.stroke();
+            //     }
+            // }
         });
 
         return {
@@ -160,16 +157,6 @@ export default defineComponent({
 <style>
 body {
     background-color: #1A1A1A;
-}
-
-.card {
-    display: inline-flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-    flex-shrink: 0;
-    border-radius: 10px;
-    background: rgba(5, 64, 73, 0.90);
 }
 
 :root {

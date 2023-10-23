@@ -10,7 +10,7 @@ from upscaler_django_backend.upscale_models.ESRGAN import RRDBNet_arch as arch
 from upscaler_django_backend.upscale_models.DWSR.run_DWSR import run_dwsr
 
 
-# Initialize the ESRGAN model (Better to do this once rather than for each request)
+# Initialize the ESRGAN model 
 model_path = 'upscaler_django_backend/upscale_models/ESRGAN/models/RRDB_ESRGAN_x4.pth'
 device = torch.device('cpu')
 model = arch.RRDBNet(3, 3, 64, 23, gc=32)
