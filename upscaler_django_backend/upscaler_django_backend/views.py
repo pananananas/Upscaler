@@ -30,8 +30,7 @@ def upload_image(request):
         # thread3.join()
         
         image = Image.objects.latest('id')  # Gets the latest entry
-        return JsonResponse({'image_id': image.id})
-        # return JsonResponse({'message': 'Image uploaded and processing started'})
+        return JsonResponse({'message': 'Image uploaded and processing started', 'image_id': image.id})
 
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=400)
