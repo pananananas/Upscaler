@@ -61,8 +61,8 @@
         </span> -->
     </body>
 </template>
-  
-  
+
+
 <script lang="ts">
 import { defineComponent, onMounted, ref, nextTick } from 'vue';
 import GradientButton from '@/components/GradientButton.vue';
@@ -105,13 +105,13 @@ export default defineComponent({
     methods: {
         onDragOver(event: Event) {
             event.preventDefault();
-            // Tutaj można dodać kod, aby zmienić styl lub wyświetlić informacje zwrotne dla użytkownika
+            // TODO: Change styles of the dropzone when an item is dragged over it
         },
         async onDrop(event: DragEvent) { 
             event.preventDefault();
             if (event.dataTransfer) {
                 const files = event.dataTransfer.files;
-                if (files.length > 0 && files.length < 2) {
+                if (files.length == 1) {
                     this.selectedFile = files[0];
                     if (!this.selectedFile)
                         return;
@@ -158,12 +158,10 @@ export default defineComponent({
 body {
     background-color: #1A1A1A;
 }
-
 :root {
     --orange: #FF9F9F;
     --purple: #8B5CF6;
 }
-
 @keyframes background-pan {
     from {
         background-position: 0% center;
@@ -172,7 +170,6 @@ body {
         background-position: -200% center;
     }
 }
-
 .magic_text {
     animation: background-pan 3s linear infinite;
     background: linear-gradient(
