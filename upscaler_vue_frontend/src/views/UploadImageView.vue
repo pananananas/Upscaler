@@ -144,6 +144,7 @@ export default defineComponent({
                 });
                 const data = await response.json();
                 console.log(data);
+                
             }
             catch (error) {
                 console.error("Błąd podczas wysyłania obrazu:", error);
