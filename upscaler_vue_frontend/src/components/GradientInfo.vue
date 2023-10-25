@@ -1,6 +1,8 @@
 <template>
     <label class="gradientinfo" shape="round"  >
-        <span class="text-2xsm px-1">{{ label }}</span>
+        <span class="text-xsm px-1">
+            {{ label }}
+        </span>
     </label>
 </template>
 
@@ -18,12 +20,11 @@ const props = defineProps({
 
 <style>
 .gradientinfo {
-    /* Adjusting padding and line-height for the label */
-    padding: 0.3rem 0.8rem;  /* Reduced padding */
-    line-height: 0.6rem;     /* Adjusted line-height */
+    padding: 0.3rem 0.8rem; 
+    line-height: 0.7rem;    
     border-radius: 90px;
     display: inline-flex;
-    font-size: 0.5rem;       /* Reduced font size */
+    font-size: 0.5rem;
     position: relative;
     background-color: rgba(24, 24, 27, 0.9);
     color: #f4f4f5;
@@ -48,7 +49,7 @@ const props = defineProps({
         var(--orange2)
     );
     background-size: 200%;
-    inset: -0.5px;
+    inset: -1px;
     z-index: 11;
     border-radius: 90px;
     transition: all 0.3s ease 0s;

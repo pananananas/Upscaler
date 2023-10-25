@@ -41,7 +41,7 @@
                 <div></div>
                 <div class="pt-2"></div>
                 
-                <div class="bg-[rgba(30,30,30,0.80)] hover:bg-[rgba(30,30,30,0.9)] transition ease-in-out duration-300 rounded-lg shrink-0 w-[180px] h-[54px] z-10 relative">
+                <div class="bg-[rgba(30,30,30,0.80)] hover:bg-[rgba(30,30,30,0.9)] transition ease-in-out duration-300 rounded-lg shrink-0 w-[180px] h-[57px] z-10 relative">
                     <span class="text-white text-center relative z-10 font-port-lligat-sans text-xsm leading-6 px-3">
                         Supported formats
                     </span>
@@ -144,7 +144,7 @@ export default defineComponent({
                 });
                 const data = await response.json();
                 console.log(data);
-                
+
             }
             catch (error) {
                 console.error("Błąd podczas wysyłania obrazu:", error);

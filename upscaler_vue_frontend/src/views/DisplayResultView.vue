@@ -12,18 +12,35 @@
             <div class="flex-initial mx-auto p-5 grid-cols-1 gap-6 h-full justify-items-center items-center ">
 
                 <div class="">
-                    <img :src="require('@/assets/image.png')" alt="Description of Image">
+                    <img :src="require('@/assets/image.png')" class=" object-certain rounded-md">
                 </div>
-                
+
+                <!-- <div class="bg-[rgba(217,217,217,0.10)] rounded-[10px] border-solid border-[rgba(255,255,255,0.30)] border w-[119.83px] h-[119.83px] relative"> </div> -->
                 
             </div>
             <div class="m-5 w-1/4 z-10">
-                <div class="flex-initial bg-[rgba(24,24,24,0.7)] rounded-xl  h-full justify-self-end left-0 p-5">
+                <div class="flex-initial bg-[rgba(20,20,20,0.7)] rounded-xl  h-full justify-self-end left-0 p-5">
                     
                     <div class="relative h-full w-full">
-                        
 
-                        <span class="text-white mt-7 my-4 font-port-lligat-sans text-sm"> 
+                        <div class="miniature flex mb-5">
+                            <img :src="require('@/assets/image.png')" class="h-12 object-certain rounded-sm">
+
+                            <span class="text-white mx-3 font-port-lligat-sans text-md"> 
+                                image.png 
+                                <span class="text-[#cdcdcd] font-port-lligat-sans text-xsm"> 
+                                    <br/>248x360px
+                                </span>
+                            </span>
+
+                            
+                            <gradient-info label="resolution x4" class="absolute top-0 right-0"/>
+                        </div>
+                        <span class="text-white mt-7 my-4 font-port-lligat-sans text-md"> 
+                            Method comparison <br/>
+                        </span>   
+
+                        <span class="text-white mt-7 my-4 font-port-lligat-sans text-smm"> 
                             Choose a method and download your image <br/>
                         </span>    
 
@@ -37,21 +54,36 @@
   
   
 <script lang="ts">
+import { defineComponent, onMounted, ref, nextTick } from 'vue';
 import GradientButton from '@/components/GradientButton.vue';
+import GradientInfo from '@/components/GradientInfo.vue';
 
 
 
 // write export default:
 export default {
+    setup() {
+        onMounted(() => {            
+            // get fileName from image
+        });
+
+        return {
+
+        };
+    },
     data() {
+        
+    
+
+
         return {
             selectedFile: null
         };
     },
     methods: {
-        
+
     },
-    components: { GradientButton }
+    components: { GradientButton, GradientInfo }
 };
 </script>
 
@@ -59,6 +91,4 @@ export default {
 body {
     background-color: #1A1A1A;
 }
-
-
 </style>
