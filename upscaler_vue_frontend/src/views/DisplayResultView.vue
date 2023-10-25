@@ -13,11 +13,10 @@
 
                 <div class="flex justify-center items-center gap-1 h-full">
 
-
-                    <img v-if="isVertical" :src="require('@/assets/horizontal.png')" class="h-4/5 object-contain mx-auto rounded-md">
-                    <img v-else            :src="require('@/assets/vertical.png')" class="w-4/5 object-contain my-auto rounded-md">
+                    <!-- THIS IMAGE HERE -->
+                    <img v-if="isVertical" :src="require('@/assets/horizontal.png')" class="h-4/5 object-contain mx-auto rounded-md" ref="imageRef">
+                    <img v-else            :src="require('@/assets/vertical.png')" class="w-4/5 object-contain my-auto rounded-md" ref="imageRef"> 
                 </div>
-                <!-- <div class="bg-[rgba(217,217,217,0.10)] rounded-[10px] border-solid border-[rgba(255,255,255,0.30)] border w-[120px] h-[120px] absolute left-0 up-0"> </div> -->
                 
             </div>
             <div :class=divClasses>
@@ -97,14 +96,17 @@
             </div>
         </div>
 
+        <div :style="{ top: cursorY + 'px', left: cursorX + 'px', transform: 'translate(-100%, -100%)' }" class="bg-[rgba(217,217,217,0.10)] rounded-[10px] border-solid border-[rgba(255,255,255,0.30)] border w-[80px] h-[80px] absolute "> </div>
+        <magnify-round-icon :style="{ top: cursorY + 'px', left: cursorX + 'px', transform: 'translate(-50%, -50%)' }" class="absolute"/>
 
-        <magnify-round-icon class="absolute top-0 left-0"/>
+
+    
   </body>
   </template>
   
   
 <script lang="ts">
-import { defineComponent, onMounted, ref, nextTick } from 'vue';
+import { defineComponent, onMounted, onBeforeUnmount, ref, Ref, nextTick } from 'vue';
 import GradientButton from '@/components/GradientButton.vue';
 import GradientInfo from '@/components/GradientInfo.vue';
 import MagnifyRoundIcon from '@/components/MagnifyRoundIcon.vue';
@@ -112,14 +114,37 @@ import MagnifyRoundIcon from '@/components/MagnifyRoundIcon.vue';
 
 export default defineComponent({
     setup() {
-        onMounted(() => {            
+        const cursorX = ref(-10);  // cursorX-coordinate
+        const cursorY = ref(-10);  // cursorY-coordinate
+        const imageRef: Ref<HTMLImageElement | null> = ref(null);
+
+        const updateMousePosition = (e: MouseEvent) => {
+            const image = imageRef.value;
+            if (image) {
+                const rect = image.getBoundingClientRect();
+                if (e.clientX - 80 >= rect.left && e.clientX <= rect.right && e.clientY - 80 >= rect.top && e.clientY <= rect.bottom) {
+                    cursorX.value = e.clientX;
+                    cursorY.value = e.clientY;
+                }
+            }
+        };
+
+        onMounted(() => {
+            document.addEventListener('mousemove', updateMousePosition);
         });
-        const upscaleAlgorithm = ref('dwsr'); // Default value 
+
+        onBeforeUnmount(() => {
+            document.removeEventListener('mousemove', updateMousePosition);
+        });
+        const upscaleAlgorithm = ref('dwsr'); // Default value
 
         const someMethod = () => {
             console.log(upscaleAlgorithm.value);
         };
         return {
+            imageRef,
+            cursorX,
+            cursorY,
             upscaleAlgorithm,
             someMethod
         };
@@ -132,7 +157,6 @@ export default defineComponent({
         };
     },
     methods: {
-
     },
     components: { GradientButton, GradientInfo, MagnifyRoundIcon },
     computed: {
@@ -151,5 +175,4 @@ export default defineComponent({
 body {
     background-color: #1A1A1A;
 }
-
 </style>

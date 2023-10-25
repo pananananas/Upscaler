@@ -21,7 +21,7 @@ const props = defineProps({
 <style>
 
 .magnifyicon {
-    z-index: 100;
+    z-index: 102;
 
 }
 .magnifyroundicon {
@@ -55,7 +55,7 @@ const props = defineProps({
     );
     background-size: 200%;
     inset: -1px;
-    z-index: 11;
+    z-index: 100;
     border-radius: 90px;
     transition: all 0.3s ease 0s;
 }
@@ -65,7 +65,7 @@ const props = defineProps({
     position: absolute;
     background-color: rgba(24, 24, 27, 0.95);
     inset: 1px;
-    z-index: 12;
+    z-index: 101;
     border-radius: 90px;
     transition: all 0.3s ease 0s;
 }
