@@ -34,7 +34,7 @@
                 <!-- <div class="bg-[rgba(217,217,217,0.10)] rounded-[10px] border-solid border-[rgba(255,255,255,0.30)] border w-[119.83px] h-[119.83px] relative"> </div> -->
                 
             </div>
-            <div class="m-5 w-1/4 z-10">
+            <div :class=divClasses>
                 <div class="flex-initial bg-[rgba(20,20,20,0.7)] rounded-xl  h-full justify-self-end left-0 p-5">
                     
                     <div class="relative h-full w-full">
@@ -75,9 +75,7 @@ import GradientButton from '@/components/GradientButton.vue';
 import GradientInfo from '@/components/GradientInfo.vue';
 
 
-
-// write export default:
-export default {
+export default defineComponent({
     setup() {
         onMounted(() => {            
         });
@@ -93,8 +91,17 @@ export default {
     methods: {
 
     },
-    components: { GradientButton, GradientInfo }
-};
+    components: { GradientButton, GradientInfo },
+    computed: {
+        divClasses() : string[] {
+        return [
+            'm-5',
+            'z-10',
+            this.isVertical ? 'w-1/4' : 'w-1/2',
+        ];
+        },
+    },
+});
 </script>
 
 <style>
