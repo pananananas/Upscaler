@@ -118,16 +118,22 @@ export default defineComponent({
         const cursorY = ref(-10);  // cursorY-coordinate
         const imageRef: Ref<HTMLImageElement | null> = ref(null);
 
-        const updateMousePosition = (e: MouseEvent) => {
-            const image = imageRef.value;
-            if (image) {
-                const rect = image.getBoundingClientRect();
-                if (e.clientX - 80 >= rect.left && e.clientX <= rect.right && e.clientY - 80 >= rect.top && e.clientY <= rect.bottom) {
-                    cursorX.value = e.clientX;
-                    cursorY.value = e.clientY;
+            const updateMousePosition = (e: MouseEvent) => {
+                const image = imageRef.value;
+                if (image) {
+                    const rect = image.getBoundingClientRect();
+                    
+                    // Clamp the cursor's x-coordinate within the image's bounds
+                    const effectiveX = Math.min(Math.max(e.clientX, rect.left + 80), rect.right);
+                    
+                    // Clamp the cursor's y-coordinate within the image's bounds
+                    const effectiveY = Math.min(Math.max(e.clientY, rect.top + 80), rect.bottom);
+
+                    cursorX.value = effectiveX;
+                    cursorY.value = effectiveY;
                 }
-            }
-        };
+            };
+
 
         onMounted(() => {
             document.addEventListener('mousemove', updateMousePosition);
