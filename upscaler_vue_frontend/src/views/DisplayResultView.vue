@@ -17,21 +17,7 @@
                     <img v-if="isVertical" :src="require('@/assets/horizontal.png')" class="h-4/5 object-contain mx-auto rounded-md">
                     <img v-else            :src="require('@/assets/vertical.png')" class="w-4/5 object-contain my-auto rounded-md">
                 </div>
-                <!-- <div
-                    class="bg-[rgba(37,37,37,0.80)] rounded-full border-2 border-solid w-[39.94px] h-[39.94px] relative"
-                    style="
-                    border-image: linear-gradient(
-                        135deg,
-                        rgba(255, 159, 159, 1) 0%,
-                        rgba(139, 92, 246, 1) 100%
-                    );
-                    border-image-slice: 1;">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-                    </svg>
-                </div> -->
-
-                <!-- <div class="bg-[rgba(217,217,217,0.10)] rounded-[10px] border-solid border-[rgba(255,255,255,0.30)] border w-[119.83px] h-[119.83px] relative"> </div> -->
+                <!-- <div class="bg-[rgba(217,217,217,0.10)] rounded-[10px] border-solid border-[rgba(255,255,255,0.30)] border w-[120px] h-[120px] absolute left-0 up-0"> </div> -->
                 
             </div>
             <div :class=divClasses>
@@ -48,10 +34,9 @@
                                     <br/>248x360px
                                 </span>
                             </span>
-
-                            
                             <gradient-info label="resolution x4" class="absolute top-0 right-0"/>
                         </div>
+
                         <span class="text-white my-4 font-port-lligat-sans text-md"> 
                             Method comparison <br/>
                         </span>   
@@ -111,6 +96,9 @@
                 </div>
             </div>
         </div>
+
+
+        <magnify-round-icon class="absolute top-0 left-0"/>
   </body>
   </template>
   
@@ -119,6 +107,7 @@
 import { defineComponent, onMounted, ref, nextTick } from 'vue';
 import GradientButton from '@/components/GradientButton.vue';
 import GradientInfo from '@/components/GradientInfo.vue';
+import MagnifyRoundIcon from '@/components/MagnifyRoundIcon.vue';
 
 
 export default defineComponent({
@@ -145,7 +134,7 @@ export default defineComponent({
     methods: {
 
     },
-    components: { GradientButton, GradientInfo },
+    components: { GradientButton, GradientInfo, MagnifyRoundIcon },
     computed: {
         divClasses() : string[] {
         return [
