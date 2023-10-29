@@ -21,7 +21,7 @@
                     <div class="relative h-full w-full">
 
                         <div class="miniature flex mb-6">
-                            <img :src="imageUrl" class="h-12 object-certain rounded-sm">
+                            <img :src="originalImageUrl" class="h-12 object-certain rounded-sm">
 
                             <span class="text-white mx-3 font-port-lligat-sans text-md"> 
                                 {{ imageTitle }} 
@@ -96,19 +96,15 @@ export default defineComponent({
     setup() {
         const router = useRouter();
         const imageId = router.currentRoute.value.params.image_id;
-        const imageTypes: ('dwsr' | 'original' | 'esrgan' | 'bilinear')[] = ["original", "dwsr", "esrgan", "bilinear"];
-        const imageUrls = ref({
-            original: '',
-            dwsr: '',
-            esrgan: '',
-            bilinear: ''
-        });
+        const imageTypes: ('dwsr' | 'original' | 'esrgan' | 'bilinear')[] = ["dwsr", "esrgan", "bilinear", "original"];
+        const imageUrls = ref({ original: '', dwsr: '', esrgan: '', bilinear: '' });
         const imageUrl = ref('');
         const imageTitle: Ref<string> = ref('');
         const imageRef: Ref<HTMLImageElement | null> = ref(null);
         const selectedAlgorithm = ref('dwsr'); // Default value
         
         const dominantColors = ref([]);
+        const originalImageUrl = ref('');
         const originalImageWidth = ref(0);
         const originalImageHeight = ref(0);
 
@@ -137,8 +133,10 @@ export default defineComponent({
                 if (response.ok) {
                     const data = await response.json();
                     imageUrls.value[imageType as keyof typeof imageUrls.value] = `http://localhost:8000${data.image_url}`;
-                    if (imageType === "original")
+                    if (imageType === "original") {
+                        originalImageUrl.value = `http://localhost:8000${data.image_url}`;
                         imageTitle.value = data.image_url.replace("/images/", "");
+                    }
                     if (imageType === "dwsr")
                         imageUrl.value = `http://localhost:8000${data.image_url}`;
 
@@ -182,18 +180,16 @@ export default defineComponent({
         });
 
         return {
-            imageRef,
-            imageUrl,
-            imageTitle,
             cursorX,
             cursorY,
+            imageRef,
+            imageUrl,
+            imageUrls,
+            imageTitle,
             selectedAlgorithm,
-            dominantColors,
             originalImageWidth,
             originalImageHeight,
-            fetchImage,
-            imageUrls
-
+            originalImageUrl,
         };
     },
     data() {
@@ -203,8 +199,6 @@ export default defineComponent({
     methods: {
         async updatePreview(type: 'dwsr' | 'esrgan' | 'bilinear' | 'original') {
             this.imageUrl = this.imageUrls[type];
-            console.log(this.imageUrls)
-            console.log(this.imageUrl)
         },
     },
     components: { GradientButton, GradientInfo, MagnifyRoundIcon },
@@ -213,12 +207,12 @@ export default defineComponent({
         return [
             'm-5',
             'z-10',
-            this.originalImageWidth <= this.originalImageHeight ? 'w-1/4' : 'w-1/4',
+            this.originalImageWidth < this.originalImageHeight ? 'w-1/4' : 'w-1/4',
         ];
         },
         divImageClasses() : string[] {
         return [
-            this.originalImageWidth <= this.originalImageHeight ? 'h-4/5' : 'w-4/5',
+            this.originalImageWidth < this.originalImageHeight ? 'h-4/5' : 'w-4/5',
         ];
         },
     },
