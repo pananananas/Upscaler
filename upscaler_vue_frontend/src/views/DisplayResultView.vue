@@ -13,9 +13,12 @@
 
                 <div class="flex justify-center items-center gap-1 h-full">
 
-                    <!-- THIS IMAGE HERE -->
-                    <img v-if="isVertical" :src="require('@/assets/horizontal.png')" class="h-4/5 object-contain mx-auto rounded-md" ref="imageRef">
-                    <img v-else            :src="require('@/assets/vertical.png')" class="w-4/5 object-contain my-auto rounded-md" ref="imageRef"> 
+                    <!-- DISPLAY IMAGE FROM DATA BASE INSTEAD OF THIS IMAGE HERE -->
+
+                    <img v-if="isVertical" :src="imageUrl" class="h-4/5 object-contain mx-auto rounded-lg" ref="imageRef">
+
+                    <!-- <img v-if="isVertical" :src="require('@/assets/vertical.png')" class="h-4/5 object-contain mx-auto rounded-lg" ref="imageRef"> -->
+                    <img v-else            :src="imageUrl" class="w-4/5 object-contain my-auto rounded-lg" ref="imageRef"> 
                 </div>
                 
             </div>
@@ -25,10 +28,10 @@
                     <div class="relative h-full w-full">
 
                         <div class="miniature flex mb-6">
-                            <img :src="require('@/assets/horizontal.png')" class="h-12 object-certain rounded-sm">
+                            <img :src="imageUrl" class="h-12 object-certain rounded-sm">
 
                             <span class="text-white mx-3 font-port-lligat-sans text-md"> 
-                                image.png 
+                                {{ imageTitle }} 
                                 <span class="text-[#cdcdcd] font-port-lligat-sans text-xsm"> 
                                     <br/>248x360px
                                 </span>
@@ -96,7 +99,7 @@
             </div>
         </div>
 
-        <div :style="{ top: cursorY + 'px', left: cursorX + 'px', transform: 'translate(-100%, -100%)' }" class="bg-[rgba(217,217,217,0.10)] rounded-[10px] border-solid border-[rgba(255,255,255,0.30)] border w-[80px] h-[80px] absolute "> </div>
+        <div :style="{ top: cursorY + 'px', left: cursorX + 'px', transform: 'translate(-100%, -100%)' }" class="bg-[rgba(217,217,217,0.10)] rounded-lg border-solid border-[rgba(255,255,255,0.30)] border w-[80px] h-[80px] absolute "> </div>
         <magnify-round-icon :style="{ top: cursorY + 'px', left: cursorX + 'px', transform: 'translate(-50%, -50%)' }" class="absolute"/>
 
 
@@ -110,10 +113,14 @@ import { defineComponent, onMounted, onBeforeUnmount, ref, Ref, nextTick } from 
 import GradientButton from '@/components/GradientButton.vue';
 import GradientInfo from '@/components/GradientInfo.vue';
 import MagnifyRoundIcon from '@/components/MagnifyRoundIcon.vue';
+import { useRouter } from 'vue-router';
 
 
 export default defineComponent({
     setup() {
+        const router = useRouter();
+        const imageId = router.currentRoute.value.params.image_id;
+
         const cursorX = ref(-10);  // cursorX-coordinate
         const cursorY = ref(-10);  // cursorY-coordinate
         const imageRef: Ref<HTMLImageElement | null> = ref(null);
@@ -133,10 +140,26 @@ export default defineComponent({
                     cursorY.value = effectiveY;
                 }
             };
+            const imageUrl = ref(''); // To store the fetched image URL
+            const imageTitle: Ref<string> = ref(''); // To store the fetched image title
+
+            // Fetch the image
+            const fetchImage = async () => {
+                try {
+                    const response = await fetch(`http://localhost:8000/get-image/${imageId}/`);
+                    const data = await response.json();
+                    imageUrl.value = `http://localhost:8000${data.image_url}`;
+
+                    imageTitle.value = data.image_url.replace("/images/", "");
+                } catch (error) {
+                    console.error('Failed to fetch the image:', error);
+                }
+            };
 
 
         onMounted(() => {
             document.addEventListener('mousemove', updateMousePosition);
+            fetchImage();
         });
 
         onBeforeUnmount(() => {
@@ -152,7 +175,10 @@ export default defineComponent({
             cursorX,
             cursorY,
             upscaleAlgorithm,
-            someMethod
+            someMethod,
+            imageUrl, // Add this line
+            imageTitle
+
         };
     },
     data() {

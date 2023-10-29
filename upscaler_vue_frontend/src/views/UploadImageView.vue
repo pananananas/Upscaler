@@ -136,7 +136,7 @@ export default defineComponent({
             formData.append('image', (this as any).selectedFile);
             await this.sendImageToDataBase(formData);
         }, 
-        async sendImageToDataBase(formData: any) {
+        async sendImageToDataBase(formData: FormData) {
             try {
                 const response = await fetch('http://localhost:8000/upload/', {
                     method: 'POST',
@@ -144,6 +144,10 @@ export default defineComponent({
                 });
                 const data = await response.json();
                 console.log(data);
+                if (data.message === 'Image uploaded and processing started') {
+                    // Navigate to the next view with the image_id as a parameter
+                    this.$router.push({ name: 'display-result', params: { image_id: data.image_id.toString() } });
+                }
 
             }
             catch (error) {

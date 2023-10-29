@@ -3,6 +3,7 @@ from upscaler_django_backend.upscale_models.BILINEAR.run_BILINEAR import run_bil
 from upscaler_django_backend.upscale_models.ESRGAN.run_ESRGAN import run_esrgan
 from upscaler_django_backend.upscale_models.DWSR.run_DWSR import run_dwsr
 from django.views.decorators.csrf import csrf_exempt
+from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
 from .models import Image
 import threading
@@ -34,3 +35,8 @@ def upload_image(request):
 
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=400)
+    
+def get_image(request, image_id):
+    image = get_object_or_404(Image, id=image_id)
+    image_url = image.image.url  # This assumes you want the original image
+    return JsonResponse({'image_url': image_url})

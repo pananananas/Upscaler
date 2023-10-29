@@ -15,10 +15,11 @@ const routes: Array<RouteRecordRaw> = [
     component: UploadImageView,
   },
   {
-    path: '/display-result',
+    path: '/display-result/:image_id',
     name: 'display-result',
     component: DisplayResultView,
-  },
+    props: true
+},
 ]
 
 const router = createRouter({
