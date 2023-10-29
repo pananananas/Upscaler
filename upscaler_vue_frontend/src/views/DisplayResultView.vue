@@ -9,14 +9,11 @@
                 <path d="M240 403.5C220 259.561 404 0 404 0L404 819L0 819C69.1759 819 260 547.439 240 403.5Z" fill="#054049"/>
             </svg>
 
-            <div class="flex-initial mx-auto  h-full">
-
+            <div class="flex-initial mx-auto h-full">
                 <div class="flex justify-center items-center gap-1 h-full">
-
+                    <!-- preview here: -->
                     <img :src="imageUrl" :class="divImageClasses" class="object-contain mx-auto rounded-lg" ref="imageRef">
-
                 </div>
-                
             </div>
             <div :class=divClasses>
                 <div class="flex-initial bg-[rgba(20,20,20,0.7)] rounded-xl  h-full justify-self-end left-0 p-5">
@@ -29,7 +26,7 @@
                             <span class="text-white mx-3 font-port-lligat-sans text-md"> 
                                 {{ imageTitle }} 
                                 <span class="text-[#cdcdcd] font-port-lligat-sans text-xsm"> 
-                                    <br/>{{ imageWidth * 4 }}x{{ imageHeight * 4 }}px
+                                    <br/>{{ originalImageWidth * 4 }}x{{ originalImageHeight * 4 }}px
                                 </span>
                             </span>
                             <gradient-info label="resolution x4" class="absolute top-0 right-0"/>
@@ -40,46 +37,31 @@
                         </span>   
 
                         <div class="magnifying_glass grid grid-cols-2 gap-4 my-4 text-center">
-                            <div>
-                                <div class="w-full aspect-square bg-white rounded-lg">
-                                
-                                </div>
-                                <span class="text-white mt-7 font-port-lligat-sans text-sm"> 
-                                    DWSR
-                                </span>
+                            <div @click="updatePreview('dwsr')">
+                                <div class="w-full aspect-square bg-white rounded-lg"></div>
+                                <span class="text-white mt-7 font-port-lligat-sans text-sm">DWSR</span>
                             </div>
-                            <div>
-                                <div class="w-full aspect-square bg-white rounded-lg">
-                                
-                                </div>
-                                <span class="text-white mt-7 font-port-lligat-sans text-sm"> 
-                                    ESRGAN
-                                </span>
+                            <div @click="updatePreview('esrgan')">
+                                <div class="w-full aspect-square bg-white rounded-lg"></div>
+                                <span class="text-white mt-7 font-port-lligat-sans text-sm">ESRGAN</span>
                             </div>
-                            <div>
-                                <div class="w-full aspect-square bg-white rounded-lg">
-                                
-                                </div>
-                                <span class="text-white mt-7 font-port-lligat-sans text-sm"> 
-                                    Bilinear
-                                </span>
+                            <div @click="updatePreview('bilinear')">
+                                <div class="w-full aspect-square bg-white rounded-lg"></div>
+                                <span class="text-white mt-7 font-port-lligat-sans text-sm">Bilinear</span>
                             </div>
-                            <div>
-                                <div class="w-full aspect-square bg-white rounded-lg">
-                                
-                                </div>
-                                <span class="text-white mt-7 font-port-lligat-sans text-sm"> 
-                                    Original
-                                </span>
+                            <div @click="updatePreview('original')">
+                                <div class="w-full aspect-square bg-white rounded-lg"></div>
+                                <span class="text-white mt-7 font-port-lligat-sans text-sm">Original</span>
                             </div>
                         </div>
+
 
                         <span class="text-white mt-7 my-4 font-port-lligat-sans text-smm absolute bottom-8 left-0"> 
                             Choose a method and download your image <br/>
                         </span>    
 
                         <div class=" bg-[#2d2d2d] rounded-[100px] w-[100px] h-[22px] absolute bottom-2 left-0">
-                            <select v-model="selectedUpscaleAlgorithm" id="upscaleAlgorithm" class="appearance-none bg-transparent grid grid-cols-2 items-center rounded-[100px] w-full h-full text-white font-port-lligat-sans text-smm pr-5 pl-3 focus:bg-[#3d3d3d] outline-none">
+                            <select v-model="selectedAlgorithm" id="upscaleAlgorithm" class="appearance-none bg-transparent grid grid-cols-2 items-center rounded-[100px] w-full h-full text-white font-port-lligat-sans text-smm pr-5 pl-3 focus:bg-[#3d3d3d] outline-none">
                                 <option value="dwsr"> DWSR </option> 
                                 <option value="esrgan"> ESRGAN </option>
                                 <option value="bilinear"> Bilinear </option> 
@@ -113,17 +95,22 @@ import GradientInfo from '@/components/GradientInfo.vue';
 export default defineComponent({
     setup() {
         const router = useRouter();
-
         const imageId = router.currentRoute.value.params.image_id;
-        const imageType = "original"; // "original", "dwsr", "esrgan", "bilinear"
+        const imageTypes: ('dwsr' | 'original' | 'esrgan' | 'bilinear')[] = ["original", "dwsr", "esrgan", "bilinear"];
+        const imageUrls = ref({
+            original: '',
+            dwsr: '',
+            esrgan: '',
+            bilinear: ''
+        });
         const imageUrl = ref('');
         const imageTitle: Ref<string> = ref('');
         const imageRef: Ref<HTMLImageElement | null> = ref(null);
-        const selectedUpscaleAlgorithm = ref('dwsr'); // Default value
+        const selectedAlgorithm = ref('dwsr'); // Default value
         
         const dominantColors = ref([]);
-        const imageWidth = ref(0);
-        const imageHeight = ref(0);
+        const originalImageWidth = ref(0);
+        const originalImageHeight = ref(0);
 
         const cursorX = ref(-10);
         const cursorY = ref(-10);
@@ -144,18 +131,27 @@ export default defineComponent({
             }
         };
 
-        const fetchImage = async () => {
+        const fetchImage = async (imageType: 'original' | 'dwsr' | 'esrgan' | 'bilinear') => {
             try {
                 const response = await fetch(`http://localhost:8000/get-image/${imageId}/${imageType}/`);
                 if (response.ok) {
-                    const data = await response.json()
-                    imageUrl.value = `http://localhost:8000${data.image_url}`;
-                    imageTitle.value = data.image_url.replace("/images/", "");
+                    const data = await response.json();
+                    imageUrls.value[imageType as keyof typeof imageUrls.value] = `http://localhost:8000${data.image_url}`;
+                    if (imageType === "original")
+                        imageTitle.value = data.image_url.replace("/images/", "");
+                    if (imageType === "dwsr")
+                        imageUrl.value = `http://localhost:8000${data.image_url}`;
+
                 } else {
-                        console.error('Failed to fetch image info:', response.statusText);
-                    }
+                    console.error('Failed to fetch image info:', response.statusText);
+                }
             } catch (error) {
                 console.error('Failed to fetch the image:', error);
+            }
+        };
+        const fetchAllImages = async () => {
+            for (const imageType of imageTypes) {
+                await fetchImage(imageType);
             }
         };
 
@@ -165,8 +161,8 @@ export default defineComponent({
                 if (response.ok) {
                     const data = await response.json();
                     dominantColors.value = data.colors;
-                    imageWidth.value = data.width;
-                    imageHeight.value = data.height;
+                    originalImageWidth.value = data.width;
+                    originalImageHeight.value = data.height;
                 } else {
                     console.error('Failed to fetch image info:', response.statusText);
                 }
@@ -177,7 +173,7 @@ export default defineComponent({
 
         onMounted(() => {
             document.addEventListener('mousemove', updateMousePosition);
-            fetchImage();
+            fetchAllImages();
             fetchImageInfo();
         });
 
@@ -191,10 +187,13 @@ export default defineComponent({
             imageTitle,
             cursorX,
             cursorY,
-            selectedUpscaleAlgorithm,
+            selectedAlgorithm,
             dominantColors,
-            imageWidth,
-            imageHeight,
+            originalImageWidth,
+            originalImageHeight,
+            fetchImage,
+            imageUrls
+
         };
     },
     data() {
@@ -202,6 +201,11 @@ export default defineComponent({
         };
     },
     methods: {
+        async updatePreview(type: 'dwsr' | 'esrgan' | 'bilinear' | 'original') {
+            this.imageUrl = this.imageUrls[type];
+            console.log(this.imageUrls)
+            console.log(this.imageUrl)
+        },
     },
     components: { GradientButton, GradientInfo, MagnifyRoundIcon },
     computed: {
@@ -209,12 +213,12 @@ export default defineComponent({
         return [
             'm-5',
             'z-10',
-            this.imageWidth < this.imageHeight ? 'w-1/4' : 'w-1/2',
+            this.originalImageWidth <= this.originalImageHeight ? 'w-1/4' : 'w-1/4',
         ];
         },
         divImageClasses() : string[] {
         return [
-            this.imageWidth < this.imageHeight ? 'h-4/5' : 'w-4/5',
+            this.originalImageWidth <= this.originalImageHeight ? 'h-4/5' : 'w-4/5',
         ];
         },
     },
