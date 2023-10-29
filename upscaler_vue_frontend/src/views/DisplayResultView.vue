@@ -120,6 +120,7 @@ export default defineComponent({
     setup() {
         const router = useRouter();
         const imageId = router.currentRoute.value.params.image_id;
+        const imageType = "original";
 
         const cursorX = ref(-10);  // cursorX-coordinate
         const cursorY = ref(-10);  // cursorY-coordinate
@@ -146,7 +147,7 @@ export default defineComponent({
             // Fetch the image
             const fetchImage = async () => {
                 try {
-                    const response = await fetch(`http://localhost:8000/get-image/${imageId}/`);
+                    const response = await fetch(`http://localhost:8000/get-image/${imageId}/${imageType}/`);
                     const data = await response.json();
                     imageUrl.value = `http://localhost:8000${data.image_url}`;
 

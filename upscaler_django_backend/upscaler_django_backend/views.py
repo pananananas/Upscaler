@@ -36,7 +36,16 @@ def upload_image(request):
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=400)
     
-def get_image(request, image_id):
+def get_image(request, image_id, image_type):
+
     image = get_object_or_404(Image, id=image_id)
-    image_url = image.image.url  # This assumes you want the original image
+
+    if image_type == 'bilinear':    
+        image_url = image.bilinear_image.url
+    elif image_type == 'dwsr':
+        image_url = image.dwsr_image.url
+    elif image_type == 'esrgan':
+        image_url = image.esrgan_image.url
+    else:
+        image_url = image.image.url
     return JsonResponse({'image_url': image_url})
