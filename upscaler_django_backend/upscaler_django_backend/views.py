@@ -1,4 +1,5 @@
 from upscaler_django_backend.helper_methods.helper_methods import clear_data_folders
+from upscaler_django_backend.helper_methods.helper_methods import extract_image_info
 from upscaler_django_backend.upscale_models.BILINEAR.run_BILINEAR import run_bilinear
 from upscaler_django_backend.upscale_models.ESRGAN.run_ESRGAN import run_esrgan
 from upscaler_django_backend.upscale_models.DWSR.run_DWSR import run_dwsr
@@ -7,6 +8,7 @@ from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
 from .models import Image
 import threading
+
 
 
 @csrf_exempt
@@ -22,9 +24,11 @@ def upload_image(request):
         thread1 = threading.Thread(target=run_bilinear, args=(input_image_path, 4, form))
         thread2 = threading.Thread(target=run_dwsr, args=(input_image_path, 4, form))
         thread3 = threading.Thread(target=run_esrgan, args=(input_image_path, form))
+        thread4 = threading.Thread(target=extract_image_info, args=(input_image_path, form))
         thread1.start()
         thread2.start()
         thread3.start()
+        thread4.start()
 
         # thread1.join()
         # thread2.join()

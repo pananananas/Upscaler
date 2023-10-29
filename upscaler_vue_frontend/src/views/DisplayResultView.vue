@@ -13,11 +13,8 @@
 
                 <div class="flex justify-center items-center gap-1 h-full">
 
-                    <!-- DISPLAY IMAGE FROM DATA BASE INSTEAD OF THIS IMAGE HERE -->
-
                     <img v-if="isVertical" :src="imageUrl" class="h-4/5 object-contain mx-auto rounded-lg" ref="imageRef">
 
-                    <!-- <img v-if="isVertical" :src="require('@/assets/vertical.png')" class="h-4/5 object-contain mx-auto rounded-lg" ref="imageRef"> -->
                     <img v-else            :src="imageUrl" class="w-4/5 object-contain my-auto rounded-lg" ref="imageRef"> 
                 </div>
                 
@@ -33,7 +30,8 @@
                             <span class="text-white mx-3 font-port-lligat-sans text-md"> 
                                 {{ imageTitle }} 
                                 <span class="text-[#cdcdcd] font-port-lligat-sans text-xsm"> 
-                                    <br/>248x360px
+                                    <!-- display resolution here: -->
+                                    <br/>{{ imageWidth }}x{{ imageHeight }}px
                                 </span>
                             </span>
                             <gradient-info label="resolution x4" class="absolute top-0 right-0"/>
@@ -83,7 +81,7 @@
                         </span>    
 
                         <div class=" bg-[#2d2d2d] rounded-[100px] w-[100px] h-[22px] absolute bottom-2 left-0">
-                            <select v-model="upscaleAlgorithm" id="upscaleAlgorithm" class="appearance-none bg-transparent grid grid-cols-2 items-center rounded-[100px] w-full h-full text-white font-port-lligat-sans text-smm pr-5 pl-3 focus:bg-[#3d3d3d] outline-none">
+                            <select v-model="selectedUpscaleAlgorithm" id="upscaleAlgorithm" class="appearance-none bg-transparent grid grid-cols-2 items-center rounded-[100px] w-full h-full text-white font-port-lligat-sans text-smm pr-5 pl-3 focus:bg-[#3d3d3d] outline-none">
                                 <option value="dwsr"> DWSR </option> 
                                 <option value="esrgan"> ESRGAN </option>
                                 <option value="bilinear"> Bilinear </option> 
@@ -101,9 +99,7 @@
 
         <div :style="{ top: cursorY + 'px', left: cursorX + 'px', transform: 'translate(-100%, -100%)' }" class="bg-[rgba(217,217,217,0.10)] rounded-lg border-solid border-[rgba(255,255,255,0.30)] border w-[80px] h-[80px] absolute "> </div>
         <magnify-round-icon :style="{ top: cursorY + 'px', left: cursorX + 'px', transform: 'translate(-50%, -50%)' }" class="absolute"/>
-
-
-    
+        
   </body>
   </template>
   
@@ -119,44 +115,50 @@ import { useRouter } from 'vue-router';
 export default defineComponent({
     setup() {
         const router = useRouter();
+
         const imageId = router.currentRoute.value.params.image_id;
-        const imageType = "original";
-
-        const cursorX = ref(-10);  // cursorX-coordinate
-        const cursorY = ref(-10);  // cursorY-coordinate
+        const imageType = "original"; // "original", "dwsr", "esrgan", "bilinear"
+        const imageUrl = ref('');
+        const imageTitle: Ref<string> = ref('');
         const imageRef: Ref<HTMLImageElement | null> = ref(null);
+        const selectedUpscaleAlgorithm = ref('dwsr'); // Default value
 
-            const updateMousePosition = (e: MouseEvent) => {
-                const image = imageRef.value;
-                if (image) {
-                    const rect = image.getBoundingClientRect();
-                    
-                    // Clamp the cursor's x-coordinate within the image's bounds
-                    const effectiveX = Math.min(Math.max(e.clientX, rect.left + 80), rect.right);
-                    
-                    // Clamp the cursor's y-coordinate within the image's bounds
-                    const effectiveY = Math.min(Math.max(e.clientY, rect.top + 80), rect.bottom);
+        const dominantColors = ref([]);
+        const imageWidth = ref(0);
+        const imageHeight = ref(0);
 
-                    cursorX.value = effectiveX;
-                    cursorY.value = effectiveY;
-                }
-            };
-            const imageUrl = ref(''); // To store the fetched image URL
-            const imageTitle: Ref<string> = ref(''); // To store the fetched image title
+        const cursorX = ref(-10);
+        const cursorY = ref(-10);
+        
 
-            // Fetch the image
-            const fetchImage = async () => {
-                try {
-                    const response = await fetch(`http://localhost:8000/get-image/${imageId}/${imageType}/`);
-                    const data = await response.json();
-                    imageUrl.value = `http://localhost:8000${data.image_url}`;
+        const updateMousePosition = (e: MouseEvent) => {
+            const image = imageRef.value;
+            if (image) {
+                const rect = image.getBoundingClientRect();
+                
+                // Clamp the cursor's x-coordinate within the image's bounds
+                const effectiveX = Math.min(Math.max(e.clientX, rect.left + 80), rect.right);
+                
+                // Clamp the cursor's y-coordinate within the image's bounds
+                const effectiveY = Math.min(Math.max(e.clientY, rect.top + 80), rect.bottom);
 
-                    imageTitle.value = data.image_url.replace("/images/", "");
-                } catch (error) {
-                    console.error('Failed to fetch the image:', error);
-                }
-            };
+                cursorX.value = effectiveX;
+                cursorY.value = effectiveY;
+            }
+        };
 
+        const fetchImage = async () => {
+            try {
+                const response = await fetch(`http://localhost:8000/get-image/${imageId}/${imageType}/`);
+                const data = await response.json();
+                imageUrl.value = `http://localhost:8000${data.image_url}`;
+
+                imageTitle.value = data.image_url.replace("/images/", "");
+            } catch (error) {
+                console.error('Failed to fetch the image:', error);
+            }
+        };
+        
 
         onMounted(() => {
             document.addEventListener('mousemove', updateMousePosition);
@@ -166,27 +168,22 @@ export default defineComponent({
         onBeforeUnmount(() => {
             document.removeEventListener('mousemove', updateMousePosition);
         });
-        const upscaleAlgorithm = ref('dwsr'); // Default value
 
-        const someMethod = () => {
-            console.log(upscaleAlgorithm.value);
-        };
         return {
             imageRef,
+            imageUrl,
+            imageTitle,
             cursorX,
             cursorY,
-            upscaleAlgorithm,
-            someMethod,
-            imageUrl, // Add this line
-            imageTitle
-
+            selectedUpscaleAlgorithm,
+            dominantColors,
+            imageWidth,
+            imageHeight,
         };
     },
     data() {
         return {
-            selectedFile: null,
             isVertical: true,
-            selectedMethod: "DWSR",
         };
     },
     methods: {
