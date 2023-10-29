@@ -16,9 +16,9 @@
                 </div>
             </div>
             <div :class=divClasses>
-                <div class="flex-initial bg-[rgba(20,20,20,0.7)] rounded-xl  h-full justify-self-end left-0 p-5">
+                <div class="flex-initial bg-[rgba(20,20,20,0.7)] rounded-xl  h-full justify-self-end left-0 p-5 ">
                     
-                    <div class="relative h-full w-full">
+                    <div class="relative h-full w-full z-10">
 
                         <div class="miniature flex mb-6">
                             <img :src="originalImageUrl" class="h-12 object-certain rounded-sm">
@@ -37,21 +37,13 @@
                         </span>   
 
                         <div class="magnifying_glass grid grid-cols-2 gap-4 my-4 text-center">
-                            <div @click="updatePreview('dwsr')">
-                                <div class="w-full aspect-square bg-white rounded-lg"></div>
-                                <span class="text-white mt-7 font-port-lligat-sans text-sm">DWSR</span>
-                            </div>
-                            <div @click="updatePreview('esrgan')">
-                                <div class="w-full aspect-square bg-white rounded-lg"></div>
-                                <span class="text-white mt-7 font-port-lligat-sans text-sm">ESRGAN</span>
-                            </div>
-                            <div @click="updatePreview('bilinear')">
-                                <div class="w-full aspect-square bg-white rounded-lg"></div>
-                                <span class="text-white mt-7 font-port-lligat-sans text-sm">Bilinear</span>
-                            </div>
-                            <div @click="updatePreview('original')">
-                                <div class="w-full aspect-square bg-white rounded-lg"></div>
-                                <span class="text-white mt-7 font-port-lligat-sans text-sm">Original</span>
+                            <div v-for="type in imageTypes" :key="type" @click="updatePreview(type)" class="relative" >
+                                <div class="w-full aspect-square bg-white rounded-lg z-[10] highlight" :class="{ 'selected-image': type == selectedAlgorithm }">
+                                    <img :src="imageUrls[type]" class="w-full h-full object-contain">
+                                </div>
+                                <span class="text-white  font-port-lligat-sans text-sm"> 
+                                    {{ getAlgorithmName(type) }}
+                                </span>
                             </div>
                         </div>
 
@@ -65,6 +57,7 @@
                                 <option value="dwsr"> DWSR </option> 
                                 <option value="esrgan"> ESRGAN </option>
                                 <option value="bilinear"> Bilinear </option> 
+                                <option value="original"> Original </option>
                             </select>
 
                             <svg class="absolute top-1/2 transform -translate-y-1/2 right-2" width="8" height="11" viewBox="0 0 8 11" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -186,6 +179,7 @@ export default defineComponent({
             imageUrl,
             imageUrls,
             imageTitle,
+            imageTypes,
             selectedAlgorithm,
             originalImageWidth,
             originalImageHeight,
@@ -199,7 +193,16 @@ export default defineComponent({
     methods: {
         async updatePreview(type: 'dwsr' | 'esrgan' | 'bilinear' | 'original') {
             this.imageUrl = this.imageUrls[type];
+            this.selectedAlgorithm = type;
         },
+        getAlgorithmName(type:any) {
+        switch(type) {
+            case 'dwsr': return 'DWSR';
+            case 'esrgan': return 'ESRGAN';
+            case 'bilinear': return 'Bilinear';
+            case 'original': return 'Original';
+        }
+    }
     },
     components: { GradientButton, GradientInfo, MagnifyRoundIcon },
     computed: {
@@ -223,4 +226,68 @@ export default defineComponent({
 body {
     background-color: #1A1A1A;
 }
+.magnifying_glass div:hover img {
+    transform: scale(1);
+    transition: transform 0.3s;
+}
+.magnifying_glass > div {
+    /* Existing styles... */
+    transition: transform 0.3s ease;
+}
+
+:root {
+    --orange2: #f89494;
+    --purple2: #aa8ded;
+}
+
+.highlight:before {
+    transform: scale(0.9);
+    transition: transform 1.3s ease;
+    aspect-ratio: 1 / 1;
+    content: "";
+    position: absolute;
+    animation: background-button 4s linear infinite;
+    background: linear-gradient(
+        to right, 
+        var(--orange2),
+        var(--purple2),
+        var(--orange2)
+    );
+    background-size: 200%;
+    inset: -2px;
+    z-index: -1;
+    border-radius: 10px;
+    transition: all 0.3s ease 0s;
+}
+
+.highlight:hover:before {
+    transform: scale(1.02);
+}
+
+.selected-image:before {
+    transform: scale(1.02);
+    transition: transform 1.3s ease;
+    aspect-ratio: 1 / 1;
+    content: "";
+    position: absolute;
+    animation: background-button 4s linear infinite;
+    background: linear-gradient(
+        to right, 
+        var(--orange2),
+        var(--purple2),
+        var(--orange2)
+    );
+    background-size: 200%;
+    inset: -4px;
+    z-index: -1;
+    border-radius: 10px;
+    transition: all 0.3s ease 0s;
+}
+
+.selected-image:hover:before {
+    transform: scale(1.05);
+}
+
+
+
 </style>
