@@ -13,9 +13,8 @@
 
                 <div class="flex justify-center items-center gap-1 h-full">
 
-                    <img v-if="isVertical" :src="imageUrl" class="h-4/5 object-contain mx-auto rounded-lg" ref="imageRef">
+                    <img :src="imageUrl" :class="divImageClasses" class="object-contain mx-auto rounded-lg" ref="imageRef">
 
-                    <img v-else            :src="imageUrl" class="w-4/5 object-contain my-auto rounded-lg" ref="imageRef"> 
                 </div>
                 
             </div>
@@ -104,10 +103,11 @@
   
 <script lang="ts">
 import { defineComponent, onMounted, onBeforeUnmount, ref, Ref, nextTick } from 'vue';
+import { useRouter } from 'vue-router';
+
+import MagnifyRoundIcon from '@/components/MagnifyRoundIcon.vue';
 import GradientButton from '@/components/GradientButton.vue';
 import GradientInfo from '@/components/GradientInfo.vue';
-import MagnifyRoundIcon from '@/components/MagnifyRoundIcon.vue';
-import { useRouter } from 'vue-router';
 
 
 export default defineComponent({
@@ -128,7 +128,6 @@ export default defineComponent({
         const cursorX = ref(-10);
         const cursorY = ref(-10);
         
-
         const updateMousePosition = (e: MouseEvent) => {
             const image = imageRef.value;
             if (image) {
@@ -159,6 +158,7 @@ export default defineComponent({
                 console.error('Failed to fetch the image:', error);
             }
         };
+
         const fetchImageInfo = async () => {
             try {
                 const response = await fetch(`http://localhost:8000/get-image-info/${imageId}/`);
@@ -199,7 +199,6 @@ export default defineComponent({
     },
     data() {
         return {
-            isVertical: true,
         };
     },
     methods: {
@@ -210,7 +209,12 @@ export default defineComponent({
         return [
             'm-5',
             'z-10',
-            this.isVertical ? 'w-1/4' : 'w-1/2',
+            this.imageWidth < this.imageHeight ? 'w-1/4' : 'w-1/2',
+        ];
+        },
+        divImageClasses() : string[] {
+        return [
+            this.imageWidth < this.imageHeight ? 'h-4/5' : 'w-4/5',
         ];
         },
     },

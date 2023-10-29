@@ -5,15 +5,15 @@ import os
 
 def clear_data_folders():
     # delete every item in folders:
-    folder = [                              # TODO: Usuń foldery z listy, eby obrazy zapisywały się w bazie danych
-              'images',                     #
+    folder = [                              #  Oznaczone czyszczą baze danych jak sie odkomentuje
+            #   'images',                     #
               'images/output', 
               'images/enlargedLR', 
               'images/greyscaleSR', 
-              'upscaled_images',            #
-              'upscaled_images/bilinear',   #
-              'upscaled_images/dwsr',       #   
-              'upscaled_images/esrgan'      #
+            #   'upscaled_images',            #
+            #   'upscaled_images/bilinear',   #
+            #   'upscaled_images/dwsr',       #   
+            #   'upscaled_images/esrgan'      #
               ]
     
     for f in folder:
@@ -39,6 +39,7 @@ def extract_image_info(input_image_path, image_instance):
         # Set width and height
         image_instance.original_width = img.width
         image_instance.original_height = img.height
+        image_instance.save()
 
         # Extract and set dominant colors
         pixels = img.getdata()
