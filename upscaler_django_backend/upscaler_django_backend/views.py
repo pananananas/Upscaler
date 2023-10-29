@@ -41,15 +41,41 @@ def upload_image(request):
         return JsonResponse({'error': str(e)}, status=400)
     
 def get_image(request, image_id, image_type):
+    try:
+        image = get_object_or_404(Image, id=image_id)
 
-    image = get_object_or_404(Image, id=image_id)
+        if image_type == 'bilinear':    
+            image_url = image.bilinear_image.url
+        elif image_type == 'dwsr':
+            image_url = image.dwsr_image.url
+        elif image_type == 'esrgan':
+            image_url = image.esrgan_image.url
+        else:
+            image_url = image.image.url
 
-    if image_type == 'bilinear':    
-        image_url = image.bilinear_image.url
-    elif image_type == 'dwsr':
-        image_url = image.dwsr_image.url
-    elif image_type == 'esrgan':
-        image_url = image.esrgan_image.url
-    else:
-        image_url = image.image.url
-    return JsonResponse({'image_url': image_url})
+        return JsonResponse({'image_url': image_url})
+    
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=400)
+
+
+def get_image_info(request, image_id):
+    try:
+        # Fetch the specific Image instance using the provided image_id
+        image = get_object_or_404(Image, id=image_id)
+        
+        # Extract the width, height, and dominant colors from the Image instance
+        width = image.original_width
+        height = image.original_height
+
+        dominant_colors = image.get_dominant_colors()
+        
+        # Return the extracted information in JSON format
+        return JsonResponse({
+            'width': width,
+            'height': height,
+            'colors': dominant_colors
+
+        })
+    except Exception as e:
+            return JsonResponse({'error': str(e)}, status=400)

@@ -27,6 +27,8 @@ urlpatterns = [
     path('api/v1/', include('djoser.urls.authtoken')),
     path('upload/', views.upload_image, name='upload_image'),
     path('get-image/<int:image_id>/<str:image_type>/', views.get_image, name='get_image'),
+    path('get-image-info/<int:image_id>/', views.get_image_info, name='get_image_info'),
+
 
 ]
 if settings.DEBUG:

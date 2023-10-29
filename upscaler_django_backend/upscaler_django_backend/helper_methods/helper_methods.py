@@ -45,9 +45,13 @@ def extract_image_info(input_image_path, image_instance):
         colors = Counter(pixels)
         dominant_colors = colors.most_common(5)  # Get top 5 dominant colors
 
-        # Convert dominant colors to a list of RGB tuples
-        dominant_colors_list = [color[0] for color in dominant_colors]
+        # Convert dominant colors to a list of HEX strings
+        dominant_colors_list = [rgb_to_hex(color[0]) for color in dominant_colors]
         image_instance.set_dominant_colors(dominant_colors_list)
 
         # Save the image instance
         image_instance.save()
+
+
+def rgb_to_hex(rgb):
+    return "#{:02x}{:02x}{:02x}".format(rgb[0], rgb[1], rgb[2])

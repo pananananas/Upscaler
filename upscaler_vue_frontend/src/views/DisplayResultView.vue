@@ -30,8 +30,7 @@
                             <span class="text-white mx-3 font-port-lligat-sans text-md"> 
                                 {{ imageTitle }} 
                                 <span class="text-[#cdcdcd] font-port-lligat-sans text-xsm"> 
-                                    <!-- display resolution here: -->
-                                    <br/>{{ imageWidth }}x{{ imageHeight }}px
+                                    <br/>{{ imageWidth * 4 }}x{{ imageHeight * 4 }}px
                                 </span>
                             </span>
                             <gradient-info label="resolution x4" class="absolute top-0 right-0"/>
@@ -99,7 +98,6 @@
 
         <div :style="{ top: cursorY + 'px', left: cursorX + 'px', transform: 'translate(-100%, -100%)' }" class="bg-[rgba(217,217,217,0.10)] rounded-lg border-solid border-[rgba(255,255,255,0.30)] border w-[80px] h-[80px] absolute "> </div>
         <magnify-round-icon :style="{ top: cursorY + 'px', left: cursorX + 'px', transform: 'translate(-50%, -50%)' }" class="absolute"/>
-        
   </body>
   </template>
   
@@ -122,7 +120,7 @@ export default defineComponent({
         const imageTitle: Ref<string> = ref('');
         const imageRef: Ref<HTMLImageElement | null> = ref(null);
         const selectedUpscaleAlgorithm = ref('dwsr'); // Default value
-
+        
         const dominantColors = ref([]);
         const imageWidth = ref(0);
         const imageHeight = ref(0);
@@ -150,19 +148,37 @@ export default defineComponent({
         const fetchImage = async () => {
             try {
                 const response = await fetch(`http://localhost:8000/get-image/${imageId}/${imageType}/`);
-                const data = await response.json();
-                imageUrl.value = `http://localhost:8000${data.image_url}`;
-
-                imageTitle.value = data.image_url.replace("/images/", "");
+                if (response.ok) {
+                    const data = await response.json()
+                    imageUrl.value = `http://localhost:8000${data.image_url}`;
+                    imageTitle.value = data.image_url.replace("/images/", "");
+                } else {
+                        console.error('Failed to fetch image info:', response.statusText);
+                    }
             } catch (error) {
                 console.error('Failed to fetch the image:', error);
             }
         };
-        
+        const fetchImageInfo = async () => {
+            try {
+                const response = await fetch(`http://localhost:8000/get-image-info/${imageId}/`);
+                if (response.ok) {
+                    const data = await response.json();
+                    dominantColors.value = data.colors;
+                    imageWidth.value = data.width;
+                    imageHeight.value = data.height;
+                } else {
+                    console.error('Failed to fetch image info:', response.statusText);
+                }
+            } catch (error) {
+                console.error('Error while fetching image info:', error);
+            }
+        };
 
         onMounted(() => {
             document.addEventListener('mousemove', updateMousePosition);
             fetchImage();
+            fetchImageInfo();
         });
 
         onBeforeUnmount(() => {
