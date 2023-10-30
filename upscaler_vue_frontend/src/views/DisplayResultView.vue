@@ -15,7 +15,7 @@
                     <img :src="imageUrl" :class="divImageClasses" class="object-contain mx-auto rounded-lg" ref="imageRef">
                 </div>
             </div>
-            <div :class=divClasses>
+            <div :class="divClasses" class="w-1/2">
                 <div class="flex-initial bg-[rgba(20,20,20,0.7)] rounded-xl  h-full justify-self-end left-0 p-5 ">
                     
                     <div class="relative h-full w-full z-10">
@@ -39,7 +39,11 @@
                         <div class="magnifying_glass grid grid-cols-2 gap-4 my-4 text-center">
                             <div v-for="type in imageTypes" :key="type" @click="updatePreview(type)" class="relative" >
                                 <div class="w-full aspect-square bg-white rounded-lg z-[10] highlight" :class="{ 'selected-image': type == selectedAlgorithm }">
-                                    <img :src="imageUrls[type]" class="w-full h-full object-contain">
+                                    <div class="miniature-view">
+                                        <img :src="imageUrls[type]" 
+                                        class="w-full h-full object-contain miniature-image" 
+                                        :style="{ transform: `translate(${-percentX * 100}%, ${-percentY * 100}%) scale(${scaleValue})`}">
+                                    </div>    
                                 </div>
                                 <span class="text-white  font-port-lligat-sans text-sm"> 
                                     {{ getAlgorithmName(type) }}
@@ -101,8 +105,13 @@ export default defineComponent({
         const originalImageWidth = ref(0);
         const originalImageHeight = ref(0);
 
-        const cursorX = ref(-10);
-        const cursorY = ref(-10);
+        const cursorX = ref(50);
+        const cursorY = ref(50);
+        const percentX = ref(0);
+        const percentY = ref(0);
+
+        const isVertical = true;
+        const scaleValue = ref(8);
         
         const updateMousePosition = (e: MouseEvent) => {
             const image = imageRef.value;
@@ -114,9 +123,14 @@ export default defineComponent({
                 
                 // Clamp the cursor's y-coordinate within the image's bounds
                 const effectiveY = Math.min(Math.max(e.clientY, rect.top + 80), rect.bottom);
-
                 cursorX.value = effectiveX;
                 cursorY.value = effectiveY;
+
+                percentX.value = (effectiveX - rect.left) / rect.width -0.5;
+                percentY.value = (effectiveY - rect.top) / rect.height -0.5;
+                // console.log(percentX.value, percentY.value);
+                // cursorX.value = percentX;
+                // cursorY.value = percentY;
             }
         };
 
@@ -162,19 +176,47 @@ export default defineComponent({
             }
         };
 
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === '=' || e.key === '+') 
+                scaleValue.value = Math.min(10, scaleValue.value + 0.5); 
+             else if (e.key === '-' || e.key === '_') 
+                scaleValue.value = Math.max(0.5, scaleValue.value - 0.5); 
+        };
+
+        const handleScroll = (e: WheelEvent) => {
+            e.preventDefault(); 
+            console.log("Scrolling...");  // Just for debugging
+            // Check the scroll direction
+            if (e.deltaY > 0) {
+                scaleValue.value += 1; // Increase the scale
+            } else {
+                scaleValue.value = Math.max(1, scaleValue.value - 1); // Decrease the scale, but don't let it go below 1
+            }
+        };
+
         onMounted(() => {
             document.addEventListener('mousemove', updateMousePosition);
+            document.addEventListener('keydown', handleKeyDown);
+            window.addEventListener('wheel', handleScroll, { passive: false });
+
+
             fetchAllImages();
             fetchImageInfo();
         });
 
         onBeforeUnmount(() => {
             document.removeEventListener('mousemove', updateMousePosition);
+            document.removeEventListener('keydown', handleKeyDown);
+            window.removeEventListener('wheel', handleScroll);
         });
 
         return {
             cursorX,
             cursorY,
+            isVertical,
+            scaleValue,
+            percentX,
+            percentY,
             imageRef,
             imageUrl,
             imageUrls,
@@ -210,12 +252,12 @@ export default defineComponent({
         return [
             'm-5',
             'z-10',
-            this.originalImageWidth < this.originalImageHeight ? 'w-1/4' : 'w-1/4',
+            this.isVertical ? 'w-1/4' : 'w-1/4',
         ];
         },
         divImageClasses() : string[] {
         return [
-            this.originalImageWidth < this.originalImageHeight ? 'h-4/5' : 'w-4/5',
+            this.isVertical ? 'h-4/5' : 'w-4/5',
         ];
         },
     },
@@ -256,7 +298,7 @@ body {
     background-size: 200%;
     inset: -2px;
     z-index: -1;
-    border-radius: 10px;
+    border-radius: 8px;
     transition: all 0.3s ease 0s;
 }
 
@@ -280,7 +322,7 @@ body {
     background-size: 200%;
     inset: -4px;
     z-index: -1;
-    border-radius: 10px;
+    border-radius: 8px;
     transition: all 0.3s ease 0s;
 }
 
@@ -288,6 +330,18 @@ body {
     transform: scale(1.05);
 }
 
+.miniature-view {
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    border-radius: 8px;
+}
 
-
+.miniature-image {
+    position: absolute;
+    transition: transform 0.1s ease-out;
+    scale: 10;
+    overflow: hidden;
+}
 </style>
