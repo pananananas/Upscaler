@@ -11,7 +11,7 @@
 
             <div class="flex-initial mx-auto h-full">
                 <div class="flex justify-center items-center gap-1 h-full">
-                    <img :src="imageUrl" :class="divImageClasses" class="object-contain mx-auto rounded-lg" ref="imageRef">
+                    <img :src="imageUrl" :class="divImageClasses" class="object-contain mx-auto rounded-lg" ref="imageRef"  @click="toggleFreeze">
                 </div>
             </div>
             <div :class="divClasses" class="w-1/2">
@@ -75,8 +75,8 @@
             </div>
         </div>
 
-        <div :style="{ top: cursorY + 'px', left: cursorX + 'px', transform: 'translate(-100%, -100%)', width: magnifyWindowSize + 'px', height: magnifyWindowSize + 'px' }" class="bg-[rgba(217,217,217,0.30)] rounded-lg border-solid border-[rgba(255,255,255,0.54)] border absolute drop-shadow-4xl"/>
-        <magnify-round-icon :style="{ top: cursorY + 'px', left: cursorX + 'px', transform: 'translate(-50%, -50%)' }" class="absolute drop-shadow-4xl"/>
+        <div :style="{ top: cursorY + 'px', left: cursorX + 'px', transform: 'translate(-100%, -100%)', width: magnifyWindowSize + 'px', height: magnifyWindowSize + 'px' }" class="bg-[rgba(217,217,217,0.30)] rounded-lg border-solid border-[rgba(255,255,255,0.54)] border absolute drop-shadow-4xl pointer-events-none"/>
+        <magnify-round-icon :style="{ top: cursorY + 'px', left: cursorX + 'px', transform: 'translate(-50%, -50%)' }" class="absolute drop-shadow-4xl pointer-events-none"/>
   </body>
   </template>
   
@@ -114,25 +114,34 @@ export default defineComponent({
         const percentX = ref(0);
         const percentY = ref(0);
 
+        const isFrozen = ref(false);
         const isVertical = ref(true);
         const scaleValue = ref(3);
         const magnifyWindowSize = ref(80);
-        const aspectRatio = 0
-
+        let aspectRatio = 0
+        let effectiveX: number, effectiveY: number;
+        let rect;
 
         const calculateMousePos = (e: any) => {
 
             const image = imageRef.value;
             if (image) {
-                const rect = image.getBoundingClientRect();
-                const aspectRatio = rect.width / rect.height;
+                 rect = image.getBoundingClientRect();
 
-                // Clamp the cursor's coordinates within the image's bounds
-                const effectiveX = Math.min(Math.max(e.clientX, rect.left + magnifyWindowSize.value), rect.right);
-                const effectiveY = Math.min(Math.max(e.clientY, rect.top + magnifyWindowSize.value), rect.bottom);
-                cursorX.value = effectiveX;
-                cursorY.value = effectiveY;
+                if (aspectRatio === 0)
+                    aspectRatio = rect.width / rect.height;
+                
 
+                if (!isFrozen.value) {
+                    // Clamp the cursor's coordinates within the image's bounds
+                    effectiveX = Math.min(Math.max(e.clientX, rect.left + magnifyWindowSize.value), rect.right);
+                    effectiveY = Math.min(Math.max(e.clientY, rect.top + magnifyWindowSize.value), rect.bottom);
+                    cursorX.value = effectiveX;
+                    cursorY.value = effectiveY;
+                } else {
+                    effectiveX = cursorX.value;
+                    effectiveY = cursorY.value;
+                }
                 // Calculate the relative position of the cursor within the scaled image
                 const relativeX = (effectiveX - magnifyWindowSize.value / 2 - rect.left) / rect.width;
                 const relativeY = (effectiveY - magnifyWindowSize.value / 2 - rect.top) / rect.height;
@@ -141,20 +150,19 @@ export default defineComponent({
                     // isVertical.value = true;
                     percentX.value = (relativeX * scaleValue.value * aspectRatio) - 0.5 * scaleValue.value * aspectRatio;
                     percentY.value = (relativeY * scaleValue.value) - 0.5 * scaleValue.value;
-
                 } else {
                     // isVertical.value = false;
                     percentX.value = (relativeX * scaleValue.value) - 0.5 * scaleValue.value;
                     percentY.value = (relativeY * scaleValue.value / aspectRatio) - 0.5 * scaleValue.value / aspectRatio;
                 }
-
                 // console.log("percentX", percentX.value, "percentY", percentY.value);
-          
             }
         };
 
         const updateMousePosition = (e: MouseEvent) => {
-            calculateMousePos(e);
+            if (!isFrozen.value) {
+                calculateMousePos(e);
+            }
         };
 
         const fetchImage = async (imageType: 'original' | 'dwsr' | 'esrgan' | 'bilinear') => {
@@ -204,8 +212,10 @@ export default defineComponent({
         const handleKeyDown = (e: KeyboardEvent) => {
             if (e.key === '=' || e.key === '+') 
                 scaleValue.value = Math.min(10, scaleValue.value + 0.5); 
-             else if (e.key === '-' || e.key === '_') 
-                scaleValue.value = Math.max(1.25, scaleValue.value - 0.5); 
+            else if (e.key === '-' || e.key === '_') 
+                scaleValue.value = Math.max(1.5, scaleValue.value - 0.5); 
+            else if (e.key === ' ')
+                isFrozen.value = !isFrozen.value;
             
             // magnifyWindowSize.value = 80 / scaleValue.value;
             calculateMousePos(e);
@@ -217,7 +227,7 @@ export default defineComponent({
             const sensitivity = 0.04; // Zooming sensitivity
             let deltaScale = e.deltaY * sensitivity;
             scaleValue.value += deltaScale;
-            scaleValue.value = Math.max(1.25, scaleValue.value); 
+            scaleValue.value = Math.max(1.5, scaleValue.value); 
             scaleValue.value = Math.min(10, scaleValue.value);
             console.log("scaleValue", scaleValue.value);
             // magnifyWindowSize.value = 80 / scaleValue.value;
@@ -244,6 +254,7 @@ export default defineComponent({
             cursorY,
             percentX,
             percentY,
+            isFrozen,
             imageRef,
             imageUrl,
             imageUrls,
@@ -251,6 +262,7 @@ export default defineComponent({
             imageTypes,
             isVertical,
             scaleValue,
+            calculateMousePos,
             magnifyWindowSize,
             selectedAlgorithm,
             originalImageWidth,
@@ -300,7 +312,14 @@ export default defineComponent({
             } catch (error) {
                 console.error('Error downloading the image:', error);
             }
-        }
+        },
+
+        toggleFreeze(e: MouseEvent) {
+            this.isFrozen = !this.isFrozen;
+            if (!this.isFrozen) {
+                this.calculateMousePos(e);
+            }
+        },
 
     },
     components: { GradientButton, GradientInfo, MagnifyRoundIcon },
@@ -331,8 +350,9 @@ body {
 }
 .magnifying_glass > div {
     /* Existing styles... */
-    transition: transform 0.3s ease;
+    /* transition: transform 0.3s ease; */
     transition: all 0.5s ease 0s;
+    transition: transform 0.3s ease-out;
 }
 
 :root {
