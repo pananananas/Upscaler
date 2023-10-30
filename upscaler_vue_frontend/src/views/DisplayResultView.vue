@@ -75,9 +75,8 @@
             </div>
         </div>
 
-        <!-- magnify window: -->
-        <div :style="{ top: cursorY + 'px', left: cursorX + 'px', transform: 'translate(-100%, -100%)', width: magnifyWindowSize + 'px', height: magnifyWindowSize + 'px' }" class="bg-[rgba(217,217,217,0.10)] rounded-lg border-solid border-[rgba(255,255,255,0.30)] border absolute "> </div>
-        <magnify-round-icon :style="{ top: cursorY + 'px', left: cursorX + 'px', transform: 'translate(-50%, -50%)' }" class="absolute"/>
+        <div :style="{ top: cursorY + 'px', left: cursorX + 'px', transform: 'translate(-100%, -100%)', width: magnifyWindowSize + 'px', height: magnifyWindowSize + 'px' }" class="bg-[rgba(217,217,217,0.30)] rounded-lg border-solid border-[rgba(255,255,255,0.54)] border absolute drop-shadow-4xl"/>
+        <magnify-round-icon :style="{ top: cursorY + 'px', left: cursorX + 'px', transform: 'translate(-50%, -50%)' }" class="absolute drop-shadow-4xl"/>
   </body>
   </template>
   
@@ -124,6 +123,7 @@ export default defineComponent({
             const image = imageRef.value;
             if (image) {
                 const rect = image.getBoundingClientRect();
+                const aspectRatio = rect.width / rect.height;
 
                 // Clamp the cursor's x-coordinate within the image's bounds
                 const effectiveX = Math.min(Math.max(e.clientX, rect.left + magnifyWindowSize.value), rect.right);
@@ -137,16 +137,22 @@ export default defineComponent({
                 const relativeX = (effectiveX - magnifyWindowSize.value / 2 - rect.left) / rect.width;
                 const relativeY = (effectiveY - magnifyWindowSize.value / 2 - rect.top) / rect.height;
 
-                // Adjust the percent values based on the scale
-                percentX.value = (relativeX * scaleValue.value) - 0.5 * scaleValue.value;
+                // Adjust the percent values based on the scale and aspect ratio
+                percentX.value = (relativeX * scaleValue.value * aspectRatio) - 0.5 * scaleValue.value * aspectRatio;
                 percentY.value = (relativeY * scaleValue.value) - 0.5 * scaleValue.value;
+
+                // Clamp percent values between -1 and 1
+                percentX.value = Math.max(-1, Math.min(1, percentX.value));
+                percentY.value = Math.max(-1, Math.min(1, percentY.value));
+
+                // console.log("percentX", percentX.value, "percentY", percentY.value);
             }
         };
+
 
         const updateMousePosition = (e: MouseEvent) => {
             calculateMousePos(e);
         };
-
 
         const fetchImage = async (imageType: 'original' | 'dwsr' | 'esrgan' | 'bilinear') => {
             try {
@@ -169,12 +175,6 @@ export default defineComponent({
             }
         };
 
-        const fetchAllImages = async () => {
-            for (const imageType of imageTypes) {
-                await fetchImage(imageType);
-            }
-        };
-
         const fetchImageInfo = async () => {
             try {
                 const response = await fetch(`http://localhost:8000/get-image-info/${imageId}/`);
@@ -189,6 +189,13 @@ export default defineComponent({
             } catch (error) {
                 console.error('Error while fetching image info:', error);
             }
+        };
+
+        const fetchAllImages = async () => {
+            for (const imageType of imageTypes) {
+                await fetchImage(imageType);
+            }
+            fetchImageInfo();
         };
 
         const handleKeyDown = (e: KeyboardEvent) => {
@@ -220,9 +227,7 @@ export default defineComponent({
             document.addEventListener('keydown', handleKeyDown);
             window.addEventListener('wheel', handleScroll, { passive: false });
 
-
             fetchAllImages();
-            fetchImageInfo();
         });
 
         onBeforeUnmount(() => {
