@@ -76,7 +76,10 @@
         </div>
 
         <div :style="{ top: cursorY + 'px', left: cursorX + 'px', transform: 'translate(-100%, -100%)', width: magnifyWindowSize + 'px', height: magnifyWindowSize + 'px' }" class="bg-[rgba(217,217,217,0.30)] rounded-lg border-solid border-[rgba(255,255,255,0.54)] border absolute drop-shadow-4xl pointer-events-none"/>
+
         <magnify-round-icon :style="{ top: cursorY + 'px', left: cursorX + 'px', transform: 'translate(-50%, -50%)' }" :locked="isFrozen" class="absolute drop-shadow-4xl pointer-events-none"/>
+        
+        <scale-progress-bar :cursorX="cursorX" :cursorY="cursorY" :magnifyWindowSize="magnifyWindowSize" :scaleValue="scaleValue" />
   </body>
   </template>
   
@@ -85,6 +88,7 @@
 import { defineComponent, onMounted, onBeforeUnmount, ref, Ref, nextTick } from 'vue';
 import { useRouter } from 'vue-router';
 
+import ScaleProgressBar from '@/components/ScaleProgressBar.vue';
 import MagnifyRoundIcon from '@/components/MagnifyRoundIcon.vue';
 import GradientButton from '@/components/GradientButton.vue';
 import GradientInfo from '@/components/GradientInfo.vue';
@@ -340,7 +344,7 @@ export default defineComponent({
         },
 
     },
-    components: { GradientButton, GradientInfo, MagnifyRoundIcon },
+    components: { GradientButton, GradientInfo, MagnifyRoundIcon, ScaleProgressBar },
     computed: {
         divClasses() : string[] {
         return [
