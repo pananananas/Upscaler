@@ -67,14 +67,16 @@
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M3.17574 0.754882C3.41005 0.560873 3.78995 0.560873 4.02426 0.754883L7.02426 3.23885C7.25858 3.43286 7.25858 3.74741 7.02426 3.94142C6.78995 4.13543 6.41005 4.13543 6.17574 3.94142L3.6 1.80874L1.02426 3.94142C0.789949 4.13543 0.41005 4.13543 0.175736 3.94142C-0.0585786 3.74741 -0.0585786 3.43286 0.175736 3.23885L3.17574 0.754882ZM0.175736 7.2132C0.41005 7.01919 0.789949 7.01919 1.02426 7.2132L3.6 9.34588L6.17574 7.2132C6.41005 7.01919 6.78995 7.01919 7.02426 7.2132C7.25858 7.40721 7.25858 7.72176 7.02426 7.91577L4.02426 10.3997C3.78995 10.5937 3.41005 10.5937 3.17574 10.3997L0.175736 7.91577C-0.0585786 7.72176 -0.0585786 7.40721 0.175736 7.2132Z" fill="white" />
                             </svg>
                         </div>
-                        <gradient-button label="Download" shape="round" class="absolute bottom-0 right-0"/>
+                        <!-- download button -->
+                        <gradient-button label="Download" shape="round" class="absolute bottom-0 right-0" @click="downloadImage"/>
+
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- magnify window: -->
-        <div :style="{ top: cursorY + 'px', left: cursorX + 'px', transform: 'translate(-100%, -100%)' }" class="bg-[rgba(217,217,217,0.10)] rounded-lg border-solid border-[rgba(255,255,255,0.30)] border w-[80px] h-[80px] absolute "> </div>
+        <div :style="{ top: cursorY + 'px', left: cursorX + 'px', transform: 'translate(-100%, -100%)', width: magnifyWindowSize + 'px', height: magnifyWindowSize + 'px' }" class="bg-[rgba(217,217,217,0.10)] rounded-lg border-solid border-[rgba(255,255,255,0.30)] border absolute "> </div>
         <magnify-round-icon :style="{ top: cursorY + 'px', left: cursorX + 'px', transform: 'translate(-50%, -50%)' }" class="absolute"/>
   </body>
   </template>
@@ -91,6 +93,8 @@ import GradientInfo from '@/components/GradientInfo.vue';
 
 export default defineComponent({
     setup() {
+        type ImageType = 'dwsr' | 'original' | 'esrgan' | 'bilinear';
+
         const router = useRouter();
         const imageId = router.currentRoute.value.params.image_id;
         const imageTypes: ('dwsr' | 'original' | 'esrgan' | 'bilinear')[] = ["dwsr", "esrgan", "bilinear", "original"];
@@ -98,7 +102,8 @@ export default defineComponent({
         const imageUrl = ref('');
         const imageTitle: Ref<string> = ref('');
         const imageRef: Ref<HTMLImageElement | null> = ref(null);
-        const selectedAlgorithm = ref('dwsr'); // Default value
+        const selectedAlgorithm: Ref<ImageType> = ref('dwsr'); // Default value
+
         
         const dominantColors = ref([]);
         const originalImageUrl = ref('');
@@ -191,6 +196,9 @@ export default defineComponent({
                 scaleValue.value = Math.min(10, scaleValue.value + 0.5); 
              else if (e.key === '-' || e.key === '_') 
                 scaleValue.value = Math.max(0.5, scaleValue.value - 0.5); 
+            
+            // magnifyWindowSize.value = 80 / scaleValue.value;
+            calculateMousePos(e);
         };
 
         const handleScroll = (e: WheelEvent) => {
@@ -201,6 +209,8 @@ export default defineComponent({
             scaleValue.value += deltaScale;
             scaleValue.value = Math.max(1, scaleValue.value); 
             scaleValue.value = Math.min(12, scaleValue.value);
+
+            // magnifyWindowSize.value = 80 / scaleValue.value;
 
             calculateMousePos(e);
         };
@@ -250,13 +260,40 @@ export default defineComponent({
             this.selectedAlgorithm = type;
         },
         getAlgorithmName(type:any) {
-        switch(type) {
-            case 'dwsr': return 'DWSR';
-            case 'esrgan': return 'ESRGAN';
-            case 'bilinear': return 'Bilinear';
-            case 'original': return 'Original';
+            switch(type) {
+                case 'dwsr': return 'DWSR';
+                case 'esrgan': return 'ESRGAN';
+                case 'bilinear': return 'Bilinear';
+                case 'original': return 'Original';
+            }
+        },
+        async downloadImage() {
+            try {
+                // Fetch the image as a Blob
+                const response = await fetch(this.imageUrls[this.selectedAlgorithm]);
+                if (!response.ok) {
+                    throw new Error('Failed to fetch the image.');
+                }
+                const blob = await response.blob();
+
+                // Create an Object URL for the blob
+                const url = window.URL.createObjectURL(blob);
+
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = this.imageTitle + '_' + this.getAlgorithmName(this.selectedAlgorithm) + '.png';
+
+                document.body.appendChild(link);
+                link.click();
+
+                // Clean up: revoke the Object URL and remove the link from the document
+                window.URL.revokeObjectURL(url);
+                document.body.removeChild(link);
+            } catch (error) {
+                console.error('Error downloading the image:', error);
+            }
         }
-    }
+
     },
     components: { GradientButton, GradientInfo, MagnifyRoundIcon },
     computed: {
