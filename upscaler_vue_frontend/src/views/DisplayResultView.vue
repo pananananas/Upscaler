@@ -76,7 +76,7 @@
         </div>
 
         <div :style="{ top: cursorY + 'px', left: cursorX + 'px', transform: 'translate(-100%, -100%)', width: magnifyWindowSize + 'px', height: magnifyWindowSize + 'px' }" class="bg-[rgba(217,217,217,0.30)] rounded-lg border-solid border-[rgba(255,255,255,0.54)] border absolute drop-shadow-4xl pointer-events-none"/>
-        <magnify-round-icon :style="{ top: cursorY + 'px', left: cursorX + 'px', transform: 'translate(-50%, -50%)' }" class="absolute drop-shadow-4xl pointer-events-none"/>
+        <magnify-round-icon :style="{ top: cursorY + 'px', left: cursorX + 'px', transform: 'translate(-50%, -50%)' }" :locked="isFrozen" class="absolute drop-shadow-4xl pointer-events-none"/>
   </body>
   </template>
   
@@ -115,7 +115,7 @@ export default defineComponent({
 
         const isFrozen = ref(false);
         const isVertical = ref(true);
-        const scaleValue = ref(3);
+        const scaleValue = ref(2);
         const magnifyWindowSize = ref(80);
 
         let aspectRatio = 0
@@ -244,7 +244,7 @@ export default defineComponent({
             const sensitivity = 0.04; // Zooming sensitivity
             let deltaScale = e.deltaY * sensitivity;
             scaleValue.value += deltaScale;
-            scaleValue.value = Math.max(1, scaleValue.value); 
+            scaleValue.value = Math.max(1.5, scaleValue.value); 
             scaleValue.value = Math.min(10, scaleValue.value);
 
             // console.log("scaleValue", scaleValue.value);
