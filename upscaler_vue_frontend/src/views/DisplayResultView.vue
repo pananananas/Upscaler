@@ -37,7 +37,7 @@
 
                         <div class="magnifying_glass grid grid-cols-2 gap-4 my-4 text-center">
                             <div v-for="type in imageTypes" :key="type" @click="updatePreview(type)" class="relative" >
-                                <div class="w-full aspect-square bg-white rounded-lg z-[10] highlight" :class="{ 'selected-image': type == selectedAlgorithm }">
+                                <div class="w-full aspect-square rounded-lg z-[10] highlight" :class="{ 'selected-image': type == selectedAlgorithm }">
                                     <div class="miniature-view">
                                         <img :src="imageUrls[type]" 
                                         class="w-full h-full object-contain miniature-image" 
@@ -332,6 +332,7 @@ body {
 .magnifying_glass > div {
     /* Existing styles... */
     transition: transform 0.3s ease;
+    transition: all 0.5s ease 0s;
 }
 
 :root {
@@ -361,6 +362,11 @@ body {
 
 .highlight:hover:before {
     transform: scale(1.02);
+}
+
+.selected-image {
+    transform: scale(0.94);
+    transition: all 0.5s ease 0s;
 }
 
 .selected-image:before {
