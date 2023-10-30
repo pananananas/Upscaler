@@ -105,13 +105,13 @@ export default defineComponent({
         const originalImageWidth = ref(0);
         const originalImageHeight = ref(0);
 
-        const cursorX = ref(50);
-        const cursorY = ref(50);
+        const cursorX = ref(-10);
+        const cursorY = ref(-10);
         const percentX = ref(0);
         const percentY = ref(0);
 
-        const isVertical = true;
-        const scaleValue = ref(8);
+        const isVertical = ref(true);
+        const scaleValue = ref(3);
         
         const updateMousePosition = (e: MouseEvent) => {
             const image = imageRef.value;
@@ -185,13 +185,14 @@ export default defineComponent({
 
         const handleScroll = (e: WheelEvent) => {
             e.preventDefault(); 
-            console.log("Scrolling...");  // Just for debugging
-            // Check the scroll direction
-            if (e.deltaY > 0) {
-                scaleValue.value += 1; // Increase the scale
-            } else {
-                scaleValue.value = Math.max(1, scaleValue.value - 1); // Decrease the scale, but don't let it go below 1
-            }
+            
+            const sensitivity = 0.05; // Zooming sensitivity
+            let deltaScale = e.deltaY * sensitivity;
+
+            scaleValue.value += deltaScale;
+
+            scaleValue.value = Math.max(1, scaleValue.value); 
+            scaleValue.value = Math.min(10, scaleValue.value);
         };
 
         onMounted(() => {
