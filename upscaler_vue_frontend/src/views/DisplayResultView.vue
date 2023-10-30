@@ -78,7 +78,7 @@
         <div :style="{ top: cursorY + 'px', left: cursorX + 'px', transform: 'translate(-100%, -100%)', width: magnifyWindowSize + 'px', height: magnifyWindowSize + 'px' }" class="bg-[rgba(217,217,217,0.30)] rounded-lg border-solid border-[rgba(255,255,255,0.54)] border absolute drop-shadow-4xl pointer-events-none"/>
 
         <magnify-round-icon :style="{ top: cursorY + 'px', left: cursorX + 'px', transform: 'translate(-50%, -50%)' }" :locked="isFrozen" class="absolute drop-shadow-4xl pointer-events-none"/>
-        
+
         <scale-progress-bar :cursorX="cursorX" :cursorY="cursorY" :magnifyWindowSize="magnifyWindowSize" :scaleValue="scaleValue" />
   </body>
   </template>
@@ -112,8 +112,8 @@ export default defineComponent({
         const originalImageWidth = ref(0);
         const originalImageHeight = ref(0);
 
-        const cursorX = ref(-10);
-        const cursorY = ref(-10);
+        const cursorX = ref(-30);
+        const cursorY = ref(-30);
         const percentX = ref(0);
         const percentY = ref(0);
 
@@ -132,6 +132,7 @@ export default defineComponent({
                 if (image) {
                     rect = image.getBoundingClientRect();
                     aspectRatio = rect.width / rect.height;
+                    scaleValue.value += 0.01; 
                 } else 
                     return;
             }
@@ -248,7 +249,7 @@ export default defineComponent({
             const sensitivity = 0.04; // Zooming sensitivity
             let deltaScale = e.deltaY * sensitivity;
             scaleValue.value += deltaScale;
-            scaleValue.value = Math.max(1.5, scaleValue.value); 
+            scaleValue.value = Math.max(1, scaleValue.value); 
             scaleValue.value = Math.min(10, scaleValue.value);
 
             // console.log("scaleValue", scaleValue.value);
