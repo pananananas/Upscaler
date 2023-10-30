@@ -118,45 +118,45 @@ export default defineComponent({
         const isVertical = ref(true);
         const scaleValue = ref(3);
         const magnifyWindowSize = ref(80);
+
         let aspectRatio = 0
         let effectiveX: number, effectiveY: number;
-        let rect;
+        let rect: DOMRect;
 
         const calculateMousePos = (e: any) => {
-
-            const image = imageRef.value;
-            if (image) {
-                 rect = image.getBoundingClientRect();
-
-                if (aspectRatio === 0)
+            if (aspectRatio === 0){
+                const image = imageRef.value;
+                if (image) {
+                    rect = image.getBoundingClientRect();
                     aspectRatio = rect.width / rect.height;
-                
-
-                if (!isFrozen.value) {
-                    // Clamp the cursor's coordinates within the image's bounds
-                    effectiveX = Math.min(Math.max(e.clientX, rect.left + magnifyWindowSize.value), rect.right);
-                    effectiveY = Math.min(Math.max(e.clientY, rect.top + magnifyWindowSize.value), rect.bottom);
-                    cursorX.value = effectiveX;
-                    cursorY.value = effectiveY;
-                } else {
-                    effectiveX = cursorX.value;
-                    effectiveY = cursorY.value;
-                }
-                // Calculate the relative position of the cursor within the scaled image
-                const relativeX = (effectiveX - magnifyWindowSize.value / 2 - rect.left) / rect.width;
-                const relativeY = (effectiveY - magnifyWindowSize.value / 2 - rect.top) / rect.height;
-
-                if (aspectRatio < 1) {
-                    // isVertical.value = true;
-                    percentX.value = (relativeX * scaleValue.value * aspectRatio) - 0.5 * scaleValue.value * aspectRatio;
-                    percentY.value = (relativeY * scaleValue.value) - 0.5 * scaleValue.value;
-                } else {
-                    // isVertical.value = false;
-                    percentX.value = (relativeX * scaleValue.value) - 0.5 * scaleValue.value;
-                    percentY.value = (relativeY * scaleValue.value / aspectRatio) - 0.5 * scaleValue.value / aspectRatio;
-                }
-                // console.log("percentX", percentX.value, "percentY", percentY.value);
+                } else 
+                    return;
             }
+
+            if (!isFrozen.value) {
+                // Clamp the cursor's coordinates within the image's bounds
+                effectiveX = Math.min(Math.max(e.clientX, rect.left + magnifyWindowSize.value), rect.right);
+                effectiveY = Math.min(Math.max(e.clientY, rect.top + magnifyWindowSize.value), rect.bottom);
+                cursorX.value = effectiveX;
+                cursorY.value = effectiveY;
+            } else {
+                effectiveX = cursorX.value;
+                effectiveY = cursorY.value;
+            }
+            // Calculate the relative position of the cursor within the image
+            const relativeX = (effectiveX - magnifyWindowSize.value / 2 - rect.left) / rect.width;
+            const relativeY = (effectiveY - magnifyWindowSize.value / 2 - rect.top) / rect.height;
+
+            if (aspectRatio < 1) {
+                // isVertical.value = true;
+                percentX.value = (relativeX * scaleValue.value * aspectRatio) - 0.5 * scaleValue.value * aspectRatio;
+                percentY.value = (relativeY * scaleValue.value) - 0.5 * scaleValue.value;
+            } else {
+                // isVertical.value = false;
+                percentX.value = (relativeX * scaleValue.value) - 0.5 * scaleValue.value;
+                percentY.value = (relativeY * scaleValue.value / aspectRatio) - 0.5 * scaleValue.value / aspectRatio;
+            }
+            // console.log("percentX", percentX.value, "percentY", percentY.value);
         };
 
         const updateMousePosition = (e: MouseEvent) => {
@@ -165,7 +165,7 @@ export default defineComponent({
             }
         };
 
-        const fetchImage = async (imageType: 'original' | 'dwsr' | 'esrgan' | 'bilinear') => {
+        const fetchImage = async (imageType: ImageType) => {
             try {
                 const response = await fetch(`http://localhost:8000/get-image/${imageId}/${imageType}/`);
                 if (response.ok) {
@@ -229,7 +229,8 @@ export default defineComponent({
             scaleValue.value += deltaScale;
             scaleValue.value = Math.max(1.5, scaleValue.value); 
             scaleValue.value = Math.min(10, scaleValue.value);
-            console.log("scaleValue", scaleValue.value);
+
+            // console.log("scaleValue", scaleValue.value);
             // magnifyWindowSize.value = 80 / scaleValue.value;
 
             calculateMousePos(e);
