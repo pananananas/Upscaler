@@ -117,7 +117,9 @@ export default defineComponent({
         const isVertical = ref(true);
         const scaleValue = ref(3);
         const magnifyWindowSize = ref(80);
-        
+        const aspectRatio = 0
+
+
         const calculateMousePos = (e: any) => {
 
             const image = imageRef.value;
@@ -125,10 +127,8 @@ export default defineComponent({
                 const rect = image.getBoundingClientRect();
                 const aspectRatio = rect.width / rect.height;
 
-                // Clamp the cursor's x-coordinate within the image's bounds
+                // Clamp the cursor's coordinates within the image's bounds
                 const effectiveX = Math.min(Math.max(e.clientX, rect.left + magnifyWindowSize.value), rect.right);
-
-                // Clamp the cursor's y-coordinate within the image's bounds
                 const effectiveY = Math.min(Math.max(e.clientY, rect.top + magnifyWindowSize.value), rect.bottom);
                 cursorX.value = effectiveX;
                 cursorY.value = effectiveY;
@@ -137,18 +137,21 @@ export default defineComponent({
                 const relativeX = (effectiveX - magnifyWindowSize.value / 2 - rect.left) / rect.width;
                 const relativeY = (effectiveY - magnifyWindowSize.value / 2 - rect.top) / rect.height;
 
-                // Adjust the percent values based on the scale and aspect ratio
-                percentX.value = (relativeX * scaleValue.value * aspectRatio) - 0.5 * scaleValue.value * aspectRatio;
-                percentY.value = (relativeY * scaleValue.value) - 0.5 * scaleValue.value;
+                if (aspectRatio < 1) {
+                    // isVertical.value = true;
+                    percentX.value = (relativeX * scaleValue.value * aspectRatio) - 0.5 * scaleValue.value * aspectRatio;
+                    percentY.value = (relativeY * scaleValue.value) - 0.5 * scaleValue.value;
 
-                // Clamp percent values between -1 and 1
-                percentX.value = Math.max(-1, Math.min(1, percentX.value));
-                percentY.value = Math.max(-1, Math.min(1, percentY.value));
+                } else {
+                    // isVertical.value = false;
+                    percentX.value = (relativeX * scaleValue.value) - 0.5 * scaleValue.value;
+                    percentY.value = (relativeY * scaleValue.value / aspectRatio) - 0.5 * scaleValue.value / aspectRatio;
+                }
 
                 // console.log("percentX", percentX.value, "percentY", percentY.value);
+          
             }
         };
-
 
         const updateMousePosition = (e: MouseEvent) => {
             calculateMousePos(e);
@@ -202,7 +205,7 @@ export default defineComponent({
             if (e.key === '=' || e.key === '+') 
                 scaleValue.value = Math.min(10, scaleValue.value + 0.5); 
              else if (e.key === '-' || e.key === '_') 
-                scaleValue.value = Math.max(0.5, scaleValue.value - 0.5); 
+                scaleValue.value = Math.max(1.25, scaleValue.value - 0.5); 
             
             // magnifyWindowSize.value = 80 / scaleValue.value;
             calculateMousePos(e);
@@ -214,9 +217,9 @@ export default defineComponent({
             const sensitivity = 0.04; // Zooming sensitivity
             let deltaScale = e.deltaY * sensitivity;
             scaleValue.value += deltaScale;
-            scaleValue.value = Math.max(1, scaleValue.value); 
-            scaleValue.value = Math.min(12, scaleValue.value);
-
+            scaleValue.value = Math.max(1.25, scaleValue.value); 
+            scaleValue.value = Math.min(10, scaleValue.value);
+            console.log("scaleValue", scaleValue.value);
             // magnifyWindowSize.value = 80 / scaleValue.value;
 
             calculateMousePos(e);
