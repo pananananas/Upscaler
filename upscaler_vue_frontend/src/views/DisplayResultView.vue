@@ -117,22 +117,25 @@ export default defineComponent({
             const image = imageRef.value;
             if (image) {
                 const rect = image.getBoundingClientRect();
-                
+
                 // Clamp the cursor's x-coordinate within the image's bounds
                 const effectiveX = Math.min(Math.max(e.clientX, rect.left + 80), rect.right);
-                
+
                 // Clamp the cursor's y-coordinate within the image's bounds
                 const effectiveY = Math.min(Math.max(e.clientY, rect.top + 80), rect.bottom);
                 cursorX.value = effectiveX;
                 cursorY.value = effectiveY;
 
-                percentX.value = (effectiveX - rect.left) / rect.width -0.5;
-                percentY.value = (effectiveY - rect.top) / rect.height -0.5;
-                // console.log(percentX.value, percentY.value);
-                // cursorX.value = percentX;
-                // cursorY.value = percentY;
+                // Calculate the relative position of the cursor within the scaled image
+                const relativeX = (effectiveX -40 - rect.left) / rect.width;
+                const relativeY = (effectiveY -40- rect.top) / rect.height;
+
+                // Adjust the percent values based on the scale
+                percentX.value = (relativeX * scaleValue.value) - 0.5 * scaleValue.value;
+                percentY.value = (relativeY * scaleValue.value) - 0.5 * scaleValue.value;
             }
         };
+
 
         const fetchImage = async (imageType: 'original' | 'dwsr' | 'esrgan' | 'bilinear') => {
             try {
@@ -154,6 +157,7 @@ export default defineComponent({
                 console.error('Failed to fetch the image:', error);
             }
         };
+
         const fetchAllImages = async () => {
             for (const imageType of imageTypes) {
                 await fetchImage(imageType);
@@ -193,6 +197,26 @@ export default defineComponent({
 
             scaleValue.value = Math.max(1, scaleValue.value); 
             scaleValue.value = Math.min(10, scaleValue.value);
+            const image = imageRef.value;
+            if (image) {
+                const rect = image.getBoundingClientRect();
+
+                // Clamp the cursor's x-coordinate within the image's bounds
+                const effectiveX = Math.min(Math.max(e.clientX, rect.left + 80), rect.right);
+
+                // Clamp the cursor's y-coordinate within the image's bounds
+                const effectiveY = Math.min(Math.max(e.clientY, rect.top + 80), rect.bottom);
+                cursorX.value = effectiveX;
+                cursorY.value = effectiveY;
+
+                // Calculate the relative position of the cursor within the scaled image
+                const relativeX = (effectiveX - 40 - rect.left) / rect.width;
+                const relativeY = (effectiveY - 40 - rect.top) / rect.height;
+
+                // Adjust the percent values based on the scale
+                percentX.value = (relativeX * scaleValue.value) - 0.5 * scaleValue.value;
+                percentY.value = (relativeY * scaleValue.value) - 0.5 * scaleValue.value;
+            }
         };
 
         onMounted(() => {
@@ -299,7 +323,7 @@ body {
     background-size: 200%;
     inset: -2px;
     z-index: -1;
-    border-radius: 8px;
+    border-radius: 10px;
     transition: all 0.3s ease 0s;
 }
 
@@ -323,7 +347,7 @@ body {
     background-size: 200%;
     inset: -4px;
     z-index: -1;
-    border-radius: 8px;
+    border-radius: 10px;
     transition: all 0.3s ease 0s;
 }
 
