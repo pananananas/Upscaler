@@ -96,13 +96,12 @@ export default defineComponent({
 
         const router = useRouter();
         const imageId = router.currentRoute.value.params.image_id;
-        const imageTypes: ('dwsr' | 'original' | 'esrgan' | 'bilinear')[] = ["dwsr", "esrgan", "bilinear", "original"];
+        const imageTypes: (ImageType)[] = ["dwsr", "esrgan", "bilinear", "original"];
         const imageUrls = ref({ original: '', dwsr: '', esrgan: '', bilinear: '' });
         const imageUrl = ref('');
         const imageTitle: Ref<string> = ref('');
         const imageRef: Ref<HTMLImageElement | null> = ref(null);
         const selectedAlgorithm: Ref<ImageType> = ref('dwsr'); // Default value
-
         
         const dominantColors = ref([]);
         const originalImageUrl = ref('');
@@ -177,9 +176,12 @@ export default defineComponent({
                     }
                     if (imageType === "dwsr")
                         imageUrl.value = `http://localhost:8000${data.image_url}`;
+                    // select image
+                    selectedAlgorithm.value = imageType;
 
                 } else {
                     console.error('Failed to fetch image info:', response.statusText);
+                    return Promise.reject();
                 }
             } catch (error) {
                 console.error('Failed to fetch the image:', error);
@@ -202,9 +204,24 @@ export default defineComponent({
             }
         };
 
-        const fetchAllImages = async () => {
-            for (const imageType of imageTypes) {
+        const retryFetchImage = async (imageType: ImageType, retryCount = Number.MAX_SAFE_INTEGER) => {
+            console.log(`Fetching ${imageType} image...`);
+            try {
                 await fetchImage(imageType);
+                console.log("Fetched", imageType, "image after", Number.MAX_SAFE_INTEGER - retryCount + 1, "attempts.")
+            } catch (error) {
+                if (retryCount > 0) {
+                    setTimeout(() => retryFetchImage(imageType, retryCount - 1), 1000);
+                } else {
+                    console.error(`Failed to fetch ${imageType} image after multiple attempts.`);
+                }
+            }
+        };
+
+        const fetchAllImages = async () => {
+            const imageQueue: (ImageType)[] = ["original", "bilinear", "dwsr", "esrgan" ];
+            for (const imageType of imageQueue) {
+                await retryFetchImage(imageType);
             }
             fetchImageInfo();
         };
@@ -227,7 +244,7 @@ export default defineComponent({
             const sensitivity = 0.04; // Zooming sensitivity
             let deltaScale = e.deltaY * sensitivity;
             scaleValue.value += deltaScale;
-            scaleValue.value = Math.max(1.5, scaleValue.value); 
+            scaleValue.value = Math.max(1, scaleValue.value); 
             scaleValue.value = Math.min(10, scaleValue.value);
 
             // console.log("scaleValue", scaleValue.value);
