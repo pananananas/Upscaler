@@ -11,7 +11,6 @@
 
             <div class="flex-initial mx-auto h-full">
                 <div class="flex justify-center items-center gap-1 h-full">
-                    <!-- preview here: -->
                     <img :src="imageUrl" :class="divImageClasses" class="object-contain mx-auto rounded-lg" ref="imageRef">
                 </div>
             </div>
@@ -74,6 +73,7 @@
             </div>
         </div>
 
+        <!-- magnify window: -->
         <div :style="{ top: cursorY + 'px', left: cursorX + 'px', transform: 'translate(-100%, -100%)' }" class="bg-[rgba(217,217,217,0.10)] rounded-lg border-solid border-[rgba(255,255,255,0.30)] border w-[80px] h-[80px] absolute "> </div>
         <magnify-round-icon :style="{ top: cursorY + 'px', left: cursorX + 'px', transform: 'translate(-50%, -50%)' }" class="absolute"/>
   </body>
@@ -112,28 +112,34 @@ export default defineComponent({
 
         const isVertical = ref(true);
         const scaleValue = ref(3);
+        const magnifyWindowSize = ref(80);
         
-        const updateMousePosition = (e: MouseEvent) => {
+        const calculateMousePos = (e: any) => {
+
             const image = imageRef.value;
             if (image) {
                 const rect = image.getBoundingClientRect();
 
                 // Clamp the cursor's x-coordinate within the image's bounds
-                const effectiveX = Math.min(Math.max(e.clientX, rect.left + 80), rect.right);
+                const effectiveX = Math.min(Math.max(e.clientX, rect.left + magnifyWindowSize.value), rect.right);
 
                 // Clamp the cursor's y-coordinate within the image's bounds
-                const effectiveY = Math.min(Math.max(e.clientY, rect.top + 80), rect.bottom);
+                const effectiveY = Math.min(Math.max(e.clientY, rect.top + magnifyWindowSize.value), rect.bottom);
                 cursorX.value = effectiveX;
                 cursorY.value = effectiveY;
 
                 // Calculate the relative position of the cursor within the scaled image
-                const relativeX = (effectiveX -40 - rect.left) / rect.width;
-                const relativeY = (effectiveY -40- rect.top) / rect.height;
+                const relativeX = (effectiveX - magnifyWindowSize.value / 2 - rect.left) / rect.width;
+                const relativeY = (effectiveY - magnifyWindowSize.value / 2 - rect.top) / rect.height;
 
                 // Adjust the percent values based on the scale
                 percentX.value = (relativeX * scaleValue.value) - 0.5 * scaleValue.value;
                 percentY.value = (relativeY * scaleValue.value) - 0.5 * scaleValue.value;
             }
+        };
+
+        const updateMousePosition = (e: MouseEvent) => {
+            calculateMousePos(e);
         };
 
 
@@ -190,33 +196,13 @@ export default defineComponent({
         const handleScroll = (e: WheelEvent) => {
             e.preventDefault(); 
             
-            const sensitivity = 0.05; // Zooming sensitivity
+            const sensitivity = 0.04; // Zooming sensitivity
             let deltaScale = e.deltaY * sensitivity;
-
             scaleValue.value += deltaScale;
-
             scaleValue.value = Math.max(1, scaleValue.value); 
-            scaleValue.value = Math.min(10, scaleValue.value);
-            const image = imageRef.value;
-            if (image) {
-                const rect = image.getBoundingClientRect();
+            scaleValue.value = Math.min(12, scaleValue.value);
 
-                // Clamp the cursor's x-coordinate within the image's bounds
-                const effectiveX = Math.min(Math.max(e.clientX, rect.left + 80), rect.right);
-
-                // Clamp the cursor's y-coordinate within the image's bounds
-                const effectiveY = Math.min(Math.max(e.clientY, rect.top + 80), rect.bottom);
-                cursorX.value = effectiveX;
-                cursorY.value = effectiveY;
-
-                // Calculate the relative position of the cursor within the scaled image
-                const relativeX = (effectiveX - 40 - rect.left) / rect.width;
-                const relativeY = (effectiveY - 40 - rect.top) / rect.height;
-
-                // Adjust the percent values based on the scale
-                percentX.value = (relativeX * scaleValue.value) - 0.5 * scaleValue.value;
-                percentY.value = (relativeY * scaleValue.value) - 0.5 * scaleValue.value;
-            }
+            calculateMousePos(e);
         };
 
         onMounted(() => {
@@ -238,8 +224,6 @@ export default defineComponent({
         return {
             cursorX,
             cursorY,
-            isVertical,
-            scaleValue,
             percentX,
             percentY,
             imageRef,
@@ -247,6 +231,9 @@ export default defineComponent({
             imageUrls,
             imageTitle,
             imageTypes,
+            isVertical,
+            scaleValue,
+            magnifyWindowSize,
             selectedAlgorithm,
             originalImageWidth,
             originalImageHeight,
