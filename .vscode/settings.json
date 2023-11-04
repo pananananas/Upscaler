@@ -24,7 +24,7 @@
             "command": "cp",
             "args": [
                 "output/%DOCFILE%.pdf",
-                "%DIR%/%DOCFILE%.pdf"
+                "%DIR%/Praca Inżynierska.pdf"
             ]
         }
     ],
