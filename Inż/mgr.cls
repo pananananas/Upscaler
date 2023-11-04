@@ -245,7 +245,7 @@
 
 %definicje danych do utworzenia strony tyuĹowej
 \if@pl
-\newcommand{\@naglowek}{PRACA DYPLOMOWA \\ MAGISTERSKA}
+\newcommand{\@naglowek}{PRACA DYPLOMOWA \\ INŻYNIERSKA}
 \newcommand{\@napisProwadzacy}{Promotor:}
 \newcommand{\@napisOcena}{Ocena pracy:}
 \fi

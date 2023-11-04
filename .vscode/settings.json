@@ -1,38 +1,43 @@
 {
     "latex-workshop.latex.outDir": "%DIR%/output",
-"latex-workshop.latex.tools": [
-    {
-        "name": "pdflatex",
-        "command": "pdflatex",
-        "args": [
-            "-synctex=1",
-            "-interaction=nonstopmode",
-            "-file-line-error",
-            "-output-directory=output",
-            "%DOC%"
-        ]
-    },
-    {
-        "name": "bibtex",
-        "command": "bibtex",
-        "args": [
-            "output/%DOCFILE%"
-        ]
-    }
-],
-"latex-workshop.latex.recipes": [
-    {
-        "name": "pdflatex -> bibtex -> pdflatex*2",
-        "tools": [
-            "pdflatex",
-            "bibtex",
-            "pdflatex",
-            "pdflatex"
-        ]
-    }
-],
-"cSpell.words": [
-    "ESRGAN",
-    "implementacyjnych"
-]
+    "latex-workshop.latex.tools": [
+        {
+            "name": "pdflatex",
+            "command": "pdflatex",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-output-directory=output",
+                "%DOC%"
+            ]
+        },
+        {
+            "name": "bibtex",
+            "command": "bibtex",
+            "args": [
+                "output/%DOCFILE%"
+            ]
+        },
+        {
+            "name": "movepdf",
+            "command": "cp",
+            "args": [
+                "output/%DOCFILE%.pdf",
+                "%DIR%/%DOCFILE%.pdf"
+            ]
+        }
+    ],
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "pdflatex -> bibtex -> pdflatex*2 -> movepdf",
+            "tools": [
+                "pdflatex",
+                "bibtex",
+                "pdflatex",
+                "pdflatex",
+                "movepdf"
+            ]
+        }
+    ]
 }
