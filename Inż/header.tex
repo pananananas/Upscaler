@@ -1,0 +1,59 @@
+
+%opcje klasy dokumentu mgr.cls zostały opisane w dołączonej instrukcji, patrz plik <manual.pdf>
+
+%poniżej deklaracje użycia pakietów, usunąć to co jest niepotrzebne
+\usepackage{polski}       %przydatne podczas składania dokumentów w
+%j. polskim 
+%\usepackage[polish]{babel} %alternatywnie do pakietu
+%polski, wybrać jeden z nich
+%\usepackage[latin2]{inputenc} %kodowanie znaków, zależne od systemu
+%\usepackage[T1]{fontenc} %poprawne składanie polskich czcionek
+
+%pakiety do grafiki
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{psfrag}
+
+%pakiety dodające dużo dodatkowych poleceń matematycznych
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+%pakiety wspomagające i poprawiające składanie tabel
+\usepackage{supertabular}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{hhline}
+
+%pakiet wypisujący na marginesie etykiety równań i rysunków
+%zdefiniowanych przez \label{}, chcąc wygenerować finalną wersję
+
+\usepackage{showlabels}
+
+
+\usepackage{microtype}
+
+
+%definicje własnych poleceń
+\newcommand{\R}{I\!\!R} %symbol liczb rzeczywistych, działa tylko w
+                        %trybie matematycznym
+\newtheorem{theorem}{Twierdzenie}[section] %nowe otoczenie do
+                                           %składania twierdzeń
+
+%dane do złożenia strony tytułowej
+\title{Aplikacja webowa zwiększająca \\rozdzielczość obrazów}
+\engtitle{Master thesis title}
+\author{Eryk Wójcik}
+\supervisor{dr hab. inż. Andrzej Rusiecki Prof. PWr}
+
+
+%\guardian{dr hab. inż. Imię Nazwisko Prof. PWr} %nie używać
+%jeśli opiekun jest tą samą osobą co prowadzący pracę
+
+% \date{2023} %standardowo u dołu strony tytułowej umieszczany jest
+
+
+%poniżej definiuje sie kierunek i ewentualną specjalność
+%w obecnej wersji specjalność nie jest wypisywana na stronie tytułowej
+
+\field{Automatyka i Robotyka (AIR)}
+\specialisation{ART (ART)}

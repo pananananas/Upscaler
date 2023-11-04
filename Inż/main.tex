@@ -1,0 +1,31 @@
+\documentclass[printmode,pl]{mgr}
+\include{header}
+\begin{document}
+\bibliographystyle{plabbrv} %tylko gdy używamy BibTeXa, ustawia polski styl bibliografii
+
+\maketitle
+% \dedication{6cm}{To jest przykładowa treść opcjonalnej dedykacji,
+%   należy ją zmienić lub usunąć w całości polecenie
+%   \texttt{$\backslash$dedication}}
+\tableofcontents
+
+\include{01.Wstep/Wstep}
+\include{02.Podstawy_teoretyczne/Podstawy_teoretyczne}
+\include{03.DWSR/DWSR}
+\include{04.ESRGAN/ESRGAN}
+\include{05.Porownanie_algorytmow/Porownanie_algorytmow}
+\include{06.Aplikacja/Aplikacja}
+\include{07.Podsumowanie/Podsumowanie}
+
+% \appendix
+% \chapter{Dodatek}
+\cite{example_article}
+\addcontentsline{toc}{chapter}{Bibilografia} % Utworzenie w spisie treści pozycji Bibliografia
+
+\bibliography{bibliografia} % Wstawia bibliografię korzystając z pliku bibliografia.bib - dotyczy BibTeXa, jeżeli nie korzystamy z BibTeXa należy użyć otoczenia 
+
+% Spis rysunków i tabel:
+% \listoffigures
+% \listoftables
+\end{document}
+

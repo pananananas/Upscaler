@@ -52,7 +52,6 @@ const handleAfterLeave = () => {
 </script>
 
 <style>
-/* ... (your existing styles) ... */
 
 .fade-enter-active, .fade-leave-active {
     transition: opacity 0.3s;
