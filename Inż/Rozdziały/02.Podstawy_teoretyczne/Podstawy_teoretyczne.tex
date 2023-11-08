@@ -53,7 +53,7 @@ Metoda ta jest bardzo prosta w implementacji, jednakże nie daje ona zadowalają
 
 Aby poprawić jakość obrazu, można zastosować \textbf{interpolację dwuliniową}. Metoda ta rozszerza interpolację liniową na interpolację funkcji dwóch zmiennych [Rys \ref{fig:image6}]. 
 
-W efekcie polega to na wyznaczeniu średniej ważonej pikseli sąsiadujących z pikselem, który chcemy powielić. Współczynniki wag są wyznaczane na podstawie odległości od piksela, który chcemy powielić. Metody te dają lepsze rezultaty niż interpolacja najbliższego sąsiada, jednakże nie są one wystarczające do uzyskania obrazu o wysokiej rozdzielczości. 
+W efekcie polega to na wyznaczeniu średniej ważonej pikseli sąsiadujących z pikselem, który chcemy powielić. Współczynniki wag są wyznaczane na podstawie odległości od piksela, który chcemy powielić.
 
 \begin{figure}[ht]
     \centering
@@ -154,13 +154,7 @@ Kroki algorytmu:
 \end{enumerate}
 
 
-
-
-
-
-
-
-W efekcie otrzymujemy obraz wyglądający następująco [Rys \ref{fig:image8}].
+W efekcie otrzymujemy obraz wyglądający następująco [Rys \ref{fig:image8},  \ref{fig:image10}].
 
 
 \begin{figure}[ht]
@@ -188,10 +182,18 @@ W efekcie otrzymujemy obraz wyglądający następująco [Rys \ref{fig:image8}].
     \hspace{0.5cm}
     \begin{minipage}[t]{0.35\linewidth}
         \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/comic_BILINEARx4.png}
-        \caption{Obraz powiększony interpolacją dwuliniową}
+        \caption{Obraz powiększony metodą interpolacji dwuliniowej}
         \label{fig:image10}
     \end{minipage}
 \end{figure}
+
+
+Metoda te daje lepsze rezultaty niż interpolacja najbliższego sąsiada, jednakże wprowadziła ona duże rozmycie, które jest szczególnie widoczne na krawędziach i obszarach wysokiej częstotliwości.
+
+
+
+
+
 
 \newpage
 \section{Wprowadzenie do głębokiego uczenia się w przetwarzaniu obrazów}
