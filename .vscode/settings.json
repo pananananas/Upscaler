@@ -2,8 +2,8 @@
     "latex-workshop.latex.outDir": "%DIR%/output",
     "latex-workshop.latex.tools": [
         {
-            "name": "pdflatex",
-            "command": "pdflatex",
+            "name": "xelatex",
+            "command": "xelatex",
             "args": [
                 "-synctex=1",
                 "-interaction=nonstopmode",
@@ -30,12 +30,12 @@
     ],
     "latex-workshop.latex.recipes": [
         {
-            "name": "pdflatex -> bibtex -> pdflatex*2 -> movepdf",
+            "name": "xelatex -> bibtex -> xelatex*2 -> movepdf",
             "tools": [
-                "pdflatex",
+                "xelatex",
                 "bibtex",
-                "pdflatex",
-                "pdflatex",
+                "xelatex",
+                "xelatex",
                 "movepdf"
             ]
         }
