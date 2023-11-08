@@ -1,12 +1,9 @@
 \documentclass[printmode,pl]{mgr}
 \include{header}
 \begin{document}
-\bibliographystyle{plabbrv} %tylko gdy używamy BibTeXa, ustawia polski styl bibliografii
+\bibliographystyle{plabbrv}
 
-\maketitle
-% \dedication{6cm}{To jest przykładowa treść opcjonalnej dedykacji,
-%   należy ją zmienić lub usunąć w całości polecenie
-%   \texttt{$\backslash$dedication}}
+\maketitle        % Strona tytułowa
 \tableofcontents
 
 \include{Rozdziały/01.Wstep/Wstep}
@@ -17,12 +14,11 @@
 \include{Rozdziały/06.Aplikacja/Aplikacja}
 \include{Rozdziały/07.Podsumowanie/Podsumowanie}
 
-% \appendix
-% \chapter{Dodatek}
 \cite{example_article}
-\addcontentsline{toc}{chapter}{Bibilografia} % Utworzenie w spisie treści pozycji Bibliografia
 
-\bibliography{bibliografia} % Wstawia bibliografię korzystając z pliku bibliografia.bib - dotyczy BibTeXa, jeżeli nie korzystamy z BibTeXa należy użyć otoczenia 
+\addcontentsline{toc}{chapter}{Bibilografia}
+
+\bibliography{bibliografia}
 
 % Spis rysunków i tabel:
 % \listoffigures
