@@ -58,17 +58,25 @@
 \field{Automatyka i Robotyka (AIR)}
 \specialisation{ART (ART)}
 
-% font family 
+
 \usepackage{fontspec}
-
-% \setmainfont{Comic Sans MS}
-
+% \setmainfont{Palatino}                            % Font family 
 
 \usepackage{hyperref}
-
 \hypersetup{
   colorlinks=true,
   linkcolor=black,
   filecolor=blue,      
   urlcolor=cyan,
 }
+
+\usepackage{caption}
+
+\captionsetup[figure]{name=Rys,labelsep=period}     % Zmienia "Rysunek" na "rys" i separator na kropkę
+\renewcommand{\thefigure}{\arabic{figure}}          % Usuwa numer sekcji z numeracji rysunku
+
+\setlength{\parindent}{0pt}                         % Usuwa tabulator w paragrafach
+
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
