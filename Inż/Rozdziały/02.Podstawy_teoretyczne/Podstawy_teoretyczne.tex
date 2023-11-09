@@ -191,23 +191,51 @@ W efekcie otrzymujemy obraz wyglądający następująco [Rys \ref{fig:image8},  
 Metoda te daje lepsze rezultaty niż interpolacja najbliższego sąsiada, jednakże wprowadziła ona duże rozmycie, które jest szczególnie widoczne na krawędziach i obszarach wysokiej częstotliwości.
 
 
+W teorii informacji istnieje koncepcja zwana \textbf{nierównością przetwarzania danych}. Zgodnie z nią niezależnie od sposobu przetwarzania danych, \textbf{nie można dodać informacji, której nie ma w oryginale.} Oznacza to, że brakujących danych nie można odzyskać poprzez dalsze przetwarzanie. Czy to oznacza, że super-rozdzielczość jest teoretycznie niemożliwa? 
+
+Nie, jeśli mamy dodatkowe źródło informacji. 
+
+
+% \newpage
+\section{Wprowadzenie do głębokiego uczenia się w przetwarzaniu obrazów}
+
+Głębokie uczenie rewolucjonizuje przetwarzanie obrazów, wprowadzając modele zdolne do uczenia się cech z serii danych. W przetwarzaniu obrazów, głębokie sieci neuronowe są wykorzystywane do zadań takich jak detekcja obiektów, segmentacja, klasyfikacja obrazów, czy właśnie super-rozdzielczość.
+
+Sieć neuronowa może nauczyć się odtwarzać szczegóły obrazów na podstawie pewnych informacji, które zbiera z dużego zbioru obrazów. 
+
+Szczegóły dodawane do powiększanego obrazu w przy użyciu modelu uczenia maszynowego nie naruszają nierówności przetwarzania danych, ponieważ wykorzystywane informacje są w zbiorze treningowym, nawet jeśli nie ma ich na obrazie wejściowym.
+
+
+
+
+
+
+\begin{figure}[ht]
+    \centering
+    \begin{minipage}[t]{0.3\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/comic.png}
+        \caption{Obraz wejściowy}
+        \label{fig:image11}
+    \end{minipage}
+    \hspace{0.5cm}
+    \begin{minipage}[t]{0.3\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/comic_DWSR_x4.png}
+        \caption{Obraz powiększony algorytmem DWSR}
+        \label{fig:image12}
+    \end{minipage}
+    \hspace{0.5cm}
+    \begin{minipage}[t]{0.3\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/comic_ESRGAN_x4.png}
+        \caption{Obraz powiększony algorytmem ESRGAN}
+        \label{fig:image13}
+    \end{minipage}
+\end{figure}
+
 
 
 
 
 \newpage
-\section{Wprowadzenie do głębokiego uczenia się w przetwarzaniu obrazów}
-
-
-Wprowadzenie do roli i zastosowań głębokich sieci neuronowych w przetwarzaniu i analizie obrazów
-
-\begin{figure}[ht]
-    \includegraphics[width=0.3\textwidth]{Rozdziały/02.Podstawy_teoretyczne/comic.png}
-    \centering
-    \caption{Obraz oryginalny}
-    \label{fig:imagex}
-\end{figure}
-
 \section{Wstęp do funkcji falkowych}
 
 
