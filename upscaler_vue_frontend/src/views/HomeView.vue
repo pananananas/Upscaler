@@ -1,7 +1,8 @@
 <template>
-<div class="cursor pointer-events-none"> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> </div>
 <body>
-<div class="relative mt-24 z-10 mx-auto py-10 px-5 grid grid-cols-1 md:grid-cols-2 gap-6 justify-items-center items-center">
+<div class="cursor"> <div class="first-circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> </div>
+
+<div class="relative mt-24 mx-auto py-10 px-5 grid grid-cols-1 md:grid-cols-2 gap-6 justify-items-center items-center">
     <!-- TODO: Fix this grid -->
     <div class="">
         <div class="text-7xl font-abril-fatface leading-[76px] text-white w-full">
@@ -48,40 +49,69 @@ export default defineComponent({
 	  
 
   	setup() {
-        const cursorX = ref(-30);
-        const cursorY = ref(-30);
-        const circles = ref<HTMLElement[]>([]);
-        const circlePositions = ref<{ x: number, y: number }[]>([]);
+        const cursorX = ref<number | null> (null);
+        const cursorY = ref<number | null> (null);
+        const circles = ref<HTMLElement[]> ([]);
+		const firstCircle = ref<HTMLElement[]> ([]);
+        const circlePositions = ref<{ x: number, y: number }[]> ([]);
 
         const calculateMousePos = (e: MouseEvent) => {
-            cursorX.value = e.clientX;
-            cursorY.value = e.clientY;
-        };
+			if (cursorX.value === null || cursorY.value === null) {
+				const firstCircleEl = document.querySelector(".first-circle") as HTMLElement;
+				// Initialize positions
+				cursorX.value = e.clientX;
+				cursorY.value = e.clientY;
+				circlePositions.value.forEach(pos => {
+					pos.x = e.clientX;
+					pos.y = e.clientY;
+				});
 
-        const animateCursorCircles = () => {
-            const cursor = document.querySelector(".cursor") as HTMLElement;
-            if (!cursor) return;
+				circles.value.forEach(circle => {
+					circle.classList.add("visible");
+				});
+				if (!firstCircleEl.classList.contains('visible')) {
+					firstCircleEl.classList.add('visible');
+				}
 
-            let x = cursorX.value;
-            let y = cursorY.value;
+			} else {
+				cursorX.value = e.clientX;
+				cursorY.value = e.clientY;
+			}
+		};
 
-            cursor.style.left = `${x}px`;
-            cursor.style.top = `${y}px`;
+		const animateCursorCircles = () => {
+			const cursor = document.querySelector(".cursor") as HTMLElement;
+			const firstCircleEl = document.querySelector(".first-circle") as HTMLElement;
+			if (!cursor || !firstCircleEl) return;
 
-            circles.value.forEach((circle, index) => {
-                circle.style.left = `${x - 10}px`;
-                circle.style.top = `${y - 10}px`;
-                circle.style.transform = `scale(${(circles.value.length - index) / circles.value.length})`;
+			let x = cursorX.value ?? 0;
+			let y = cursorY.value ?? 0;
 
-                circlePositions.value[index] = { x, y };
+			// Update the position of the first circle directly
+			firstCircleEl.style.left = `${x - 8}px`;
+			firstCircleEl.style.top = `${y - 8}px`;
 
-                const nextCircle = circlePositions.value[index + 1] || circlePositions.value[0];
-                x += (nextCircle.x - x) * 0.3;
-                y += (nextCircle.y - y) * 0.3;
-            });
+			// Only apply the pop effect to the first circle on the initial mouse move
 
-            requestAnimationFrame(animateCursorCircles);
-        };
+
+			// Update positions of the other circles
+			circles.value.forEach((circle, index) => {
+				circle.style.left = `${x - 8}px`;
+				circle.style.top  = `${y - 8}px`;
+
+				const scale = (circles.value.length - index) / circles.value.length;
+				circle.style.transform = `scale(${scale})`;
+
+				circlePositions.value[index] = { x, y };
+
+				const nextCircle = circlePositions.value[index + 1] || circlePositions.value[0];
+				x += (nextCircle.x - x) * 0.3;
+				y += (nextCircle.y - y) * 0.3;
+			});
+
+			requestAnimationFrame(animateCursorCircles);
+		};
+
 
         onMounted(() => {
             document.addEventListener('mousemove', calculateMousePos);
@@ -156,53 +186,88 @@ export default defineComponent({
 
 <style>
 body {
-  background-color: #0A0A0A;
+  	background-color: #0e0e0e;
 }
 :root {
-  --orange: #FF9F9F;
-  --purple: #8B5CF6;
+	--orange: #FF9F9F;
+	--purple: #8B5CF6;
 }
 @keyframes background-pan {
-  from {
-      background-position: 0% center;
-  }
-  to {
-      background-position: -200% center;
-  }
+	from {
+		background-position: 0% center;
+	}
+	to {
+		background-position: -200% center;
+	}
 }
 .magic_text {
-  animation: background-pan 3s linear infinite;
-  background: linear-gradient(
-      to right, 
-      var(--orange),
-      var(--purple),
-      var(--orange)
-  );
-  background-size: 200%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  white-space: nowrap;
+	animation: background-pan 3s linear infinite;
+	background: linear-gradient(
+		to right, 
+		var(--orange),
+		var(--purple),
+		var(--orange)
+	);
+	background-size: 200%;
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+	white-space: nowrap;
 }
 
 .cursor {
-  pointer-events: none;
+	pointer-events: none;
 
-  display: block;
-  border-radius: 0;
-  mix-blend-mode: difference;
-  top: 0;
-  left: 0;
-  z-index: 100;  
+	display: block;
+	border-radius: 0;
+	mix-blend-mode: difference;
+	top: 0;
+	left: 0;
+	z-index: 1000;
+}
+.first-circle {
+	position: absolute;
+	display: block;
+	width: 16px;
+	height: 16px;
+	border-radius: 16px;
+	background-color: #fff;
+	/* Initially hide the circles */
+	visibility: hidden;
+	/* Scale transition */
+	transition: transform 5s ease-out;
+	z-index: 101;
 }
 
 .circle {
     position: absolute;
     display: block;
-    width: 20px;
-    height: 20px;
-    border-radius: 20px;
+    width: 16px;
+    height: 16px;
+    border-radius: 16px;
     background-color: #fff;
+	/* Initially hide the circles */
+	visibility: hidden;
+	/* Scale transition */
+	transition: transform 5s ease-out;
+	z-index: 100;  
 }
+
+@keyframes popEffect {
+  0% {
+    transform: scale(0);
+  }
+  25% {
+    transform: scale(1.8);
+  }
+
+}
+
+.first-circle.visible {
+  /* Make the circle visible and apply the pop effect */
+  visibility: visible;
+  animation: popEffect 0.5s ease-out forwards;
+}
+
 
 </style>
