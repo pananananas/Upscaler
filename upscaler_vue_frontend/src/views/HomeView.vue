@@ -1,8 +1,5 @@
 <template>
-<div class="cursor"> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> </div>
-<!-- <svg class="absolute top-0 left-0 z-0" width="791" height="577" viewBox="0 0 791 577" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M467 404.5C354.5 505.5 62.5 438.5 0 577V-3.8147e-06L791 -1.20013e-07C791 -1.20013e-07 691.5 4.50001 620 117C548.5 229.5 579.5 303.5 467 404.5Z" fill="#054049"/>
-</svg> -->
+<div class="cursor pointer-events-none"> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> </div>
 <body>
 <div class="relative mt-24 z-10 mx-auto py-10 px-5 grid grid-cols-1 md:grid-cols-2 gap-6 justify-items-center items-center">
     <!-- TODO: Fix this grid -->
@@ -15,50 +12,27 @@
             </span>
             
         </div>
-        <div class="text-[rgb(232,232,232)] mt-7 mb-4 font-larken-sans font-italic text-xl leading-6" >
+        <div class="text-[rgb(232,232,232)] mt-10 mb-4 font-larken-sans text-xl leading-6" >
             Enhance resolution of your images using 
             <br/>
             fast and reliable AI powered algorithms.
         </div>
-        <div class="bg-[rgba(22,22,22,0.80)] hover:bg-[rgba(22,22,22,0.9)] transition ease-in-out duration-300 rounded-[10px] w-[200px] h-9 text-white font-port-lligat-sans cursor-pointer flex items-center justify-center">
-            <span class="  "> How does it work? </span>
-        </div>
+		<div class="flex gap-14">
+			<div class="bg-[#D6D6D6] hover:bg-[#f1f1f1] transition ease-in-out duration-300 rounded-[10px] w-[200px] h-9 text-[#070707] font-port-lligat-sans cursor-pointer flex items-center justify-center">
+				<span class="  "> How does it work? </span>
+			</div>
+			<div>
+				<input type="file" ref="fileInput" class="hidden" id="fileInput" @change="uploadImage" accept="image/*">
+				<gradient-button label="Upload image" shape="round"/>
+			</div>
+		</div>
+    </div>
+    <div>
+
     </div>
 
-    <div class="bg-[rgba(5,64,73,0.90)] aspect-[4/3] h-[280px] z-10 rounded-[10px] border-dashed border-[transparent] border flex flex-col gap-1  relative overflow-hidden items-center justify-center"
-        @dragover.prevent="onDragOver" 
-        @drop.prevent="onDrop">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div>
-            <input type="file" ref="fileInput" class="hidden" id="fileInput" @change="uploadImage" accept="image/*">
-            <gradient-button label="Upload image" shape="round"/>
-        </div>
-        <span class="text-[#dddddd] text-center relative z-10 font-larken-sans text-xsm leading-6">
-            Drop your images here
-        </span>
-        <div></div>
-        <div class="pt-2"></div>
-        
-        <div class="bg-[rgba(30,30,30,0.80)] hover:bg-[rgba(30,30,30,0.9)] transition ease-in-out duration-300 rounded-lg shrink-0 w-[180px] h-[57px] z-10 relative">
-            <span class="text-white text-center relative z-10 font-larken-sans text-xsm leading-6 px-3">
-                Supported formats
-            </span>
-            <div class="grid grid-cols-3 justify-items-center gap-0">
-
-                <gradient-info label="jpg"/>
-                <gradient-info label="webp"/>
-                <gradient-info label="png"/>
-
-            </div>
-        </div>
-        <!-- <canvas ref="canvas" class="absolute top-0 left-0 aspect-[4/3] h-[280px]" ></canvas> -->
-    </div>
 </div>
-<!-- <span class="relative text-white mt-7 mb-4 font-port-lligat-sans text-2xl leading-6" > 
-    Test our service with these images  
-</span> -->
+
 
 </body>
 </template>
@@ -219,7 +193,7 @@ body {
   mix-blend-mode: difference;
   top: 0;
   left: 0;
-  z-index: 99999999;  
+  z-index: 100;  
 }
 
 .circle {

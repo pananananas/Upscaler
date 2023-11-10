@@ -5,7 +5,7 @@ module.exports = {
     extend: {
 
       colors: {
-        'backgroundcolor': '#1A1A1A',
+        // 'backgroundcolor': '#1A1A1A',
       },
       fontSize: {
         '2xsm': '0.5rem',   // 8px
