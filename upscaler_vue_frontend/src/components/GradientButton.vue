@@ -1,5 +1,5 @@
 <template>
-    <label class="btn" shape="round" for="fileInput" >
+    <label class="btn font-larken-sans" shape="round" for="fileInput" >
         <span class="px-2 text-base">{{ label }}</span>
     </label>
 </template>
@@ -26,11 +26,12 @@ const props = defineProps({
     position: relative;
     background-color: rgba(24, 24, 27, 0.9);
     color: #f4f4f5;
-    font-family: Port Lligat Sans;
+
     transition: background-color 0.3s ease-in-out;
     justify-content: center;
     text-align: center;
     cursor: pointer;
+    z-index: 0;
 }
 
 :root {
@@ -59,7 +60,7 @@ const props = defineProps({
     );
     background-size: 200%;
     inset: -2px;
-    z-index: 11;
+    z-index: 1;
     border-radius: 90px;
     transition: all 0.3s ease 0s;
 }
@@ -69,7 +70,7 @@ const props = defineProps({
     position: absolute;
     background-color: rgba(24, 24, 27, 0.9);
     inset: 1px;
-    z-index: 12;
+    z-index: 2;
     border-radius: 90px;
     transition: all 0.3s ease 0s;
 }
@@ -88,7 +89,7 @@ const props = defineProps({
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
-    z-index: 13;
+    z-index: 3;
 }
 
 </style>

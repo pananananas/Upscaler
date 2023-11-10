@@ -369,9 +369,9 @@ export default defineComponent({
 </script>
 
 <style>
-/* body {
+body {
     background-color: #1A1A1A;
-} */
+}
 .magnifying_glass div:hover img {
     transform: scale(1);
     transition: transform 0.3s;

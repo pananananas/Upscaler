@@ -3,7 +3,7 @@
 
 
 <div class="relative mt-36 mx-auto pl-5 grid grid-cols-1 md:grid-cols-2 gap-6 justify-items-center ">
-    <!-- TODO: Fix this grid -->
+
     <div class="">
         <div class="text-7xl font-abril-fatface leading-[76px] text-white w-full">
             Upscale your
@@ -340,5 +340,4 @@ body {
 .float-12 {
   animation: floatInFromLeft 0.72s ease-out forwards;
 }
-
 </style>
