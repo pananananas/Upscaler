@@ -1,8 +1,8 @@
 <template>
 <body>
-<div class="cursor"> <div class="first-circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> </div>
 
-<div class="relative mt-24 mx-auto py-10 px-5 grid grid-cols-1 md:grid-cols-2 gap-6 justify-items-center items-center">
+
+<div class="relative mt-36 mx-auto pl-5 grid grid-cols-1 md:grid-cols-2 gap-6 justify-items-center ">
     <!-- TODO: Fix this grid -->
     <div class="">
         <div class="text-7xl font-abril-fatface leading-[76px] text-white w-full">
@@ -28,13 +28,31 @@
 			</div>
 		</div>
     </div>
-    <div>
-
-    </div>
-
+	<div class=" w-full h-full">
+		<div class="flex gap-4 absolute">
+			<img src="../assets/imgs/1_downscaled.jpg" alt="Image1" class=" object-cover rounded-[10px] w-[150px] h-[150px] hover:scale-105 transition ease-in-out duration-300 ml-4">
+			<img src="../assets/imgs/2_downscaled.jpg" alt="Image1" class=" object-cover rounded-[10px] w-[170px] h-[113px] hover:scale-105 transition ease-in-out duration-300">
+			<img src="../assets/imgs/3_downscaled.jpg" alt="Image1" class=" object-cover rounded-[10px] w-[85px] h-[113px] hover:scale-105 transition ease-in-out duration-300">
+			<img src="../assets/imgs/4_downscaled.jpg" alt="Image1" class=" object-cover rounded-[10px] w-[150px] h-[113px] hover:scale-105 transition ease-in-out duration-300">
+		</div>
+		<div class="flex gap-6 absolute top-[128px]">
+			<img src="../assets/imgs/5_downscaled.jpg" alt="Image1" class=" object-cover rounded-[10px] w-[150px] h-[100px] hover:scale-105 transition ease-in-out duration-300 bottom-0 absolute">
+			<img src="../assets/imgs/6_downscaled.jpg" alt="Image1" class=" object-cover rounded-[10px] w-[106px] h-[160px] hover:scale-105 transition ease-in-out duration-300 ml-[182px]">
+			<img src="../assets/imgs/7_downscaled.jpg" alt="Image1" class=" object-cover rounded-[10px] w-[113px] h-[113px] hover:scale-105 transition ease-in-out duration-300">
+			<img src="../assets/imgs/8_downscaled.jpg" alt="Image1" class=" object-cover rounded-[10px] w-[85px]  h-[113px] hover:scale-105 transition ease-in-out duration-300">
+			<img src="../assets/imgs/9_downscaled.jpg" alt="Image1" class=" object-cover rounded-[10px] w-[113px] h-[113px] hover:scale-105 transition ease-in-out duration-300">
+		</div>
+		<div class="flex gap-6 absolute top-[274px]">
+			<img src="../assets/imgs/10_downscaled.jpg" alt="Image1" class=" object-cover rounded-[10px] w-[267px] h-[113px] hover:scale-105 transition ease-in-out duration-300 bottom-0 absolute ml-6">
+			<img src="../assets/imgs/11_downscaled.jpg" alt="Image1" class=" object-cover rounded-[10px] w-[113px] h-[150px] hover:scale-105 transition ease-in-out duration-300 ml-[305px]">
+			<img src="../assets/imgs/12_downscaled.jpg" alt="Image1" class=" object-cover rounded-[10px] w-[228px] h-[150px] hover:scale-105 transition ease-in-out duration-300">
+		</div>
+	</div>
 </div>
 
 
+
+<div class="cursor"> <div class="first-circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> </div>
 </body>
 </template>
 
@@ -187,6 +205,10 @@ export default defineComponent({
 <style>
 body {
   	background-color: #0e0e0e;
+
+	overflow-x: hidden;
+
+
 }
 :root {
 	--orange: #FF9F9F;
@@ -216,15 +238,15 @@ body {
 }
 
 .cursor {
-	pointer-events: none;
-
 	display: block;
 	border-radius: 0;
+	pointer-events: none;
 	mix-blend-mode: difference;
 	top: 0;
 	left: 0;
 	z-index: 1000;
 }
+
 .first-circle {
 	position: absolute;
 	display: block;
@@ -257,8 +279,11 @@ body {
   0% {
     transform: scale(0);
   }
-  25% {
+  30% {
     transform: scale(1.8);
+  }
+  100% {
+	transform: scale(1);
   }
 
 }
