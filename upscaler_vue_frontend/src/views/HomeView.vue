@@ -1,5 +1,5 @@
 <template>
-
+<div class="cursor"> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> </div>
 <!-- <svg class="absolute top-0 left-0 z-0" width="791" height="577" viewBox="0 0 791 577" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M467 404.5C354.5 505.5 62.5 438.5 0 577V-3.8147e-06L791 -1.20013e-07C791 -1.20013e-07 691.5 4.50001 620 117C548.5 229.5 579.5 303.5 467 404.5Z" fill="#054049"/>
 </svg> -->
@@ -15,7 +15,7 @@
             </span>
             
         </div>
-        <div class="text-[rgb(232,232,232)] mt-7 mb-4 font-port-lligat-sans text-xl leading-6" >
+        <div class="text-[rgb(232,232,232)] mt-7 mb-4 font-larken-sans font-italic text-xl leading-6" >
             Enhance resolution of your images using 
             <br/>
             fast and reliable AI powered algorithms.
@@ -35,14 +35,14 @@
             <input type="file" ref="fileInput" class="hidden" id="fileInput" @change="uploadImage" accept="image/*">
             <gradient-button label="Upload image" shape="round"/>
         </div>
-        <span class="text-[#dddddd] text-center relative z-10 font-port-lligat-sans text-xsm leading-6">
+        <span class="text-[#dddddd] text-center relative z-10 font-larken-sans text-xsm leading-6">
             Drop your images here
         </span>
         <div></div>
         <div class="pt-2"></div>
         
         <div class="bg-[rgba(30,30,30,0.80)] hover:bg-[rgba(30,30,30,0.9)] transition ease-in-out duration-300 rounded-lg shrink-0 w-[180px] h-[57px] z-10 relative">
-            <span class="text-white text-center relative z-10 font-port-lligat-sans text-xsm leading-6 px-3">
+            <span class="text-white text-center relative z-10 font-larken-sans text-xsm leading-6 px-3">
                 Supported formats
             </span>
             <div class="grid grid-cols-3 justify-items-center gap-0">
@@ -59,6 +59,7 @@
 <!-- <span class="relative text-white mt-7 mb-4 font-port-lligat-sans text-2xl leading-6" > 
     Test our service with these images  
 </span> -->
+
 </body>
 </template>
 
@@ -69,92 +70,112 @@ import GradientButton from '@/components/GradientButton.vue';
 import GradientInfo from '@/components/GradientInfo.vue';
 
 export default defineComponent({
-  components: { GradientButton, GradientInfo },
+  	components: { GradientButton, GradientInfo },
+	  
 
+  	setup() {
+        const cursorX = ref(-30);
+        const cursorY = ref(-30);
+        const circles = ref<HTMLElement[]>([]);
+        const circlePositions = ref<{ x: number, y: number }[]>([]);
 
-  setup() {
-      const canvas = ref<HTMLCanvasElement | null>(null);
+        const calculateMousePos = (e: MouseEvent) => {
+            cursorX.value = e.clientX;
+            cursorY.value = e.clientY;
+        };
 
-      onMounted(() => {            
-          // if (canvas.value) {
-          //     const context = canvas.value.getContext('2d');
-          //     if (context) {
-          //         const centerX = canvas.value.width / 2;
-          //         const centerY = canvas.value.height / 2;
-          //         const radius = 70;
-          //         context.beginPath();
-          //         context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
-          //         context.fillStyle = 'green';
-          //         context.fill();
-          //         context.lineWidth = 5;
-          //         context.strokeStyle = '#003300';
-          //         context.stroke();
-          //     }
-          // }
-      });
+        const animateCursorCircles = () => {
+            const cursor = document.querySelector(".cursor") as HTMLElement;
+            if (!cursor) return;
 
-      return {
-          canvas, 
-      };
-  },
-  data() {
-      return {
-          selectedFile: null as File | null,
-      };
-  },
-  methods: {
-      onDragOver(event: Event) {
-          event.preventDefault();
-          // TODO: Change styles of the dropzone when an item is dragged over it
-      },
-      async onDrop(event: DragEvent) { 
-          event.preventDefault();
-          if (event.dataTransfer) {
-              const files = event.dataTransfer.files;
-              if (files.length == 1) {
-                  this.selectedFile = files[0];
-                  if (!this.selectedFile)
-                      return;
+            let x = cursorX.value;
+            let y = cursorY.value;
 
-                  const formData = new FormData();
-                  formData.append('image', this.selectedFile);
-                  await this.sendImageToDataBase(formData);
-              } else if (files.length > 1) {
-                  alert("You can only upload one image at a time");
-              }
-          }
-      },
-      async uploadImage(event: Event) {
-          const input = event.target as HTMLInputElement;
-          const files = input.files;
-          if (files) {
-              (this as any).selectedFile = files[0];
-          }
-          if (!(this as any).selectedFile)
-              return;
-          const formData = new FormData();
-          formData.append('image', (this as any).selectedFile);
-          await this.sendImageToDataBase(formData);
-      }, 
-      async sendImageToDataBase(formData: FormData) {
-          try {
-              const response = await fetch('http://localhost:8000/upload/', {
-                  method: 'POST',
-                  body: formData
-              });
-              const data = await response.json();
-              console.log(data);
-              if (data.message === 'Image uploaded and processing started') {
-                  // Navigate to the next view with the image_id as a parameter
-                  this.$router.push({ name: 'display-result', params: { image_id: data.image_id.toString() } });
-              }
+            cursor.style.left = `${x}px`;
+            cursor.style.top = `${y}px`;
 
-          }
-          catch (error) {
-              console.error("Błąd podczas wysyłania obrazu:", error);
-          }
-      }
-  }
+            circles.value.forEach((circle, index) => {
+                circle.style.left = `${x - 10}px`;
+                circle.style.top = `${y - 10}px`;
+                circle.style.transform = `scale(${(circles.value.length - index) / circles.value.length})`;
+
+                circlePositions.value[index] = { x, y };
+
+                const nextCircle = circlePositions.value[index + 1] || circlePositions.value[0];
+                x += (nextCircle.x - x) * 0.3;
+                y += (nextCircle.y - y) * 0.3;
+            });
+
+            requestAnimationFrame(animateCursorCircles);
+        };
+
+        onMounted(() => {
+            document.addEventListener('mousemove', calculateMousePos);
+            circles.value = Array.from(document.querySelectorAll(".circle")) as HTMLElement[];
+            circlePositions.value = circles.value.map(() => ({ x: 0, y: 0 }));
+            animateCursorCircles();
+        });
+		return {
+		};
+	},
+	data() {
+		return {
+			selectedFile: null as File | null,
+		};
+	},
+	methods: {
+		onDragOver(event: Event) {
+			event.preventDefault();
+			// TODO: Change styles of the dropzone when an item is dragged over it
+		},
+		async onDrop(event: DragEvent) { 
+			event.preventDefault();
+			if (event.dataTransfer) {
+				const files = event.dataTransfer.files;
+				if (files.length == 1) {
+					this.selectedFile = files[0];
+					if (!this.selectedFile)
+						return;
+
+					const formData = new FormData();
+					formData.append('image', this.selectedFile);
+					await this.sendImageToDataBase(formData);
+				} else if (files.length > 1) {
+					alert("You can only upload one image at a time");
+				}
+			}
+		},
+		async uploadImage(event: Event) {
+			const input = event.target as HTMLInputElement;
+			const files = input.files;
+			if (files) {
+				(this as any).selectedFile = files[0];
+			}
+			if (!(this as any).selectedFile)
+				return;
+			const formData = new FormData();
+			formData.append('image', (this as any).selectedFile);
+			await this.sendImageToDataBase(formData);
+		}, 
+		async sendImageToDataBase(formData: FormData) {
+			try {
+				const response = await fetch('http://localhost:8000/upload/', {
+					method: 'POST',
+					body: formData
+				});
+				const data = await response.json();
+				console.log(data);
+				if (data.message === 'Image uploaded and processing started') {
+					// Navigate to the next view with the image_id as a parameter
+					this.$router.push({ name: 'display-result', params: { image_id: data.image_id.toString() } });
+				}
+
+			}
+			catch (error) {
+				console.error("Błąd podczas wysyłania obrazu:", error);
+			}
+		}
+	}
 });
 </script>
 
@@ -189,4 +210,25 @@ body {
   -webkit-text-fill-color: transparent;
   white-space: nowrap;
 }
+
+.cursor {
+  pointer-events: none;
+
+  display: block;
+  border-radius: 0;
+  mix-blend-mode: difference;
+  top: 0;
+  left: 0;
+  z-index: 99999999;  
+}
+
+.circle {
+    position: absolute;
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    background-color: #fff;
+}
+
 </style>

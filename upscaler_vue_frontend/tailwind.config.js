@@ -22,9 +22,11 @@ module.exports = {
       },
 
       fontFamily: {
-        'port-lligat-sans': ['Port Lligat Sans', 'sans-serif'], // Backup to sans-serif
-        'port-lligat-slab': ['Port Lligat Slab', 'serif'],     // Backup to serif
+        'port-lligat-sans': ['Port Lligat Sans', 'sans-serif'],
+        'port-lligat-slab': ['Port Lligat Slab', 'serif'],     
         'abril-fatface': ['Abril Fatface', 'serif'],
+        'larken-sans':['larken', 'sans-serif'],       
+
       },
 
       screens: {
