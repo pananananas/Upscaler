@@ -8,21 +8,23 @@ module.exports = {
         'backgroundcolor': '#1A1A1A',
       },
       fontSize: {
-        '2xsm': '0.5rem',
-        xsm: '0.6rem',
-        smm: '0.7rem',
-        sm: '0.8rem',
-        base: '1rem',
-        xl: '1.25rem',
-        '2xl': '1.563rem',
-        '3xl': '1.953rem',
-        '4xl': '2.441rem',
-        '5xl': '3.052rem',
+        '2xsm': '0.5rem',   // 8px
+        xsm: '0.6rem',      // 10px
+        smm: '0.7rem',      // 11px
+        sm: '0.8rem',       // 12px
+        base: '1rem',       // 16px
+        xl: '1.25rem',      // 20px
+        '2xl': '1.563rem',  // 25px
+        '3xl': '1.953rem',  // 31px
+        '4xl': '2.441rem',  // 39px
+        '5xl': '3.052rem',  // 49px
+        '6xl': '112px',     // 112px
       },
 
       fontFamily: {
         'port-lligat-sans': ['Port Lligat Sans', 'sans-serif'], // Backup to sans-serif
         'port-lligat-slab': ['Port Lligat Slab', 'serif'],     // Backup to serif
+        'abril-fatface': ['Abril Fatface', 'serif'],
       },
 
       screens: {

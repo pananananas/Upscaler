@@ -10,11 +10,6 @@ const routes: Array<RouteRecordRaw> = [
     component: HomeView,
   },
   {
-    path: '/upload-image',
-    name: 'upload-image',
-    component: UploadImageView,
-  },
-  {
     path: '/display-result/:image_id',
     name: 'display-result',
     component: DisplayResultView,
