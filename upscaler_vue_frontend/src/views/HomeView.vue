@@ -30,22 +30,22 @@
     </div>
 	<div class=" w-full h-full">
 		<div class="flex gap-4 absolute">
-			<img src="../assets/imgs/1_downscaled.jpg" alt="Image1" class=" object-cover rounded-[10px] w-[150px] h-[150px] hover:scale-105 transition ease-in-out duration-300 ml-4">
-			<img src="../assets/imgs/2_downscaled.jpg" alt="Image1" class=" object-cover rounded-[10px] w-[170px] h-[113px] hover:scale-105 transition ease-in-out duration-300">
-			<img src="../assets/imgs/3_downscaled.jpg" alt="Image1" class=" object-cover rounded-[10px] w-[85px] h-[113px] hover:scale-105 transition ease-in-out duration-300">
-			<img src="../assets/imgs/4_downscaled.jpg" alt="Image1" class=" object-cover rounded-[10px] w-[150px] h-[113px] hover:scale-105 transition ease-in-out duration-300">
+			<img src="../assets/imgs/1_downscaled.jpg" alt="Image1" class="object-cover rounded-[10px] w-[150px] h-[150px] hover:scale-105 ml-4 float-1">
+			<img src="../assets/imgs/2_downscaled.jpg" alt="Image2" class="object-cover rounded-[10px] w-[170px] h-[113px] hover:scale-105 float-2">
+			<img src="../assets/imgs/3_downscaled.jpg" alt="Image3" class="object-cover rounded-[10px] w-[85px] h-[113px] hover:scale-105 float-3">
+			<img src="../assets/imgs/4_downscaled.jpg" alt="Image4" class="object-cover rounded-[10px] w-[150px] h-[113px] hover:scale-105 float-4">
 		</div>
 		<div class="flex gap-6 absolute top-[128px]">
-			<img src="../assets/imgs/5_downscaled.jpg" alt="Image1" class=" object-cover rounded-[10px] w-[150px] h-[100px] hover:scale-105 transition ease-in-out duration-300 bottom-0 absolute">
-			<img src="../assets/imgs/6_downscaled.jpg" alt="Image1" class=" object-cover rounded-[10px] w-[106px] h-[160px] hover:scale-105 transition ease-in-out duration-300 ml-[182px]">
-			<img src="../assets/imgs/7_downscaled.jpg" alt="Image1" class=" object-cover rounded-[10px] w-[113px] h-[113px] hover:scale-105 transition ease-in-out duration-300">
-			<img src="../assets/imgs/8_downscaled.jpg" alt="Image1" class=" object-cover rounded-[10px] w-[85px]  h-[113px] hover:scale-105 transition ease-in-out duration-300">
-			<img src="../assets/imgs/9_downscaled.jpg" alt="Image1" class=" object-cover rounded-[10px] w-[113px] h-[113px] hover:scale-105 transition ease-in-out duration-300">
+			<img src="../assets/imgs/5_downscaled.jpg" alt="Image5" class="object-cover rounded-[10px] w-[150px] h-[100px] hover:scale-105 bottom-0 absolute float-5">
+			<img src="../assets/imgs/6_downscaled.jpg" alt="Image6" class="object-cover rounded-[10px] w-[106px] h-[160px] hover:scale-105 ml-[182px] float-6">
+			<img src="../assets/imgs/7_downscaled.jpg" alt="Image7" class="object-cover rounded-[10px] w-[113px] h-[113px] hover:scale-105 float-7">
+			<img src="../assets/imgs/8_downscaled.jpg" alt="Image8" class="object-cover rounded-[10px] w-[85px] h-[113px] hover:scale-105 float-8">
+			<img src="../assets/imgs/9_downscaled.jpg" alt="Image9" class="object-cover rounded-[10px] w-[113px] h-[113px] hover:scale-105 float-9">
 		</div>
 		<div class="flex gap-6 absolute top-[274px]">
-			<img src="../assets/imgs/10_downscaled.jpg" alt="Image1" class=" object-cover rounded-[10px] w-[267px] h-[113px] hover:scale-105 transition ease-in-out duration-300 bottom-0 absolute ml-6">
-			<img src="../assets/imgs/11_downscaled.jpg" alt="Image1" class=" object-cover rounded-[10px] w-[113px] h-[150px] hover:scale-105 transition ease-in-out duration-300 ml-[305px]">
-			<img src="../assets/imgs/12_downscaled.jpg" alt="Image1" class=" object-cover rounded-[10px] w-[228px] h-[150px] hover:scale-105 transition ease-in-out duration-300">
+			<img src="../assets/imgs/10_downscaled.jpg" alt="Image10" class="object-cover rounded-[10px] w-[267px] h-[113px] hover:scale-105 bottom-0 absolute ml-6 float-10">
+			<img src="../assets/imgs/11_downscaled.jpg" alt="Image11" class="object-cover rounded-[10px] w-[113px] h-[150px] hover:scale-105 ml-[305px] float-11">
+			<img src="../assets/imgs/12_downscaled.jpg" alt="Image12" class="object-cover rounded-[10px] w-[228px] h-[150px] hover:scale-105 float-12">
 		</div>
 	</div>
 </div>
@@ -206,7 +206,7 @@ export default defineComponent({
 body {
   	background-color: #0e0e0e;
 
-	overflow-x: hidden;
+	/* overflow-x: hidden; */
 
 
 }
@@ -285,7 +285,6 @@ body {
   100% {
 	transform: scale(1);
   }
-
 }
 
 .first-circle.visible {
@@ -294,5 +293,52 @@ body {
   animation: popEffect 0.5s ease-out forwards;
 }
 
+@keyframes floatInFromLeft {
+  from {
+    transform: translateX(100vw);
+    opacity: 0.9;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.float-1 {
+  animation: floatInFromLeft 0.5s ease-out forwards;
+}
+.float-2 {
+  animation: floatInFromLeft 0.6s ease-out forwards;
+}
+.float-3 {
+  animation: floatInFromLeft 0.72s ease-out forwards;
+}
+.float-4 {
+  animation: floatInFromLeft 0.84s ease-out forwards;
+}
+.float-5 {
+  animation: floatInFromLeft 0.4s ease-out forwards;
+}
+.float-6 {
+  animation: floatInFromLeft 0.54s ease-out forwards;
+}
+.float-7 {
+  animation: floatInFromLeft 0.66s ease-out forwards;
+}
+.float-8 {
+  animation: floatInFromLeft 0.78s ease-out forwards;
+}
+.float-9 {
+  animation: floatInFromLeft 0.9s ease-out forwards;
+}
+.float-10 {
+  animation: floatInFromLeft 0.48s ease-out forwards;
+}
+.float-11 {
+  animation: floatInFromLeft 0.6s ease-out forwards;
+}
+.float-12 {
+  animation: floatInFromLeft 0.72s ease-out forwards;
+}
 
 </style>
