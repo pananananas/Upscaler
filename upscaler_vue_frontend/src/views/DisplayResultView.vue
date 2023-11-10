@@ -370,7 +370,7 @@ export default defineComponent({
 
 <style>
 body {
-    background-color: #1A1A1A;
+    /* background-color: #1A1A1A; */
 }
 .magnifying_glass div:hover img {
     transform: scale(1);

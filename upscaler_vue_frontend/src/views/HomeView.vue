@@ -1,5 +1,5 @@
 <template>
-<body>
+<body @dragover.prevent="onDragOver">
 
 
 <div class="relative mt-36 mx-auto pl-5 grid grid-cols-1 md:grid-cols-2 gap-6 justify-items-center ">
@@ -50,9 +50,11 @@
 	</div>
 </div>
 
+<div class="bg-[rgba(5,64,73,0.00)] aspect-[4/3] h-[280px] z-10 rounded-[10px] border-dashed border-[transparent] border flex flex-col gap-1  relative overflow-hidden items-center justify-center"/>
 
 
-<div class="cursor"> <div class="first-circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> </div>
+
+<div class="cursor" @drop.prevent="onDrop"> <div class="first-circle" /> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> </div>
 </body>
 </template>
 
@@ -138,6 +140,8 @@ export default defineComponent({
             animateCursorCircles();
         });
 		return {
+			calculateMousePos,
+			animateCursorCircles,
 		};
 	},
 	data() {
@@ -149,6 +153,16 @@ export default defineComponent({
 		onDragOver(event: Event) {
 			event.preventDefault();
 			// TODO: Change styles of the dropzone when an item is dragged over it
+			console.log("Drag over");
+			this.calculateMousePos(event as MouseEvent);
+			this.animateCursorCircles();
+
+			// Change pointer events on cursor for the duration of the drag
+			const cursor = document.querySelector(".cursor") as HTMLElement;
+			if (cursor) {
+				cursor.style.pointerEvents = "auto";
+			}
+
 		},
 		async onDrop(event: DragEvent) { 
 			event.preventDefault();
@@ -204,11 +218,8 @@ export default defineComponent({
 
 <style>
 body {
-  	background-color: #0e0e0e;
-
-	/* overflow-x: hidden; */
-
-
+  	background-color: #101010;
+	overflow-x: hidden;
 }
 :root {
 	--orange: #FF9F9F;
@@ -245,6 +256,7 @@ body {
 	top: 0;
 	left: 0;
 	z-index: 1000;
+	visibility: hidden;
 }
 
 .first-circle {
