@@ -19,6 +19,7 @@ module.exports = {
         '4xl': '2.441rem',  // 39px
         '5xl': '3.052rem',  // 49px
         '6xl': '112px',     // 112px
+        // '7xl': '130px',     // 112px
       },
 
       fontFamily: {

@@ -14,47 +14,54 @@
             
         </div>
         <div class="text-[rgb(232,232,232)] mt-10 mb-4 font-larken-sans text-xl leading-6" >
-            Enhance resolution of your images using 
-            <br/>
-            fast and reliable AI powered algorithms.
+            We use fast and reliable AI algorithms 
+			<br/>
+			to enhance resolution of your images.
         </div>
 		<div class="flex gap-14">
-			<div class="bg-[#D6D6D6] hover:bg-[#f1f1f1] transition ease-in-out duration-300 rounded-[10px] w-[200px] h-9 text-[#070707] font-port-lligat-sans cursor-pointer flex items-center justify-center">
+			<div class="bg-[#D6D6D6] hover:bg-[#f1f1f1] transition ease-in-out duration-300 rounded-[10px] w-[200px] h-9 text-[#070707] font-port-lligat-sans flex items-center justify-center interactable">
 				<span class="  "> How does it work? </span>
 			</div>
-			<div>
+			<div class="interactable">
 				<input type="file" ref="fileInput" class="hidden" id="fileInput" @change="uploadImage" accept="image/*">
 				<gradient-button label="Upload image" shape="round"/>
 			</div>
 		</div>
     </div>
 	<div class=" w-full h-full">
-		<div class="flex gap-4 absolute">
-			<img src="../assets/imgs/1_downscaled.jpg" alt="Image1" class="object-cover rounded-[10px] w-[150px] h-[150px] hover:scale-105 ml-4 float-1">
-			<img src="../assets/imgs/2_downscaled.jpg" alt="Image2" class="object-cover rounded-[10px] w-[170px] h-[113px] hover:scale-105 float-2">
-			<img src="../assets/imgs/3_downscaled.jpg" alt="Image3" class="object-cover rounded-[10px] w-[85px] h-[113px] hover:scale-105 float-3">
-			<img src="../assets/imgs/4_downscaled.jpg" alt="Image4" class="object-cover rounded-[10px] w-[150px] h-[113px] hover:scale-105 float-4">
-		</div>
-		<div class="flex gap-6 absolute top-[128px]">
-			<img src="../assets/imgs/5_downscaled.jpg" alt="Image5" class="object-cover rounded-[10px] w-[150px] h-[100px] hover:scale-105 bottom-0 absolute float-5">
-			<img src="../assets/imgs/6_downscaled.jpg" alt="Image6" class="object-cover rounded-[10px] w-[106px] h-[160px] hover:scale-105 ml-[182px] float-6">
-			<img src="../assets/imgs/7_downscaled.jpg" alt="Image7" class="object-cover rounded-[10px] w-[113px] h-[113px] hover:scale-105 float-7">
-			<img src="../assets/imgs/8_downscaled.jpg" alt="Image8" class="object-cover rounded-[10px] w-[85px] h-[113px] hover:scale-105 float-8">
-			<img src="../assets/imgs/9_downscaled.jpg" alt="Image9" class="object-cover rounded-[10px] w-[113px] h-[113px] hover:scale-105 float-9">
-		</div>
-		<div class="flex gap-6 absolute top-[274px]">
-			<img src="../assets/imgs/10_downscaled.jpg" alt="Image10" class="object-cover rounded-[10px] w-[267px] h-[113px] hover:scale-105 bottom-0 absolute ml-6 float-10">
-			<img src="../assets/imgs/11_downscaled.jpg" alt="Image11" class="object-cover rounded-[10px] w-[113px] h-[150px] hover:scale-105 ml-[305px] float-11">
-			<img src="../assets/imgs/12_downscaled.jpg" alt="Image12" class="object-cover rounded-[10px] w-[228px] h-[150px] hover:scale-105 float-12">
-		</div>
+	<div class="flex gap-4 absolute">
+		<img src="../assets/imgs/1_downscaled.jpg" alt="Image1" class="object-cover rounded-[10px] w-[180px] h-[180px] ml-4 float-1 interactable">
+		<!-- <img src="../assets/imgs/1.jpg" alt="Image1" class="object-cover rounded-[10px] w-[180px] h-[180px]  ml-4 float-1 absolute"> -->
+		<img src="../assets/imgs/2_downscaled.jpg" alt="Image2" class="object-cover rounded-[10px] w-[204px] h-[135.6px] float-2">
+		<img src="../assets/imgs/3_downscaled.jpg" alt="Image3" class="object-cover rounded-[10px] w-[102px] h-[135.6px] float-3">
+		<img src="../assets/imgs/4_downscaled.jpg" alt="Image4" class="object-cover rounded-[10px] w-[180px] h-[135.6px] float-4">
 	</div>
+	<div class="flex gap-6 absolute top-[154px]">
+		<img src="../assets/imgs/5_downscaled.jpg" alt="Image5" class="object-cover rounded-[10px] w-[180px] h-[120px] bottom-0 absolute float-5">
+		<img src="../assets/imgs/6_downscaled.jpg" alt="Image6" class="object-cover rounded-[10px] w-[127.2px] h-[192px] ml-[218px] float-6">
+		<img src="../assets/imgs/7_downscaled.jpg" alt="Image7" class="object-cover rounded-[10px] w-[135.6px] h-[135.6px] float-7">
+		<img src="../assets/imgs/8_downscaled.jpg" alt="Image8" class="object-cover rounded-[10px] w-[102px] h-[135.6px] float-8">
+		<img src="../assets/imgs/9_downscaled.jpg" alt="Image9" class="object-cover rounded-[10px] w-[135.6px] h-[135.6px] float-9">
+	</div>
+	<div class="flex gap-6 absolute top-[328px]">
+		<img src="../assets/imgs/10_downscaled.jpg" alt="Image10" class="object-cover rounded-[10px] w-[320.4px] h-[135.6px] bottom-0 absolute ml-6 float-10">
+		<img src="../assets/imgs/11_downscaled.jpg" alt="Image11" class="object-cover rounded-[10px] w-[135.6px] h-[180px] ml-[366px] float-11">
+		<img src="../assets/imgs/12_downscaled.jpg" alt="Image12" class="object-cover rounded-[10px] w-[273.6px] h-[180px] float-12">
+	</div>
+</div>
+
 </div>
 
 <div class="bg-[rgba(5,64,73,0.00)] aspect-[4/3] h-[280px] z-10 rounded-[10px] border-dashed border-[transparent] border flex flex-col gap-1  relative overflow-hidden items-center justify-center"/>
 
 
 
-<div class="cursor" @drop.prevent="onDrop"> <div class="first-circle" /> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> </div>
+<div class="cursor" @drop.prevent="onDrop"> 
+	<div class="first-circle">  
+		<i id="trailer-icon" class="fa-solid fa-arrow-up-right"></i>
+	</div> 
+	<div class="circle"/> <div class="circle"/><div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/><div class="circle"/> <div class="circle"/><div class="circle"/> <div class="circle"/><div class="circle"/> <div class="circle"/><div class="circle"/> <div class="circle"/><div class="circle"/> <div class="circle"/><div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> 
+</div>
 </body>
 </template>
 
@@ -72,11 +79,12 @@ export default defineComponent({
         const cursorX = ref<number | null> (null);
         const cursorY = ref<number | null> (null);
         const circles = ref<HTMLElement[]> ([]);
-		const firstCircle = ref<HTMLElement[]> ([]);
+		// const firstCircleEl = ref<HTMLElement[]> ([]);
         const circlePositions = ref<{ x: number, y: number }[]> ([]);
+		const interacting = ref(false);
 
         const calculateMousePos = (e: MouseEvent) => {
-			if (cursorX.value === null || cursorY.value === null) {
+			if (cursorX.value === null || cursorY.value === null) {		// on initial mouse move
 				const firstCircleEl = document.querySelector(".first-circle") as HTMLElement;
 				// Initialize positions
 				cursorX.value = e.clientX;
@@ -85,17 +93,43 @@ export default defineComponent({
 					pos.x = e.clientX;
 					pos.y = e.clientY;
 				});
-
 				circles.value.forEach(circle => {
 					circle.classList.add("visible");
 				});
-				if (!firstCircleEl.classList.contains('visible')) {
-					firstCircleEl.classList.add('visible');
+				if (!firstCircleEl.classList.contains('pop-effect'))  {
+					firstCircleEl.classList.add('pop-effect');
+					setTimeout(() => {
+						firstCircleEl.classList.remove('pop-effect');
+						firstCircleEl.classList.add('visible');
+					}, 500);
 				}
 
 			} else {
 				cursorX.value = e.clientX;
 				cursorY.value = e.clientY;
+			}
+			
+			if (e.target instanceof Element) {
+				const interactable = e.target.closest(".interactable");
+				interacting.value = interactable !== null;
+				// console.log(interacting.value);
+				const firstCircleEl = document.querySelector(".first-circle") as HTMLElement;
+				if (interacting.value) {
+					firstCircleEl.classList.add('interacting');
+					// disable visible
+					circles.value.forEach(circle => {
+						circle.classList.remove("visible");
+					});
+					firstCircleEl.classList.remove('visible');
+
+				} else {
+					firstCircleEl.classList.remove('interacting');
+					// enable visible
+					circles.value.forEach(circle => {
+						circle.classList.add("visible");
+					});
+					firstCircleEl.classList.add('visible');
+				}
 			}
 		};
 
@@ -111,9 +145,6 @@ export default defineComponent({
 			firstCircleEl.style.left = `${x - 8}px`;
 			firstCircleEl.style.top = `${y - 8}px`;
 
-			// Only apply the pop effect to the first circle on the initial mouse move
-
-
 			// Update positions of the other circles
 			circles.value.forEach((circle, index) => {
 				circle.style.left = `${x - 8}px`;
@@ -125,13 +156,12 @@ export default defineComponent({
 				circlePositions.value[index] = { x, y };
 
 				const nextCircle = circlePositions.value[index + 1] || circlePositions.value[0];
-				x += (nextCircle.x - x) * 0.3;
-				y += (nextCircle.y - y) * 0.3;
+				x += (nextCircle.x - x) * 0.2;
+				y += (nextCircle.y - y) * 0.2;
 			});
 
 			requestAnimationFrame(animateCursorCircles);
 		};
-
 
         onMounted(() => {
             document.addEventListener('mousemove', calculateMousePos);
@@ -218,7 +248,7 @@ export default defineComponent({
 
 <style>
 body {
-  	background-color: #101010;
+  	background-color: #040404;
 	overflow-x: hidden;
 }
 :root {
@@ -269,8 +299,9 @@ body {
 	/* Initially hide the circles */
 	visibility: hidden;
 	/* Scale transition */
-	transition: transform 5s ease-out;
+	transition: transform 0.3s ease-out;
 	z-index: 101;
+	/* position:fixed; */
 }
 
 .circle {
@@ -288,68 +319,79 @@ body {
 }
 
 @keyframes popEffect {
-  0% {
-    transform: scale(0);
-  }
-  30% {
-    transform: scale(1.8);
-  }
-  100% {
-	transform: scale(1);
-  }
+	0% {
+		transform: scale(0);
+	}
+	30% {
+		transform: scale(2);
+	}
+	100% {
+		transform: scale(1);
+	}
 }
 
+.first-circle.pop-effect {
+	/* Make the circle visible and apply the pop effect */
+	visibility: visible;
+	animation: popEffect 0.5s ease-out forwards;
+}
+
+
 .first-circle.visible {
-  /* Make the circle visible and apply the pop effect */
-  visibility: visible;
-  animation: popEffect 0.5s ease-out forwards;
+  	visibility: visible;
+}
+
+.first-circle.interacting {
+	visibility: visible;
+	transition: transform 0.3s ease-out; 
+	transform: scale(4); /* Larger scale for interaction */
 }
 
 @keyframes floatInFromLeft {
-  from {
-    transform: translateX(100vw);
-    opacity: 0.9;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
+	from {
+		transform: translateX(100vw);
+		opacity: 0.9;
+	}
+	to {
+		transform: translateX(0);
+		opacity: 1;
+	}
 }
 
 .float-1 {
-  animation: floatInFromLeft 0.5s ease-out forwards;
+  	animation: floatInFromLeft 0.5s ease-out forwards;
 }
 .float-2 {
-  animation: floatInFromLeft 0.6s ease-out forwards;
+  	animation: floatInFromLeft 0.6s ease-out forwards;
 }
 .float-3 {
-  animation: floatInFromLeft 0.72s ease-out forwards;
+  	animation: floatInFromLeft 0.72s ease-out forwards;
 }
 .float-4 {
-  animation: floatInFromLeft 0.84s ease-out forwards;
+  	animation: floatInFromLeft 0.84s ease-out forwards;
 }
 .float-5 {
-  animation: floatInFromLeft 0.4s ease-out forwards;
+  	animation: floatInFromLeft 0.4s ease-out forwards;
 }
 .float-6 {
-  animation: floatInFromLeft 0.54s ease-out forwards;
+  	animation: floatInFromLeft 0.54s ease-out forwards;
 }
 .float-7 {
-  animation: floatInFromLeft 0.66s ease-out forwards;
+ 	animation: floatInFromLeft 0.66s ease-out forwards;
 }
 .float-8 {
-  animation: floatInFromLeft 0.78s ease-out forwards;
+ 	animation: floatInFromLeft 0.78s ease-out forwards;
 }
 .float-9 {
-  animation: floatInFromLeft 0.9s ease-out forwards;
+  	animation: floatInFromLeft 0.9s ease-out forwards;
 }
 .float-10 {
-  animation: floatInFromLeft 0.48s ease-out forwards;
+  	animation: floatInFromLeft 0.48s ease-out forwards;
 }
 .float-11 {
-  animation: floatInFromLeft 0.6s ease-out forwards;
+  	animation: floatInFromLeft 0.6s ease-out forwards;
 }
 .float-12 {
-  animation: floatInFromLeft 0.72s ease-out forwards;
+  	animation: floatInFromLeft 0.72s ease-out forwards;
 }
 </style>
