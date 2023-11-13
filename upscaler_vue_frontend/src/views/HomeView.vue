@@ -76,104 +76,106 @@ export default defineComponent({
 	  
 
   	setup() {
-        const cursorX = ref<number | null> (null);
-        const cursorY = ref<number | null> (null);
-        const circles = ref<HTMLElement[]> ([]);
-		// const firstCircleEl = ref<HTMLElement[]> ([]);
-        const circlePositions = ref<{ x: number, y: number }[]> ([]);
+		const cursorX = ref<number | null>(null);
+		const cursorY = ref<number | null>(null);
+		const cursorTail = ref(0.2);
 		const interacting = ref(false);
 
-        const calculateMousePos = (e: MouseEvent) => {
-			if (cursorX.value === null || cursorY.value === null) {		// on initial mouse move
-				const firstCircleEl = document.querySelector(".first-circle") as HTMLElement;
-				// Initialize positions
-				cursorX.value = e.clientX;
-				cursorY.value = e.clientY;
-				circlePositions.value.forEach(pos => {
-					pos.x = e.clientX;
-					pos.y = e.clientY;
-				});
-				circles.value.forEach(circle => {
-					circle.classList.add("visible");
-				});
-				if (!firstCircleEl.classList.contains('pop-effect'))  {
-					firstCircleEl.classList.add('pop-effect');
-					setTimeout(() => {
-						firstCircleEl.classList.remove('pop-effect');
-						firstCircleEl.classList.add('visible');
-					}, 500);
-				}
+		const circles = ref<HTMLElement[]>([]);
+		const cursor = ref<HTMLElement | null>(null);
+		const firstCircleEl = ref<HTMLElement | null>(null);
+		const circlePositions = ref<{ x: number, y: number }[]>([]);
 
-			} else {
-				cursorX.value = e.clientX;
-				cursorY.value = e.clientY;
-			}
-			
-			if (e.target instanceof Element) {
-				const interactable = e.target.closest(".interactable");
-				interacting.value = interactable !== null;
-				// console.log(interacting.value);
-				const firstCircleEl = document.querySelector(".first-circle") as HTMLElement;
-				if (interacting.value) {
-					firstCircleEl.classList.add('interacting');
-					// disable visible
-					circles.value.forEach(circle => {
-						circle.classList.remove("visible");
-					});
-					firstCircleEl.classList.remove('visible');
+		onMounted(() => {
+			cursor.value = document.querySelector(".cursor") as HTMLElement;
+			firstCircleEl.value = document.querySelector(".first-circle") as HTMLElement;
+			circles.value = Array.from(document.querySelectorAll(".circle")) as HTMLElement[];
+			circlePositions.value = circles.value.map(() => ({ x: 0, y: 0 }));
+			animateCursorCircles();
+		});
 
-				} else {
-					firstCircleEl.classList.remove('interacting');
-					// enable visible
-					circles.value.forEach(circle => {
-						circle.classList.add("visible");
-					});
-					firstCircleEl.classList.add('visible');
-				}
+		const initializeMousePosition = (e: MouseEvent) => {
+			cursorX.value = e.clientX;
+			cursorY.value = e.clientY;
+			circlePositions.value.forEach(pos => {
+				pos.x = e.clientX;
+				pos.y = e.clientY;
+			});
+			circles.value.forEach(circle => {
+				circle.classList.add("visible");
+			});
+			applyPopEffectToFirstCircle();
+		};
+
+		const updateMousePosition = (e: MouseEvent) => {
+			cursorX.value = e.clientX;
+			cursorY.value = e.clientY;
+		};
+
+		const applyPopEffectToFirstCircle = () => {
+			if (!firstCircleEl.value) return;
+			if (!firstCircleEl.value.classList.contains('pop-effect')) {
+				firstCircleEl.value.classList.add('pop-effect');
+				setTimeout(() => {
+					firstCircleEl.value?.classList.remove('pop-effect');
+					firstCircleEl.value?.classList.add('visible');
+				}, 600);
 			}
 		};
 
-		const animateCursorCircles = () => {
-			const cursor = document.querySelector(".cursor") as HTMLElement;
-			const firstCircleEl = document.querySelector(".first-circle") as HTMLElement;
-			if (!cursor || !firstCircleEl) return;
+		const handleInteractableElements = (e: MouseEvent) => {
+			if (!(e.target instanceof Element)) return;
 
+			const interactable = e.target.closest(".interactable");
+			interacting.value = interactable !== null;
+			
+			if (!firstCircleEl.value) return;
+			if (interacting.value) {
+				firstCircleEl.value.classList.add('interacting');
+				firstCircleEl.value.classList.remove('visible');
+				cursorTail.value = 0.1;
+			} else {
+				firstCircleEl.value.classList.remove('interacting');
+				firstCircleEl.value.classList.add('visible');
+				cursorTail.value = 0.2;
+			}
+		};
+
+		const calculateMousePos = (e: MouseEvent) => {
+			if (cursorX.value === null || cursorY.value === null)	initializeMousePosition(e);
+			else 													updateMousePosition(e);
+			handleInteractableElements(e);
+		};
+
+		const animateCursorCircles = () => {
+			if (!cursor.value || !firstCircleEl.value) return;
 			let x = cursorX.value ?? 0;
 			let y = cursorY.value ?? 0;
+			firstCircleEl.value.style.left = `${x - 8}px`;
+			firstCircleEl.value.style.top = `${y - 8}px`;
 
-			// Update the position of the first circle directly
-			firstCircleEl.style.left = `${x - 8}px`;
-			firstCircleEl.style.top = `${y - 8}px`;
-
-			// Update positions of the other circles
 			circles.value.forEach((circle, index) => {
 				circle.style.left = `${x - 8}px`;
 				circle.style.top  = `${y - 8}px`;
-
 				const scale = (circles.value.length - index) / circles.value.length;
 				circle.style.transform = `scale(${scale})`;
-
 				circlePositions.value[index] = { x, y };
-
 				const nextCircle = circlePositions.value[index + 1] || circlePositions.value[0];
-				x += (nextCircle.x - x) * 0.2;
-				y += (nextCircle.y - y) * 0.2;
+				x += (nextCircle.x - x) * cursorTail.value;
+				y += (nextCircle.y - y) * cursorTail.value;
 			});
 
 			requestAnimationFrame(animateCursorCircles);
 		};
 
-        onMounted(() => {
-            document.addEventListener('mousemove', calculateMousePos);
-            circles.value = Array.from(document.querySelectorAll(".circle")) as HTMLElement[];
-            circlePositions.value = circles.value.map(() => ({ x: 0, y: 0 }));
-            animateCursorCircles();
-        });
+		document.addEventListener('mousemove', calculateMousePos);
+
 		return {
 			calculateMousePos,
 			animateCursorCircles,
 		};
 	},
+
 	data() {
 		return {
 			selectedFile: null as File | null,
@@ -296,12 +298,9 @@ body {
 	height: 16px;
 	border-radius: 16px;
 	background-color: #fff;
-	/* Initially hide the circles */
 	visibility: hidden;
-	/* Scale transition */
 	transition: transform 0.3s ease-out;
 	z-index: 101;
-	/* position:fixed; */
 }
 
 .circle {
@@ -311,9 +310,7 @@ body {
     height: 16px;
     border-radius: 16px;
     background-color: #fff;
-	/* Initially hide the circles */
 	visibility: hidden;
-	/* Scale transition */
 	transition: transform 5s ease-out;
 	z-index: 100;  
 }
@@ -322,8 +319,8 @@ body {
 	0% {
 		transform: scale(0);
 	}
-	30% {
-		transform: scale(2);
+	40% {
+		transform: scale(2.5);
 	}
 	100% {
 		transform: scale(1);
@@ -331,11 +328,9 @@ body {
 }
 
 .first-circle.pop-effect {
-	/* Make the circle visible and apply the pop effect */
 	visibility: visible;
-	animation: popEffect 0.5s ease-out forwards;
+	animation: popEffect 0.6s ease-out forwards;
 }
-
 
 .first-circle.visible {
   	visibility: visible;
@@ -343,8 +338,7 @@ body {
 
 .first-circle.interacting {
 	visibility: visible;
-	transition: transform 0.3s ease-out; 
-	transform: scale(4); /* Larger scale for interaction */
+	transform: scale(4);
 }
 
 @keyframes floatInFromLeft {
