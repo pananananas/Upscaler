@@ -8,7 +8,7 @@
         <div class="text-7xl font-abril-fatface leading-[76px] text-white w-full">
             Upscale your
             <br />
-            <span class="magic_text text-6xl">
+            <span class="magic_text text-6xl interactable">
             images
             </span>
             
@@ -19,10 +19,10 @@
 			to enhance resolution of your images.
         </div>
 		<div class="flex gap-14">
-			<div class="bg-[#D6D6D6] hover:bg-[#f1f1f1] transition ease-in-out duration-300 rounded-[10px] w-[200px] h-9 text-[#070707] font-port-lligat-sans flex items-center justify-center interactable">
+			<div class="bg-[#D6D6D6] hover:bg-[#f1f1f1] transition ease-in-out duration-300 rounded-[10px] w-[200px] h-9 text-[#070707] font-port-lligat-sans flex items-center justify-center interactable" data-fa-icon="fa-question">
 				<span class="  "> How does it work? </span>
 			</div>
-			<div class="interactable">
+			<div class="interactable" data-svg-icon="arrow-up-right">
 				<input type="file" ref="fileInput" class="hidden" id="fileInput" @change="uploadImage" accept="image/*">
 				<gradient-button label="Upload image" shape="round"/>
 			</div>
@@ -58,7 +58,8 @@
 
 <div class="cursor" @drop.prevent="onDrop"> 
 	<div class="first-circle">  
-		<i id="trailer-icon" class="fa-solid fa-arrow-up-right"></i>
+		<i v-if="currentIconClass" :class="['fa', currentIconClass]"></i>
+  		<arrow-up-right-icon v-else-if="currentSvgIcon === 'arrow-up-right'"></arrow-up-right-icon>
 	</div> 
 	<div class="circle"/> <div class="circle"/><div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/><div class="circle"/> <div class="circle"/><div class="circle"/> <div class="circle"/><div class="circle"/> <div class="circle"/><div class="circle"/> <div class="circle"/><div class="circle"/> <div class="circle"/><div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> 
 </div>
@@ -68,11 +69,12 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue';
-import GradientButton from '@/components/GradientButton.vue';
 import GradientInfo from '@/components/GradientInfo.vue';
+import GradientButton from '@/components/GradientButton.vue';
+import ArrowUpRightIcon from '@/components/ArrowUpRightIcon.vue';
 
 export default defineComponent({
-  	components: { GradientButton, GradientInfo },
+  	components: { GradientButton, GradientInfo, ArrowUpRightIcon},
 	  
 
   	setup() {
@@ -80,6 +82,9 @@ export default defineComponent({
 		const cursorY = ref<number | null>(null);
 		const cursorTail = ref(0.2);
 		const interacting = ref(false);
+
+		const currentIconClass = ref<string>(''); 
+		const currentSvgIcon = ref<string>('');
 
 		const circles = ref<HTMLElement[]>([]);
 		const cursor = ref<HTMLElement | null>(null);
@@ -126,19 +131,43 @@ export default defineComponent({
 		const handleInteractableElements = (e: MouseEvent) => {
 			if (!(e.target instanceof Element)) return;
 
-			const interactable = e.target.closest(".interactable");
-			interacting.value = interactable !== null;
-			
+			const interactableElement = e.target.closest(".interactable");
+			interacting.value = !!interactableElement;
+
 			if (!firstCircleEl.value) return;
-			if (interacting.value) {
+
+			if (interactableElement) {
 				firstCircleEl.value.classList.add('interacting');
 				firstCircleEl.value.classList.remove('visible');
 				cursorTail.value = 0.1;
+
+				setCursorIcon(interactableElement);
 			} else {
 				firstCircleEl.value.classList.remove('interacting');
 				firstCircleEl.value.classList.add('visible');
 				cursorTail.value = 0.2;
+				clearCursorIcons();
 			}
+		};
+
+		const setCursorIcon = (element: Element) => {
+			const faIconName = element.getAttribute('data-fa-icon');
+			const svgIconName = element.getAttribute('data-svg-icon');
+
+			if (faIconName) {
+				currentIconClass.value = faIconName;
+				currentSvgIcon.value = ''; // Clear SVG icon
+			} else if (svgIconName) {
+				currentSvgIcon.value = svgIconName;
+				currentIconClass.value = ''; // Clear FontAwesome icon
+			} else {
+				clearCursorIcons();
+			}
+		};
+
+		const clearCursorIcons = () => {
+			currentIconClass.value = ''; // Clear FontAwesome icon
+			currentSvgIcon.value = '';   // Clear SVG icon
 		};
 
 		const calculateMousePos = (e: MouseEvent) => {
@@ -157,7 +186,7 @@ export default defineComponent({
 			circles.value.forEach((circle, index) => {
 				circle.style.left = `${x - 8}px`;
 				circle.style.top  = `${y - 8}px`;
-				const scale = (circles.value.length - index) / circles.value.length;
+				const scale = (circles.value.length - index) / circles.value.length;``
 				circle.style.transform = `scale(${scale})`;
 				circlePositions.value[index] = { x, y };
 				const nextCircle = circlePositions.value[index + 1] || circlePositions.value[0];
@@ -173,6 +202,8 @@ export default defineComponent({
 		return {
 			calculateMousePos,
 			animateCursorCircles,
+			currentIconClass,
+			currentSvgIcon,
 		};
 	},
 
@@ -293,7 +324,7 @@ body {
 
 .first-circle {
 	position: absolute;
-	display: block;
+	display: flex;
 	width: 16px;
 	height: 16px;
 	border-radius: 16px;
@@ -301,9 +332,12 @@ body {
 	visibility: hidden;
 	transition: transform 0.3s ease-out;
 	z-index: 101;
+	align-items: center; /* Center items vertically */
+    justify-content: center; /* Center items horizontally */
 }
 
 .circle {
+	mix-blend-mode: normal;
     position: absolute;
     display: block;
     width: 16px;
@@ -339,6 +373,28 @@ body {
 .first-circle.interacting {
 	visibility: visible;
 	transform: scale(4);
+	background-color: #fff;
+}
+
+.first-circle .fa, .first-circle svg {
+    font-size: 8px; 		/* For FontAwesome */
+	width: 8px; 			/* For SVG */
+    height: 8px; 			/* For SVG */
+	
+    transition: opacity 0.3s ease-out;
+	display: flex;
+	justify-content: center; 	/* Center items horizontally */
+}
+
+/* Fade-in animation for the icon */
+@keyframes fadeIn {
+    from { scale: 0; }
+    to { scale: 1; }
+}
+
+/* Apply the fade-in animation */
+.first-circle.interacting .fa, .first-circle.interacting svg {
+    animation: fadeIn 0.3s ease-out;
 }
 
 @keyframes floatInFromLeft {
