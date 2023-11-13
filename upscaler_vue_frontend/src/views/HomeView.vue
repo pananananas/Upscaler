@@ -30,7 +30,7 @@
     </div>
 	<div class=" w-full h-full">
 	<div class="flex gap-4 absolute">
-		<img src="../assets/imgs/1_downscaled.jpg" alt="Image1" class="object-cover rounded-[10px] w-[180px] h-[180px] ml-4 float-1 interactable">
+		<img src="../assets/imgs/1_downscaled.jpg" alt="Image1" class="object-cover rounded-[10px] w-[180px] h-[180px] ml-4 float-1 interactable " data-svg-icon="magnifying-glass">
 		<!-- <img src="../assets/imgs/1.jpg" alt="Image1" class="object-cover rounded-[10px] w-[180px] h-[180px]  ml-4 float-1 absolute"> -->
 		<img src="../assets/imgs/2_downscaled.jpg" alt="Image2" class="object-cover rounded-[10px] w-[204px] h-[135.6px] float-2">
 		<img src="../assets/imgs/3_downscaled.jpg" alt="Image3" class="object-cover rounded-[10px] w-[102px] h-[135.6px] float-3">
@@ -60,6 +60,7 @@
 	<div class="first-circle">  
 		<i v-if="currentIconClass" :class="['fa', currentIconClass]"></i>
   		<arrow-up-right-icon v-else-if="currentSvgIcon === 'arrow-up-right'"></arrow-up-right-icon>
+		<magnifying-glass-icon v-else-if="currentSvgIcon === 'magnifying-glass'"></magnifying-glass-icon>
 	</div> 
 	<div class="circle"/> <div class="circle"/><div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/><div class="circle"/> <div class="circle"/><div class="circle"/> <div class="circle"/><div class="circle"/> <div class="circle"/><div class="circle"/> <div class="circle"/><div class="circle"/> <div class="circle"/><div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> 
 </div>
@@ -72,9 +73,10 @@ import { defineComponent, onMounted, ref } from 'vue';
 import GradientInfo from '@/components/GradientInfo.vue';
 import GradientButton from '@/components/GradientButton.vue';
 import ArrowUpRightIcon from '@/components/ArrowUpRightIcon.vue';
+import MagnifyingGlassIcon from '@/components/MagnifyingGlassIcon.vue';
 
 export default defineComponent({
-  	components: { GradientButton, GradientInfo, ArrowUpRightIcon},
+  	components: { GradientButton, GradientInfo, ArrowUpRightIcon, MagnifyingGlassIcon},
 	  
 
   	setup() {
