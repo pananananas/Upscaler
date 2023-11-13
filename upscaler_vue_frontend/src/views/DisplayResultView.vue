@@ -188,6 +188,7 @@ export default defineComponent({
                         imageUrl.value = `http://localhost:8000${data.image_url}`;
                     // select image
                     selectedAlgorithm.value = imageType;
+                    imageUrl.value = `http://localhost:8000${data.image_url}`;
 
                 } else {
                     console.error('Failed to fetch image info:', response.statusText);

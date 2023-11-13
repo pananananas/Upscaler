@@ -1,30 +1,35 @@
 <template>
 <body @dragover.prevent="onDragOver">
+<div class="blob-cont">
+	<div class="yellow blob"></div>
+	<div class="orange blob"></div>
+	<div class="purple blob"></div>
+</div>
 
 
-<div class="relative mt-36 mx-auto pl-5 grid grid-cols-1 md:grid-cols-2 gap-6 justify-items-center ">
+<div class="relative mt-36 mx-auto pl-28 grid grid-cols-1 md:grid-cols-2 gap-6 justify-items-center ">
 
     <div class="">
-        <div class="text-7xl font-abril-fatface leading-[76px] text-white w-full">
+        <div class="text-7xl font-abril-fatface leading-[76px] text-[#f6f6f6] w-full">
             Upscale your
             <br />
-            <span class="magic_text text-6xl interactable">
+            <span class="text-6xl">
             images
             </span>
             
         </div>
-        <div class="text-[rgb(232,232,232)] mt-10 mb-4 font-larken-sans text-xl leading-6" >
+        <div class="text-[#ececec] mt-10 mb-4 font-larken-sans text-xl leading-6" >
             We use fast and reliable AI algorithms 
 			<br/>
 			to enhance resolution of your images.
         </div>
 		<div class="flex gap-14">
-			<div class="bg-[#D6D6D6] hover:bg-[#f1f1f1] transition ease-in-out duration-300 rounded-[10px] w-[200px] h-9 text-[#070707] font-port-lligat-sans flex items-center justify-center interactable" data-fa-icon="fa-question">
+			<div class="bg-[#c8c8c8] hover:bg-[#f1f1f1] transition ease-in-out duration-300 rounded-[10px] w-[200px] h-10 text-[#070707] font-larken-sans flex items-center justify-center interactable" data-fa-icon="fa-question">
 				<span class="  "> How does it work? </span>
 			</div>
 			<div class="interactable" data-svg-icon="arrow-up-right">
 				<input type="file" ref="fileInput" class="hidden" id="fileInput" @change="uploadImage" accept="image/*">
-				<gradient-button label="Upload image" shape="round"/>
+				<upload-button label="Upload image" shape="round"/>
 			</div>
 		</div>
     </div>
@@ -54,15 +59,48 @@
 
 <div class="bg-[rgba(5,64,73,0.00)] aspect-[4/3] h-[280px] z-10 rounded-[10px] border-dashed border-[transparent] border flex flex-col gap-1  relative overflow-hidden items-center justify-center"/>
 
+<div class="relative mt-36 mx-auto pl-5 grid grid-cols-1 md:grid-cols-2 gap-6 justify-items-center ">
 
 
-<div class="cursor" @drop.prevent="onDrop"> 
+	<img src="../assets/imgs/11_downscaled.jpg" alt="Image11" class="object-cover rounded-[10px] w-[135.6px] h-[180px] ml-[366px] float-11">
+		<img src="../assets/imgs/12_downscaled.jpg" alt="Image12" class="object-cover rounded-[10px] w-[273.6px] h-[180px] float-12">
+
+</div>
+
+
+
+
+
+
+
+
+
+<svg >
+	<filter id='noiseFilter'>
+		<feTurbulence type='fractalNoise' baseFrequency='0.8' stitchTiles='stitch'/>
+	</filter>
+</svg>
+<div class="cursor shadow-2xl" @drop.prevent="onDrop"> 
 	<div class="first-circle">  
 		<i v-if="currentIconClass" :class="['fa', currentIconClass]"></i>
   		<arrow-up-right-icon v-else-if="currentSvgIcon === 'arrow-up-right'"></arrow-up-right-icon>
 		<magnifying-glass-icon v-else-if="currentSvgIcon === 'magnifying-glass'"></magnifying-glass-icon>
 	</div> 
-	<div class="circle"/> <div class="circle"/><div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/><div class="circle"/> <div class="circle"/><div class="circle"/> <div class="circle"/><div class="circle"/> <div class="circle"/><div class="circle"/> <div class="circle"/><div class="circle"/> <div class="circle"/><div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> <div class="circle"/> 
+	<div class="circle"/>
+	<div class="circle"/>
+	<div class="circle"/>
+	<div class="circle"/>
+	<div class="circle"/>
+	<div class="circle"/>
+	<div class="circle"/>
+	<div class="circle"/>
+	<div class="circle"/>
+	<div class="circle"/>
+	<div class="circle"/>
+	<div class="circle"/>
+	<div class="circle"/>
+	<div class="circle"/>
+	<div class="circle"/>
 </div>
 </body>
 </template>
@@ -71,18 +109,18 @@
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue';
 import GradientInfo from '@/components/GradientInfo.vue';
-import GradientButton from '@/components/GradientButton.vue';
+import UploadButton from '@/components/UploadButton.vue';
 import ArrowUpRightIcon from '@/components/ArrowUpRightIcon.vue';
 import MagnifyingGlassIcon from '@/components/MagnifyingGlassIcon.vue';
 
 export default defineComponent({
-  	components: { GradientButton, GradientInfo, ArrowUpRightIcon, MagnifyingGlassIcon},
+  	components: { UploadButton, GradientInfo, ArrowUpRightIcon, MagnifyingGlassIcon},
 	  
 
   	setup() {
 		const cursorX = ref<number | null>(null);
 		const cursorY = ref<number | null>(null);
-		const cursorTail = ref(0.2);
+		const cursorTail = ref(0.3);
 		const interacting = ref(false);
 
 		const currentIconClass = ref<string>(''); 
@@ -141,13 +179,15 @@ export default defineComponent({
 			if (interactableElement) {
 				firstCircleEl.value.classList.add('interacting');
 				firstCircleEl.value.classList.remove('visible');
+				// cursor.value?.classList.add('interacting');
 				cursorTail.value = 0.1;
 
 				setCursorIcon(interactableElement);
 			} else {
 				firstCircleEl.value.classList.remove('interacting');
 				firstCircleEl.value.classList.add('visible');
-				cursorTail.value = 0.2;
+				// cursor.value?.classList.remove('interacting');
+				cursorTail.value = 0.3;
 				clearCursorIcons();
 			}
 		};
@@ -282,42 +322,114 @@ export default defineComponent({
 
 
 <style>
-body {
-  	background-color: #040404;
-	overflow-x: hidden;
-}
 :root {
-	--orange: #FF9F9F;
-	--purple: #8B5CF6;
+  --orange: #FF9F9F;
+  --purple: #8B5CF6;
+  --yellow: #EDB74D;
+  --bg: #040404;
 }
-@keyframes background-pan {
-	from {
-		background-position: 0% center;
-	}
-	to {
-		background-position: -200% center;
-	}
+
+body {
+  background-color: var(--bg);
+  overflow-x: hidden;
+  position: relative;
+  height: 100vh;
 }
-.magic_text {
-	animation: background-pan 3s linear infinite;
-	background: linear-gradient(
-		to right, 
-		var(--orange),
-		var(--purple),
-		var(--orange)
-	);
-	background-size: 200%;
-	-webkit-background-clip: text;
-	background-clip: text;
-	-webkit-text-fill-color: transparent;
-	white-space: nowrap;
+
+body::before {
+  position: absolute;
+  left: 0;
+  top: 0;
+  content: '';
+  width: 100%;
+  height: 400%;
+  z-index: 0;
+  background: #040404;
+  filter: url(#noiseFilter); 
+  opacity: 15%;
 }
+
+
+.blob-cont {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 0;
+  height: 500px;
+  width: 500px;
+  position: fixed;
+  top: 300px;
+  transform: translateY(-60%);
+}
+
+
+.blob {
+  border-radius: 100px;
+  filter: blur(30px);
+}
+
+
+.yellow, .purple, .orange {
+  position: absolute;
+  animation-duration: 8s;
+  animation-timing-function: ease;
+  animation-iteration-count: infinite;
+}
+
+.yellow {
+  background-color: var(--yellow);
+  top: 200px;
+  left: 100px;
+  height: 200px;
+  width: 200px;
+  animation-name: yellow;
+}
+
+.purple {
+  background-color: var(--purple);
+  top: 80px;
+  right: -20px;
+  height: 200px;
+  width: 250px;
+  animation-name: purple;
+}
+
+.orange {
+  background-color: var(--orange);
+  right: 0;
+  top: 300px;
+  height: 250px;
+  width: 200px;
+  animation-name: orange;
+}
+
+
+@keyframes yellow {
+  0% { top: 200px; left: 100px; transform: scale(1); }
+  30% { top: 100px; left: 150px; transform: scale(1.2); }
+  60% { top: 100px; left: 200px; transform: scale(1.3); }
+  100% { top: 200px; left: 100px; transform: scale(1); }
+}
+@keyframes purple {
+  0% {top: 80px; right: -20px; transform: scale(1.2);}
+  30% {top: 280px; right: -20px;transform: scale(1);}
+  60% {top: 200px; right: 100px;transform: scale(1);}
+  100% {top: 80px; right: -20px; transform: scale(1.2);}
+}
+@keyframes orange {
+  0% {top: 250px; right: 0px; transform: scale(1);}
+  30% {top: 150px; right: 150px;transform: scale(1.4);}
+  60% {top: 250px; right: 100px;transform: scale(1);}
+  100% {top: 250px; right: 0px; transform: scale(1);}
+} 
+
 
 .cursor {
 	display: block;
 	border-radius: 0;
 	pointer-events: none;
-	mix-blend-mode: difference;
+	/* mix-blend-mode: difference; */
 	top: 0;
 	left: 0;
 	z-index: 1000;
@@ -336,10 +448,11 @@ body {
 	z-index: 101;
 	align-items: center; /* Center items vertically */
     justify-content: center; /* Center items horizontally */
+	/* mix-blend-mode: difference; */
 }
 
 .circle {
-	mix-blend-mode: normal;
+	
     position: absolute;
     display: block;
     width: 16px;
@@ -376,6 +489,10 @@ body {
 	visibility: visible;
 	transform: scale(4);
 	background-color: #fff;
+	mix-blend-mode: normal;
+}
+.cursor.interacting {
+	mix-blend-mode: normal;
 }
 
 .first-circle .fa, .first-circle svg {
