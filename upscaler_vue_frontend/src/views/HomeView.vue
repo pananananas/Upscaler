@@ -28,26 +28,26 @@
                     </div>
                 </div>
             </div>
-
+d
             <div class="w-full h-full">
                 <div class="flex gap-4 absolute">
-                    <img src="../assets/imgs/1_downscaled.jpg" alt="Image1" class="object-cover rounded-[10px] w-[180px] h-[180px] ml-4 float-1"/>
+                    <img src="../assets/imgs/1_downscaled.jpg" alt="Image1" class="object-cover rounded-[10px] w-[180px] h-[180px] ml-4 float-1 interactable" data-fa-icon="fa-arrows-left-right" />
                     <!-- <img src="../assets/imgs/1.jpg" alt="Image1" class="object-cover rounded-[10px] w-[180px] h-[180px]  ml-4 float-1 absolute"> -->
-                    <img src="../assets/imgs/2_downscaled.jpg" alt="Image2" class="object-cover rounded-[10px] w-[204px] h-[135.6px] float-2" />
-                    <img src="../assets/imgs/3_downscaled.jpg" alt="Image3" class="object-cover rounded-[10px] w-[102px] h-[135.6px] float-3" />
-                    <img src="../assets/imgs/4_downscaled.jpg" alt="Image4" class="object-cover rounded-[10px] w-[180px] h-[135.6px] float-4" />
+                    <img src="../assets/imgs/2_downscaled.jpg" alt="Image2" class="object-cover rounded-[10px] w-[204px] h-[135.6px] float-2 interactable" data-fa-icon="fa-arrows-left-right"  />
+                    <img src="../assets/imgs/3_downscaled.jpg" alt="Image3" class="object-cover rounded-[10px] w-[102px] h-[135.6px] float-3 interactable" data-fa-icon="fa-arrows-left-right"  />
+                    <img src="../assets/imgs/4_downscaled.jpg" alt="Image4" class="object-cover rounded-[10px] w-[180px] h-[135.6px] float-4 interactable" data-fa-icon="fa-arrows-left-right"  />
                 </div>
                 <div class="flex gap-6 absolute top-[154px]">
-                    <img src="../assets/imgs/5_downscaled.jpg" alt="Image5" class="object-cover rounded-[10px] w-[180px] h-[120px] bottom-0 absolute float-5" />
-                    <img src="../assets/imgs/6_downscaled.jpg" alt="Image6" class="object-cover rounded-[10px] w-[127.2px] h-[192px] ml-[218px] float-6" />
-                    <img src="../assets/imgs/7_downscaled.jpg" alt="Image7" class="object-cover rounded-[10px] w-[135.6px] h-[135.6px] float-7" />
-                    <img src="../assets/imgs/8_downscaled.jpg" alt="Image8" class="object-cover rounded-[10px] w-[102px] h-[135.6px] float-8" />
-                    <img src="../assets/imgs/9_downscaled.jpg" alt="Image9" class="object-cover rounded-[10px] w-[135.6px] h-[135.6px] float-9" />
+                    <img src="../assets/imgs/5_downscaled.jpg" alt="Image5" class="object-cover rounded-[10px] w-[180px] h-[120px] bottom-0 absolute float-5 interactable" data-fa-icon="fa-arrows-left-right"  />
+                    <img src="../assets/imgs/6_downscaled.jpg" alt="Image6" class="object-cover rounded-[10px] w-[127.2px] h-[192px] ml-[218px] float-6 interactable" data-fa-icon="fa-arrows-left-right"  />
+                    <img src="../assets/imgs/7_downscaled.jpg" alt="Image7" class="object-cover rounded-[10px] w-[135.6px] h-[135.6px] float-7 interactable" data-fa-icon="fa-arrows-left-right"  />
+                    <img src="../assets/imgs/8_downscaled.jpg" alt="Image8" class="object-cover rounded-[10px] w-[102px] h-[135.6px] float-8 interactable" data-fa-icon="fa-arrows-left-right"  />
+                    <img src="../assets/imgs/9_downscaled.jpg" alt="Image9" class="object-cover rounded-[10px] w-[135.6px] h-[135.6px] float-9 interactable" data-fa-icon="fa-arrows-left-right"  />
                 </div>
                 <div class="flex gap-6 absolute top-[328px]">
-                    <img src="../assets/imgs/10_downscaled.jpg" alt="Image10" class="object-cover rounded-[10px] w-[320.4px] h-[135.6px] bottom-0 absolute ml-6 float-10 interactable" data-svg-icon="magnifying-glass" />
-                    <img src="../assets/imgs/11_downscaled.jpg" alt="Image11" class="object-cover rounded-[10px] w-[135.6px] h-[180px] ml-[366px] float-11" />
-                    <img src="../assets/imgs/12_downscaled.jpg" alt="Image12" class="object-cover rounded-[10px] w-[273.6px] h-[180px] float-12" />
+                    <img src="../assets/imgs/10_downscaled.jpg" alt="Image10" class="object-cover rounded-[10px] w-[320.4px] h-[135.6px] bottom-0 absolute ml-6 float-10 interactable" data-fa-icon="fa-arrows-left-right" />
+                    <img src="../assets/imgs/11_downscaled.jpg" alt="Image11" class="object-cover rounded-[10px] w-[135.6px] h-[180px] ml-[366px] float-11 interactable" data-fa-icon="fa-arrows-left-right"  />
+                    <img src="../assets/imgs/12_downscaled.jpg" alt="Image12" class="object-cover rounded-[10px] w-[273.6px] h-[180px] float-12 interactable" data-fa-icon="fa-arrows-left-right"  />
                 </div>
             </div>
         </div>
@@ -70,21 +70,7 @@
                 <arrow-up-right-icon v-else-if="currentSvgIcon === 'arrow-up-right'"/>
                 <magnifying-glass-icon v-else-if="currentSvgIcon === 'magnifying-glass'"/>
             </div>
-            <div class="circle" />
-            <div class="circle" />
-            <div class="circle" />
-            <div class="circle" />
-            <div class="circle" />
-            <div class="circle" />
-            <div class="circle" />
-            <div class="circle" />
-            <div class="circle" />
-            <div class="circle" />
-            <div class="circle" />
-            <div class="circle" />
-            <div class="circle" />
-            <div class="circle" />
-            <div class="circle" />
+            <div class="circle" /> <div class="circle" /> <div class="circle" /> <div class="circle" /> <div class="circle" /> <div class="circle" /> <div class="circle" /> <div class="circle" /> <div class="circle" /> <div class="circle" /> <div class="circle" /> <div class="circle" /> <div class="circle" /> <div class="circle" /> <div class="circle" />
         </div>
     </body>
 </template>
@@ -173,20 +159,24 @@ export default defineComponent({
             if (!firstCircleEl.value) return;
 
             if (interactableElement) {
-                firstCircleEl.value.classList.add("interacting");
-                firstCircleEl.value.classList.remove("visible");
-                // cursor.value?.classList.add('interacting');
+                // Check if the interactable element is one of the images
+                if (interactableElement.tagName === "IMG") {
+                    firstCircleEl.value.classList.add("interacting-scale-2");
+                    firstCircleEl.value.classList.remove("interacting", "visible");
+                } else {
+                    firstCircleEl.value.classList.add("interacting");
+                    firstCircleEl.value.classList.remove("interacting-scale-2", "visible");
+                }
                 cursorTail.value = 0.1;
-
                 setCursorIcon(interactableElement);
             } else {
-                firstCircleEl.value.classList.remove("interacting");
+                firstCircleEl.value.classList.remove("interacting", "interacting-scale-2");
                 firstCircleEl.value.classList.add("visible");
-                // cursor.value?.classList.remove('interacting');
                 cursorTail.value = 0.3;
                 clearCursorIcons();
             }
         };
+
 
         const setCursorIcon = (element: Element) => {
             const faIconName = element.getAttribute("data-fa-icon");
@@ -534,6 +524,14 @@ body::before {
     background-color: #fff;
     mix-blend-mode: normal;
 }
+
+.first-circle.interacting-scale-2 {
+    visibility: visible;
+    transform: scale(2);
+    background-color: #fff;
+    mix-blend-mode: normal;
+}
+
 .cursor.interacting {
     mix-blend-mode: normal;
 }
