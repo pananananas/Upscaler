@@ -90,7 +90,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref } from "vue";
+import { defineComponent, onMounted, onUnmounted, ref } from "vue";
 import GradientInfo from "@/components/GradientInfo.vue";
 import UploadButton from "@/components/UploadButton.vue";
 import ArrowUpRightIcon from "@/components/ArrowUpRightIcon.vue";
@@ -128,6 +128,11 @@ export default defineComponent({
             ) as HTMLElement[];
             circlePositions.value = circles.value.map(() => ({ x: 0, y: 0 }));
             animateCursorCircles();
+            document.addEventListener("mousemove", calculateMousePos);
+        });
+
+        onUnmounted(() => {
+            document.removeEventListener("mousemove", calculateMousePos);
         });
 
         const initializeMousePosition = (e: MouseEvent) => {
@@ -235,7 +240,7 @@ export default defineComponent({
             requestAnimationFrame(animateCursorCircles);
         };
 
-        document.addEventListener("mousemove", calculateMousePos);
+
 
         return {
             calculateMousePos,
@@ -335,7 +340,7 @@ body::before {
     top: 0;
     content: "";
     width: 100%;
-    height: 400%;
+    height: 100%;
     z-index: 0;
     background: #040404;
     filter: url(#noiseFilter);
@@ -464,6 +469,7 @@ body::before {
 }
 
 .cursor {
+    position: fixed;
     display: block;
     border-radius: 0;
     pointer-events: none;
