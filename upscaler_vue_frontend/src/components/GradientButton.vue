@@ -1,5 +1,5 @@
 <template>
-    <label class="btn font-larken-sans" shape="round" for="fileInput" >
+    <label class="btn font-larken-sans" shape="round" >
         <span class="px-2 text-base">{{ label }}</span>
     </label>
 </template>

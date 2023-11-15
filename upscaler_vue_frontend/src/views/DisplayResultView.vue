@@ -10,7 +10,7 @@
 
     <div class="flex-initial mx-auto h-full">
         <div class="flex justify-center items-center gap-1 h-full">
-            <img :src="imageUrl" :class="divImageClasses" class="object-contain mx-auto rounded-lg" ref="imageRef"  @click="toggleFreeze">
+            <img :src="imageUrl" :class="divImageClasses" class="object-contain mx-auto rounded-lg image-not-dragable" ref="imageRef"  @click="toggleFreeze">
         </div>
     </div>
     <div :class="divClasses" class="w-1/2">
@@ -19,9 +19,9 @@
             <div class="relative h-full w-full z-10">
 
                 <div class="miniature flex mb-6">
-                    <img :src="originalImageUrl" class="h-12 object-certain rounded-sm">
+                    <img :src="originalImageUrl" class="h-12 object-certain rounded-sm image-not-dragable">
 
-                    <span class="text-white mx-3 font-port-lligat-sans text-md"> 
+                    <span class="text-white mx-3 font-port-lligat-sans text-md title"> 
                         {{ imageTitle }} 
                         <span class="text-[#cdcdcd] font-port-lligat-sans text-xsm"> 
                             <br/>{{ originalImageWidth * 4 }}x{{ originalImageHeight * 4 }}px
@@ -39,7 +39,7 @@
                         <div class="w-full aspect-square rounded-lg z-[10] highlight" :class="{ 'selected-image': type == selectedAlgorithm }">
                             <div class="miniature-view">
                                 <img :src="imageUrls[type]" 
-                                class="w-full h-full object-contain miniature-image" 
+                                class="w-full h-full object-contain miniature-image image-not-dragable" 
                                 :style="{ transform: `translate(${-percentX * 100}%, ${-percentY * 100}%) scale(${scaleValue})`}">
                             </div>    
                         </div>
@@ -453,5 +453,22 @@ export default defineComponent({
     transition: transform 0.1s ease-out;
     scale: 10;
     overflow: hidden;
+}
+
+.image-not-dragable {
+    user-drag: none;
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.title {
+  display: block;
+  width: 110px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 </style>
