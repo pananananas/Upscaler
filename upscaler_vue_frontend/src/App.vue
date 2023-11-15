@@ -8,4 +8,7 @@
 
 <style lang="scss">
 
+* {
+    border: 1px solid red;
+}
 </style>

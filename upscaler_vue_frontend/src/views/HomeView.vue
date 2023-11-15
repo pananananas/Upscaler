@@ -249,7 +249,7 @@ export default defineComponent({
     methods: {
         onDragOver(event: Event) {
             event.preventDefault();
-            // TODO: Change styles of the dropzone when an item is dragged over it
+            // TODO Change styles of the dropzone when an item is dragged over it
             console.log("Drag over");
             this.calculateMousePos(event as MouseEvent);
             // this.animateCursorCircles();         
@@ -615,7 +615,6 @@ body::before {
     animation: floatInFromLeft 0.72s ease-out forwards;
 }
 .image-not-dragable {
-    user-drag: none;
     -webkit-user-drag: none;
     user-select: none;
     -moz-user-select: none;
