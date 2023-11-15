@@ -30,10 +30,9 @@ Super-rozdzielczość (ang. Super-Resolution) odnosi się do procesu poprawy roz
 
 \subsection*{Przykłady zastosowań super-rozdzielczości}
 
-W kontekście praktycznym, techniki super-rozdzielczości znalazły zastosowanie w wielu dziedzinach. Przykładowo, w medycynie, poprawa rozdzielczości obrazów rentgenowskich może znacząco wpływać na dokładność diagnoz. W bezpieczeństwie publicznym, super-rozdzielczość pozwala na uzyskanie wyraźniejszych obrazów z kamer monitoringu, co jest kluczowe dla identyfikacji osób lub pojazdów. W branży rozrywkowej, technika ta umożliwia remastering starych filmów i materiałów wideo do standardów HD czy 4K.
+W kontekście praktycznym, techniki super-rozdzielczości znalazły zastosowanie w wielu dziedzinach. Przykładowo, w medycynie, poprawa rozdzielczości obrazów rentgenowskich może znacząco wpływać na dokładność diagnoz. W branży rozrywkowej, technika ta umożliwia remastering starych gier, filmów czy materiałów wideo do standardów HD czy 4K.
 
 W ostatnich miesiącach popularne stało się generowanie obrazów z użyciem sztucznej inteligencji na podstawie podanego opisu tekstowego. Generowane w ten sposób obrazy są określonej wielkości i popularne modele takie jak \textbf{DALL-E} czy \textbf{Midjourney} nie pozwalają na zwiększenie jej. W tym miejscu z pomocą przychodzi super-rozdzielczość, która pozwala na powiększenie obrazu.
-
 
 
 \section{Przegląd metod powiększania obrazów}
@@ -60,11 +59,9 @@ Metoda ta jest bardzo prosta w implementacji, jednakże nie daje ona zadowalają
 
 Aby poprawić jakość obrazu, można zastosować \textbf{interpolację dwuliniową}. Metoda ta rozszerza interpolację liniową na interpolację funkcji dwóch zmiennych [Rys \ref{fig:image6}]. 
 
-W efekcie polega to na wyznaczeniu średniej ważonej pikseli sąsiadujących z pikselem, który chcemy powielić. Współczynniki wag są wyznaczane na podstawie odległości od piksela, który chcemy powielić.
-
 \begin{figure}[ht]
     \centering
-    \begin{tikzpicture}[scale=2, dot/.style={circle,fill=black,minimum size=4pt,inner sep=0pt,outer sep=-1pt},]
+    \begin{tikzpicture}[scale=1.3, dot/.style={circle,fill=black,minimum size=4pt,inner sep=0pt,outer sep=-1pt},]
 
         % Define the coordinates of the grid points
         \coordinate (A) at (1,1);
@@ -143,7 +140,7 @@ W efekcie polega to na wyznaczeniu średniej ważonej pikseli sąsiadujących z 
 \end{figure}
 
 
-\newpage
+W efekcie polega to na wyznaczeniu średniej ważonej pikseli sąsiadujących z pikselem, który chcemy powielić. Współczynniki wag są wyznaczane na podstawie odległości od piksela, który chcemy powielić.
 Kroki algorytmu:
 \begin{enumerate}
     \item Przeprowadzana jest interpolacja liniowa wzdłuż osi $O X$:
@@ -166,30 +163,30 @@ W efekcie otrzymujemy obraz wyglądający następująco [Rys \ref{fig:image8},  
 
 \begin{figure}[ht]
     \centering
-    \begin{minipage}[t]{0.3\linewidth}
+    \begin{minipage}[t]{0.33\linewidth}
         \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/bilinear_original.png}
         \caption{Obraz wejściowy}
         \label{fig:image7}
     \end{minipage}
     \hspace{0.5cm}
-    \begin{minipage}[t]{0.3\linewidth}
+    \begin{minipage}[t]{0.33\linewidth}
         \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/bilinear_enlarged.png}
-        \caption{Interpolacja dwuliniowa}
+        \caption{Obraz powiększony przez interpolację dwuliniową}
         \label{fig:image8}
     \end{minipage}
 \end{figure}
 
 \begin{figure}[ht]
     \centering
-    \begin{minipage}[t]{0.35\linewidth}
+    \begin{minipage}[t]{0.33\linewidth}
         \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/comic.png}
         \caption{Obraz wejściowy}
         \label{fig:image9}
     \end{minipage}
     \hspace{0.5cm}
-    \begin{minipage}[t]{0.35\linewidth}
+    \begin{minipage}[t]{0.33\linewidth}
         \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/comic_BILINEARx4.png}
-        \caption{Obraz powiększony metodą interpolacji dwuliniowej}
+        \caption{Obraz powiększony przez interpolację dwuliniową}
         \label{fig:image10}
     \end{minipage}
 \end{figure}
@@ -197,8 +194,18 @@ W efekcie otrzymujemy obraz wyglądający następująco [Rys \ref{fig:image8},  
 
 Metoda ta daje lepsze rezultaty niż interpolacja najbliższego sąsiada, jednakże wprowadziła ona duże rozmycie, które jest szczególnie widoczne na krawędziach obiektów i obszarach wysokiej częstotliwości.
 
+\subsection*{Teoria informacji}
 
-W teorii informacji istnieje koncepcja zwana \textbf{nierównością przetwarzania danych}. Zgodnie z nią niezależnie od sposobu przetwarzania danych, \textbf{nie można dodać informacji, której nie ma w oryginale.} Oznacza to, że brakujących danych nie można odzyskać poprzez dalsze przetwarzanie. Czy to oznacza, że super-rozdzielczość jest teoretycznie niemożliwa? 
+W teorii informacji istnieje koncepcja zwana \textbf{nierównością przetwarzania danych}. Zgodnie z nią niezależnie od sposobu przetwarzania danych, \textbf{nie można dodać informacji, której nie ma w oryginalnej serii danych}  [Wzór 2.1].
+
+\begin{equation}
+    \begin{gathered}
+    X \rightarrow Y \rightarrow Z \\
+    I(X ; Y) \geq I(X ; Z)
+    \end{gathered}
+\end{equation}
+
+Oznacza to, że brakujących danych nie można odzyskać poprzez dalsze przetwarzanie. Czy to oznacza, że super-rozdzielczość jest teoretycznie niemożliwa? 
 
 Nie, jeśli mamy dodatkowe źródło informacji. 
 
@@ -206,16 +213,7 @@ Nie, jeśli mamy dodatkowe źródło informacji.
 % \newpage
 \section{Wprowadzenie do głębokiego uczenia się w przetwarzaniu obrazów}
 
-Głębokie uczenie rewolucjonizuje przetwarzanie obrazów, wprowadzając modele zdolne do uczenia się cech z serii danych. W przetwarzaniu obrazów, głębokie sieci neuronowe są wykorzystywane do zadań takich jak detekcja obiektów, segmentacja, klasyfikacja obrazów, czy właśnie super-rozdzielczość.
-
-Sieć neuronowa może nauczyć się odtwarzać szczegóły obrazów na podstawie pewnych informacji, które zbiera z dużego zbioru obrazów. 
-
-Szczegóły dodawane do powiększanego obrazu w przy użyciu modelu uczenia maszynowego nie naruszają nierówności przetwarzania danych, ponieważ wykorzystywane informacje są w zbiorze treningowym, nawet jeśli nie ma ich na obrazie wejściowym.
-
-
-
-
-
+Głębokie uczenie rewolucjonizuje przetwarzanie obrazów, wprowadzając modele zdolne do uczenia się cech z serii danych. W przetwarzaniu obrazów, głębokie sieci neuronowe są wykorzystywane do zadań takich jak detekcja obiektów, segmentacja, klasyfikacja obrazów, czy właśnie super-rozdzielczość [Rys \ref{fig:image12},  \ref{fig:image13}].
 
 \begin{figure}[ht]
     \centering
@@ -238,7 +236,67 @@ Szczegóły dodawane do powiększanego obrazu w przy użyciu modelu uczenia masz
     \end{minipage}
 \end{figure}
 
+Sieć neuronowa może nauczyć się odtwarzać szczegóły obrazów na podstawie pewnych informacji, które zbiera z dużego zbioru obrazów. 
 
+Szczegóły dodawane do powiększanego obrazu w przy użyciu modelu uczenia maszynowego nie naruszają nierówności przetwarzania danych, ponieważ wykorzystywane informacje są w zbiorze treningowym, nawet jeśli nie ma ich na obrazie wejściowym.
+
+
+
+
+
+\subsection*{Podstawy Głębokiego Uczenia}
+Głębokie uczenie, będące zaawansowaną formą uczenia maszynowego, wykorzystuje wielowarstwowe sieci neuronowe do analizy i interpretacji dużych zbiorów danych. Te sieci składają się z warstw skomplikowanych struktur algorytmicznych, które naśladują sposób, w jaki ludzki mózg przetwarza informacje.
+
+
+\subsubsection*{Architektura Sieci Neuronowych}
+Architektura sieci neuronowych w głębokim uczeniu charakteryzuje się wieloma ukrytymi warstwami, które pozwalają na przetwarzanie danych na różnych poziomach abstrakcji. Każda warstwa składa się z wielu neuronów, z których każdy otrzymuje dane wejściowe, przetwarza je i przekazuje dalej. Istnieją różne rodzaje warstw, w tym:
+\begin{itemize}
+    \item \textbf{Warstwy konwolucyjne (Convolutional Layers)}: Są fundamentem sieci konwolucyjnych (CNNs), które są szeroko stosowane w przetwarzaniu obrazów. Te warstwy stosują filtr konwolucyjny do danych wejściowych, wydobywając lokalne cechy, takie jak krawędzie, kształty czy tekstury.
+    \item \textbf{Warstwy pooling (Pooling Layers)}: Redukują wymiarowość danych, jednocześnie zachowując ważne informacje. Najczęściej stosowanymi są max pooling i average pooling.
+    \item \textbf{Warstwy w pełni połączone (Fully Connected Layers)}: Każdy neuron w tych warstwach jest połączony ze wszystkimi neuronami w poprzedniej warstwie, co pozwala na integrację nauczonej wiedzy z poprzednich warstw.
+\end{itemize}
+
+
+\subsubsection*{Funkcje Aktywacji}
+Funkcje aktywacji w sieciach neuronowych to nieliniowe transformacje stosowane do wyjść neuronów. Decydują one o tym, czy dany neuron zostanie aktywowany, czyli czy jego informacje zostaną przekazane dalej. Najpopularniejsze funkcje aktywacji to:
+\begin{itemize}
+    \item \textbf{ReLU (Rectified Linear Unit)}: Przekształca wszystkie ujemne wartości na zero, podczas gdy wartości dodatnie pozostają niezmienione  [Rys \ref{fig:image14}].
+    \item \textbf{Sigmoid}: Przyjmuje wartości wejściowe i konwertuje je na wartości z zakresu od 0 do 1 [Rys \ref{fig:image15}].
+    \item \textbf{Tanh (Hyperbolic Tangent)}: Podobnie jak sigmoid, ale konwertuje wartości na zakres od -1 do 1 [Rys \ref{fig:image16}].
+\end{itemize}
+
+\begin{figure}[ht]
+    \centering
+    \begin{minipage}[t]{0.3\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/relu.png}
+        \caption{ReLU}
+        \label{fig:image14}
+    \end{minipage}
+    \hspace{0.5cm}
+    \begin{minipage}[t]{0.3\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/sigmoid.png}
+        \caption{Sigmoid}
+        \label{fig:image15}
+    \end{minipage}
+    \hspace{0.5cm}
+    \begin{minipage}[t]{0.3\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/tanh.png}
+        \caption{anh}
+        \label{fig:image16}
+    \end{minipage}
+\end{figure}
+
+
+\subsubsection*{Proces Uczenia}
+
+
+\subsubsection*{Przeuczenie i Generalizacja}
+
+
+
+\subsection*{Algorytmy Głębokiego Uczenia w Super-Rozdzielczości}
+
+W tej pracy opisywane będą szczegółowo dwa bardzo ciekawe algorytmy głębokiego uczenia stosowane w zadaniu super-rozdzielczości. Jeden z nich wykorzystuje 
 
 
 
