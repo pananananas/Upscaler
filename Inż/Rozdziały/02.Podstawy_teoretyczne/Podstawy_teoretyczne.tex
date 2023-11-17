@@ -135,6 +135,7 @@ Aby poprawić jakość obrazu, można zastosować \textbf{interpolację dwulinio
         % \node[below] at (current bounding box.south) {Wizualizacja interpolacji dwuliniowej};
 
     \end{tikzpicture}
+    
     \caption{Wizualizacja interpolacji dwuliniowej}
     \label{fig:image6}
 \end{figure}
@@ -258,7 +259,7 @@ Architektura sieci neuronowych w głębokim uczeniu charakteryzuje się wieloma 
 
 
 \subsubsection*{Funkcje Aktywacji}
-Funkcje aktywacji w sieciach neuronowych to nieliniowe transformacje stosowane do wyjść neuronów. Decydują one o tym, czy dany neuron zostanie aktywowany, czyli czy jego informacje zostaną przekazane dalej. Najpopularniejsze funkcje aktywacji to:
+Funkcje aktywacji w sieciach neuronowych to nieliniowe transformacje stosowane do wyjść neuronów. Pozwalają one na modelowanie złożonych zależności między danymi wejściowymi a wyjściowymi. W głębokim uczeniu stosuje się różne funkcje aktywacji, w tym:
 \begin{itemize}
     \item \textbf{ReLU (Rectified Linear Unit)}: Przekształca wszystkie ujemne wartości na zero, podczas gdy wartości dodatnie pozostają niezmienione  [Rys \ref{fig:image14}].
     \item \textbf{Sigmoid}: Przyjmuje wartości wejściowe i konwertuje je na wartości z zakresu od 0 do 1 [Rys \ref{fig:image15}].
@@ -281,23 +282,53 @@ Funkcje aktywacji w sieciach neuronowych to nieliniowe transformacje stosowane d
     \hspace{0.5cm}
     \begin{minipage}[t]{0.3\linewidth}
         \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/tanh.png}
-        \caption{anh}
+        \caption{Tanh}
         \label{fig:image16}
     \end{minipage}
 \end{figure}
 
 
-\subsubsection*{Proces Uczenia}
+\subsubsection*{Strategie Uczenia w Głębokim Uczeniu}
+Głębokie uczenie obejmuje różne strategie uczenia, które są stosowane w zależności od rodzaju i charakteru danych oraz oczekiwanych wyników. Do głównych strategii należą:
+
+\begin{itemize}
+    \item \textbf{Uczenie nadzorowane (Supervised Learning)}: W tym podejściu model uczy się na podstawie zestawu danych, które zawierają zarówno dane wejściowe, jak i odpowiednie etykiety. Jest to szeroko stosowane w zadaniach takich jak np. klasyfikacja.
+    \item \textbf{Uczenie nienadzorowane (Unsupervised Learning)}: Model próbuje znaleźć wzorce w danych bez etykiet, stosowane głównie w grupowaniu i redukcji wymiarowości.
+    \item \textbf{Uczenie ze wzmacnianiem (Reinforcement Learning)}: W tej strategii agent uczy się podejmować decyzje poprzez interakcje z otoczeniem, dążąc do maksymalizacji sumy nagród.
+\end{itemize}
 
 
 \subsubsection*{Przeuczenie i Generalizacja}
 
+Przeuczenie (Overfitting) występuje, gdy model zbyt dokładnie dopasowuje się do danych treningowych, tracąc zdolność do efektywnego działania na nowych danych [Rys \ref{fig:image17}]. Niebieska linia reprezentuje przeuczony model, zaś czarna dopasowany. Widać że niebieska linia podąża za danymi treningowymi, jest zbyt zależna od nich co sprawia, że model przeuczony będzie miał wyższy poziom błędu dla nowych danych. Jest to problem szczególnie w przypadku zbyt skomplikowanych modeli w stosunku do danych.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.4\linewidth]{Rozdziały/02.Podstawy_teoretyczne/overfitting.png}
+    \caption{Wizualizacja przeuczenia}
+    \label{fig:image17}
+\end{figure}
+
+Celem jest stworzenie modelu, który efektywnie działa na nowych, nieznanych danych, co oznacza, że model jest dobrze dostosowany do rzeczywistych scenariuszy.
+
+Przykładowe sposoby na zapobieganie przeuczeniu:
+
+\begin{itemize}
+    \item \textbf{Wczesne zatrzymywanie (\textit{early stopping}):} Polega na monitorowaniu wydajności modelu na zestawie walidacyjnym i zatrzymaniu treningu, gdy wydajność przestaje się poprawiać, co zapobiega przeuczeniu.
+    \item \textbf{Walidacja krzyżowa (\textit{cross-validation}):} Metoda oceny modelu, w której zestaw danych dzieli się na kilka części. Model jest następnie trenowany na jednej części (zwanej zestawem treningowym) i walidowany na innej (zwanej zestawem walidacyjnym), co jest powtarzane na różnych kombinacjach części danych. Pozwala to na lepszą ocenę zdolności modelu do generalizacji na nieznanych danych.s
+    \item \textbf{Augmentacja danych (\textit{data augmentation}):} Zwiększa różnorodność danych treningowych poprzez wprowadzenie niewielkich losowych zmian, co pomaga modelowi lepiej uogólnić i zmniejszyć przeuczenie.
+\end{itemize}
 
 
 \subsection*{Algorytmy Głębokiego Uczenia w Super-Rozdzielczości}
 
-W tej pracy opisywane będą szczegółowo dwa bardzo ciekawe algorytmy głębokiego uczenia stosowane w zadaniu super-rozdzielczości. Jeden z nich wykorzystuje 
 
+
+
+
+\subsubsection*{Mean Squared Error (MSE)}
+\cite{4775883}
+
+W tej pracy opisywane będą szczegółowo dwa bardzo ciekawe algorytmy głębokiego uczenia stosowane w zadaniu super-rozdzielczości. Jeden z nich wykorzystuje 
 
 
 \newpage
@@ -309,30 +340,6 @@ w jaki sposób funkcje falkowe rozwijają FFT, przedstawienie działania.
 
 
 
-
-
-% \newpage
-% \section*{Chatbot:}
-
-% \section*{Przegląd metod powiększania obrazów}
-
-% Tradycyjne metody powiększania obrazów obejmują interpolację najbliższego sąsiada, interpolację dwuliniową oraz interpolację dwusześcienną. Te techniki opierają się na prostych przekształceniach matematycznych i mogą być łatwo implementowane, lecz często prowadzą do efektów ubocznych takich jak rozmycie czy artefakty.
-
-% Współczesne techniki wykorzystują bardziej zaawansowane podejścia, takie jak rekonstrukcja oparta na przykładowych obrazach (example-based reconstruction), gdzie wykorzystuje się zbiór danych zawierający pary obrazów LR i HR, aby nauczyć algorytm odtwarzania szczegółów na wysokim poziomie rozdzielczości. Metody te mogą wykorzystywać różnorodne techniki, w tym mapowanie cech, modelowanie statystyczne, a nawet uczenie maszynowe.
-
-% W ostatniej dekadzie, z uwagi na rozwój w dziedzinie uczenia maszynowego, pojawiły się metody bazujące na głębokich sieciach neuronowych, takie jak konwolucyjne sieci neuronowe (CNN, z ang. Convolutional Neural Networks) w zadaniach SR. Przykładami takich metod są SRCNN (Super-Resolution Convolutional Neural Network), VDSR (Very Deep Super-Resolution), EDSR (Enhanced Deep Super-Resolution) oraz GAN (Generative Adversarial Networks) wykorzystywane w modelu SRGAN (Super-Resolution Generative Adversarial Network), które przynoszą znaczące ulepszenia w jakości rekonstruowanych obrazów HR.
- 
-% \section*{Wprowadzenie do głębokiego uczenia się w przetwarzaniu obrazów}
-
-
-
-% Podstawową jednostką w konwolucyjnych sieciach neuronowych jest warstwa konwolucyjna, która skanuje obraz za pomocą filtrów (również nazywanych jądrami), wyodrębniając lokalne cechy. Następnie, warstwy pooling redukują wymiarowość danych, zachowując przy tym najważniejsze informacje. Głębokie sieci neuronowe mogą składać się z wielu takich warstw, co pozwala na wyodrębnianie coraz bardziej abstrakcyjnych cech z obrazów.
-
-% Sieci te są trenowane przy użyciu zestawów danych, gdzie algorytm uczy się mapowania między danymi wejściowymi a oczekiwanymi wynikami. W zadaniach SR, sieć jest trenowana do przewidywania obrazów HR z obrazów LR, przy czym jakość wyniku jest oceniana przy pomocy funkcji straty, takiej jak błąd średniokwadratowy (MSE, z ang. Mean Squared Error) czy wskaźnik strukturalnej jakości obrazu (SSIM, z ang. Structural Similarity Index).
-
-% Nowoczesne podejścia do SR często wykorzystują także sieci GAN, które składają się z dwóch części: generatora, który generuje obrazy, oraz dyskryminatora, który ocenia, czy obrazy są wystarczająco zbliżone do prawdziwych HR. Konkurencyjna dynamika między tymi dwoma sieciami prowadzi do generowania coraz lepszych obrazów.
-
-% W dalszych rozdziałach szczegółowo omówimy te techniki, przedstawiając zarówno ich teoretyczne podstawy, jak i praktyczne zastosowania. Zostaną przedstawione również aktualne wyzwania i kierunki badań w dziedzinie super-rozdzielczości, co pozwoli czytelnikowi na głębsze zrozumienie tego dynamicznie rozwijającego się obszaru wiedzy.
 
 % \section*{Youtube - super resolution}
 
