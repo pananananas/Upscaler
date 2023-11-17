@@ -313,15 +313,20 @@ Celem jest stworzenie modelu, który efektywnie działa na nowych, nieznanych da
 Przykładowe sposoby na zapobieganie przeuczeniu:
 
 \begin{itemize}
-    \item \textbf{Wczesne zatrzymywanie (\textit{early stopping}):} Polega na monitorowaniu wydajności modelu na zestawie walidacyjnym i zatrzymaniu treningu, gdy wydajność przestaje się poprawiać, co zapobiega przeuczeniu.
-    \item \textbf{Walidacja krzyżowa (\textit{cross-validation}):} Metoda oceny modelu, w której zestaw danych dzieli się na kilka części. Model jest następnie trenowany na jednej części (zwanej zestawem treningowym) i walidowany na innej (zwanej zestawem walidacyjnym), co jest powtarzane na różnych kombinacjach części danych. Pozwala to na lepszą ocenę zdolności modelu do generalizacji na nieznanych danych.s
-    \item \textbf{Augmentacja danych (\textit{data augmentation}):} Zwiększa różnorodność danych treningowych poprzez wprowadzenie niewielkich losowych zmian, co pomaga modelowi lepiej uogólnić i zmniejszyć przeuczenie.
+    \item \textbf{Wczesne zatrzymywanie (early stopping):} Polega na monitorowaniu wydajności modelu na zestawie walidacyjnym i zatrzymaniu treningu, gdy wydajność przestaje się poprawiać, co zapobiega przeuczeniu.
+    \item \textbf{Walidacja krzyżowa (cross-validation):} Metoda oceny modelu, w której zestaw danych dzieli się na kilka części. Model jest następnie trenowany na jednej części (zwanej zestawem treningowym) i walidowany na innej (zwanej zestawem walidacyjnym), co jest powtarzane na różnych kombinacjach części danych. Pozwala to na lepszą ocenę zdolności modelu do generalizacji na nieznanych danych.s
+    \item \textbf{Augmentacja danych (data augmentation):} Zwiększa różnorodność danych treningowych poprzez wprowadzenie niewielkich losowych zmian, co pomaga modelowi lepiej uogólnić i zmniejszyć przeuczenie.
 \end{itemize}
 
 
 \subsection*{Algorytmy Głębokiego Uczenia w Super-Rozdzielczości}
 
-
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\linewidth]{Rozdziały/02.Podstawy_teoretyczne/map_low-hi_res.png}
+    \caption{}
+    \label{fig:image18}
+\end{figure}
 
 
 
@@ -332,159 +337,109 @@ W tej pracy opisywane będą szczegółowo dwa bardzo ciekawe algorytmy głębok
 
 
 \newpage
-\section{Wstęp do funkcji falkowych}
+\section{Wstęp do transformacji falkowej}
 
 
-Omówienie funkcji falkowych, opis do czego to narzędzie służy począwszy od transformaty Fouriera i jej ograniczeń, 
-w jaki sposób funkcje falkowe rozwijają FFT, przedstawienie działania.
+Transformacja falkowa (wavelet transform) stanowi istotne narzędzie w analizie sygnałów i przetwarzaniu obrazów, zwłaszcza w kontekście zastosowań takich jak super rozdzielczość. Charakterystyczna dla funkcji falkowych jest ich zdolność do dostosowania się do wymagań analizy sygnału. W przeciwieństwie do transformacji Fouriera, która skupia się wyłącznie na częstotliwości, falki pozwalają na efektywną lokalizację zjawisk w sygnale, uwzględniając zmiany zarówno w czasie, jak i częstotliwości.
+
+\begin{figure}[ht]
+    \centering
+
+    \begin{minipage}[t]{0.3\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/horizontal_detail.png}
+        \caption{Detale poziome}
+        \label{fig:image19}
+    \end{minipage}
+    \hspace{0.5cm}
+    \begin{minipage}[t]{0.3\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/vertical_detail.png}
+        \caption{Detale pionowe}
+        \label{fig:image20}
+    \end{minipage}
+    \hspace{0.5cm}
+    \begin{minipage}[t]{0.3\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/diagonal_detail.png}
+        \caption{Detale diagonalne}
+        \label{fig:image21}
+    \end{minipage}
+\end{figure}\
+
+W kontekście super rozdzielczości, funkcje falkowe są wykorzystywane do zwiększania jakości obrazów i sygnałów poprzez umożliwienie dokładniejszej analizy i rekonstrukcji ich składowych. Mamy informacje o kierunkach i wielkościach częstotliwości w analizowanym obrazie [Rys \ref{fig:image19}, \ref{fig:image20} \ref{fig:image21}]. 
+% Korzystając z funkcji falkowych mamy informacje o kierunkach częstotliwości w analizowanym obrazie, co sprawia że wiemy jak ukierunkowane są krawędzie i tekstury. 
+% Dzięki swoim właściwościom, falki potrafią efektywnie oddzielać istotne cechy sygnału od szumu, co jest istotne w procesie zwiększania rozdzielczości.
+
+
+\subsubsection{Dziedzina czasu i częstotliwości}
+
+Dziedzina czasu odnosi się do analizy sygnału w zakresie czasu, co oznacza, że sygnał jest przedstawiany i analizowany w kontekście jego zmian w czasie. Jest to intuicyjna forma reprezentacji sygnałów, niemniej jednak nie daje ona nam pełnej informacji o sygnale. Z drugiej strony sygnał możemy określić w dziedzinie częstotliwości, która koncentruje się na analizie częstotliwościowych składników sygnału.
+
+% W przetwarzaniu obrazów dziedzina częstotliwości jest często stosowana na przykład do usuwania szumów, wykrywania wzorców i stosowania różnych filtrów.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.45\linewidth]{Rozdziały/02.Podstawy_teoretyczne/time-frequency-domain.png}
+    \caption{Porównanie dziedziny czasu i częstotliwości}
+    \label{fig:image22}
+\end{figure}
 
 
 
+\subsection*{Transformata Fouriera}
 
-% \section*{Youtube - super resolution}
+Transformacja Fouriera jest algorytmem używanym do konwersji sygnału z dziedziny czasu do dziedziny częstotliwości. Pozwala ona na uzyskanie widma amplitudowego i fazowego, które prezentują częstotliwości występujące w sygnale i ich amplitudy.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\linewidth]{Rozdziały/02.Podstawy_teoretyczne/fft.png}
+    \caption{Wynik transformacji Fouriera dla przykładowego sygnału}
+    \label{fig:image23}
+\end{figure}
+
+W kontekście przetwarzania obrazów, transformata Fouriera jest stosowana przekształcenia obrazu do dziedziny częstotliwościowej. Wynik transformacji Fouriera jest liczbą zespoloną, która może być reprezentowana jako wektor złożony z dwóch części: rzeczywistej i urojonej, co być przedstawione w postaci dwóch wykresów: amplitudowego i fazowego [Rys \ref{fig:image25}, \ref{fig:image26}].
+
+\begin{figure}[ht]
+    \centering
+    \begin{minipage}[t]{0.325\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/comic_DWSR_x4.png}
+        \caption{Obraz wejściowy}
+        \label{fig:image24}
+    \end{minipage}
+    % \hspace{0.5cm}
+    \begin{minipage}[t]{0.325\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/fft_magnitude.png}
+        \caption{Wykres amplitudowy}
+        \label{fig:image25}
+    \end{minipage}
+    % \hspace{0.5cm}
+    \begin{minipage}[t]{0.325\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/fft_phase.png}
+        \caption{Wykres fazowy}
+        \label{fig:image26}
+    \end{minipage}
+\end{figure}\
+
+Transformacja Fouriera jest operacją odwracalną, co oznacza, że można ją wykorzystać do rekonstrukcji oryginalnego sygnału z częstotliwościowej reprezentacji stosując odwrotną transformację Fouriera.
 
 
-% So, how can we train such a model?
-% If you watched my Deep Learning Crash Course series, you might be thinking: can't we just
-% train a neural network to learn a mapping between low and high-resolution images?
-% Yes, we can, and we wouldn't be the first ones to do so.
-% Dataset
-% That's pretty much what the SRCNN paper did.
-% First, we can create a dataset by collecting high-resolution images and downscaling them,
-% or we can simply use one of the existing super-resolution datasets, such as the DIV2K dataset.
-% Then, we can build a convolutional neural network that would input only the low-resolution
-% images, and we can train it to produce higher resolution images that match the original
-% ones the best.
-% The SRCNN paper simply minimized the squared difference between the pixel values to produce
-% images that are as close as possible to the original high-resolution images.
-% Mean squared error
-% But is mean squared error really the right metric to optimize?
-% This is a very old debate.
-% Long story short, mean squared error doesn't express the human perception of image fidelity
-% well.
-% For example, all of these distorted images are equally distant from the original image
-% in terms of mean squared error.
-% Clearly, they don't look equally good.
-% Because mean squared error cares only about pixel-wise intensity differences but not the
-% structural information about the contents of an image.
-% There's a better measure of perceptual image quality called the structural similarity index,
-% which was developed in my lab at the University of Texas at Austin.
-% The structural similarity index made a very high impact, both in academia and the industry.
-% My doctoral advisor, Alan Bovik, and his collaborators won a Primetime Emmy Award for this method
-% a few years ago.
-% This metric was initially developed to measure the severity of image degradations.
-% However, many researchers also used it as a loss function to train neural networks for
-% Perceptual loss
-% image restoration.
-% More recently, people also started using pre-trained convolutional neural networks as perceptually-relevant
-% loss functions.
-% How it works is that you first take a pre-trained model.
-% This is typically a VGG-19 model trained on ImageNet.
-% Then take it's first few layers and compute the difference between the feature maps produced
-% by those layers.
-% The difference between the feature maps can be minimized to train another model, just
-% like any other loss function.
-% The layers that generate those feature maps stay frozen during training and act as a fixed
-% feature extractor.
-% This method is commonly referred to as perceptual loss, content loss, or VGG-loss.
-% How is this relevant to super-resolution?
-% We can use this loss function to train models to enhance images and get pretty decent results.
-% Super Resolution
-% But, sometimes, it doesn't feel fair to penalize the model for pixelwise differences that don't
-% really make much difference for human viewers.
-% For example, does the direction of the hair on this baboon's face really matter?
-% What if we cared a little less about how the original high-resolution images looked like,
-% as long as the produced images looked good.
-% We can do so by using GANs: generative adversarial networks.
-% GANs consist of two networks fighting each other to achieve adversarial goals.
-% I made a more detailed video about this earlier.
-% There's a GAN-based super-resolution system called SRGAN.
-% It uses a generator network that inputs low-resolution images and tries to produce their high-resolution
-% versions.
-% It also uses a discriminator network that tries to tell whether this is a real high-resolution
-% image or an image upscaled by the generator.
-% Both networks are trained simultaneously, and they both get better over time.
-% Once the training is done, all we need is the generator part to upscale low-resolution
-% images.
-% In addition to this adversarial training setup, SRGAN also used a VGG-based loss function
-% that we talked about earlier.
-% There's another paper called Enhanced SRGAN, which proposed a few tricks to improve the
-% ESR Gain
-% results further.
-% Enhanced SRGAN, or ESRGAN for short, somehow got popular in the gaming community.
-% People started using it to upscale vintage games, and it worked pretty well.
-% It's surprising how well it worked on video game graphics despite being trained only on
-% natural images.
-% Let's take a look at what enhancements the ESRGAN paper proposed for better results.
-% First, they removed the batch normalization layers in their network architecture.
-% This may sound contradictory to what I said in my previous videos, but it's not.
-% Batch normalization does help a lot for many computer vision tasks.
-% But for image-processing related tasks, such as super-resolution or image restoration in
-% general, batch normalization can create some artifacts.
-% They also added more layers and connections to their model architecture.
-% It's not surprising that a more sophisticated model resulted in better images, but deeper
-% models can be trickier to train, especially if they are not using batch normalization
-% layers.
-% So, the authors of ESRGAN used some tricks like residual scaling to stabilize the training
-% of such a network.
-% In addition to the changes in the model architecture, they also modified the loss functions.
-% For example, they modified the VGG-loss in a way that compared the feature maps before
-% activations.
-% Their rationale is that the feature maps are denser and contain more information before
-% they get clipped by the activation functions.
-% In the original SRGAN paper, the discriminator model was trained to detect whether its input
-% is real or fake.
-% In the enhanced version, the authors used a relativistic discriminator that tells whether
-% the input looks more realistic than fake data or less realistic than real data.
-% Earlier I said minimizing the mean squared error might not be the best way to generate
-% textures that look appealing to the human visual system.
-% Then, I went on to say maybe we shouldn't care too much about how close the generated
-% images are to the original ones.
-% There's actually a trade-off there.
-% Interpolation
-% We would still want the upscaled images to be a faithful representation of the originals
-% while having good-looking textures.
-% The ESRGAN paper aims to find the sweet spot by interpolating between models.
-% What they do is that they compute the weighted average of two models, one trained using mean
-% squared error, and the other fine-tuned with adversarial training.
-% Blending the parameters this way allows for finding the right balance between the two
-% models without retraining them.
-% Zoom to Learn
-% More recently, another paper also explored the idea of network interpolation, and their
-% results also look promising.
-% Super-resolution is a relatively hot topic, and many researchers are experimenting with
-% different ways of approaching this problem and are publishing their results.
-% This paper, titled "Zoom to learn, Learn to zoom," for example, focuses on building a
-% model that mimics optical zoom directly on raw sensor data.
-% The authors created a dataset of raw images, and their corresponding optically zoomed ground
-% truth.
-% Super Resume
-% They also proposed a loss function named "contextual bilateral loss" to handle slightly misaligned
-% image pairs.
-% Speaking of raw images, Google Pixel's Super Res Zoom feature showed that it's possible
-% to achieve super-resolution through a burst of raw images.
-% Google's method makes use of slight hand movements to fill in the missing spots in an upscaled
-% image.
-% So what if the user is using a tripod, and the image is perfectly still.
-% Then, they deliberately jiggle the camera between the shots.
-% So, to be able to implement this, you need to have complete control of the hardware.
-% Single Frame Super Resolution
-% Unlike the other methods we covered so far, Google's Super Res Zoom is a multi-frame super-resolution
-% algorithm.
-% If you don't have such bursts of images and want to upscale your pictures, you can easily
-% use the single-frame super-resolution methods that we overviewed today.
-% ESRGAN, for example, operates on a single input image and is very easy to run on an
-% arbitrary picture you may want to use.
-% Face Upscaling Super Resolution
-% There are also task-specific super-resolution models, which I think is worth mentioning.
-% For instance, face-upscaling models use face priors to synthesize realistic details on
-% faces.
-% Basically, the models know what a face typically looks like and uses that information to hallucinate
-% the details.
-% As you can tell, those methods are absolutely not suitable for CSI purposes, since all the
-% details in the upscaled version are completely made up.
-% Alright, that's all for today.
-% I hope you liked it.
-% I put the links to all referenced papers in the description below.
-% Subscribe for more videos.
-% And as always, thanks for watching, stay tuned, and see you next time.
+\subsubsection{Ograniczenia Transformacji Fouriera}
+
+Zgodnie z zasadą nieoznaczoności Heisenberga nie można jednocześnie precyzyjnie określić i lokalizować zjawisk zarówno w dziedzinie czasu, jak i częstotliwości. W rezultacie, podczas gdy Transformata Fouriera oferuje doskonałą rozdzielczość częstotliwościową, traci na zdolności do lokalizacji zjawisk w czasie. Badając sygnał w dziedzinie częstotliwości, nie jesteśmy w stanie określić, kiedy występuje jaka częstotliwość.
+
+
+\subsection*{Funkcje Falkowe}
+
+% Funkcje falkowe, w odróżnieniu od transformacji Fouriera, nie są ograniczone do jednorodnej analizy częstotliwościowej. Ich główną zaletą jest zdolność do dostosowywania się do różnorodnych charakterystyk sygnału. Falki mogą być "rozciągane" lub "ściskane", co umożliwia dokładniejsze dopasowanie do lokalnych właściwości sygnału. Ta elastyczność pozwala na znacznie bardziej szczegółową analizę, szczególnie przydatną w detekcji i charakteryzacji lokalnych zjawisk czasowych i częstotliwościowych w sygnale.
+
+% Każda funkcja falkowa charakteryzuje się dwoma kluczowymi parametrami: skalą i translacją. Skala odpowiada za "rozciąganie" lub "ściskanie" falki, co wpływa na rozdzielczość częstotliwościową, natomiast translacja odpowiada za przesunięcie w czasie. To umożliwia precyzyjne lokalizowanie określonych cech sygnału zarówno w czasie, jak i częstotliwości.
+
+
+
+\subsubsection*{Transformacja Falkowa}
+
+% Transformacja falkowa to proces dekompozycji sygnału na zestaw funkcji falkowych. W przeciwieństwie do transformacji Fourierowskiej, która analizuje sygnał w kontekście czystych częstotliwości, transformacja falkowa rozkłada sygnał na serię "falek", które mogą być dostosowane do specyficznych cech sygnału.
+
+% Zastosowania transformacji falkowej są wszechstronne, począwszy od kompresji danych (jak w standardzie JPEG 2000), przez przetwarzanie obrazów, aż po detekcję i analizę nietrwałych zjawisk w sygnałach. Jest to szczególnie ważne w kontekście super rozdzielczości, gdzie precyzja w lokalizacji i charakterystyce sygnału jest kluczowa.
+
+% Transformacja falkowa jest również użyteczna w zadaniach, gdzie wymagana jest szybka zmiana skali lub adaptacyjna analiza sygnału, na przykład w detekcji zmian w sygnałach medycznych lub w analizie sygnałów sejsmicznych.
+
+\subsection*{Omawiane algorytmy}
