@@ -377,8 +377,8 @@ Dziedzina czasu odnosi się do analizy sygnału w zakresie czasu, co oznacza, ż
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.45\linewidth]{Rozdziały/02.Podstawy_teoretyczne/time-frequency-domain.png}
-    \caption{Porównanie dziedziny czasu i częstotliwości}
+    \includegraphics[width=0.47\linewidth]{Rozdziały/02.Podstawy_teoretyczne/time-frequency-domain.png}
+    \caption{Wizualizacja dziedziny czasu i częstotliwości}
     \label{fig:image22}
 \end{figure}
 
@@ -423,18 +423,143 @@ Transformacja Fouriera jest operacją odwracalną, co oznacza, że można ją wy
 
 \subsubsection{Ograniczenia Transformacji Fouriera}
 
-Zgodnie z zasadą nieoznaczoności Heisenberga nie można jednocześnie precyzyjnie określić i lokalizować zjawisk zarówno w dziedzinie czasu, jak i częstotliwości. W rezultacie, podczas gdy Transformata Fouriera oferuje doskonałą rozdzielczość częstotliwościową, traci na zdolności do lokalizacji zjawisk w czasie. Badając sygnał w dziedzinie częstotliwości, nie jesteśmy w stanie określić, kiedy występuje jaka częstotliwość.
+Zgodnie z zasadą nieoznaczoności Heisenberga nie można jednocześnie precyzyjnie określić i lokalizować zjawisk zarówno w dziedzinie czasu, jak i częstotliwości, zawsze mamy do czynienia z kompromisem. 
+\begin{equation*}
+    \Delta f \Delta t \geq 1
+\end{equation*}
+Możemy albo dokładnie określić wartość sygnału w czasie, albo dokładnie określić jego częstotliwość, ale nie możemy zrobić obu jednocześnie.
+
+W rezultacie, podczas gdy Transformata Fouriera oferuje doskonałą rozdzielczość częstotliwościową, traci na zdolności do lokalizacji zjawisk w czasie. Oznacza to, że badając sygnał wyłącznie w dziedzinie częstotliwości, wiemy jakie częstotliwości występują, ale nie jesteśmy w stanie określić kiedy występuje dana częstotliwość.
+
+Czy istnieje narzędzie pozwalające nam na dokładniejszą analizę sygnału? Kompromis pomiędzy czasem a częstotliwością jest nieunikniony, ale istnieje sposób na poprawę lokalizacji w czasie kosztem rozdzielczości częstotliwościowej? Odpowiedzią na te pytania jest transformacja falkowa.
 
 
 \subsection*{Funkcje Falkowe}
 
-% Funkcje falkowe, w odróżnieniu od transformacji Fouriera, nie są ograniczone do jednorodnej analizy częstotliwościowej. Ich główną zaletą jest zdolność do dostosowywania się do różnorodnych charakterystyk sygnału. Falki mogą być "rozciągane" lub "ściskane", co umożliwia dokładniejsze dopasowanie do lokalnych właściwości sygnału. Ta elastyczność pozwala na znacznie bardziej szczegółową analizę, szczególnie przydatną w detekcji i charakteryzacji lokalnych zjawisk czasowych i częstotliwościowych w sygnale.
+Gdy wykonujemy transformatę Fouriera rozdzielamy sygnał na sumę sinusoid i cosinusoid o różnych częstotliwościach. Funkcje falkowe są podobne do funkcji sinusoidalnych, ale różnią się od nich tym, że mają skończoną długość i są ograniczone do określonego obszaru [Rys \ref{fig:image27}, \ref{fig:image28}].
 
-% Każda funkcja falkowa charakteryzuje się dwoma kluczowymi parametrami: skalą i translacją. Skala odpowiada za "rozciąganie" lub "ściskanie" falki, co wpływa na rozdzielczość częstotliwościową, natomiast translacja odpowiada za przesunięcie w czasie. To umożliwia precyzyjne lokalizowanie określonych cech sygnału zarówno w czasie, jak i częstotliwości.
+\begin{figure}[ht]
+    \centering
+    \begin{minipage}[t]{0.45\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/sine_wave.png}
+        \caption{Sinusoida}
+        \label{fig:image27}
+    \end{minipage}
+    \hspace{0.5cm}
+    \begin{minipage}[t]{0.45\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/morlet_wavelet.png}
+        \caption{Falka Morlet}
+        \label{fig:image28}
+    \end{minipage}
+\end{figure}
+
+
+Funkcje falkowe są rodziną funkcji. Aby funkcja $\psi(t)$ była falką, musi spełniać następujące warunki:
+\begin{itemize}
+    \item Funkcja musi mieć zerową średnią, czyli całka z funkcji musi być równa 0 (powierzchnia poniżej krzywej musi być równa powierzchni powyżej krzywej):
+        \begin{equation*}
+            \int_{-\infty}^{+\infty} \Psi(t) d t=0
+        \end{equation*}
+    \item Funkcja musi mieć skończoną energię (to ograniczenie sprawia, że funkcja jest ograniczona do określonego obszaru):
+        \begin{equation*}
+            \int_{-\infty}^{+\infty}|\Psi(t)|^{2} d t<\infty
+        \end{equation*}
+\end{itemize}
+
+Przykładem może być falka Morlet, która jest jedną z najczęściej stosowanych funkcji falkowych. Falka Morlet jest funkcją sinusoidalną, która jest przemnożona przez funkcję Gaussa. Falka Morlet jest zdefiniowana następująco:
+\begin{equation*}
+    \Psi(t)=k_0 \cdot \cos (\omega t) \cdot e^{-t^2 / 2}
+\end{equation*}
+
+Składa się ona więc z funkcji cosinus i funkcji Gaussa. Funkcja Gaussa jest odpowiedzialna za ograniczenie falki do określonego obszaru, natomiast funkcja cosinus jest odpowiedzialna za określenie częstotliwości falki.
+
+\begin{figure}[ht]
+    \centering
+    \begin{minipage}[t]{0.9\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/morlet_e}
+        \caption{Falka Morlet (część rzeczywista)}
+        \label{fig:image29}
+    \end{minipage}
+\end{figure}
+
+Inne funkcje falkowe:
+
+\begin{figure}[ht]
+    \centering
+    \begin{minipage}[t]{0.3\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/wavelet_cmor1.5-1.0.png}
+        \caption{Falka Morlet}
+        \label{fig:image30}
+    \end{minipage}
+    \hspace{0.5cm}
+    \begin{minipage}[t]{0.3\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/wavelet_fbsp1-1.5-1.0.png}
+        \caption{Falka fbsp}
+        \label{fig:image31}
+    \end{minipage}
+    \hspace{0.5cm}
+    \begin{minipage}[t]{0.3\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/wavelet_shan1.5-1.0.png}
+        \caption{Falka Shannon}
+        \label{fig:image32}
+    \end{minipage}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \begin{minipage}[t]{0.3\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/wavelet_mexh.png}
+        \caption{Falka Mexican Hat}
+        \label{fig:image33}
+    \end{minipage}
+    \hspace{0.5cm}
+    \begin{minipage}[t]{0.3\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/wavelet_morl.png}
+        \caption{Falka Morlet}
+        \label{fig:image34}
+    \end{minipage}
+    \hspace{0.5cm}
+    \begin{minipage}[t]{0.3\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/wavelet_gaus1.png}
+        \caption{Falka Gaussa}
+        \label{fig:image35}
+    \end{minipage}
+\end{figure}
+
+
+\subsection*{Transformacja Falkowa}
 
 
 
-\subsubsection*{Transformacja Falkowa}
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+          xlabel={Czas},
+          ylabel={Częstotliwość},
+          zlabel={Amplituda},
+          view={60}{50},
+          colormap/viridis,
+        ]
+        \addplot3[surf, samples=30 ] file {Rozdziały/02.Podstawy_teoretyczne/wavelet_coefficients_magnitude.txt};
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Transformata falkowa sygnału złożonego z trzech sinusoid i szumu}
+    % \label{fig:image36}
+\end{figure}
 
 % Transformacja falkowa to proces dekompozycji sygnału na zestaw funkcji falkowych. W przeciwieństwie do transformacji Fourierowskiej, która analizuje sygnał w kontekście czystych częstotliwości, transformacja falkowa rozkłada sygnał na serię "falek", które mogą być dostosowane do specyficznych cech sygnału.
 
