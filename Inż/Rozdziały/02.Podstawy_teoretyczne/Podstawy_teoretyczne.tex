@@ -454,7 +454,7 @@ Gdy wykonujemy transformatę Fouriera rozdzielamy sygnał na sumę sinusoid i co
 \end{figure}
 
 
-Funkcje falkowe są rodziną funkcji. Aby funkcja $\psi(t)$ była falką, musi spełniać następujące warunki:
+Funkcje falkowe są rodziną funkcji. Aby funkcja $\Psi(t)$ była falką, musi spełniać następujące warunki:
 \begin{itemize}
     \item Funkcja musi mieć zerową średnią, czyli całka z funkcji musi być równa 0 (powierzchnia poniżej krzywej musi być równa powierzchni powyżej krzywej):
         \begin{equation*}
@@ -466,20 +466,42 @@ Funkcje falkowe są rodziną funkcji. Aby funkcja $\psi(t)$ była falką, musi s
         \end{equation*}
 \end{itemize}
 
-Przykładem może być falka Morlet, która jest jedną z najczęściej stosowanych funkcji falkowych. Falka Morlet jest funkcją sinusoidalną, która jest przemnożona przez funkcję Gaussa. Falka Morlet jest zdefiniowana następująco:
+Przykładem może być falka Morlet, która jest jedną z najczęściej stosowanych funkcji falkowych. Falka Morlet jest funkcją sinusoidalną, która jest przemnożona przez funkcję Gaussa. Rzeczywista część falki Morlet jest zdefiniowana następująco:
 \begin{equation*}
-    \Psi(t)=k_0 \cdot \cos (\omega t) \cdot e^{-t^2 / 2}
+    \Psi(t)=k_0 \cdot \cos (\omega t) \cdot e^{-\frac{t^2}{2}}
 \end{equation*}
 
-Składa się ona więc z funkcji cosinus i funkcji Gaussa. Funkcja Gaussa jest odpowiedzialna za ograniczenie falki do określonego obszaru, natomiast funkcja cosinus jest odpowiedzialna za określenie częstotliwości falki.
+Część rzeczywista Morlet składa się funkcji cosinus (określająca częstotliwość falki) i funkcji Gaussa, która jest odpowiedzialna za ograniczenie falki do określonego obszaru.
 
 \begin{figure}[ht]
     \centering
-    \begin{minipage}[t]{0.9\linewidth}
+    \begin{minipage}[t]{0.7\linewidth}
         \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/morlet_e}
         \caption{Falka Morlet (część rzeczywista)}
         \label{fig:image29}
     \end{minipage}
+\end{figure}
+
+Falka Morlet jest funkcją zespoloną, co oznacza, że składa się z części rzeczywistej i urojonej. Całość jest zdefiniowana następująco:
+\begin{equation*}
+    \Psi(t)=k e^{i \omega_0 t} \cdot e^{-\frac{t^2}{2}}
+\end{equation*}
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[scale=0.8]
+        \begin{axis}[
+          ylabel={Re($\Psi$)},
+          zlabel={Im($\Psi$)},
+          xlabel={Czas},
+          view={155}{30},
+          colormap/viridis,
+        ]
+        \addplot3+[mesh, samples=30] table {Rozdziały/02.Podstawy_teoretyczne/wave_data.txt}; % Wczytanie danych
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Falka Morlet w przestrzeni 3D}
+    \label{fig:image30}
 \end{figure}
 
 Inne funkcje falkowe:
@@ -487,84 +509,122 @@ Inne funkcje falkowe:
 \begin{figure}[ht]
     \centering
     \begin{minipage}[t]{0.3\linewidth}
-        \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/wavelet_cmor1.5-1.0.png}
-        \caption{Falka Morlet}
-        \label{fig:image30}
-    \end{minipage}
-    \hspace{0.5cm}
-    \begin{minipage}[t]{0.3\linewidth}
         \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/wavelet_fbsp1-1.5-1.0.png}
         \caption{Falka fbsp}
         \label{fig:image31}
     \end{minipage}
     \hspace{0.5cm}
     \begin{minipage}[t]{0.3\linewidth}
-        \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/wavelet_shan1.5-1.0.png}
-        \caption{Falka Shannon}
-        \label{fig:image32}
-    \end{minipage}
-\end{figure}
-
-\begin{figure}[ht]
-    \centering
-    \begin{minipage}[t]{0.3\linewidth}
         \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/wavelet_mexh.png}
         \caption{Falka Mexican Hat}
-        \label{fig:image33}
-    \end{minipage}
-    \hspace{0.5cm}
-    \begin{minipage}[t]{0.3\linewidth}
-        \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/wavelet_morl.png}
-        \caption{Falka Morlet}
-        \label{fig:image34}
+        \label{fig:image32}
     \end{minipage}
     \hspace{0.5cm}
     \begin{minipage}[t]{0.3\linewidth}
         \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/wavelet_gaus1.png}
         \caption{Falka Gaussa}
-        \label{fig:image35}
+        \label{fig:image33}
     \end{minipage}
 \end{figure}
 
 
 \subsection*{Transformacja Falkowa}
 
+Transformacja falkowa to proces dekompozycji sygnału na zestaw funkcji falkowych. W przeciwieństwie do transformacji Fouriera, która analizuje sygnał w kontekście czystych częstotliwości, transformacja falkowa rozkłada sygnał na serię "falek", które są przesuwane w czasie i częstotliwości, aby zbadać charakterystykę sygnału.
 
 
+Transformację falkową przedstawiamy jako:
 
+\begin{equation*}
+    \tilde{s}_{\Psi}(a, b)=\frac{1}{\sqrt{a}} \int_{-\infty}^{\infty} s(t) \Psi\left(\frac{t-b}{a}\right) \mathrm{dt},
+\end{equation*}
 
-
-
-
-
-
-
-
-
-
+gdzie:
+\begin{itemize}
+    \item $s(t)$ - sygnał wejściowy,
+    \item $\Psi\left(\frac{t-b}{a}\right)$ - funkcja falkowa,
+    \item $b$ - parametr przesunięcia (w dziedzinie czasu) [Rys \ref{fig:image35}].
+    \item $a$ - parametr skali (przesunięcie w dziedzinie częstotliwości) [Rys \ref{fig:image36}],
+\end{itemize}
 
 
 \begin{figure}[ht]
     \centering
-    \begin{tikzpicture}
+    \begin{minipage}[t]{0.47\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/morlet_bez_przesuniecia.png}
+        \caption{Brak przesunięcia}
+        \label{fig:image34}
+    \end{minipage}
+    \centering
+    \begin{minipage}[t]{0.47\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/time_shift_morlet.png}
+        \caption{Przesunięcie w czasie}
+        \label{fig:image35}
+    \end{minipage}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \begin{minipage}[t]{0.46\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/f_shift_morlet.png}
+        \caption{Przesunięcie w częstotliwości}
+        \label{fig:image36}
+    \end{minipage}
+    \centering
+    \begin{minipage}[t]{0.46\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/t_and_f_shift_morlet.png}
+        \caption{Przesunięcie w $t$ i $f$}
+        \label{fig:image37}
+    \end{minipage}
+\end{figure}
+
+
+Wynikiem transformacji falkowej jest mapa współczynników, które są zależne od parametrów $a$ i $b$, wybranej funkcji falkowej oraz sygnału wejściowego. Dla danych wartości $a$ i $b$ współczynnik jest miarą podobieństwa pomiędzy falką a fragmentem sygnału. Im większa wartość współczynnika, tym większe podobieństwo.
+
+\begin{equation*}
+    T\left(a,b\right) = \int_{-\infty}^{+\infty} y(t) \cdot \Psi_{a, b}(t) d t
+\end{equation*}
+
+W rezultacie funkcja $T\left(a,b\right)$ składa się na mapę współczynników, która jest reprezentacją sygnału w dziedzinie czasu i częstotliwości. Mapę taką nazywamy skalogramem, skalogram przykładowego sygnału przedstawiono na Rys \ref{fig:image38} i \ref{fig:image39}.
+
+\begin{figure}[ht]
+    \centering
+    \begin{minipage}[t]{0.9\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/skalogram.png}
+        \caption{Skalogram falkowy w zestawieniu z sygnałem wejściowym}
+        \label{fig:image38}
+    \end{minipage}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[scale=0.95]
         \begin{axis}[
           xlabel={Czas},
           ylabel={Częstotliwość},
           zlabel={Amplituda},
-          view={60}{50},
+          view={-40}{40},
           colormap/viridis,
         ]
-        \addplot3[surf, samples=30 ] file {Rozdziały/02.Podstawy_teoretyczne/wavelet_coefficients_magnitude.txt};
+        \addplot3[surf] file {Rozdziały/02.Podstawy_teoretyczne/wavelet_coefficients_magnitude.txt};
         \end{axis}
     \end{tikzpicture}
-    \caption{Transformata falkowa sygnału złożonego z trzech sinusoid i szumu}
-    % \label{fig:image36}
+    \caption{Skalogram falkowy w przestrzeni 3D}
+    \label{fig:image39}
 \end{figure}
 
-% Transformacja falkowa to proces dekompozycji sygnału na zestaw funkcji falkowych. W przeciwieństwie do transformacji Fourierowskiej, która analizuje sygnał w kontekście czystych częstotliwości, transformacja falkowa rozkłada sygnał na serię "falek", które mogą być dostosowane do specyficznych cech sygnału.
+Rozdzielczość czasu i rozdzielczości w transformacji falkowej nie jest idealna, widać że mamy do czynienia z kompromisem pomiędzy tymi wartościami, szczególnie przy analizy zwykłej funkcji sinus. Skalogram dla sinusa [Rys \ref{fig:image40}] nie przedstawia jednoznacznie częstotliwości sygnału, jest to jedynie przybliżenie co widać na krawędziach skalogramu.
 
-% Zastosowania transformacji falkowej są wszechstronne, począwszy od kompresji danych (jak w standardzie JPEG 2000), przez przetwarzanie obrazów, aż po detekcję i analizę nietrwałych zjawisk w sygnałach. Jest to szczególnie ważne w kontekście super rozdzielczości, gdzie precyzja w lokalizacji i charakterystyce sygnału jest kluczowa.
+\begin{figure}[ht]
+    \centering
+    \begin{minipage}[t]{0.57\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/skalogram_sinus.png}
+        \caption{Niedokładność danych na skalogramie}
+        \label{fig:image40}
+    \end{minipage}
+\end{figure}
 
-% Transformacja falkowa jest również użyteczna w zadaniach, gdzie wymagana jest szybka zmiana skali lub adaptacyjna analiza sygnału, na przykład w detekcji zmian w sygnałach medycznych lub w analizie sygnałów sejsmicznych.
 
-\subsection*{Omawiane algorytmy}
+\subsubsection{Dyskretna Transformacja Falkowa}
+
+W praktyce, transformacja falkowa jest stosowana do analizy sygnałów cyfrowych, które są dyskretne w czasie. W takim przypadku, transformacja falkowa jest dyskretna, co oznacza, że sygnał jest analizowany w dyskretnych punktach czasu. W rezultacie, transformacja falkowa jest dyskretną funkcją, która jest obliczana w dyskretnych punktach czasu i częstotliwości.

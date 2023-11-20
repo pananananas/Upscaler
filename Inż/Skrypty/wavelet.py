@@ -1,15 +1,24 @@
 import numpy as np
 import pywt
 import matplotlib.pyplot as plt
+from matplotlib import gridspec
 
 # Generating a more complex signal
-t = np.linspace(0, 1, 1000, endpoint=False)
-# Combining multiple sine waves
-signal = np.sin(2 * np.pi * 5 * t) + np.sin(2 * np.pi * 10 * t) + np.sin(2 * np.pi * 20 * t)
+t = np.linspace(0, 1, 700, endpoint=False)
 
-# Adding noise
-noise = np.random.normal(0, 0.5, signal.shape)
-signal += noise
+chirp_signal = np.sin(2 * np.pi * t**2)
+
+# Square wave (periodic)
+square_wave = np.sign(np.sin(2 * np.pi * 3 * t))
+
+# Random noise
+noise = np.random.normal(0, 0.2, t.shape)
+
+# Combining the signals
+signal = chirp_signal + square_wave + noise
+
+# signal = typical sinus
+# signal = np.sin(2 * np.pi * 5 * t)
 
 # Performing Continuous Wavelet Transform
 scales = np.arange(1, 128)
@@ -18,21 +27,32 @@ coefficients, frequencies = pywt.cwt(signal, scales, 'cmor')
 # Calculate the magnitude of the coefficients
 coefficients_magnitude = np.abs(coefficients)
 
-# Preparing data for LaTeX (time, scale, magnitude)
-n = 100
-X, Y = np.meshgrid(t[::n], scales)
-data_for_latex = np.column_stack((X.ravel(), Y.ravel(), np.abs(coefficients[:, ::n]).ravel()))
+# Set up figure and axis using gridspec
+fig = plt.figure(figsize=(10, 8))
+gs = gridspec.GridSpec(2, 2, width_ratios=[1, 0.05], height_ratios=[1, 4], hspace=0.05)
 
-# Saving the data for LaTeX
-np.savetxt('Inż/Rozdziały/02.Podstawy_teoretyczne/wavelet_coefficients_magnitude.txt', data_for_latex)
+# Signal plot
+ax0 = plt.subplot(gs[0, 0])
+ax0.plot(t, signal)
+# make ax0 start at 0 and end at 1
+ax0.set_xlim(0, 1)
+# ax0.set_title("Sygnał")
+# ax0.set_xlabel("Czas")
+ax0.set_ylabel("Amplituda")
+ax0.set_xticks([])  # Remove x-tick labels for the top plot
 
-# Optional: Visualizing the wavelet transform
-plt.imshow(coefficients_magnitude, extent=[0, 1, 1, 128], cmap='PRGn', aspect='auto',
-           vmax=coefficients_magnitude.max(), vmin=coefficients_magnitude.min())
-plt.title("Wavelet Transform of a Complex Signal with Noise")
-plt.xlabel("Time")
-plt.ylabel("Scale")
-plt.colorbar(label="Magnitude")
+# Scalogram plot
+ax1 = plt.subplot(gs[1, 0])
+im = ax1.imshow(coefficients_magnitude, extent=[0, 1, 1, 128], cmap='PRGn', aspect='auto',
+                vmax=coefficients_magnitude.max(), vmin=coefficients_magnitude.min())
+# ax1.set_title("Skalogram Falkowy")
+ax1.set_xlabel("Czas")
+ax1.set_ylabel("Częstotliwość")
+
+# Colorbar
+cbar_ax = plt.subplot(gs[:, 1])
+fig.colorbar(im, cax=cbar_ax, label="Amplituda")
+
 plt.show()
 
 # Saving the magnitudes for LaTeX
