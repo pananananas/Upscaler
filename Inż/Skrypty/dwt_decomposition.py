@@ -39,7 +39,7 @@ def wavelet_decomposition(image_path, wavelet='haar', level=1):
 
     # Prepare plot
     fig, axes = plt.subplots(2, 2, figsize=(8, 8))
-    titles = ['Średnia (LL)', 'Horizontal (LH)', 'Vertical (HL)', 'Diagonal (HH)']
+    titles = ['LL', 'LH', 'HL', 'HH ']
 
     # Plot each sub-band
     for i, ax in enumerate(axes.flat):

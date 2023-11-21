@@ -249,7 +249,7 @@ export default defineComponent({
     methods: {
         onDragOver(event: Event) {
             event.preventDefault();
-            // TODO Change styles of the dropzone when an item is dragged over it
+            //  Change styles of the dropzone when an item is dragged over it
             console.log("Drag over");
             this.calculateMousePos(event as MouseEvent);
             // this.animateCursorCircles();         
