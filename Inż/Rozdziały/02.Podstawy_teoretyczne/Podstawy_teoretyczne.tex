@@ -605,6 +605,9 @@ W rezultacie funkcja $ \tilde{s}_{\Psi}\left(a,b\right)$ składa się na mapę w
           zlabel={Amplituda},
           view={-40}{40},
           colormap/viridis,
+          yticklabel=\empty,            % Hide y-axis numbers
+          xticklabel=\empty,            % Hide x-axis numbers
+          zticklabel=\empty,            % Hide z-axis numbers
         ]
         \addplot3[surf] file {Rozdziały/02.Podstawy_teoretyczne/Obrazy/wavelet_coefficients_magnitude.txt};
         \end{axis}
@@ -612,12 +615,12 @@ W rezultacie funkcja $ \tilde{s}_{\Psi}\left(a,b\right)$ składa się na mapę w
     \caption{Skalogram falkowy w przestrzeni 3D}
     \label{fig:image39}
 \end{figure}
-
+\newpage
 Rozdzielczość czasu i rozdzielczości w transformacji falkowej nie jest idealna, widać że mamy do czynienia z kompromisem pomiędzy tymi wartościami, szczególnie przy analizy zwykłej funkcji sinus. Skalogram dla sinusa [Rys \ref{fig:image40}] nie przedstawia jednoznacznie częstotliwości sygnału, jest to jedynie przybliżenie co widać na krawędziach skalogramu.
 
 \begin{figure}[ht]
     \centering
-    \begin{minipage}[t]{0.57\linewidth}
+    \begin{minipage}[t]{0.55\linewidth}
         \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/Obrazy/skalogram_sinus.png}
         \caption{Niedokładność danych na skalogramie}
         \label{fig:image40}
@@ -627,7 +630,7 @@ Rozdzielczość czasu i rozdzielczości w transformacji falkowej nie jest idealn
 \newpage
 \subsubsection{Dyskretna Transformacja Falkowa}
 
-Dyskretna transformacja falkowa (DWT) jest dyskretną wersją transformacji falkowej. W przeciwieństwie do transformacji falkowej, która jest operacją ciągłą, DWT jest operacją dyskretną, co oznacza, że działa na dyskretnych danych wejściowych. DWT jest również bardziej efektywna obliczeniowo niż transformacja falkowa, co czyni ją bardziej praktyczną.
+Dyskretna transformacja falkowa (DWT) jest dyskretną wersją transformacji falkowej, czyli działa na dyskretnych danych wejściowych. Przykładem takich danych może być cyfrowy sygnał taki jak obraz lub dźwięk. 
 
 Dla sygnałów dyskretnych, transformacja falkowa jest zdefiniowana jako:
 \begin{equation*}
@@ -636,11 +639,11 @@ Dla sygnałów dyskretnych, transformacja falkowa jest zdefiniowana jako:
 gdzie:
 \begin{itemize}
     \item $x[n]$ - sygnał dyskretny,
-    \item $\varphi[n]$ - funkcja falkowa,
+    \item $\varphi[n]$ - dyskretna funkcja falkowa,
     \item $a$ - parametr skali,
     \item $j$ - poziom dekompozycji,
+    \item $N$ - liczba próbek sygnału,
     \item $m$ - indeks próbki.
-    \item $N$ - liczba próbek sygnału.
 \end{itemize}
 
 Aby wykonać dyskretną transformację falkową sygnał $x[n] \in \mathbb{R}^N$ jest przepuszczany przez filtr górnoprzepustowy $G_H[n]$ i filtr dolnoprzepustowy $G_L[n]$, które są definiowane jako (w przypadku falki Haara):
@@ -649,19 +652,60 @@ Aby wykonać dyskretną transformację falkową sygnał $x[n] \in \mathbb{R}^N$ 
     G_H[n]=\left\{\begin{array}{ll}
     1, & n=0 \\
     -1, & n=1 \\
-    0, & \text { otherwise }
+    0, & \text {w przeciwnym razie}
     \end{array}, 
     G_L[n]= \begin{cases}1, & n=0,1 \\
-    0, & \text { otherwise }\end{cases}\right.
+    0, & \text {w przeciwnym razie}\end{cases}\right.
 \end{equation*}
 
 Po filtrowaniu połowa próbek może zostać wyeliminowana zgodnie z regułą Nyquista, ponieważ sygnał ma teraz pasmo częstotliwości $\frac{\pi}{2}$ radianów zamiast $/pi$.
 
+Obraz $x$ jest reprezentowany jako sygnał $2 D$ o indeksach $[n,m]$, gdzie $x[n,m]$ jest wartością piksela w $n$-tej kolumnie i $m$-tym wierszu.
+
+Sygnał dwuwymiarowy $x[n,m]$ może być traktowany jako dwa sygnały jednej zmiennej: $x[n,:]$ w $n$-tej kolumnie i wśród kolumn $x[:,m]$ w $m$-tym wierszu. Transformacja falkowa o pierwszym stopniu dekompozycji może być wykonywana w sposób przedstawiony na Rys \ref{fig:image41}.
+
 \begin{figure}[ht]
     \centering
-    \begin{minipage}[t]{0.7\linewidth}
+    \begin{minipage}[t]{0.6\linewidth}
         \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/Obrazy/DWT_dekompozycja.png}
-        \caption{Dekompozycja DWT}
+        \caption{Dekompozycja DWT 1-poziomu}
         \label{fig:image41}
     \end{minipage}
 \end{figure}
+
+Przykładowa dekompozycja pierwszego stopnia wykonana na obrazie \textbf{comic.png} widoczna jest na Rys \ref{fig:image42} - niskie częstotliwości na obrazie, \ref{fig:image43} - poziome detale, \ref{fig:image44} - pionowe detale, \ref{fig:image45} - detale diagonalne. Obrazy po dekompozycji są tej samej wielkości co obraz wejściowy. 
+
+Jeśli chcemy wykonać odwrotną transformację falkową na obrazie, wystarczy wykonać kroki z Rys \ref{fig:image41}. 
+
+
+\begin{figure}[ht]
+    \centering
+    \begin{minipage}[t]{0.35\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/Obrazy/level_1_decomposition_LL.png}
+        \caption{LL (niskie częstotliwości)}
+        \label{fig:image42}
+    \end{minipage}
+    \centering
+    \begin{minipage}[t]{0.35\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/Obrazy/level_1_decomposition_LH.png}
+        \caption{LH (poziome detale)}
+        \label{fig:image43}
+    \end{minipage}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \begin{minipage}[t]{0.35\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/Obrazy/level_1_decomposition_HL.png}
+        \caption{HL (pionowe detale)}
+        \label{fig:image44}
+    \end{minipage}
+    \centering
+    \begin{minipage}[t]{0.35\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/Obrazy/level_1_decomposition_HH.png}
+        \caption{HH (diagonalne detale)}
+        \label{fig:image45}
+    \end{minipage}
+\end{figure}
+
+
