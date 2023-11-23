@@ -1,5 +1,8 @@
 \chapter{Podstawy teoretyczne}
 
+TODO: dodaj ref do wzorów
+TODO: napisz o interpolacji dwusześciennej (bicubic)
+
 Celem rozdziału jest przedstawienie podstawowych definicji, wytłumaczenie aparatu matematycznego oraz metod wykorzystywanych w algorytmach na których skupia się praca. Dodatkowo ma on na celu ułatwienie dalszego czytania poprzez zapoznanie czytelnika z przyjętymi konwencjami, oznaczeniami oraz symbolami, które mogą pojawić się w kolejnych rozdziałach. 
 
 
@@ -430,9 +433,9 @@ Transformacja Fouriera jest operacją odwracalną, co oznacza, że można ją wy
 \subsubsection{Ograniczenia Transformacji Fouriera}
 
 Zgodnie z zasadą nieoznaczoności Heisenberga nie można jednocześnie precyzyjnie określić i lokalizować zjawisk zarówno w dziedzinie czasu, jak i częstotliwości, zawsze mamy do czynienia z kompromisem. 
-\begin{equation*}
+\begin{equation}
     \Delta f \Delta t \geq 1
-\end{equation*}
+\end{equation}
 Możemy albo dokładnie określić wartość sygnału w czasie, albo dokładnie określić jego częstotliwość, ale nie możemy zrobić obu jednocześnie.
 
 W rezultacie, podczas gdy Transformata Fouriera oferuje doskonałą rozdzielczość częstotliwościową, traci na zdolności do lokalizacji zjawisk w czasie. Oznacza to, że badając sygnał wyłącznie w dziedzinie częstotliwości, wiemy jakie częstotliwości występują, ale nie jesteśmy w stanie określić kiedy występuje dana częstotliwość.
@@ -463,19 +466,19 @@ Gdy wykonujemy transformatę Fouriera rozdzielamy sygnał na sumę sinusoid i co
 Funkcje falkowe są rodziną funkcji. Aby funkcja $\Psi(t)$ była falką, musi spełniać następujące warunki:
 \begin{itemize}
     \item Funkcja musi mieć zerową średnią, czyli całka z funkcji musi być równa 0 (powierzchnia poniżej krzywej musi być równa powierzchni powyżej krzywej):
-        \begin{equation*}
+        \begin{equation}
             \int_{-\infty}^{+\infty} \Psi(t) d t=0
-        \end{equation*}
+        \end{equation}
     \item Funkcja musi mieć skończoną energię (to ograniczenie sprawia, że funkcja jest ograniczona do określonego obszaru):
-        \begin{equation*}
+        \begin{equation}
             \int_{-\infty}^{+\infty}|\Psi(t)|^{2} d t<\infty
-        \end{equation*}
+        \end{equation}
 \end{itemize}
 
 Przykładem może być falka Morlet, która jest jedną z najczęściej stosowanych funkcji falkowych. Falka Morlet jest funkcją sinusoidalną, która jest przemnożona przez funkcję Gaussa. Rzeczywista część falki Morlet jest zdefiniowana następująco:
-\begin{equation*}
+\begin{equation}
     \Psi(t)=k_0 \cdot \cos (\omega t) \cdot e^{-\frac{t^2}{2}}
-\end{equation*}
+\end{equation}
 
 Część rzeczywista Morlet składa się funkcji cosinus (określająca częstotliwość falki) i funkcji Gaussa, która jest odpowiedzialna za ograniczenie falki do określonego obszaru.
 
@@ -489,9 +492,9 @@ Część rzeczywista Morlet składa się funkcji cosinus (określająca częstot
 \end{figure}
 
 Falka Morlet jest funkcją zespoloną, co oznacza, że składa się z części rzeczywistej i urojonej. Całość jest zdefiniowana następująco:
-\begin{equation*}
+\begin{equation}
     \Psi(t)=k e^{i \omega_0 t} \cdot e^{-\frac{t^2}{2}}
-\end{equation*}
+\end{equation}
 
 \begin{figure}[ht]
     \centering
@@ -541,9 +544,9 @@ Transformacja falkowa to proces dekompozycji sygnału na zestaw funkcji falkowyc
 
 Transformację falkową przedstawiamy jako:
 
-\begin{equation*}
+\begin{equation}
     \tilde{s}_{\Psi}(a, b)=\frac{1}{\sqrt{a}} \int_{-\infty}^{\infty} s(t) \Psi\left(\frac{t-b}{a}\right) \mathrm{dt},
-\end{equation*}
+\end{equation}
 
 gdzie:
 \begin{itemize}
@@ -587,9 +590,9 @@ gdzie:
 
 Wynikiem transformacji falkowej jest mapa współczynników, które są zależne od parametrów $a$ i $b$, wybranej funkcji falkowej oraz sygnału wejściowego. Dla danych wartości $a$ i $b$ współczynnik jest miarą podobieństwa pomiędzy falką a fragmentem sygnału. Im większa wartość współczynnika, tym większe podobieństwo.
 
-% \begin{equation*}
+% \begin{equation}
 %     T\left(a,b\right) = \int_{-\infty}^{+\infty} y(t) \cdot \Psi_{a, b}(t) d t
-% \end{equation*}
+% \end{equation}
 
 W rezultacie funkcja $ \tilde{s}_{\Psi}\left(a,b\right)$ składa się na mapę współczynników, która jest reprezentacją sygnału w dziedzinie czasu i częstotliwości. Mapę taką nazywamy skalogramem, skalogram przykładowego sygnału przedstawiono na Rys \ref{fig:image38} i \ref{fig:image39}.
 
@@ -639,9 +642,9 @@ Rozdzielczość czasu i rozdzielczości w transformacji falkowej nie jest idealn
 Dyskretna transformacja falkowa (DWT) jest dyskretną wersją transformacji falkowej, czyli działa na dyskretnych danych wejściowych. Przykładem takich danych może być cyfrowy sygnał taki jak obraz lub dźwięk. 
 
 Dla sygnałów dyskretnych, transformacja falkowa jest zdefiniowana jako:
-\begin{equation*}
+\begin{equation}
     \mathrm{D}\left(m, a^j\right)=\frac{1}{\sqrt{a^j}} \sum_{n=0}^{N-1} x\varphi^*[n] \left(\frac{n-m}{a^j}\right),
-\end{equation*}
+\end{equation}
 gdzie:
 \begin{itemize}
     \item $x[n]$ - sygnał dyskretny,
@@ -654,7 +657,7 @@ gdzie:
 
 Aby wykonać dyskretną transformację falkową sygnał $x[n] \in \mathbb{R}^N$ jest przepuszczany przez filtr górnoprzepustowy $G_H[n]$ i filtr dolnoprzepustowy $G_L[n]$, które są definiowane jako (w przypadku falki Haara):
 
-\begin{equation*}
+\begin{equation}
     G_H[n]=\left\{\begin{array}{ll}
     1, & n=0 \\
     -1, & n=1 \\
@@ -662,7 +665,7 @@ Aby wykonać dyskretną transformację falkową sygnał $x[n] \in \mathbb{R}^N$ 
     \end{array}, 
     G_L[n]= \begin{cases}1, & n=0,1 \\
     0, & \text {w przeciwnym razie}\end{cases}\right.
-\end{equation*}
+\end{equation}
 
 Po filtrowaniu połowa próbek może zostać wyeliminowana zgodnie z regułą Nyquista, ponieważ sygnał ma teraz pasmo częstotliwości $\frac{\pi}{2}$ radianów zamiast $/pi$.
 

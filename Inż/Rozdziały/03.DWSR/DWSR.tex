@@ -41,36 +41,126 @@ Na problem super-rozdzielczości mozemy spojrzeć jak na problem rekonstrukcji d
 
 
 Korzystając z falki Haar, współczynniki 2dDWT można zapisać jako:
-\begin{equation*}
+\begin{equation}
     \left\{\begin{array}{l}
     A=a+b+c+d \\
     B=a-b+c-d \\
     C=a+b-c-d \\
     D=a-b-c+d
     \end{array}\right.
-\end{equation*}
+\end{equation}
 gdzie: 
 \begin{itemize}
-    \item $A, B, C, D$ są pikselami zlokalizowanymi w siatce $2 \times  2$ w lewym górnym rogu obrazu HR,
-    \item $a$ jest pikselem zlokalizowanym w lewym górnym rogu obrazu LL,
-    \item $b$ jest pikselem zlokalizowanym w lewym górnym rogu obrazu HL,
-    \item $c$ jest pikselem zlokalizowanym w lewym górnym rogu obrazu LH,
-    \item $d$ jest pikselem zlokalizowanym w lewym górnym rogu obrazu HH.
+    \item $A, B, C, D$ są pikselami w siatce $2 \times  2$ w lewym górnym rogu obrazu HR,
+    \item $a$ jest pikselem w lewym górnym rogu obrazu LL,
+    \item $b$ jest pikselem w lewym górnym rogu obrazu HL,
+    \item $c$ jest pikselem w lewym górnym rogu obrazu LH,
+    \item $d$ jest pikselem w lewym górnym rogu obrazu HH.
 \end{itemize}
 
 Dlatego przy pomocy transformacji falkowej, problem SR staje się predykcją współczynników falkowych.
 
+\subsection*{Struktura sieci}
 
-\section{Kluczowe cechy i innowacje}
+\begin{figure}[ht]
+    \centering
+    \begin{minipage}[t]{0.9\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/03.DWSR/Obrazy/strultura_DWSR.png}  
+        \caption{Struktura sieci DWSR}
+        \label{fig:image49}
+    \end{minipage}
+\end{figure}
+
+Strukturę omawianej sieci \cite{guo2017deep} zilustrowano na Rys \ref{fig:image49}. Proponowana sieć ma głęboką strukturę z dwiema warstwami wejściowymi i wyjściowymi z 4 kanałami. Podczas gdy większość metod SR opartych na głębokim uczeniu ma tylko jeden kanał wejściowy i wyjściowy, przedstawiana sieć bierze pod uwagę cztery kanały wejściowe i generuje cztery odpowiadające im kanały na wyjściu. 
+
+W pierwszej warstwie znajdują się 64 filtry o rozmiarze $4 \times  3 \times 3$, a w ostatniej 4 filtry o rozmiarze $64 \times  3 \times 3$. W środkowej części sieci znajduje się N warstw ukrytych o tym samym rozmiarze z $64 \times  3 \times 3 \times 64$ filtrami każda. Dane wyjściowe każdej warstwy, z wyjątkiem warstwy wyjściowej, są podawane do funkcji aktywacji ReLU w celu wygenerowania nieliniowej mapy aktywacji.
 
 
-Dyskusja na temat głównych innowacyjnych rozwiązań zastosowanych w DWSR i ich wpływu na efektywność metody.
+\section{Proces treningu}
+
+Obrazy treningowe o niskiej rozdzielczości są powiększane przez interpolację dwusześcienną (omawianą w poprzednim rozdziale). Następnie powiększone obrazy LR są przetwarzane przez 2dDWT z falką Haara w celu uzyskania czterech podpasm LR ($LRSB$), które są oznaczone jako:
+
+\begin{equation}
+    L R S B = \left\{ LA, LV, LH, LD \right\} := 2dDWT\left\{LR\right\}, 
+\end{equation}
+
+gdzie:
+\begin{itemize}
+    \item $LA$ - współczynniki LL,
+    \item $LV$ - współczynniki HL,
+    \item $LH$ - współczynniki LH,
+    \item $LD$ - współczynniki HH.
+\end{itemize}
+
+Transformacja jest aplikowana w podobny sposób do obrazów o wysokiej rozdzielczości, aby uzyskać cztery podpasma HR ($HRSB$), które są oznaczone jako:
+
+\begin{equation}
+    H R S B = \left\{ HA, HV, HH, HD \right\} := 2dDWT\left\{HR\right\},
+\end{equation}
+
+gdzie:
+\begin{itemize}
+    \item $HA$ - współczynniki LL,
+    \item $HV$ - współczynniki HL,
+    \item $HH$ - współczynniki LH,
+    \item $HD$ - współczynniki HH.
+\end{itemize}
+
+Następnie różnicę $\Delta SB$ między $LRSB$ i $HRSB$ można zapisać jako:
+
+\begin{equation}
+    \begin{aligned}
+    \Delta SB   & ={H R S B} - {L R S B} \\
+                & =\{{HA}-{LA}, {HV}-{LV}, {HH}-{LH}, {HD}-{LD}\} \\
+                & =\{\Delta {A}, \Delta {V}, \Delta {H}, \Delta {D}\}
+    \end{aligned}
+\end{equation}
+
+Naszym celem jest wygenerowanie $\Delta SB$ z $LRSB$. Procedura podawania dalej jest oznaczana jako $f(LRSB)$. Koszt wyjścia sieci jest zdefiniowany jako:
+
+\begin{equation}
+    \operatorname{cost}=\frac{1}{2}\|\Delta SB-f(LRSB)\|_2^2,
+\end{equation}
 
 
-\section{Proces treningu i implementacji}
+Wagi i odchylenia zostały oznaczone jako $(\Theta, b)$, następnie problem optymalizacji jest zdefiniowany jako:
+\begin{equation}
+    (\Theta, {b})=\arg \min _{\Theta, {b}} \frac{1}{2}\|\Delta SB-f(LRSB)\|_2^2+\lambda\|\Theta\|_2^2,
+\end{equation}
 
+gdzie $\|\Theta\|_2^2$ jest standardową regulacją rozkładu wag parametru $\lambda$.
 
-Wyjaśnienie procedur związanych z treningiem DWSR, z uwzględnieniem specyfikacji danych, procesu uczenia i kwestii implementacji.
+Ogólnie rzecz biorąc, sieć jest przygotowana do nauki różnic pomiędzy podpasmami obrazów o wysokiej i niskiej rozdzielczości. W ten sposób sieć uczy się rekonstruować szczegóły obrazu o wysokiej rozdzielczości na podstawie szczegółów obrazu o niskiej rozdzielczości.
+
+\subsubsection*{Generowanie wyników SR}
+Aby uzyskać wyniki SR, obrazy wejściowe LR w powiększeniu przez interpolację dwusześcienną są przekształcane przez 2dDWT w celu uzyskania $LRSB$ jako Równanie 3.2.
+
+Następnie $LRSB$ jest przekazywane dalej przez wytrenowaną sieć w celu uzyskania $\Delta SB$. Dodanie $LRSB$ i $\Delta SB$ razem generuje cztery SR wavelet Sub-Bands ($SRSB$) oznaczone jako:
+
+\begin{equation}
+    \begin{aligned}
+    SRSB    & =\{SA, SV, SH, SD\} \\
+            & =LRSB+\Delta SB \\
+            & =\{LA+\Delta A, LV+\Delta V, LH+\Delta H, LD+\Delta D\}
+\end{aligned}
+\end{equation}
+
+W ostatnim etapie 2dIDWT generuje SR obraz jako:
+
+\begin{equation}
+    SR=2dIDWT\{SRSB\}
+\end{equation}
+
+\subsubsection*{Ustawienie parametrów treningu}
+
+Sieć została wytrenowana przez \cite{guo2017deep} w następujący sposób.
+
+Podczas procesu uczenia wykorzystywanych było kilka technik. Gradienty są obcinane do $0,01$ za pomocą opcji obcinania normy w pakiecie szkoleniowym. Użyty został optymalizator Adam. Początkowa szybkość uczenia wynosi $0,01$ i zmniejsza się o $25\%$ co 20 epok. 
+
+Regulator wagi jest ustawiony na $1 \times 10^{-3}$, aby zapobiec przeuczeniu. Oprócz warstw wejściowych i wyjściowych, DWSR ma $N = 10$ ukrytych warstw konwolucyjnych o tym samym rozmiarze z filtrem o rozmiarze $64 \times 3 \times 3 \times 64$. Ta konfiguracja skutkuje siecią o relatywnie niewielkiej liczbie parametrów. Schemat uczenia został zaimplementowany za pomocą pakietu TensorFlow z interfejsem interakcji Python 2.7. Użyty został jeden procesor graficzny GTX TITAN X 12 GB zarówno do uczenia, jak i testowania.
+
+\section{Implementacja w aplikacji}
+
 
 
 \section{Przykłady zastosowań i rezultaty}
