@@ -8,12 +8,12 @@
 
         <div class="relative mt-36 mx-auto pl-28 grid grid-cols-1 md:grid-cols-2 gap-6 justify-items-center">
             <div class="">
-                <div class="text-7xl font-abril-fatface leading-[76px] text-[#f6f6f6] w-full">
+                <div class="text-7xl font-abril-fatface leading-[76px] text-[#eeeeee] w-full">
                     Upscale your
                     <br />
-                    <span class="text-6xl"> images </span>
+                    <span class="text-6xl text-[#eeeeee]"> images </span>
                 </div>
-                <div class="text-[#efefef] mt-10 mb-4 font-larken-sans text-xl leading-6">
+                <div class="text-[#eeeeee] mt-10 mb-4 font-larken-sans text-xl leading-6">
                     Use fast and reliable AI algorithms
                     <br />
                     to enhance resolution of your images.
@@ -57,6 +57,21 @@
             <div class="bg-[rgba(20,20,20,0.7)] hover:bg-[rgba(20,20,20,0.9)] transition ease-in-out duration-300 w-[300px] h-[220px] rounded-[10px] z-2" ></div>
             <div class="bg-[rgba(20,20,20,0.7)] hover:bg-[rgba(20,20,20,0.9)] transition ease-in-out duration-300 w-[300px] h-[220px] rounded-[10px] z-2" ></div>
         </div>
+        <div class="relative mx-auto px-40 mt-60 grid grid-cols-3 gap-6 justify-items-center">
+            <div class="bg-[rgba(20,20,20,0.7)] hover:bg-[rgba(20,20,20,0.9)] transition ease-in-out duration-300 w-[300px] h-[220px] rounded-[10px] z-2" ></div>
+            <div class="bg-[rgba(20,20,20,0.7)] hover:bg-[rgba(20,20,20,0.9)] transition ease-in-out duration-300 w-[300px] h-[220px] rounded-[10px] z-2" ></div>
+            <div class="bg-[rgba(20,20,20,0.7)] hover:bg-[rgba(20,20,20,0.9)] transition ease-in-out duration-300 w-[300px] h-[220px] rounded-[10px] z-2" ></div>
+        </div>
+        <div class="relative mx-auto px-40 mt-60 grid grid-cols-3 gap-6 justify-items-center">
+            <div class="bg-[rgba(20,20,20,0.7)] hover:bg-[rgba(20,20,20,0.9)] transition ease-in-out duration-300 w-[300px] h-[220px] rounded-[10px] z-2" ></div>
+            <div class="bg-[rgba(20,20,20,0.7)] hover:bg-[rgba(20,20,20,0.9)] transition ease-in-out duration-300 w-[300px] h-[220px] rounded-[10px] z-2" ></div>
+            <div class="bg-[rgba(20,20,20,0.7)] hover:bg-[rgba(20,20,20,0.9)] transition ease-in-out duration-300 w-[300px] h-[220px] rounded-[10px] z-2" ></div>
+        </div>
+        <div class="relative mx-auto px-40 mt-60 grid grid-cols-3 gap-6 justify-items-center">
+            <div class="bg-[rgba(20,20,20,0.7)] hover:bg-[rgba(20,20,20,0.9)] transition ease-in-out duration-300 w-[300px] h-[220px] rounded-[10px] z-2" ></div>
+            <div class="bg-[rgba(20,20,20,0.7)] hover:bg-[rgba(20,20,20,0.9)] transition ease-in-out duration-300 w-[300px] h-[220px] rounded-[10px] z-2" ></div>
+            <div class="bg-[rgba(20,20,20,0.7)] hover:bg-[rgba(20,20,20,0.9)] transition ease-in-out duration-300 w-[300px] h-[220px] rounded-[10px] z-2" ></div>
+        </div>
 
         <svg>
             <filter id="noiseFilter">
@@ -76,11 +91,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, onUnmounted, ref } from "vue";
+import { defineComponent, onMounted, onUnmounted, onBeforeUnmount, ref } from "vue";
 import GradientInfo from "@/components/GradientInfo.vue";
 import UploadButton from "@/components/UploadButton.vue";
 import ArrowUpRightIcon from "@/components/ArrowUpRightIcon.vue";
 import MagnifyingGlassIcon from "@/components/MagnifyingGlassIcon.vue";
+import { gsap } from 'gsap';
 
 export default defineComponent({
     components: {
@@ -115,6 +131,11 @@ export default defineComponent({
             circlePositions.value = circles.value.map(() => ({ x: 0, y: 0 }));
             animateCursorCircles();
             document.addEventListener("mousemove", calculateMousePos);
+            document.body.style.cursor = 'none';
+        });
+
+        onBeforeUnmount(() => {
+            document.body.style.cursor = 'default';
         });
 
         onUnmounted(() => {
@@ -322,7 +343,7 @@ body {
     overflow-x: hidden;
     position: relative;
     height: 100vh;
-    cursor: none;
+    /* cursor: none; */
 }
 
 body::before {
@@ -336,6 +357,7 @@ body::before {
     background: #040404;
     filter: url(#noiseFilter);
     opacity: 15%;
+    position: fixed;
 }
 
 .blob-cont {
