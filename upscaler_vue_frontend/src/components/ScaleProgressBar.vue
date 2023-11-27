@@ -1,7 +1,7 @@
 <template>
     <transition name="fade" @after-leave="handleAfterLeave">
         <div v-if="isVisible" :style="{ top: cursorY - magnifyWindowSize/2 + 'px', left: cursorX + 20 + 'px', height: magnifyWindowSize + 'px'}" class="bg-[rgba(217,217,217,0.30)] rounded-lg border-solid border-[rgba(255,255,255,0.54)] border absolute drop-shadow-4xl pointer-events-none w-2">
-            <div :style="{ height: progress + '%' }" class="bg-[rgba(255,255,255,0.5)] transition-all rounded-lg absolute bottom-0 w-full"></div>
+            <div :style="{ height: progress + '%' }" class="bg-[rgba(255,255,255,0.8)] transition-all rounded-lg absolute bottom-0 w-full"></div>
         </div>
     </transition>
 </template>

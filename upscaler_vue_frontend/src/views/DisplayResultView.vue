@@ -1,14 +1,15 @@
 <template>
-
-<svg class="absolute top-0 left-0 z-0" xmlns="http://www.w3.org/2000/svg" width="219" height="404" viewBox="0 0 219 404" fill="none">
+<div class="background-container">
+    <div v-for="(style, index) in gradientStyles" :key="index" :style="style"></div>
+<!-- <svg class="absolute top-0 left-0 z-0" xmlns="http://www.w3.org/2000/svg" width="219" height="404" viewBox="0 0 219 404" fill="none">
     <path d="M99 237.5C88.5 374.5 0 404 0 404V-1.90735e-06H218.234C218.234 -1.90735e-06 109.5 100.5 99 237.5Z" fill="#054049"/>
-</svg>
+</svg> -->
 <div class="relative w-full h-screen flex">
-    <svg xmlns="http://www.w3.org/2000/svg" width="404" height="819" viewBox="0 0 404 819" fill="none" class="absolute bottom-0 right-0">
+    <!-- <svg xmlns="http://www.w3.org/2000/svg" width="404" height="819" viewBox="0 0 404 819" fill="none" class="absolute bottom-0 right-0">
         <path d="M240 403.5C220 259.561 404 0 404 0L404 819L0 819C69.1759 819 260 547.439 240 403.5Z" fill="#054049"/>
-    </svg>
+    </svg> -->
 
-    <div class="flex-initial mx-auto h-full">
+    <div class="flex-initial mx-auto h-full ">
         <div class="flex justify-center items-center gap-1 h-full">
             <img :src="imageUrl" :class="divImageClasses" class="object-contain mx-auto rounded-lg image-not-dragable" ref="imageRef"  @click="toggleFreeze">
         </div>
@@ -74,23 +75,25 @@
                 </div>
                 <!-- download button -->
                 <gradient-button label="Download" shape="round" class="absolute bottom-0 right-0" @click="downloadImage"/>
-
             </div>
         </div>
     </div>
 </div>
 
-<div :style="{ top: cursorY + 'px', left: cursorX + 'px', transform: 'translate(-100%, -100%)', width: magnifyWindowSize + 'px', height: magnifyWindowSize + 'px' }" class="bg-[rgba(217,217,217,0.30)] rounded-lg border-solid border-[rgba(255,255,255,0.54)] border absolute drop-shadow-4xl pointer-events-none"/>
 
-<magnify-round-icon :style="{ top: cursorY + 'px', left: cursorX + 'px', transform: 'translate(-50%, -50%)' }" :locked="isFrozen" class="absolute drop-shadow-4xl pointer-events-none"/>
 
-<scale-progress-bar :cursorX="cursorX" :cursorY="cursorY" :magnifyWindowSize="magnifyWindowSize" :scaleValue="scaleValue" />
-
+<div class="magnify-cursor">
+    <div :style="{ top: cursorY + 'px', left: cursorX + 'px', transform: 'translate(-100%, -100%)', width: magnifyWindowSize + 'px', height: magnifyWindowSize + 'px' }" class="bg-[rgba(217,217,217,0.30)] rounded-lg border-solid border-[rgba(255,255,255,0.54)] border absolute drop-shadow-4xl pointer-events-none"/>
+    <magnify-round-icon :style="{ top: cursorY + 'px', left: cursorX + 'px', transform: 'translate(-50%, -50%)' }" :locked="isFrozen" class="absolute drop-shadow-4xl pointer-events-none"/>
+    <scale-progress-bar :cursorX="cursorX" :cursorY="cursorY" :magnifyWindowSize="magnifyWindowSize" :scaleValue="scaleValue" />
+    
+</div>
+</div>
 </template>
   
   
 <script lang="ts">
-import { defineComponent, onMounted, onBeforeUnmount, ref, Ref, nextTick } from 'vue';
+import { defineComponent, onMounted, onBeforeUnmount, ref, Ref, nextTick, computed } from 'vue';
 import { useRouter } from 'vue-router';
 
 import ScaleProgressBar from '@/components/ScaleProgressBar.vue';
@@ -205,6 +208,7 @@ export default defineComponent({
                 if (response.ok) {
                     const data = await response.json();
                     dominantColors.value = data.colors;
+                    console.log("dominantColors", dominantColors.value)
                     originalImageWidth.value = data.width;
                     originalImageHeight.value = data.height;
                 } else {
@@ -220,6 +224,13 @@ export default defineComponent({
             try {
                 await fetchImage(imageType);
                 console.log("Fetched", imageType, "image after", Number.MAX_SAFE_INTEGER - retryCount + 1, "attempts.")
+                // if done first time make the magnify-cursor visible
+                if (retryCount === Number.MAX_SAFE_INTEGER) {
+                    await nextTick();
+                    const magnifyCursor = document.querySelector('.magnify-cursor');
+                    if (magnifyCursor) 
+                        magnifyCursor.classList.remove('magnify-cursor');
+                }
             } catch (error) {
                 if (retryCount > 0) {
                     setTimeout(() => retryFetchImage(imageType, retryCount - 1), 1000);
@@ -230,11 +241,12 @@ export default defineComponent({
         };
 
         const fetchAllImages = async () => {
+            fetchImageInfo();
             const imageQueue: (ImageType)[] = ["original", "bilinear", "dwsr", "esrgan" ];
             for (const imageType of imageQueue) {
                 await retryFetchImage(imageType);
             }
-            fetchImageInfo();
+            
         };
 
         const handleKeyDown = (e: KeyboardEvent) => {
@@ -278,6 +290,24 @@ export default defineComponent({
             window.removeEventListener('wheel', handleScroll);
         });
 
+        const gradientStyles = computed(() => {
+            const angles = ['45deg', '135deg', '-45deg', '90deg', '0deg'];
+            return dominantColors.value.map((color, index) => {
+                const style: Record<string, string> = {
+                backgroundImage: `linear-gradient(${angles[index]}, ${color} 0%, transparent 100%)`,
+                position: 'absolute',
+                top: '0',
+                right: '0',
+                bottom: '0',
+                left: '0',
+                filter: 'blur(50px)',
+                transform: 'scale(1.2)',
+                };
+                console.log("style", style);
+                return style;
+            });
+        });
+
         return {
             cursorX,
             cursorY,
@@ -297,6 +327,7 @@ export default defineComponent({
             originalImageWidth,
             originalImageHeight,
             originalImageUrl,
+            gradientStyles,
         };
     },
     data() {
@@ -353,18 +384,28 @@ export default defineComponent({
     },
     components: { GradientButton, GradientInfo, MagnifyRoundIcon, ScaleProgressBar },
     computed: {
+
+        // gradientBackground() {
+        //     if (this.dominantColors && this.dominantColors.length > 0) {
+        //         const gradientColors = this.dominantColors.join(', ');
+        //         return `linear-gradient(-135deg, ${gradientColors})`;
+        //     }
+        //     return 'none'; // Default background if no dominant colors are available
+        // },
+
         divClasses() : string[] {
-        return [
-            'm-5',
-            'z-10',
-            this.isVertical ? 'w-1/4' : 'w-1/4',
-        ];
+            return [
+                'm-5',
+                'z-10',
+                this.isVertical ? 'w-1/4' : 'w-1/4',
+            ];
         },
         divImageClasses() : string[] {
-        return [
-            this.isVertical ? 'h-4/5' : 'w-4/5',
-        ];
+            return [
+                this.isVertical ? 'h-4/5' : 'w-4/5',
+            ];
         },
+
     },
 });
 </script>
@@ -471,4 +512,27 @@ export default defineComponent({
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+
+.magnify-cursor {
+    visibility: hidden;
+}
+
+
+
+.background-container {
+    position: relative;
+    overflow: hidden;
+}
+
+/* .background-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.3); 
+  pointer-events: none; 
+  z-index: 0;
+} */
 </style>
