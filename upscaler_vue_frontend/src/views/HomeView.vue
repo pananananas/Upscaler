@@ -33,40 +33,25 @@
                 <div class="flex gap-4 absolute">
                     <img src="../assets/imgs/1_downscaled.jpg" alt="Image1" class="object-cover rounded-[10px] w-[180px] h-[180px] ml-4 float-1 interactable image-not-dragable" data-fa-icon="fa-arrows-left-right" />
                     <!-- <img src="../assets/imgs/1.jpg" alt="Image1" class="object-cover rounded-[10px] w-[180px] h-[180px]  ml-4 float-1 absolute"> -->
-                    <img src="../assets/imgs/2_downscaled.jpg" alt="Image2" class="object-cover rounded-[10px] w-[204px] h-[135.6px] float-2 interactable image-not-dragable" data-fa-icon="fa-arrows-left-right"  />
+                    <img src="../assets/imgs/2.jpg" alt="Image2" class="object-cover rounded-[10px] w-[204px] h-[135.6px] float-2 interactable image-not-dragable" data-fa-icon="fa-arrows-left-right"  />
                     <img src="../assets/imgs/3_downscaled.jpg" alt="Image3" class="object-cover rounded-[10px] w-[102px] h-[135.6px] float-3 interactable image-not-dragable" data-fa-icon="fa-arrows-left-right"  />
-                    <img src="../assets/imgs/4_downscaled.jpg" alt="Image4" class="object-cover rounded-[10px] w-[180px] h-[135.6px] float-4 interactable image-not-dragable" data-fa-icon="fa-arrows-left-right"  />
+                    <img src="../assets/imgs/4.jpg" alt="Image4" class="object-cover rounded-[10px] w-[180px] h-[135.6px] float-4 interactable image-not-dragable" data-fa-icon="fa-arrows-left-right"  />
                 </div>
                 <div class="flex gap-6 absolute top-[154px]">
-                    <img src="../assets/imgs/5_downscaled.jpg" alt="Image5" class="object-cover rounded-[10px] w-[180px] h-[120px] bottom-0 absolute float-5 interactable image-not-dragable" data-fa-icon="fa-arrows-left-right"  />
-                    <img src="../assets/imgs/6_downscaled.jpg" alt="Image6" class="object-cover rounded-[10px] w-[127.2px] h-[192px] ml-[218px] float-6 interactable image-not-dragable" data-fa-icon="fa-arrows-left-right"  />
+                    <img src="../assets/imgs/5.jpg" alt="Image5" class="object-cover rounded-[10px] w-[180px] h-[120px] bottom-0 absolute float-5 interactable image-not-dragable" data-fa-icon="fa-arrows-left-right"  />
+                    <img src="../assets/imgs/6.jpg" alt="Image6" class="object-cover rounded-[10px] w-[127.2px] h-[192px] ml-[218px] float-6 interactable image-not-dragable" data-fa-icon="fa-arrows-left-right"  />
                     <img src="../assets/imgs/7_downscaled.jpg" alt="Image7" class="object-cover rounded-[10px] w-[135.6px] h-[135.6px] float-7 interactable image-not-dragable" data-fa-icon="fa-arrows-left-right"  />
-                    <img src="../assets/imgs/8_downscaled.jpg" alt="Image8" class="object-cover rounded-[10px] w-[102px] h-[135.6px] float-8 interactable image-not-dragable" data-fa-icon="fa-arrows-left-right"  />
+                    <img src="../assets/imgs/8.jpg" alt="Image8" class="object-cover rounded-[10px] w-[102px] h-[135.6px] float-8 interactable image-not-dragable" data-fa-icon="fa-arrows-left-right"  />
                     <img src="../assets/imgs/9_downscaled.jpg" alt="Image9" class="object-cover rounded-[10px] w-[135.6px] h-[135.6px] float-9 interactable image-not-dragable" data-fa-icon="fa-arrows-left-right"  />
                 </div>
                 <div class="flex gap-6 absolute top-[328px]">
                     <img src="../assets/imgs/10_downscaled.jpg" alt="Image10" class="object-cover rounded-[10px] w-[320.4px] h-[135.6px] bottom-0 absolute ml-6 float-10 interactable image-not-dragable" data-fa-icon="fa-arrows-left-right" />
-                    <img src="../assets/imgs/11_downscaled.jpg" alt="Image11" class="object-cover rounded-[10px] w-[135.6px] h-[180px] ml-[366px] float-11 interactable image-not-dragable" data-fa-icon="fa-arrows-left-right"  />
+                    <img src="../assets/imgs/11.jpg" alt="Image11" class="object-cover rounded-[10px] w-[135.6px] h-[180px] ml-[366px] float-11 interactable image-not-dragable" data-fa-icon="fa-arrows-left-right"  />
                     <img src="../assets/imgs/12_downscaled.jpg" alt="Image12" class="object-cover rounded-[10px] w-[273.6px] h-[180px] float-12 interactable image-not-dragable" data-fa-icon="fa-arrows-left-right"  />
                 </div>
             </div>
         </div>
 
-        <div class="relative mx-auto px-40 mt-60 grid grid-cols-3 gap-6 justify-items-center">
-            <div class="bg-[rgba(20,20,20,0.7)] hover:bg-[rgba(20,20,20,0.9)] transition ease-in-out duration-300 w-[300px] h-[220px] rounded-[10px] z-2" ></div>
-            <div class="bg-[rgba(20,20,20,0.7)] hover:bg-[rgba(20,20,20,0.9)] transition ease-in-out duration-300 w-[300px] h-[220px] rounded-[10px] z-2" ></div>
-            <div class="bg-[rgba(20,20,20,0.7)] hover:bg-[rgba(20,20,20,0.9)] transition ease-in-out duration-300 w-[300px] h-[220px] rounded-[10px] z-2" ></div>
-        </div>
-        <div class="relative mx-auto px-40 mt-60 grid grid-cols-3 gap-6 justify-items-center">
-            <div class="bg-[rgba(20,20,20,0.7)] hover:bg-[rgba(20,20,20,0.9)] transition ease-in-out duration-300 w-[300px] h-[220px] rounded-[10px] z-2" ></div>
-            <div class="bg-[rgba(20,20,20,0.7)] hover:bg-[rgba(20,20,20,0.9)] transition ease-in-out duration-300 w-[300px] h-[220px] rounded-[10px] z-2" ></div>
-            <div class="bg-[rgba(20,20,20,0.7)] hover:bg-[rgba(20,20,20,0.9)] transition ease-in-out duration-300 w-[300px] h-[220px] rounded-[10px] z-2" ></div>
-        </div>
-        <div class="relative mx-auto px-40 mt-60 grid grid-cols-3 gap-6 justify-items-center">
-            <div class="bg-[rgba(20,20,20,0.7)] hover:bg-[rgba(20,20,20,0.9)] transition ease-in-out duration-300 w-[300px] h-[220px] rounded-[10px] z-2" ></div>
-            <div class="bg-[rgba(20,20,20,0.7)] hover:bg-[rgba(20,20,20,0.9)] transition ease-in-out duration-300 w-[300px] h-[220px] rounded-[10px] z-2" ></div>
-            <div class="bg-[rgba(20,20,20,0.7)] hover:bg-[rgba(20,20,20,0.9)] transition ease-in-out duration-300 w-[300px] h-[220px] rounded-[10px] z-2" ></div>
-        </div>
         <div class="relative mx-auto px-40 mt-60 grid grid-cols-3 gap-6 justify-items-center">
             <div class="bg-[rgba(20,20,20,0.7)] hover:bg-[rgba(20,20,20,0.9)] transition ease-in-out duration-300 w-[300px] h-[220px] rounded-[10px] z-2" ></div>
             <div class="bg-[rgba(20,20,20,0.7)] hover:bg-[rgba(20,20,20,0.9)] transition ease-in-out duration-300 w-[300px] h-[220px] rounded-[10px] z-2" ></div>

@@ -1,21 +1,16 @@
 <template>
 <div class="background-container">
-    <div v-for="(style, index) in gradientStyles" :key="index" :style="style"></div>
-<!-- <svg class="absolute top-0 left-0 z-0" xmlns="http://www.w3.org/2000/svg" width="219" height="404" viewBox="0 0 219 404" fill="none">
-    <path d="M99 237.5C88.5 374.5 0 404 0 404V-1.90735e-06H218.234C218.234 -1.90735e-06 109.5 100.5 99 237.5Z" fill="#054049"/>
-</svg> -->
+<div v-for="(style, index) in gradientStyles" :key="index" :style="style"/>
 <div class="relative w-full h-screen flex">
-    <!-- <svg xmlns="http://www.w3.org/2000/svg" width="404" height="819" viewBox="0 0 404 819" fill="none" class="absolute bottom-0 right-0">
-        <path d="M240 403.5C220 259.561 404 0 404 0L404 819L0 819C69.1759 819 260 547.439 240 403.5Z" fill="#054049"/>
-    </svg> -->
+    
 
     <div class="flex-initial mx-auto h-full ">
         <div class="flex justify-center items-center gap-1 h-full">
-            <img :src="imageUrl" :class="divImageClasses" class="object-contain mx-auto rounded-lg image-not-dragable" ref="imageRef"  @click="toggleFreeze">
+            <img :src="imageUrl" :class="divImageClasses" class="object-contain mx-auto rounded-lg image-not-dragable shadow-2xl" ref="imageRef"  @click="toggleFreeze">
         </div>
     </div>
     <div :class="divClasses" class="w-1/2">
-        <div class="flex-initial bg-[rgba(20,20,20,0.7)] rounded-xl  h-full justify-self-end left-0 p-5 ">
+        <div class="flex-initial bg-[rgba(20,20,20,0.75)] rounded-xl  h-full justify-self-end left-0 p-5 ">
             
             <div class="relative h-full w-full z-10">
 
@@ -51,11 +46,11 @@
                 </div>
 
 
-                <span class="text-white mt-7 my-4 font-port-lligat-sans text-smm absolute bottom-8 left-0"> 
+                <span class="text-white mt-7 my-4 font-port-lligat-sans text-sm absolute bottom-8 left-0"> 
                     Choose a method and download your image <br/>
                 </span>    
 
-                <div class=" bg-[#2d2d2d] rounded-[100px] w-[100px] h-[22px] absolute bottom-2 left-0">
+                <div class=" bg-[#242424] rounded-[100px] w-[100px] h-[22px] absolute bottom-2 left-0">
                     <select v-model="selectedAlgorithm" id="upscaleAlgorithm" class="appearance-none bg-transparent grid grid-cols-2 items-center rounded-[100px] w-full h-full text-white font-port-lligat-sans text-smm pr-5 pl-3 focus:bg-[#3d3d3d] outline-none">
                         <optgroup label="AI algorithms">
                             <option value="dwsr"> DWSR </option> 
@@ -80,8 +75,6 @@
     </div>
 </div>
 
-
-
 <div class="magnify-cursor">
     <div :style="{ top: cursorY + 'px', left: cursorX + 'px', transform: 'translate(-100%, -100%)', width: magnifyWindowSize + 'px', height: magnifyWindowSize + 'px' }" class="bg-[rgba(217,217,217,0.30)] rounded-lg border-solid border-[rgba(255,255,255,0.54)] border absolute drop-shadow-4xl pointer-events-none"/>
     <magnify-round-icon :style="{ top: cursorY + 'px', left: cursorX + 'px', transform: 'translate(-50%, -50%)' }" :locked="isFrozen" class="absolute drop-shadow-4xl pointer-events-none"/>
@@ -93,7 +86,7 @@
   
   
 <script lang="ts">
-import { defineComponent, onMounted, onBeforeUnmount, ref, Ref, nextTick, computed } from 'vue';
+import { defineComponent, onMounted, onBeforeUnmount, ref, Ref, nextTick, computed, watch } from 'vue';
 import { useRouter } from 'vue-router';
 
 import ScaleProgressBar from '@/components/ScaleProgressBar.vue';
@@ -115,7 +108,7 @@ export default defineComponent({
         const imageRef: Ref<HTMLImageElement | null> = ref(null);
         const selectedAlgorithm: Ref<ImageType> = ref('dwsr'); // Default value
         
-        const dominantColors = ref([]);
+        const gradientStyles = ref<Array<{ [key: string]: string }>>([]);
         const originalImageUrl = ref('');
         const originalImageWidth = ref(0);
         const originalImageHeight = ref(0);
@@ -134,6 +127,21 @@ export default defineComponent({
         let effectiveX: number, effectiveY: number;
         let rect: DOMRect;
 
+
+        onMounted(() => {
+            document.addEventListener('mousemove', updateMousePosition);
+            document.addEventListener('keydown', handleKeyDown);
+            window.addEventListener('wheel', handleScroll, { passive: false });
+
+            fetchAllImages();
+        });
+
+        onBeforeUnmount(() => {
+            document.removeEventListener('mousemove', updateMousePosition);
+            document.removeEventListener('keydown', handleKeyDown);
+            window.removeEventListener('wheel', handleScroll);
+        });
+        
         const calculateMousePos = (e: any) => {
             if (aspectRatio === 0){
                 const image = imageRef.value;
@@ -160,11 +168,9 @@ export default defineComponent({
             const relativeY = (effectiveY - magnifyWindowSize.value / 2 - rect.top) / rect.height;
 
             if (aspectRatio < 1) {
-                // isVertical.value = true;
                 percentX.value = (relativeX * scaleValue.value * aspectRatio) - 0.5 * scaleValue.value * aspectRatio;
                 percentY.value = (relativeY * scaleValue.value) - 0.5 * scaleValue.value;
             } else {
-                // isVertical.value = false;
                 percentX.value = (relativeX * scaleValue.value) - 0.5 * scaleValue.value;
                 percentY.value = (relativeY * scaleValue.value / aspectRatio) - 0.5 * scaleValue.value / aspectRatio;
             }
@@ -207,10 +213,13 @@ export default defineComponent({
                 const response = await fetch(`http://localhost:8000/get-image-info/${imageId}/`);
                 if (response.ok) {
                     const data = await response.json();
-                    dominantColors.value = data.colors;
-                    console.log("dominantColors", dominantColors.value)
+                    if (data.colors === null)   setTimeout(() => fetchImageInfo(), 500);
+
+                    gradientStyles.value = generateGradientStyles(data.colors);
+                    
                     originalImageWidth.value = data.width;
                     originalImageHeight.value = data.height;
+                    isVertical.value = data.width > data.height ? false : true;
                 } else {
                     console.error('Failed to fetch image info:', response.statusText);
                 }
@@ -276,38 +285,18 @@ export default defineComponent({
             calculateMousePos(e);
         };
 
-        onMounted(() => {
-            document.addEventListener('mousemove', updateMousePosition);
-            document.addEventListener('keydown', handleKeyDown);
-            window.addEventListener('wheel', handleScroll, { passive: false });
-
-            fetchAllImages();
-        });
-
-        onBeforeUnmount(() => {
-            document.removeEventListener('mousemove', updateMousePosition);
-            document.removeEventListener('keydown', handleKeyDown);
-            window.removeEventListener('wheel', handleScroll);
-        });
-
-        const gradientStyles = computed(() => {
+        const generateGradientStyles = (colors: any[]) => {
             const angles = ['45deg', '135deg', '-45deg', '90deg', '0deg'];
-            return dominantColors.value.map((color, index) => {
-                const style: Record<string, string> = {
+            return colors.map((color: any, index: number) => ({
                 backgroundImage: `linear-gradient(${angles[index]}, ${color} 0%, transparent 100%)`,
                 position: 'absolute',
                 top: '0',
                 right: '0',
                 bottom: '0',
                 left: '0',
-                filter: 'blur(50px)',
-                transform: 'scale(1.2)',
-                };
-                console.log("style", style);
-                return style;
-            });
-        });
-
+            }));
+        };
+        
         return {
             cursorX,
             cursorY,
@@ -384,15 +373,6 @@ export default defineComponent({
     },
     components: { GradientButton, GradientInfo, MagnifyRoundIcon, ScaleProgressBar },
     computed: {
-
-        // gradientBackground() {
-        //     if (this.dominantColors && this.dominantColors.length > 0) {
-        //         const gradientColors = this.dominantColors.join(', ');
-        //         return `linear-gradient(-135deg, ${gradientColors})`;
-        //     }
-        //     return 'none'; // Default background if no dominant colors are available
-        // },
-
         divClasses() : string[] {
             return [
                 'm-5',
@@ -402,7 +382,7 @@ export default defineComponent({
         },
         divImageClasses() : string[] {
             return [
-                this.isVertical ? 'h-4/5' : 'w-4/5',
+                this.isVertical ? 'h-4/5' : 'h-3/5',
             ];
         },
 
@@ -517,22 +497,9 @@ export default defineComponent({
     visibility: hidden;
 }
 
-
-
 .background-container {
     position: relative;
     overflow: hidden;
 }
 
-/* .background-container::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background: rgba(0, 0, 0, 0.3); 
-  pointer-events: none; 
-  z-index: 0;
-} */
 </style>

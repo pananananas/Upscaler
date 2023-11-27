@@ -1,5 +1,7 @@
 from PIL import Image as PILImage
+from sklearn.cluster import KMeans
 from collections import Counter
+import numpy as np
 import cv2
 import os
 
@@ -34,6 +36,9 @@ def clear_helper_folders():
                 os.unlink(file_path)
 
 
+def rgb_to_hex(rgb):
+    return '#{:02x}{:02x}{:02x}'.format(rgb[0], rgb[1], rgb[2])
+
 def extract_image_info(input_image_path, image_instance):
     with PILImage.open(input_image_path) as img:
         # Set width and height
@@ -41,18 +46,20 @@ def extract_image_info(input_image_path, image_instance):
         image_instance.original_height = img.height
         image_instance.save()
 
-        # Extract and set dominant colors
-        pixels = img.getdata()
-        colors = Counter(pixels)
-        dominant_colors = colors.most_common(5)  # Get top 5 dominant colors
+        # Reshape the image data for k-means
+        pixels = np.array(img.getdata())
+        pixels = pixels.reshape(-1, 3)
+
+        # Apply K-Means Clustering
+        kmeans = KMeans(n_clusters=5)
+        kmeans.fit(pixels)
+
+        # Find Cluster Centers
+        dominant_colors = kmeans.cluster_centers_
 
         # Convert dominant colors to a list of HEX strings
-        dominant_colors_list = [rgb_to_hex(color[0]) for color in dominant_colors]
+        dominant_colors_list = [rgb_to_hex(tuple(map(int, color))) for color in dominant_colors]
         image_instance.set_dominant_colors(dominant_colors_list)
 
         # Save the image instance
         image_instance.save()
-
-
-def rgb_to_hex(rgb):
-    return "#{:02x}{:02x}{:02x}".format(rgb[0], rgb[1], rgb[2])
