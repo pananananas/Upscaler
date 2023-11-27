@@ -14,7 +14,7 @@
                     <span class="text-6xl"> images </span>
                 </div>
                 <div class="text-[#efefef] mt-10 mb-4 font-larken-sans text-xl leading-6">
-                    We use fast and reliable AI algorithms
+                    Use fast and reliable AI algorithms
                     <br />
                     to enhance resolution of your images.
                 </div>
@@ -24,7 +24,7 @@
                     </div>
                     <div class="interactable" data-svg-icon="arrow-up-right">
                         <input type="file" ref="fileInput" class="hidden" id="fileInput" @change="uploadImage" accept="image/*" />
-                        <upload-button label="Upload image" shape="round" />
+                        <upload-button label="Upload image" shape="round" class="cursor-none"/>
                     </div>
                 </div>
             </div>
@@ -322,6 +322,7 @@ body {
     overflow-x: hidden;
     position: relative;
     height: 100vh;
+    cursor: none;
 }
 
 body::before {

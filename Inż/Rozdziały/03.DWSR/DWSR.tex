@@ -159,11 +159,15 @@ Podczas procesu uczenia wykorzystywanych było kilka technik. Gradienty są obci
 
 Regulator wagi jest ustawiony na $1 \times 10^{-3}$, aby zapobiec przeuczeniu. Oprócz warstw wejściowych i wyjściowych, DWSR ma $N = 10$ ukrytych warstw konwolucyjnych o tym samym rozmiarze z filtrem o rozmiarze $64 \times 3 \times 3 \times 64$. Ta konfiguracja skutkuje siecią o relatywnie niewielkiej liczbie parametrów. Schemat uczenia został zaimplementowany za pomocą pakietu TensorFlow z interfejsem interakcji Python 2.7. Użyty został jeden procesor graficzny GTX TITAN X 12 GB zarówno do uczenia, jak i testowania.
 
-\section{Implementacja w aplikacji}
-
-
 
 \section{Przykłady zastosowań i rezultaty}
 
+Sieć DWSR charakteryzuje się niewielkim czasem działania, co zapewnia relatywnie niewielka ilość parametrów w porównaniu z innymi metodami SR. Algorytm DWSR również świetnie radzi sobie z rekonstrukcją szczegółów obrazu, zwłaszcza w przypadku stałych krawędzi i tekstur.
+
 
 Ilustracja praktycznych zastosowań DWSR oraz ocena i interpretacja osiągniętych dzięki niemu wyników.
+
+
+
+\section{Implementacja w aplikacji}
+
