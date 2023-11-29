@@ -1,8 +1,5 @@
 \chapter{Podstawy teoretyczne}
 
-TODO: dodaj ref do wzorów
-TODO: napisz o interpolacji dwusześciennej (bicubic)
-
 Celem rozdziału jest przedstawienie podstawowych definicji, wytłumaczenie aparatu matematycznego oraz metod wykorzystywanych w algorytmach na których skupia się praca. Dodatkowo ma on na celu ułatwienie dalszego czytania poprzez zapoznanie czytelnika z przyjętymi konwencjami, oznaczeniami oraz symbolami, które mogą pojawić się w kolejnych rozdziałach. 
 
 
@@ -33,9 +30,9 @@ Super-rozdzielczość (ang. Super-Resolution) odnosi się do procesu poprawy roz
 
 \subsection*{Przykłady zastosowań super-rozdzielczości}
 
-W kontekście praktycznym, techniki super-rozdzielczości znalazły zastosowanie w wielu dziedzinach. Przykładowo, w medycynie, poprawa rozdzielczości obrazów rentgenowskich może znacząco wpływać na dokładność diagnoz. W branży rozrywkowej, technika ta umożliwia remastering starych gier, filmów czy materiałów wideo do standardów HD czy 4K.
+W kontekście praktycznym, techniki super-rozdzielczości znalazły zastosowanie w wielu dziedzinach. Przykładowo, w branży rozrywkowej, technika ta umożliwia remastering starych gier, filmów czy materiałów wideo do standardów HD czy 4K.
 
-W ostatnich miesiącach popularne stało się generowanie obrazów z użyciem sztucznej inteligencji na podstawie podanego opisu tekstowego. Generowane w ten sposób obrazy są określonej wielkości i popularne modele takie jak \textbf{DALL-E} czy \textbf{Midjourney} nie pozwalają na zwiększenie jej. W tym miejscu z pomocą przychodzi super-rozdzielczość, która pozwala na powiększenie obrazu.
+W ostatnich miesiącach popularne stało się generowanie obrazów z użyciem sztucznej inteligencji na podstawie podanego opisu tekstowego. Generowane w ten sposób obrazy są określonej wielkości i popularne modele takie jak \textbf{DALL-E} czy \textbf{Midjourney} nie pozwalają na zwiększenie jej. W tym miejscu z pomocą przychodzi super-rozdzielczość, która pozwala na powiększenie obrazów wygenerowanych w ten sposób.
 
 
 \section{Przegląd metod powiększania obrazów}
@@ -198,6 +195,24 @@ W efekcie otrzymujemy obraz wyglądający następująco [Rys \ref{fig:image8},  
 
 Metoda ta daje lepsze rezultaty niż interpolacja najbliższego sąsiada, jednakże wprowadziła ona duże rozmycie, które jest szczególnie widoczne na krawędziach obiektów i obszarach wysokiej częstotliwości.
 
+
+
+TODO: napisz o interpolacji dwusześciennej (bicubic)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \subsection*{Teoria informacji}
 
 W teorii informacji istnieje koncepcja zwana \textbf{nierównością przetwarzania danych}. Zgodnie z nią niezależnie od sposobu przetwarzania danych, \textbf{nie można dodać informacji, której nie ma w oryginalnej serii danych}  [Wzór 2.1].
@@ -215,7 +230,9 @@ Nie, jeśli mamy dodatkowe źródło informacji.
 
 
 % \newpage
+
 \section{Wprowadzenie do głębokiego uczenia się w przetwarzaniu obrazów}
+
 
 Głębokie uczenie rewolucjonizuje przetwarzanie obrazów, wprowadzając modele zdolne do uczenia się cech z serii danych. W przetwarzaniu obrazów, głębokie sieci neuronowe są wykorzystywane do zadań takich jak detekcja obiektów, segmentacja, klasyfikacja obrazów, czy właśnie super-rozdzielczość [Rys \ref{fig:image12},  \ref{fig:image13}].
 
@@ -243,9 +260,6 @@ Głębokie uczenie rewolucjonizuje przetwarzanie obrazów, wprowadzając modele 
 Sieć neuronowa może nauczyć się odtwarzać szczegóły obrazów na podstawie pewnych informacji, które zbiera z dużego zbioru obrazów. 
 
 Szczegóły dodawane do powiększanego obrazu w przy użyciu modelu uczenia maszynowego nie naruszają nierówności przetwarzania danych, ponieważ wykorzystywane informacje są w zbiorze treningowym, nawet jeśli nie ma ich na obrazie wejściowym.
-
-
-
 
 
 \subsection*{Podstawy Głębokiego Uczenia}
@@ -322,30 +336,68 @@ Przykładowe sposoby na zapobieganie przeuczeniu:
 \end{itemize}
 
 
+\subsubsection*{Generatywne Sieci Przestawne}
+
+Generatywne sieci przestawne (ang: \textit{Generative Adversarial Networks}) to rodzaj architektury sieci neuronowej, która składa się z dwóch sieci: generatora i dyskryminatora. Generator próbuje wygenerować dane, które są podobne do danych treningowych, podczas gdy dyskryminator próbuje stwierdzić prawdopodobieństwo, że dane pochodzą z danych treningowych, a nie z generatora.
+Sposób ten wywodzi się z teorii gier, gdzie agenci grają przeciw sobie. W tym przypadku rolą generatora jest oszukiwanie dyskryminatora, podczas gry rolą dyskryminatora jest nie dać się oszukać. 
+
+Te dwie sieci są trenowane naprzemiennie, aż do osiągnięcia równowagi, w której dyskryminator nie jest w stanie odróżnić danych wygenerowanych przez generator od danych treningowych, w wyniku czego dyskryminator zawsze zwracaja prawdopodobieństwo równe $0.5$.
+Ciekawą rzeczą w generatywnych sieciach jest to, że model musi pracować bardziej, gdy zawodzi. Dyskryminator szuka słabości generatora i zmusza go do poprawy, zaś generator adresuje te problemy. Gdy generator naprawi swoje błędy, dyskryminator szuka kolejni słabości, co prowadzi do ciągłego rozwoju obu sieci.
+
+% W generatywnych sieciach przestawnych 
+
+% \begin{figure}[h]
+%     \centering
+%     \includegraphics[width=0.7\linewidth]{Rozdziały/02.Podstawy_teoretyczne/Obrazy/generator_dyskryminator.png}
+%     \caption{Funkcje strat generatora i dyskryminatora}
+%     \label{fig:image59}
+% \end{figure}
+
 \subsection*{Algorytmy Głębokiego Uczenia w Super-Rozdzielczości}
+
+Aby stworzyć algorytm głębokiego uczenia do zastosowania w problemie Super-Rozdzielczości potrzebujemy zestawu danych z obrazami o wysokiej rozdzielczości i tych samych obrazów ze zmniejszoną rozdzielczością.
+
+Następnie trenujemy model, który jako wejście przyjmuje obraz o niskiej rozdzielczości i zwraca obraz o wysokiej rozdzielczości, który jest najbliższy oryginałowi.
+
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.5\linewidth]{Rozdziały/02.Podstawy_teoretyczne/Obrazy/map_low-hi_res.png}
-    \caption{}
+    \includegraphics[width=0.55\linewidth]{Rozdziały/02.Podstawy_teoretyczne/Obrazy/SR_CNN.png}
+    \caption{Przykład sieci neuronowej do super-rozdzielczości}
     \label{fig:image18}
 \end{figure}
 
 
 
-\subsubsection*{Mean Squared Error (MSE)}
-\cite{4775883}
+Do porównania obrazu wyjściowego z obrazem oryginalnym można wykorzystać funkcję błędu średniokwadratowego \textit{MSE - Mean Squared Error}, która jest zdefiniowana jako średnia arytmetyczna kwadratów różnic między wartościami pikseli w obrazie wyjściowym $\hat{\theta }$ i oryginalnym $\theta$ [Równanie \ref{eq:1}].
 
-W tej pracy opisywane będą szczegółowo dwa bardzo ciekawe algorytmy głębokiego uczenia stosowane w zadaniu super-rozdzielczości. Jeden z nich wykorzystuje 
+\begin{equation}
+    MSE(\hat{\theta }) = \sum(\hat{\theta } - \theta )^2 \label{eq:1}
+\end{equation}
 
+Ale czy metoda błędu średniokwadratowego jest odpowiednia do optymalizacji?
+Niestety błąd średniokwadratowy nie wyraża dobrze ludzkiego postrzegania wierności obrazu \cite{4775883}.
 
-TODO: dokończ
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.55\linewidth]{Rozdziały/02.Podstawy_teoretyczne/Obrazy/MSE.png}
+    \caption{Przykład sieci neuronowej do super-rozdzielczości}
+    \label{fig:image56}
+\end{figure}
 
+Przykładowo wszystkie obrazy na Rysunku \ref{fig:image56} mają ten sam błąd średniokwadratowy, ale różnią się znacząco wizualnie. W tym przypadku błąd średniokwadratowy nie jest w stanie wykryć różnic w jakości obrazu. 
 
+Metoda błędu średniokwadratowego nie bierze pod uwagę różnic strukturalnych między obrazami, z tego wynikają różnice przedstawione wyżej.
 
+Rozwiązaniem tego może być inna miara błędu, która bierze pod uwagę różnice strukturalne między obrazami. Jedną z takich miar jest \textbf{błąd strukturalny} \textit{SSIM - Structural Similarity Index Measure} \cite{1284395}, który jest zdefiniowany jako funkcja zależna od obrazu, która mierzy podobieństwo między dwoma obrazami. SSIM jest zdefiniowany jako iloczyn trzech funkcji: podobieństwa jasności, kontrastu i struktury [Równanie \ref{eq:2}].
+
+\begin{equation}
+    SSIM(x,y) = [l(x,y)][c(x,y)][s(x,y)] \label{eq:2}
+\end{equation}
 
 
 \newpage
+
 \section{Wstęp do transformacji falkowej}
 
 
@@ -716,5 +768,3 @@ Jeśli chcemy wykonać odwrotną transformację falkową na obrazie, wystarczy w
         \label{fig:image45}
     \end{minipage}
 \end{figure}
-
-
