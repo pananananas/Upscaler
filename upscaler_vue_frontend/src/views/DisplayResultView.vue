@@ -1,14 +1,19 @@
 <template>
 <div class="background-container">
 <div v-for="(style, index) in gradientStyles" :key="index" :style="style"/>
-<div class="relative w-full h-screen flex">
+<div class="relative w-full h-screen flex gap-10">
     
 
-    <div class="flex-initial mx-auto h-full ">
+    <div class="flex-initial mx-auto h-full w-3/4 ml-10">
         <div class="flex justify-center items-center gap-1 h-full">
             <img :src="imageUrl" :class="divImageClasses" class="object-contain mx-auto rounded-lg image-not-dragable shadow-2xl" ref="imageRef"  @click="toggleFreeze">
         </div>
     </div>
+
+
+
+
+
     <div :class="divClasses" class="w-1/2">
         <div class="flex-initial bg-[rgba(20,20,20,0.75)] rounded-xl  h-full justify-self-end left-0 p-5 ">
             
@@ -375,7 +380,8 @@ export default defineComponent({
     computed: {
         divClasses() : string[] {
             return [
-                'm-5',
+                'my-5',
+                'mr-5',
                 'z-10',
                 this.isVertical ? 'w-1/4' : 'w-1/4',
             ];

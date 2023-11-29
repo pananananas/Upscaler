@@ -1,11 +1,11 @@
 \chapter{Deep Wavelet Super Resolution}
 
 
-Pierwszy z omawianych algorytmów adresuje problem super-rozdzielczości obrazów przy użyciu transformacji falkowej i głębokiej sieci neuronowej. Algorytm został opracowany przez: Tiantong Guo, Hojjat Seyed Mousavi, Tiep Huu Vu, Vishal Monga, dla: School of Electrical Engineering and Computer Science, The Pennsylvania State University, State College, PA, 16803 \cite{guo2017deep}.
-Ta głęboka sieć neuronowa skupia się na rekonstrukcji różnic pomiędzy obrazkiem wejściowym o niskiej rozdzielczości (LR - Low Res), a obrazkiem wysokiej rozdzielczości (HR - High Res). W tej pracy badane są zalety wykorzystywania danych domeny transformacji falkowej w zadaniu SR, zwłaszcza w celu uchwycenia większej ilości informacji strukturalnych w obrazach aby uniknąć artefaktów. 
+Pierwszy z omawianych algorytmów proponuje rozwiązanie problemu super-rozdzielczości obrazów przy użyciu transformacji falkowej i głębokiej sieci neuronowej. Algorytm został opracowany przez: Tiantong Guo, Hojjat Seyed Mousavi, Tiep Huu Vu, Vishal Monga, dla: School of Electrical Engineering and Computer Science, The Pennsylvania State University, State College, PA, 16803 \cite{guo2017deep}.
 
-Rezydualne sieci neuronowe korzystają z nieliczności danych wejściowych i wyjściowych oraz faktu, że uczenie sieci z nielicznymi aktywacjami jest znacznie łatwiejsze i bardziej niezawodne. 
-To pozwala na wykorzystanie przestrzennych współczynników falkowych, które zazwyczaj są rzadkie. Co ważniejsze, wykorzystanie różnic współczynników falkowych jako par danych treningowych dodatkowo zwiększa rzadkość danych treningowych, co skutkuje bardziej efektywnym uczeniem. Innymi słowy, użycie współczynników falkowych sprzyja rzadkości aktywacji w warstwach środkowych, a także w warstwie wyjściowej.
+Ten algorytm skupia się na wykorzystaniu transformacji falkowej do rekonstrukcji szczegółów obrazu o niskiej rozdzielczości.
+W tej pracy badane są zalety wykorzystywania danych domeny transformacji falkowej w zadaniu SR, zwłaszcza w celu uchwycenia większej ilości informacji strukturalnych w obrazach aby uniknąć artefaktów. Wykorzystanie różnic współczynników falkowych jako par danych treningowych dodatkowo zwiększa rzadkość danych treningowych, co skutkuje bardziej efektywnym uczeniem. 
+% Innymi słowy, użycie współczynników falkowych sprzyja rzadkości aktywacji w warstwach środkowych, a także w warstwie wyjściowej.
 
 \begin{figure}[ht]
     \centering
@@ -17,17 +17,17 @@ To pozwala na wykorzystanie przestrzennych współczynników falkowych, które z
     \hspace{0.5cm}
     \begin{minipage}[t]{0.35\linewidth}
         \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic_DWSR_x4.png}
-        \caption{Obraz powiększony algorytmem DWSR czterokrotnie}
+        \caption{Obraz powiększony algorytmem \textbf{DWSR} czterokrotnie}
         \label{fig:image47}
     \end{minipage}
 \end{figure}
 
-Dodatkowo transformacja falkowa dekomponuje obraz na wiele skal, co pozwala na wykorzystanie informacji z różnych skal w celu rekonstrukcji obrazu o wysokiej rozdzielczości. W przeciwieństwie do innych metod, które wykorzystują informacje z jednej skali, DWSR wykorzystuje informacje z wielu skal, co pozwala na lepsze odwzorowanie obrazu o wysokiej rozdzielczości.
+Dodatkowo transformacja falkowa dekomponuje obraz na wiele skal, co pozwala na wykorzystanie informacji z różnych skal w celu rekonstrukcji obrazu o wysokiej rozdzielczości. \textbf{DWSR} wykorzystuje więc informacje z wielu skal, co pozwala na lepsze odwzorowanie obrazu o wysokiej rozdzielczości.
 
 
 \section{Architektura DWSR}
 
-Na problem super-rozdzielczości mozemy spojrzeć jak na problem rekonstrukcji detali w obrazie wejściowym o niskiej rozdzielczości. Takie podejście świetnie współgra z dekompozycją transformacji falkowej. Jak widać na Rys \ref{fig:image48}, jeśli potraktujemy obraz wejściowy jako wyjście LL poziomu 2dDWT, przewidywanie podpasm HL, LH i HH 2dDWT da nam brakujące szczegóły obrazu LL. Następnie można użyć 2dIDWT, aby zebrać przewidywane szczegóły i wygenerować wyniki SR.
+Na problem super-rozdzielczości mozemy spojrzeć jak na problem rekonstrukcji detali obrazu wejściowego o niskiej rozdzielczości. Takie podejście świetnie współgra z dekompozycją transformacji falkowej. Jak widać na Rys \ref{fig:image48}, jeśli potraktujemy obraz wejściowy jako wyjście LL poziomu 2dDWT, przewidywanie podpasm HL, LH i HH 2dDWT da nam brakujące szczegóły obrazu LL. Następnie można użyć 2dIDWT, aby zebrać przewidywane szczegóły i wygenerować wyniki SR.
 
 
 \begin{figure}[ht]
@@ -60,13 +60,15 @@ gdzie:
 
 Dlatego przy pomocy transformacji falkowej, problem SR staje się predykcją współczynników falkowych.
 
+
+\newpage
 \subsection*{Struktura sieci}
 
 \begin{figure}[ht]
     \centering
     \begin{minipage}[t]{0.9\linewidth}
         \includegraphics[width=\linewidth]{Rozdziały/03.DWSR/Obrazy/strultura_DWSR.png}  
-        \caption{Struktura sieci DWSR}
+        \caption{Struktura sieci \textbf{DWSR}}
         \label{fig:image49}
     \end{minipage}
 \end{figure}
@@ -81,7 +83,7 @@ W pierwszej warstwie znajdują się 64 filtry o rozmiarze $4 \times  3 \times 3$
 Obrazy treningowe o niskiej rozdzielczości są powiększane przez interpolację dwusześcienną (omawianą w poprzednim rozdziale). Następnie powiększone obrazy LR są przetwarzane przez 2dDWT z falką Haara w celu uzyskania czterech podpasm LR ($LRSB$), które są oznaczone jako:
 
 \begin{equation}
-    L R S B = \left\{ LA, LV, LH, LD \right\} := 2dDWT\left\{LR\right\}, 
+    L R S B = \left\{ LA, LV, LH, LD \right\} := 2dDWT\left\{LR\right\}, \label{eq:3.2}
 \end{equation}
 
 gdzie:
@@ -92,10 +94,12 @@ gdzie:
     \item $LD$ - współczynniki HH.
 \end{itemize}
 
+
+\newpage
 Transformacja jest aplikowana w podobny sposób do obrazów o wysokiej rozdzielczości, aby uzyskać cztery podpasma HR ($HRSB$), które są oznaczone jako:
 
 \begin{equation}
-    H R S B = \left\{ HA, HV, HH, HD \right\} := 2dDWT\left\{HR\right\},
+    H R S B = \left\{ HA, HV, HH, HD \right\} := 2dDWT\left\{HR\right\}, \label{eq:3.3}
 \end{equation}
 
 gdzie:
@@ -114,6 +118,7 @@ Następnie różnicę $\Delta SB$ między $LRSB$ i $HRSB$ można zapisać jako:
                 & =\{{HA}-{LA}, {HV}-{LV}, {HH}-{LH}, {HD}-{LD}\} \\
                 & =\{\Delta {A}, \Delta {V}, \Delta {H}, \Delta {D}\}
     \end{aligned}
+    \label{eq:3.4}
 \end{equation}
 
 Naszym celem jest wygenerowanie $\Delta SB$ z $LRSB$. Procedura podawania dalej jest oznaczana jako $f(LRSB)$. Koszt wyjścia sieci jest zdefiniowany jako:
@@ -151,23 +156,84 @@ W ostatnim etapie 2dIDWT generuje SR obraz jako:
     SR=2dIDWT\{SRSB\}
 \end{equation}
 
+\subsubsection*{Przygotowanie danych treningowych}
+
+
+Podczas fazy szkoleniowej wykorzystywanych jest $800$ obrazów szkoleniowych \textbf{NTIRE} \cite{8014883} bez rozszerzenia. Obrazy NTIRE HR 
+$\{Y_i\}^{800}_{i=1}$ są próbkowane w dół o współczynnik $c$. 
+Obrazy te są powiększane za pomocą interpolacji dwusześciennej o ten sam współczynnik $c$, aby utworzyć obrazy treningowe $LR$ 
+$\{X_i\}^{800}_{i=1}$. Należy zauważyć, że obraz $Y_i$ jest przycinany tak, aby jego szerokość i wysokość były wielokrotnością c. Dlatego $X_i$ i $Y_i$ mają ten sam rozmiar, gdzie $Y_i$ reprezentuje obraz treningowy $HR$, zaś $X_i$ reprezentuje odpowiadający mu obraz treningowy $LR$. $X_i$ i $Y_i$ są następnie przycinane do pod-obrazów $41 \times  41$ pikseli z nakładającymi się 10 pikselami do treningu.
+
+Dla każdego pod-obrazu z $X_i$ $LRSB$ jest obliczane jako równanie \ref{eq:3.2}. Dla każdego pod-obrazu z $Y_i$ , $HRSB$ jest obliczany zgodnie z równaniem \ref{eq:3.3}. Następnie resztę $\Delta SB$ jest obliczana zgodnie z równaniem \ref{eq:3.4}.
+
+Zarówno fazy uczenia, jak i testowania \textbf{DWSR} \cite{guo2017deep} wykorzystują tylko informacje o kanale luminancji. W przypadku obrazów kolorowych, kanały $C_r$ i $C_b$ są bezpośrednio powiększane przez interpolację dwusześcienną z obrazów $LR$. Te powiększone kanały chrominancji są łączone z kanałem luminancji $SR$ w celu uzyskania kolorowych wyników $SR$.
+
+
 \subsubsection*{Ustawienie parametrów treningu}
 
 Sieć została wytrenowana przez \cite{guo2017deep} w następujący sposób.
 
 Podczas procesu uczenia wykorzystywanych było kilka technik. Gradienty są obcinane do $0,01$ za pomocą opcji obcinania normy w pakiecie szkoleniowym. Użyty został optymalizator Adam. Początkowa szybkość uczenia wynosi $0,01$ i zmniejsza się o $25\%$ co 20 epok. 
 
-Regulator wagi jest ustawiony na $1 \times 10^{-3}$, aby zapobiec przeuczeniu. Oprócz warstw wejściowych i wyjściowych, DWSR ma $N = 10$ ukrytych warstw konwolucyjnych o tym samym rozmiarze z filtrem o rozmiarze $64 \times 3 \times 3 \times 64$. Ta konfiguracja skutkuje siecią o relatywnie niewielkiej liczbie parametrów. Schemat uczenia został zaimplementowany za pomocą pakietu TensorFlow z interfejsem interakcji Python 2.7. Użyty został jeden procesor graficzny GTX TITAN X 12 GB zarówno do uczenia, jak i testowania.
+Regulator wagi jest ustawiony na $1 \times 10^{-3}$, aby zapobiec przeuczeniu. Oprócz warstw wejściowych i wyjściowych, \textbf{DWSR} ma $N = 10$ ukrytych warstw konwolucyjnych o tym samym rozmiarze z filtrem o rozmiarze $64 \times 3 \times 3 \times 64$. Ta konfiguracja skutkuje siecią o relatywnie niewielkiej liczbie parametrów. Schemat uczenia został zaimplementowany za pomocą pakietu TensorFlow z interfejsem interakcji Python 2.7. Użyty został jeden procesor graficzny GTX TITAN X 12 GB zarówno do uczenia, jak i testowania.
 
 
 \section{Przykłady zastosowań i rezultaty}
 
-Sieć DWSR charakteryzuje się niewielkim czasem działania, co zapewnia relatywnie niewielka ilość parametrów w porównaniu z innymi metodami SR. Algorytm DWSR również świetnie radzi sobie z rekonstrukcją szczegółów obrazu, zwłaszcza w przypadku stałych krawędzi i tekstur.
+% Sieć \textbf{DWSR} charakteryzuje się krótkim czasem działania, co zapewnia relatywnie niewielka ilość parametrów w porównaniu z innymi metodami SR. Algorytm \textbf{DWSR} również świetnie radzi sobie z rekonstrukcją szczegółów obrazu, zwłaszcza w przypadku stałych krawędzi i tekstur.
 
 
-Ilustracja praktycznych zastosowań DWSR oraz ocena i interpretacja osiągniętych dzięki niemu wyników.
+Przykładowe wyniki działania algorytmu \textbf{DWSR} przedstawiono na Rys: \ref{fig:image51} \ref{fig:image53}, \ref{fig:image55}. Obrazy pochodzą z repozytorium GitHub, gdzie umieszczony został również algorytm \textbf{DWSR} \cite{guo2017deep}.
+
+\begin{figure}[ht]
+    \centering
+    \begin{minipage}[t]{0.45\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/03.DWSR/Obrazy/0904x4.png}
+        \caption{Obraz wejściowy}
+        \label{fig:image50}
+    \end{minipage}
+    \hspace{0.5cm}
+    \begin{minipage}[t]{0.45\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/03.DWSR/Obrazy/0904x4_DWSRx4.png}
+        \caption{Obraz powiększony algorytmem \textbf{DWSR} czterokrotnie}
+        \label{fig:image51}
+    \end{minipage}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \begin{minipage}[t]{0.45\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/03.DWSR/Obrazy/0913x4.png}
+        \caption{Obraz wejściowy}
+        \label{fig:image52}
+    \end{minipage}
+    \hspace{0.5cm}
+    \begin{minipage}[t]{0.45\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/03.DWSR/Obrazy/0913x4_DWSRx4.png}
+        \caption{Obraz powiększony algorytmem \textbf{DWSR} czterokrotnie}
+        \label{fig:image53}
+    \end{minipage}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \begin{minipage}[t]{0.45\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/03.DWSR/Obrazy/0999x4.png}
+        \caption{Obraz wejściowy}
+        \label{fig:image54}
+    \end{minipage}
+    \hspace{0.5cm}
+    \begin{minipage}[t]{0.45\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/03.DWSR/Obrazy/0999x4_DWSRx4.png}
+        \caption{Obraz powiększony algorytmem \textbf{DWSR} czterokrotnie}
+        \label{fig:image55}
+    \end{minipage}
+\end{figure}
 
 
 
-\section{Implementacja w aplikacji}
+Omawiany algorytm świetnie sobie radzi z rekonstrukcją detali z powtarzających się wzorów, jak na przykład pasy zebry, czy trawa na obrazie \ref{fig:image55}, krawędzie okien na obrazie \ref{fig:image53}, czy tekstura łusek ryby na obrazie \ref{fig:image51}.
 
+Główną zaletą algorytmu \textbf{DWSR} jest szybkość działania, co wynika z niewielkiej ilości parametrów. W porównaniu z innymi metodami SR, \textbf{DWSR} osiąga konkurencyjne lub lepsze wyniki, a jednocześnie jest znacznie oszczędniejsza pod względem liczby parametrów. Dzieje się tak ponieważ falki zapewniają reprezentację obrazu, która naturalnie upraszcza mapowanie, którego należy się nauczyć. 
+
+Dokładniejsza analiza działania algorytmu \textbf{DWSR}, oraz analiza porównawcza z algorytmem \textbf{ESRGAN} została przedstawiona w Rozdziale \ref{chap:porownanie_algorytmow}.
