@@ -1,9 +1,9 @@
-\chapter{ESRGAN}
+\chapter{Enhanced Super-Resolution Generative Adversarial Network}
 
 Kolejny omawiany algorytm rozwiązuje problem super-rozdzielczości obrazów przy użyciu Generatywnych Sieci Przestawnych. Algorytm został opracowany przez: Xintao Wang, Ke Yu, Shixiang Wu, Jinjin Gu, Yihao Liu,
 Chao Dong, Chen Change Loy, Yu Qiao, Xiaoou Tang \cite{wang2018esrgan}.
 
-
+\textbf{ESRGAN} jest rozwinięciem algorytmu \textbf{SRGAN} \cite{Ledig_2017_CVPR}; wprowadza kilka istotnych zmian, które znacznie poprawiają jakość obrazów wygenerowanych przez sieć.
 
 
 \begin{figure}[ht]
@@ -21,29 +21,92 @@ Chao Dong, Chen Change Loy, Yu Qiao, Xiaoou Tang \cite{wang2018esrgan}.
     \end{minipage}
 \end{figure}
 
-
+\newpage
 \section{Architektura ESRGAN}
 
+Algorytm \textbf{ESRGAN} bazuje na założeniach \textbf{SRGAN} \cite{Ledig_2017_CVPR}, jednak wprowadza istotne zmiany w architekturze sieci, przeciwnych strat i strat percepcyjnych.
 
-Szczegółowy opis architektury sieci ESRGAN, w tym jej głównych komponentów i zasady działania.
+\begin{figure}[ht]
+    \centering
+    \begin{minipage}[t]{0.85\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/04.ESRGAN/Obrazy/Architektura SRGAN.png}
+        \caption{Architektura \textbf{SRGAN}}
+        \label{fig:image62}
+    \end{minipage}
+\end{figure}
+
+Architektura \textbf{SRGAN} składa się z dwóch sieci: generatora i dyskryminatora [Rys \ref{fig:image62}]. Generator przyjmuje na wejściu obraz o niskiej rozdzielczości i zwraca obraz o wysokiej rozdzielczości. Dyskryminator przyjmuje na wejściu obraz o wysokiej rozdzielczości i zwraca prawdopodobieństwo, że obraz jest rzeczywisty, a nie wygenerowany przez sieć. 
+
+\textbf{SRGAN} wykorzystuje VGG loss, czyli funkcję straty opartą na głębokiej sieci neuronowej VGG, używaną do oceny podobieństwa percepcyjnego między obrazami. Zamiast mierzyć różnicę pomiędzy pikselami, jak w przypadku błędu średniokwadratowego (MSE), VGG loss porównuje cechy reprezentacyjne (np. tekstury, kształty) wyekstrahowane przez sieć VGG z obu obrazów. Poprzez użycie tej funkcji straty, SRGAN skupia się na generowaniu obrazów, które są percepcyjnie bardziej podobne do obrazów wysokiej rozdzielczości, zamiast jedynie minimalizować błąd średniokwadratowy. Dzięki temu, generowane obrazy charakteryzują się lepszą jakością percepcyjną, bardziej zbliżoną do naturalnych zdjęć.
 
 
 
-% \section{Kluczowe cechy i innowacje}
+\textbf{ESRGAN} wprowadza kilka istotnych zmian w architekturze sieci. Zmiany te mają na celu poprawę jakości generowanych obrazów i eliminację artefaktów na obrazach wyjściowych.
 
 
-Omówienie innowacji wprowadzonych w ESRGAN i w jaki sposób różnią się one od wcześniejszych podejść.
+\subsection*{Zmiany w architekturze}
+
+\begin{figure}[ht]
+    \centering
+    \begin{minipage}[t]{0.85\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/04.ESRGAN/Obrazy/Architektura ESRGAN 1.png}
+        \caption{Zmiany zastosowane w architekturze \textbf{ESRGAN}}
+        \label{fig:image63}
+    \end{minipage}
+\end{figure}
+
+Pierwszą zmianą było usunięcie warstw normalizacji wsadowej z generatora (lewa strona Rys \ref{fig:image63}). 
+Normalizacja wsadowa jest techniką stosowaną w procesie uczenia sieci neuronowych, która ma na celu poprawę stabilności i szybkości uczenia poprzez normalizację danych wejściowych w każdej warstwie na podstawie mini-zestawów (batchy). Technika ta polega na dostosowaniu średniej i wariancji danych w każdym mini-zestawie, co pomaga w redukcji problemu zwanego "wewnętrznym przesunięciem kowariancji" (internal covariance shift) i sprzyja szybszemu i bardziej stabilnemu uczeniu sieci.
+
+Warstwy te powodowały, że obrazy wyjściowe posiadały artefakty [Rys \ref{fig:image64}] - powtarzające się tekstury.
+
+\begin{figure}[ht]
+    \centering
+    \begin{minipage}[t]{0.85\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/04.ESRGAN/Obrazy/Batch normalization artefacts.png}
+        \caption{Przykłady artefaktów powstałych przez normalizację wsadową}
+        \label{fig:image64}
+    \end{minipage}
+\end{figure}
+
+Kolejną zmianą było powiększenie ilości warstw w generatorze (prawa strona Rys \ref{fig:image63}). W \textbf{SRGAN} generator składał się z 16 warstw, natomiast w \textbf{ESRGAN} z 23 warstw. Zwiększenie ilości warstw pozwoliło na zwiększenie złożoności sieci, co przełożyło się na lepszą jakość generowanych obrazów.
+
+\subsection*{Zmiany w dyskryminatorze}
+
+W \textbf{ESRGAN} zastosowano zmiany nie tylko w generatorze, ale również w dyskryminatorze stosując dyskryminator relatywistyczny \cite{jolicoeurmartineau2018relativistic}. Dyskryminator stosowany w \textbf{SRGAN} zwracał prawdopodobieństwo, że obraz jest rzeczywisty, a nie wygenerowany przez sieć. Dyskryminator relatywistyczny przewiduje prawdopodobieństwo czy obraz prawdziwy jest relatywnie bardziej realistyczny niż obraz wygenerowany przez generator [Rys \ref{fig:image66}].
+
+\begin{figure}[ht]
+    \centering
+    \begin{minipage}[t]{0.85\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/04.ESRGAN/Obrazy/relatywistyczny dyskryminator.png}
+        \caption{Różnica między dyskryminatorem standardowym a relatywistycznym}
+        \label{fig:image66}
+    \end{minipage}
+\end{figure}
+
+\subsection*{Zmiany w funkcji straty}
+
+Zastosowano również zmianę w funkcji straty. Zastosowano funkcję strat VGG, ale mapy cech były porównywane przed aktywacją, a nie po. Porównanie cech przed aktywacją pozwala wykorzystanie większej ilości informacji, gdyż mapy aktywacji są gęstsze i zawierają więcej informacji o obrazie przed analizą przez funkcję aktywacji [Rys \ref{fig:image65}].
+
+\begin{figure}[ht]
+    \centering
+    \begin{minipage}[t]{0.85\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/04.ESRGAN/Obrazy/mapa aktywacji.png}
+        \caption{Mapa cech przed aktywacją i po aktywacji}
+        \label{fig:image65}
+    \end{minipage}
+\end{figure}
 
 
 
 \section{Proces treningu i implementacji}
 
 
-Opis procesu treningu sieci ESRGAN, w tym zbierania danych, uczenia oraz wyzwań implementacyjnych.
+
+
+% Opis procesu treningu sieci ESRGAN, w tym zbierania danych, uczenia oraz wyzwań implementacyjnych.
 
 
 
 \section{Przykłady zastosowań i rezultaty}
-
-
-Prezentacja przykładów, gdzie ESRGAN został użyty oraz analiza wyników, jakie osiągnięto dzięki tej technologii.
+% Prezentacja przykładów, gdzie ESRGAN został użyty oraz analiza wyników, jakie osiągnięto dzięki tej technologii.
