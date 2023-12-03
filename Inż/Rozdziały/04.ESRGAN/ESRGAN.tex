@@ -3,7 +3,7 @@
 Kolejny omawiany algorytm rozwiązuje problem super-rozdzielczości obrazów przy użyciu Generatywnych Sieci Przestawnych. Algorytm został opracowany przez: Xintao Wang, Ke Yu, Shixiang Wu, Jinjin Gu, Yihao Liu,
 Chao Dong, Chen Change Loy, Yu Qiao, Xiaoou Tang \cite{wang2018esrgan}.
 
-\textbf{ESRGAN} jest rozwinięciem algorytmu \textbf{SRGAN} \cite{Ledig_2017_CVPR}; wprowadza kilka istotnych zmian, które znacznie poprawiają jakość obrazów wygenerowanych przez sieć.
+\textbf{ESRGAN} jest rozwinięciem algorytmu \textbf{SRGAN} \cite{Ledig_2017_CVPR}; wprowadza kilka istotnych zmian, które znacznie poprawiają jakość obrazów wygenerowanych przez sieć. W tej pracy badane są zalety zastosowanych zmian w architekturze sieci generatora i dyskryminatora, oraz funkcji straty. 
 
 
 \begin{figure}[ht]
@@ -99,14 +99,74 @@ Zastosowano również zmianę w funkcji straty. Zastosowano funkcję strat VGG, 
 
 
 
-\section{Proces treningu i implementacji}
+\section{Proces treningu}
+
+Podobnie jak w \textbf{SRGAN} \cite{Ledig_2017_CVPR}, w \textbf{ESRGAN} \cite{wang2018esrgan} obrazy powiększane są ze skalą 4 pomiędzy obrazami $LR$ a $HR$. 
+
+Do treningu \textbf{ESRGAN} wykorzystano bazę danych DIV2K \cite{Agustsson_2017_CVPR_Workshops}, która zawiera 800 zdjęć o wysokiej rozdzielczości (2k), oraz zbioru danych Flickr2K % \cite{lim2017enhanced}
+, który zawiera 2650 zdjęć o takiej samej rozdzielczości. Dodatkowo wzbogacono zestaw treningowy o losowe odbicia lustrzane i rotacje o 90 stopni.
 
 
+Obrazy $HR$ przeskalowano z użyciem Matlaba. Używano mini-zestawów (mini-batch) o wielkości 16 i kadrowano fragmenty HR o rozmiarze $128 \times 128$ pikseli. Większy rozmiar fragmentów pomagał w przechwytywaniu większej ilości informacji semantycznej, co było korzystne dla głębszych sieci, ale zwiększało czas treningu i zapotrzebowanie na zasoby obliczeniowe.
 
+Do optymalizacji użyto metody Adam z parametrami \( \beta_1 = 0.9 \) i \( \beta_2 = 0.999 \), aktualizując na przemian sieci generatora i dyskryminatora do momentu zbieżności modelu.
 
-% Opis procesu treningu sieci ESRGAN, w tym zbierania danych, uczenia oraz wyzwań implementacyjnych.
+Jako zestaw testowy wykorzystano obrazy z zestawów danych Set5 \cite{bevilacqua2012low}, Set14 \cite{zeyde2010single}, BSD100 \cite{martin2001database} i Urban100 \cite{Huang_2015_CVPR}.
 
 
 
 \section{Przykłady zastosowań i rezultaty}
-% Prezentacja przykładów, gdzie ESRGAN został użyty oraz analiza wyników, jakie osiągnięto dzięki tej technologii.
+
+Przykładowe wyniki działania algorytmu \textbf{ESRGAN} przedstawiono na Rys: \ref{fig:image68} \ref{fig:image70}, \ref{fig:image72}. Obrazy pochodzą z repozytorium GitHub, gdzie umieszczony został również algorytm \textbf{DWSR} \cite{guo2017deep}.
+
+Omawiany algorytm radzi sobie jeszcze lepiej niż opisywany w poprzednim rozdziale \textbf{DWSR}, zwłaszcza z teksturami takimi jak włosy, czy futro. \textbf{ESRGAN} świetnie radzi sobie z krawędziami obiektów na obrazach, widać to na przykładzie Rys. \ref{fig:image70}, gdzie ramy okien są bardzo wyraźnie zarysowane.
+
+Jako, że \textbf{ESRGAN} jest dużym i skomplikowanym modelem jego czas egzekucji jest znacznie dłuższy niż w przypadku \textbf{DWSR}. 
+
+Dokładniejsza analiza działania algorytmu \textbf{ESRGAN}, oraz analiza porównawcza z algorytmem \textbf{DWSR} została przedstawiona w Rozdziale \ref{chap:porownanie_algorytmow}.
+
+
+\begin{figure}[ht]
+    \centering
+    \begin{minipage}[t]{0.45\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/03.DWSR/Obrazy/0904x4.png}
+        \caption{Obraz wejściowy}
+        \label{fig:image67}
+    \end{minipage}
+    \hspace{0.5cm}
+    \begin{minipage}[t]{0.45\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/03.DWSR/Obrazy/0904x4_ESRGANx4.png}
+        \caption{Obraz powiększony algorytmem \textbf{ESRGAN} czterokrotnie}
+        \label{fig:image68}
+    \end{minipage}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \begin{minipage}[t]{0.45\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/03.DWSR/Obrazy/0913x4.png}
+        \caption{Obraz wejściowy}
+        \label{fig:image69}
+    \end{minipage}
+    \hspace{0.5cm}
+    \begin{minipage}[t]{0.45\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/03.DWSR/Obrazy/0913x4_ESRGANx4.png}
+        \caption{Obraz powiększony algorytmem \textbf{ESRGAN} czterokrotnie}
+        \label{fig:image70}
+    \end{minipage}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \begin{minipage}[t]{0.45\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/03.DWSR/Obrazy/0999x4.png}
+        \caption{Obraz wejściowy}
+        \label{fig:image71}
+    \end{minipage}
+    \hspace{0.5cm}
+    \begin{minipage}[t]{0.45\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/03.DWSR/Obrazy/0999x4_ESRGANx4.png}
+        \caption{Obraz powiększony algorytmem \textbf{ESRGAN} czterokrotnie}
+        \label{fig:image72}
+    \end{minipage}
+\end{figure}
