@@ -4,7 +4,7 @@
 Pierwszy z omawianych algorytmów proponuje rozwiązanie problemu super-rozdzielczości obrazów przy użyciu transformacji falkowej i głębokiej sieci neuronowej. Algorytm został opracowany przez: Tiantong Guo, Hojjat Seyed Mousavi, Tiep Huu Vu, Vishal Monga, dla: School of Electrical Engineering and Computer Science, The Pennsylvania State University, State College, PA, 16803 \cite{guo2017deep}.
 
 Ten algorytm skupia się na wykorzystaniu transformacji falkowej do rekonstrukcji szczegółów obrazu o niskiej rozdzielczości.
-W tej pracy badane są zalety wykorzystywania danych domeny transformacji falkowej w zadaniu SR, zwłaszcza w celu uchwycenia większej ilości informacji strukturalnych w obrazach aby uniknąć artefaktów. Wykorzystanie różnic współczynników falkowych jako par danych treningowych dodatkowo zwiększa rzadkość danych treningowych, co skutkuje bardziej efektywnym uczeniem. 
+W tej pracy badane są zalety wykorzystywania danych domeny transformacji falkowej w zadaniu SR, zwłaszcza w celu uchwycenia większej ilości informacji strukturalnych w obrazach aby uniknąć artefaktów. Wykorzystanie różnic współczynników falkowych jako par danych treningowych dodatkowo zmniejsza gęstość danych treningowych, co skutkuje bardziej efektywnym uczeniem. 
 % Innymi słowy, użycie współczynników falkowych sprzyja rzadkości aktywacji w warstwach środkowych, a także w warstwie wyjściowej.
 
 \begin{figure}[ht]
@@ -22,7 +22,8 @@ W tej pracy badane są zalety wykorzystywania danych domeny transformacji falkow
     \end{minipage}
 \end{figure}
 
-Dodatkowo transformacja falkowa dekomponuje obraz na wiele skal, co pozwala na wykorzystanie informacji z różnych skal w celu rekonstrukcji obrazu o wysokiej rozdzielczości. \textbf{DWSR} wykorzystuje więc informacje z wielu skal, co pozwala na lepsze odwzorowanie obrazu o wysokiej rozdzielczości.
+Dodatkowo transformacja falkowa dekomponuje obraz na wiele skal, co pozwala na wykorzystanie informacji z różnych skal w celu rekonstrukcji obrazu o wysokiej rozdzielczości. 
+% \textbf{DWSR} wykorzystuje więc informacje z wielu skal, co pozwala na lepsze odwzorowanie obrazu o wysokiej rozdzielczości.
 
 
 \section{Architektura DWSR}
