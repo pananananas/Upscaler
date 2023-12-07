@@ -42,7 +42,7 @@ watch(() => props.scaleValue, (newValue, oldValue) => {
         isVisible.value = true;
         debounceTimeout = setTimeout(() => {
             isVisible.value = false;
-        }, 1000); // 2 seconds debounce time
+        }, 1500); // 2 seconds debounce time
     }
 });
 
