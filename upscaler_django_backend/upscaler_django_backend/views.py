@@ -75,7 +75,6 @@ def get_image_info(request, image_id):
             'width': width,
             'height': height,
             'colors': dominant_colors
-
         })
     except Exception as e:
             return JsonResponse({'error': str(e)}, status=400)
