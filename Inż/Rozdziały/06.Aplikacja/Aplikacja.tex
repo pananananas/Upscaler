@@ -25,7 +25,7 @@ Ważne jest dla mnie, żeby aplikacja była estetyczna i przyjemna dla oka. Duż
 \begin{figure}[ht]
     \centering
     \begin{minipage}[t]{0.85\linewidth}
-        \includegraphics[width=\linewidth]{Rozdziały/06.Aplikacja/Obrazy/result-siano.png}  
+        \includegraphics[width=\linewidth]{Rozdziały/06.Aplikacja/Obrazy/result-zoom.png}  
         \caption{Widok prezentacji wyników}
         \label{fig:image81}
     \end{minipage}
@@ -69,30 +69,42 @@ Projekt wyglądu aplikacji rozpocząłem od rozrysowania wireframe'ów [Rys \ref
     \end{minipage}
 \end{figure}
 
-Pierwotny rozkład elementów na stronie różni się od tego jak to wygląda teraz. Wraz z rozwojem aplikacji zmieniałem układ elementów, usprawniałem interakcję z użytkownikiem i poprawiałem wygląd aplikacji.
+Pierwotny rozkład elementów na stronie różni się od tego jak to wygląda teraz. Wraz z rozwojem aplikacji zmieniałem układ elementów, usprawniałem interakcję z użytkownikiem i poprawiałem rozkład elementów na ekranach aplikacji.
 
-Kolejnym etapem pracy był projekt graficzny aplikacji. Zdecydowałem, że aplikacja będzie w ciemnym motywie, gdyż taki styl pomaga nam skupić się na tym co jest na ekranie, zwłaszcza w kontekście edycji zdjęć. Zależało mi na tym, żeby aplikacja nie była jednowymiarowa i żeby wyglądała nowocześnie. Pomyślałem, że w nawiązaniu do szumu na zdjęciach analogowych, tło aplikacji będzie miało szum, zaś jako że mamy do czynienia z nowoczesnym narzędziem to kursor i elementy UI będą przejrzyste i czyste. W ten sposób aplikacja zyskuje na głębi.
-
+Kolejnym etapem pracy był projekt graficzny aplikacji. Zdecydowałem, że aplikacja będzie w ciemnym motywie, gdyż taki styl pomaga nam skupić się na tym co jest na ekranie, zwłaszcza w kontekście edycji zdjęć. Zależało mi na tym, żeby aplikacja nie była jednowymiarowa i żeby wyglądała nowocześnie. Początkowo eksperymentowałem z grafikami wektorowymi w tle [Rys \ref{fig:image85}], lecz ten wygląd nie przekonywał mnie. Eksperymentując z wyglądem pomyślałem, że w nawiązaniu do szumu na zdjęciach analogowych, tło aplikacji może mieć szum, zaś jako że mamy do czynienia z nowoczesnym narzędziem to kursor i elementy UI będą przejrzyste i czyste. W ten sposób aplikacja zyskuje na głębi i tak wygląda aktualna wersja, którą postanowiłem zaimplementować [Rys \ref{fig:image80}].
 % \newpage
 \begin{figure}[ht]
     \centering
-    \begin{minipage}[t]{\linewidth}
-        \includegraphics[width=\linewidth]{Rozdziały/06.Aplikacja/Obrazy/kursor-default.png}  
-        \caption{Projekt strony głównej}
+    \begin{minipage}[t]{0.8\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/06.Aplikacja/Obrazy/UI 1.png}  
+        \caption{Pierwsza wersja UI strony głównej}
         \label{fig:image85}
     \end{minipage}
 \end{figure}
 
+Podobnie wyglądał proces projektowania ekranu prezentacji wyników [Rys \ref{fig:image86}]. Zdecydowałem, żeby na ekranie prezentacji wyników były tylko istotne elementy interfejsu, żeby użytkownik nie pogubił się w nadmiarze informacji. Zależało mi na tym, żeby użytkownik mógł łatwo porównać wyniki różnych algorytmów, dlatego zdecydowałem się na układ kafelków, które można wybrać i porównać z sobą. Dodatkowo w tych kafelkach uznałem, że świetnie sprawdzi się widok z bliska, który pozwoli na dokładne przyjrzenie się szczegółom obrazu, tak powstała lupka, która podąża za kursorem gdy wskaźnik znajduje się nad obrazem. 
 
 
+\begin{figure}[ht]
+    \centering
+    \begin{minipage}[t]{0.8\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/06.Aplikacja/Obrazy/UI 1 dsiplay .png}  
+        \caption{Pierwsza wersja UI ekranu wyświetlania wyników}
+        \label{fig:image86}
+    \end{minipage}
+\end{figure}
 
-
-
-
+W kolejnej wersji widoku prezentacji wyników postanowiłem zmienić wygląd tła. Zainspirowany aplikacjami typu \textbf{Apple Music} czy \textbf{Spotify} zdecydowałem się na zmianę tła na gradient z kolorów występujących na obrazie. W ten sposób aplikacja zyskuje na głębi i wygląda bardziej nowocześnie [Rys \ref{fig:image81}]. W tym miejscu projekt aplikacji uznałem za gotowy do implementacji. Więcej o planach rozbudowy aplikacji w rozdziale \ref{sec:plans}.
 
 
 
 \section{Wybór narzędzi i technologii}
+
+
+
+
+
+
 
 Wytłumaczenie wyboru określonych technologii i narzędzi użytych do stworzenia aplikacji webowej.
 
@@ -115,6 +127,6 @@ Omówienie procesu wdrożenia gotowej aplikacji oraz planów dotyczących jej pr
 
 
 
-\section{Plany na przyszłość}
+\section{Plany na przyszłość} \label{sec:plans}
 
-Opis błędów, rzeczy do poprawy w aplikacji. Omówienie jakie są plany rozbudowy apki.
+Opis błędów, rzeczy do poprawy w aplikacji. Omówienie jakie są plany rozbudowy aplikacji.
