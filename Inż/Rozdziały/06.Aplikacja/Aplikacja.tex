@@ -84,15 +84,18 @@ W kolejnej wersji widoku prezentacji wyników postanowiłem zmienić wygląd tł
 
 \section{Wybór narzędzi i technologii}
 
-Kolejnym krokiem w tworzeniu aplikacji jest decyzja odnośnie używanych technologii i narzędzi. W tym rozdziale opiszę jakie technologie i narzędzia wybrałem do stworzenia aplikacji webowej.
+Kolejnym krokiem w tworzeniu aplikacji jest decyzja odnośnie używanych technologii i narzędzi. W tym rozdziale opiszę jakie technologie wybrałem do stworzenia aplikacji webowej. 
+
+Aplikacja dzieli się na Frontend i Backend, gdyż zadanie Super-Rozdzielczości, podobnie jak inne zadania z dziedziny uczenia maszynowego, wymaga dużej mocy obliczeniowej. Z tego powodu implementowane algorytmy będą działać po stronie Backendu, a Frontend będzie odpowiedzialny za interfejs użytkownika, wyświetlenie wyników i komunikację z Backendem. 
+Dodatkowo Backend pozwala na przechowywanie obrazów w bazie danych, co jest istotne gdy chcemy porównać wyniki różnych algorytmów ze sobą od strony administratora.
 
 
-\subsection*{Vue.js: Frontend}
+\subsection{Vue.js: Frontend}
 
 Do implementacji Frontendu zdecydowałem się na użycie frameworku \textbf{Vue.js}
 
 
-\textbf{Vue.js} to progresywny framework JavaScript służący do budowania interfejsów użytkownika. Został stworzony przez Evana You i jest utrzymywany przez niezależnych współtwórców z całego świata. Jego elastyczność pozwala na łatwą integrację z innymi bibliotekami lub istniejącymi projektami, a także jest świetny do tworzenia zaawansowanych aplikacji jednostronicowych (SPA - Single Page Applications). Swietnie nada się do tego projektu, gdyż jest to niewielka aplikacja, która będzie korzystać z wielu bibliotek i narzędzi.
+\textbf{Vue.js} to progresywny framework JavaScript służący do budowania interfejsów użytkownika. Został stworzony przez Evana You i jest utrzymywany przez niezależnych współtwórców z całego świata. Jego elastyczność pozwala na łatwą integrację z innymi bibliotekami lub istniejącymi projektami, a także jest świetny do tworzenia zaawansowanych aplikacji jednostronicowych (SPA - Single Page Applications). Swietnie nada się do tego projektu, gdyż jest to niewielka aplikacja, która będzie korzystać z wielu bibliotek i narzędzi. W kolejnych podrozdziałach opiszę dlaczego Vue.js jest dobrym wyborem do tego projektu.
 
 
 \subsubsection*{Architektura i Komponenty}
@@ -113,39 +116,45 @@ Vue korzysta z koncepcji Virtual DOM, co pozwala na efektywną aktualizację wid
 
 \subsubsection*{Ekosystem i Społeczność}
 
-Vue ma rozbudowany ekosystem, w skład którego wchodzą takie narzędzia jak Vue Router (do zarządzania routingiem w SPA) i Vuex (do zarządzania stanem aplikacji). Dodatkowo, wsparcie społeczności i dostępność zasobów edukacyjnych, takich jak dokumentacja, tutoriale i fora dyskusyjne, sprawiają, że nauka i praca z Vue.js jest dostępna i przyjemna.
+Vue ma rozbudowany ekosystem, w skład którego wchodzą takie narzędzia jak Vue Router (do zarządzania nawigacją w aplikacji) i Vuex (do zarządzania stanem aplikacji). Dodatkowo, wsparcie społeczności i dostępność zasobów edukacyjnych, takich jak dokumentacja, poradniki i fora dyskusyjne, sprawiają, że nauka i praca z Vue.js jest dostępna i przyjemna.
 
 
+\newpage
+\subsection{Django: Backend}
+
+Do implementacji Backendu zdecydowałem się na użycie frameworku \textbf{Django}. 
+
+\textbf{Django} to wysokopoziomowy framework webowy napisany w Pythonie, który umożliwia szybkie tworzenie bezpiecznych i łatwych w utrzymaniu stron internetowych. Został zaprojektowany z myślą o uproszczeniu zadań związanych z tworzeniem aplikacji internetowych, dzięki czemu deweloperzy mogą skupić się po prostu na pisaniu aplikacji. W kolejnych podrozdziałach opiszę dlaczego Django jest dobrym wyborem do tego projektu.
 
 
-\subsection*{Django: Backend}
+\subsubsection*{Python}
 
-
-
-Django to wysokopoziomowy framework webowy napisany w Pythonie, który umożliwia szybkie tworzenie bezpiecznych i utrzymywalnych stron internetowych. Został zaprojektowany z myślą o uproszczeniu zadań związanych z tworzeniem aplikacji internetowych, dzięki czemu deweloperzy mogą skupić się na pisaniu aplikacji bez konieczności ponownego wynajdywania koła.
+Django jest napisane w języku Python, który jest jednym z najpopularniejszych i najbardziej lubianych języków programowania. W języku tym zostały zaimplementowane algorytmy DWSR i ESRGAN, więc wykorzystanie Django pozwoli na łatwą integrację tych algorytmów z aplikacją.
 
 \subsubsection*{Architektura Wzorca Projektowego MTV}
 
 Django wykorzystuje wzorzec projektowy "Model-Template-View" (MTV), który jest podobny do popularnego wzorca MVC. W tym podejściu:
 \begin{itemize}
     \item \textbf{Model} odpowiada za strukturę danych oraz ich walidację.
-    \item \textbf{Template} zajmuje się prezentacją danych, czyli warstwą frontendową.
+    \item \textbf{Template} odpowiada za prezentację danych.
     \item \textbf{View} odpowiada za logikę aplikacji, odbierając żądania od użytkownika i zwracając odpowiednie odpowiedzi.
 \end{itemize}
 
+W tego typu projektach warto stosować wzorce projektowe, ponieważ ułatwiają one zarządzanie kodem i zwiększają jego czytelność. Ponadto, stosowanie wzorców projektowych jest dobrym zwyczajem, który pozwala na łatwiejsze utrzymanie aplikacji w przyszłości.
+
 \subsubsection*{ORM (Object-Relational Mapping)}
 
-Django zawiera wbudowany ORM, który pozwala na interakcję z bazami danych za pomocą kodu Python, zamiast pisać surowe zapytania SQL. ORM przekształca tabele bazy danych w klasy Pythona, co ułatwia manipulowanie danymi i sprawia, że kod jest bardziej czytelny i bezpieczny.
+Django zawiera wbudowany ORM, który pozwala na interakcję z bazami danych za pomocą kodu Python, zamiast pisać surowe zapytania SQL. ORM przekształca tabele bazy danych w klasy Pythona, co ułatwia manipulowanie danymi i sprawia, że kod jest bardziej czytelny, prostszy w zarządzaniu i łatwiejszy w utrzymaniu.
 
-\subsubsection*{Bogata Funkcjonalność "Out-of-the-Box"}
+\subsubsection*{Wbudowane Funkcje}
 
-Django oferuje wiele wbudowanych funkcji "out-of-the-box", takich jak system autentykacji użytkowników, mapowanie URL na widoki, mechanizm szablonów, system administrowania itd. Dzięki temu można szybko rozpocząć pracę nad projektem, mając już na starcie zestaw potrzebnych narzędzi.
+Django oferuje wiele wbudowanych funkcji, takich jak system autentykacji użytkowników, mapowanie URL na widoki, mechanizm szablonów, system administrowania itd. Dzięki temu można szybko rozpocząć pracę nad projektem, mając już na starcie zestaw potrzebnych narzędzi.
 
 \subsubsection*{Bezpieczeństwo}
 
 Bezpieczeństwo jest jedną z głównych zalet Django. Framework ten automatycznie chroni aplikacje przed wieloma powszechnymi zagrożeniami, takimi jak SQL Injection, Cross-site Scripting (XSS), Cross-site Request Forgery (CSRF) i Clickjacking, dzięki czemu deweloperzy mogą skupić się na budowaniu aplikacji, nie martwiąc się o podstawowe kwestie bezpieczeństwa.
 
-\subsubsection*{Skalowalność i Wersjonowanie}
+\subsubsection*{Skalowalność}
 
 Django jest skalowalny i może obsługiwać zarówno małe, jak i duże projekty. Ponadto, framework ten wspiera koncept wersjonowania API, co jest kluczowe przy rozwijaniu i utrzymywaniu dużych aplikacji.
 
@@ -154,12 +163,12 @@ Django jest skalowalny i może obsługiwać zarówno małe, jak i duże projekty
 Podobnie jak w przypadku Vue.js, Django ma silną i aktywną społeczność. Dzięki temu deweloperzy mają dostęp do bogatej dokumentacji, licznych zasobów edukacyjnych i gotowych rozwiązań, co ułatwia naukę i rozwiązywanie problemów.
 
 
-
-
-
-
-
 \section{Implementacja aplikacji}
+
+Skoro wybraliśmy już stos technologiczny, kolejnym krokiem jest skupienie się na implementacji rozwiązań. W tym rozdziale opiszę jakie decyzje podjąłem przy pisaniu kodu aplikacji.
+
+
+
 
 
 
@@ -188,3 +197,5 @@ Omówienie procesu wdrożenia gotowej aplikacji oraz planów dotyczących jej pr
 \section{Plany na przyszłość} \label{sec:plans}
 
 Opis błędów, rzeczy do poprawy w aplikacji. Omówienie jakie są plany rozbudowy aplikacji.
+
+Przyciski nawigacji z widoku do widoku
