@@ -181,7 +181,54 @@ Regulator wagi jest ustawiony na $1 \times 10^{-3}$, aby zapobiec przeuczeniu. O
 
 \section{Przykłady zastosowań i rezultaty}
 
-% Sieć \textbf{DWSR} charakteryzuje się krótkim czasem działania, co zapewnia relatywnie niewielka ilość parametrów w porównaniu z innymi metodami SR. Algorytm \textbf{DWSR} również świetnie radzi sobie z rekonstrukcją szczegółów obrazu, zwłaszcza w przypadku stałych krawędzi i tekstur.
+
+Przykładowe wyniki działania algorytmu \textbf{DWSR} przedstawiono na Rys: \ref{fig:image51} \ref{fig:image53}, \ref{fig:image55}. Obrazy pochodzą z repozytorium GitHub, gdzie umieszczony został również algorytm \textbf{DWSR} \cite{guo2017deep}.
+\begin{figure}[ht]
+    \centering
+    \begin{minipage}[t]{0.45\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/03.DWSR/Obrazy/0904x4.png}
+        \caption{Obraz wejściowy}
+        \label{fig:image50}
+    \end{minipage}
+    \hspace{0.5cm}
+    \begin{minipage}[t]{0.45\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/03.DWSR/Obrazy/0904x4_DWSRx4.png}
+        \caption{Obraz powiększony algorytmem \textbf{DWSR} czterokrotnie}
+        \label{fig:image51}
+    \end{minipage}
+\end{figure}
+\begin{figure}[ht]
+    \centering
+    \begin{minipage}[t]{0.45\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/03.DWSR/Obrazy/0913x4.png}
+        \caption{Obraz wejściowy}
+        \label{fig:image52}
+    \end{minipage}
+    \hspace{0.5cm}
+    \begin{minipage}[t]{0.45\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/03.DWSR/Obrazy/0913x4_DWSRx4.png}
+        \caption{Obraz powiększony algorytmem \textbf{DWSR} czterokrotnie}
+        \label{fig:image53}
+    \end{minipage}
+\end{figure}
+\begin{figure}[ht]
+    \centering
+    \begin{minipage}[t]{0.45\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/03.DWSR/Obrazy/0999x4.png}
+        \caption{Obraz wejściowy}
+        \label{fig:image54}
+    \end{minipage}
+    \hspace{0.5cm}
+    \begin{minipage}[t]{0.45\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/03.DWSR/Obrazy/0999x4_DWSRx4.png}
+        \caption{Obraz powiększony algorytmem \textbf{DWSR} czterokrotnie}
+        \label{fig:image55}
+    \end{minipage}
+\end{figure}
+
+Ilustracja praktycznych zastosowań DWSR oraz ocena i interpretacja osiągniętych dzięki niemu wyników.
+Omawiany algorytm świetnie sobie radzi z rekonstrukcją detali z powtarzających się wzorów, jak na przykład pasy zebry, czy trawa na obrazie \ref{fig:image55}, krawędzie okien na obrazie \ref{fig:image53}, czy tekstura łusek ryby na obrazie \ref{fig:image51}.
 
 
-\
+Główną zaletą algorytmu \textbf{DWSR} jest szybkość działania, co wynika z niewielkiej ilości parametrów. W porównaniu z innymi metodami SR, \textbf{DWSR} osiąga konkurencyjne lub lepsze wyniki, a jednocześnie jest znacznie oszczędniejsza pod względem liczby parametrów. Dzieje się tak ponieważ falki zapewniają reprezentację obrazu, która naturalnie upraszcza mapowanie, którego należy się nauczyć. 
+Dokładniejsza analiza działania algorytmu \textbf{DWSR}, oraz analiza porównawcza z algorytmem \textbf{ESRGAN} została przedstawiona w Rozdziale \ref{chap:porownanie_algorytmow}.
