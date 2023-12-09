@@ -28,7 +28,7 @@ W pierwszej kolejności użytkownik wysyła obraz do serwera Backend, który zap
 
 Frontend zmienia widok na ten z wynikami i wysyła zapytanie do Backendu o obraz oryginalny i przetworzone. Następnie jeśli serwer zwróci obrazy, Frontend je wyświetla. W przeciwnym wypadku próbuje je pozyskać ponownie aż do skutku. Dzieje się tak, dlatego że zadanie super-rozdzielczości jest czasochłonne i czasem może zająć kilka sekund a w innych wypadkach nawet kilka minut, wszystko w zależności od rozdzielczości obrazów. W tym czasie użytkownik może porównywać uzyskane wyniki i wybrać najlepszy. 
 
-Gdy użytkownik wybierze obraz, może go pobrać na swój komputer. Wtedy Frontend wysyła zapytanie do serwera o obraz w pełnej rozdzielczości, a serwer zwraca obraz wraz z nagłówkiem \textit{Content-Disposition: attachment} co powoduje, że przeglądarka automatycznie pobiera obraz na dysk użytkownika.
+Gdy użytkownik wybierze obraz, może go pobrać na swój komputer. Wtedy Frontend wysyła zapytanie do serwera o obraz w pełnej rozdzielczości, a serwer zwraca obraz, który przeglądarka automatycznie pobiera.
 
 \subsubsection*{Architektura bazy danych}
 
@@ -61,45 +61,174 @@ Dodatkowo w bazie danych przechowujemy listę dominujących kolorów, które są
 \newpage
 \section{Integracja algorytmów super-rozdzielczości} \label{sec:implementation-s-r}
 
+Gdy obraz jest już zapisany w bazie danych, serwer Backend zleca wykonanie algorytmów super-rozdzielczości na osobnych wątkach [\ref{lst:save_image}]. W tym rozdziale opiszę w jaki sposób zostały zaimplementowane algorytmy w aplikacji.
+
+\begin{lstlisting}[language=Python, caption=Obsługa zapisu i przetwarzania obrazów (Django)., label={lst:save_image}]
+def upload_image(request):
+try:
+    form = Image(image=request.FILES['image'])
+    form.save()
+
+    input_image_path = form.image.path
+    
+    thread1 = threading.Thread(target = run_bilinear, 
+                                args = (input_image_path, 4, form))
+    thread2 = threading.Thread(target = run_dwsr, 
+                                args = (input_image_path, 4, form))
+    thread3 = threading.Thread(target = run_esrgan, 
+                                args = (input_image_path, form))
+    thread4 = threading.Thread(target = extract_image_info, 
+                                args = (input_image_path, form))
+    thread1.start()
+    thread2.start()
+    thread3.start()
+    thread4.start()
+
+    image = Image.objects.latest('id')  # Gets the latest entry
+
+    return JsonResponse({'message': 'Image uploaded, processing started', 
+                            'image_id': image.id})
+except Exception as e:
+    return JsonResponse({'error': str(e)}, status=400)
+\end{lstlisting}
+
+Stworzone zostały cztery funkcje - \textit{run\_bilinear}, \textit{run\_dwsr}, \textit{run\_esrgan} oraz\\ \textit{extract\_image\_info}. Pierwsze trzy z nich odpowiadają za uruchomienie algorytmów super-rozdzielczości, a ostatnia za wydobycie informacji o obrazie.
 
 
 
-\begin{lstlisting}[language=Python, caption=Obsługa zapisu i przetwarzania obrazów (Django).]
-    def upload_image(request):
-    try:
-        form = Image(image=request.FILES['image'])
-        form.save()
 
-        input_image_path = form.image.path
+\subsection*{Algorytm Interpolacji Dwuliniowej}
+
+Pierwszy z algorytmów, który został zaimplementowany to algorytm Interpolacji Dwuliniowej omawiany w rozdziale
+TODO: Końcowe: Daj ref do podstaw teoretycznych Bilinear.
+Jest to najmniej skomplikowany algorytm, więc implementacja jego nie była trudna [\ref{lst:bilinear}].
+
+\begin{lstlisting}[language=Python, caption=Implementacja algorytmu Bilinear (Django)., label={lst:bilinear}]
+def run_bilinear(input_image_path, scale, image_instance):
+    img = cv2.imread(input_image_path, cv2.IMREAD_COLOR)
+    
+    height, width = img.shape[:2]
+    new_width, new_height = width * scale, height * scale
+
+    # Resize the image using bilinear interpolation
+    output = cv2.resize(img, (new_width, new_height), interpolation=cv2.INTER_LINEAR)
+
+    save_output_image(output, input_image_path, image_instance)
+\end{lstlisting}
+
+W pierwszej kolejności wczytujemy obraz do powiększenia, następnie pobieramy jego wymiary i mnożymy je przez skalę powiększenia otrzymując nową wielkość obrazu. W kolejnym kroku wykorzystujemy funkcję \textit{cv2.resize} z biblioteki OpenCV2, która pozwala na zmianę rozmiaru obrazu. W tym miejscu wykorzystujemy parametr \\ \textit{interpolation=cv2.INTER\_LINEAR}, który odpowiada za wybór algorytmu interpolacji. W tym wypadku wybraliśmy algorytm Interpolacji Dwuliniowej. Na koniec zapisujemy obraz w bazie danych.
+
+
+\subsection*{Algorytm DWSR}
+
+Kolejnym algorytmem jest algorytm DWSR, który został opisany w rozdziale 
+TODO: Końcowe: Daj ref do DWSR.
+Implementacja tego algorytmu jest bardziej skomplikowana, ponieważ wymaga on zainstalowania modelu, który jest wykorzystywany do przetwarzania obrazów, oraz wymagała przepisania skryptów napisanych w Matlabie na język Python [\ref{lst:dwsr}].
+
+
+\begin{lstlisting}[language=Python, caption=Implementacja algorytmu DWSR (Django)., label={lst:dwsr}]    
+def run_dwsr(input_image_path, scale, image_instance):
+    enlarged_lr_dir, sr_lum_dir, output_dir = create_output_dir()
+
+    fileName = os.path.basename(input_image_path)
+
+    # 1. Generate enlarged LR images
+    generate_enlarged_lr(input_image_path, enlarged_lr_dir, scale) 
+
+    # 2. Process image with DWSR
+    process_image(enlarged_lr_dir + '/' + fileName, sr_lum_dir, scale)
+
+    # 3. Generate color SR
+    final_img_path = generate_color_sr(input_image_path, sr_lum_dir, output_dir, scale) 
+
+    save_output_image(final_img_path, input_image_path, image_instance)
+\end{lstlisting}
+
+Algorytm DWSR składa się z trzech etapów, najpierw obraz jest powiększany metodą Bicubic o podaną skalę analogicznie do algorytmu Bilinear, lecz tym razem z parametrem \textit{interpolation=cv2.INTER\_CUBIC}. Obraz konwertowany jest do skali szarości. Następnie obraz jest przetwarzany przez model DWSR [\ref{lst:dwsr_2}], który zwraca obraz w skali szarości. Na koniec obraz jest konwertowany do RGB i zapisywany w bazie danych.
+
+
+\begin{lstlisting}[language=Python, caption=Przetwarzanie przez model DWSR (Django)., label={lst:dwsr_2}]    
+def process_image(input_image_path, output_dir, scale):
+
+    test_input = tf.placeholder(np.float32)
+    # Feeding Forward
+    test_output, _, _ = model(test_input)
+    with tf.Session(config=tf.ConfigProto()) as sess:
+        tf.initialize_all_variables().run()
+        saver = tf.train.Saver(tf.all_variables())
+
+        saver.restore(sess, MODEL_PATH)
+
+        print('Processing Image %s' % ntpath.basename(input_image_path))
+        testBBImg = cv2.imread(input_image_path, 0)
+        tcoeffs = pw.dwt2(testBBImg, WV)
+        tcA, (tcH, tcV, tcD) = tcoeffs
+        tcA = tcA.astype(np.float32) / 255
+        tcH = tcH.astype(np.float32) / 255
+        tcV = tcV.astype(np.float32) / 255
+        tcD = tcD.astype(np.float32) / 255
+        test_temp = np.array([tcA, tcH, tcV, tcD])
+        test_elem = np.rollaxis(test_temp, 0, 3)
+        test_data = test_elem[np.newaxis, ...]
+        start_time = time.time()
+        output_data = sess.run([test_output], feed_dict={test_input: test_data})
+        duration = time.time() - start_time
+        dcA = output_data[0][0, :, :, 0]
+        dcH = output_data[0][0, :, :, 1]
+        dcV = output_data[0][0, :, :, 2]
+        dcD = output_data[0][0, :, :, 3]
+        srcoeffs = (dcA * 255 + tcA * 255,
+                    (dcH * 255 + tcH * 255,
+                     dcV * 255 + tcV * 255,
+                     dcD * 255 + tcD * 255))
+        sr_img = pw.idwt2(srcoeffs, WV)
+
+        output_image_path = os.path.join(output_dir, ntpath.basename(input_image_path))
+        cv2.imwrite(output_image_path, sr_img)
+        print('Processed image saved to %s, processing time: %s' % (output_image_path, str(duration)))
         
-        thread1 = threading.Thread(target = run_bilinear, 
-                                   args = (input_image_path, 4, form))
-        thread2 = threading.Thread(target = run_dwsr, 
-                                   args = (input_image_path, 4, form))
-        thread3 = threading.Thread(target = run_esrgan, 
-                                   args = (input_image_path, form))
-        thread4 = threading.Thread(target = extract_image_info, 
-                                   args = (input_image_path, form))
+        sess.close()
 
-        thread1.start()
-        thread2.start()
-        thread3.start()
-        thread4.start()
+\end{lstlisting}
 
-        image = Image.objects.latest('id')  # Gets the latest entry
+\subsection*{Algorytm ESRGAN}
 
-        return JsonResponse({'message': 'Image uploaded, processing started', 
-                             'image_id': image.id})
+Ostatnim algorytmem Super-Rozdzielczości implementowanym w aplikacji jest algorytm ESRGAN, który został opisany w rozdziale 
+TODO: Końcowe: Daj ref do ESRGAN.
+Implementacja tego algorytmu była prosta, ponieważ wymagała jedynie zapisu modelu, który jest wykorzystywany do przetwarzania obrazów, oraz jako że model jest już napisany w języku Python, nie było potrzeby przepisywania go na inny język [\ref{lst:esrgan}]. Do tej funkcji nie podajemy skali powiększenia, ponieważ model ESRGAN jest w stanie powiększyć obraz czterokrotnie.
 
-    except Exception as e:
-        return JsonResponse({'error': str(e)}, status=400)
+\begin{lstlisting}[language=Python, caption=Implementacja algorytmu ESRGAN (Django)., label={lst:esrgan}]    
+def run_esrgan(input_image_path, image_instance):
+    model, device = initialize_esrgan_model()
+    output = process_image_with_esrgan(model, device, input_image_path)
+    save_output_image(output, input_image_path, image_instance)
+\end{lstlisting}
+
+W pierwszej kolejności wczytujemy model ESRGAN, następnie przetwarzamy obraz przez model i zapisujemy go w bazie danych.
+
+
+\begin{lstlisting}[language=Python, caption=Przetwarzanie przez model ESRGAN (Django)., label={lst:esrgan_2}]
+def process_image_with_esrgan(model, device, input_image_path):
+    img_LR = read_img(input_image_path, device)
+
+    with torch.no_grad():
+        output=model(img_LR).data.squeeze().float().cpu().clamp_(0, 1).numpy()
+    
+    output = np.transpose(output[[2,1,0],:,:],(1,2,0))
+    output = (output * 255.0).round()
+    return output
 \end{lstlisting}
 
 
+\subsection*{Algorytm K-średnich}
 
 
 
-\section{Testowanie aplikacji}
+
+
+
+
+\section{Implementacja interfejsu użytkownika}
 
 
 
