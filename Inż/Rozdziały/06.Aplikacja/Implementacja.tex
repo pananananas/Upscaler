@@ -1,12 +1,3 @@
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=\linewidth]{Rozdziały/06.Aplikacja/Obrazy/user-flow.png}  
-    \caption{Diagram przepływu użytkownika}
-    \label{fig:image82}
-\end{figure}
-
-TODO: Usuń diagram przepływu
-
 \section{Implementacja aplikacji}
 
 Po wyborze stosu technologicznego kolejnym krokiem jest skupienie się na implementacji rozwiązań. W tym rozdziale opiszę jakie decyzje podjąłem przy pisaniu kodu aplikacji, jak wygląda jej struktura i jakie problemy napotkałem podczas implementacji.
@@ -212,7 +203,7 @@ def extract_dominant_colors(input_image_path, image_instance):
         pixels = np.array(img.getdata())   # Reshape the image data for k-means
         pixels = pixels.reshape(-1, 3)
 
-        kmeans = KMeans(n_clusters=5)
+        kmeans = KMeans(n_clusters=5)     # 5 dominant colors
         kmeans.fit(pixels)
         dominant_colors = kmeans.cluster_centers_
 
@@ -226,6 +217,23 @@ def extract_dominant_colors(input_image_path, image_instance):
 W pierwszej kolejności wczytujemy obraz, następnie przekształcamy go do formatu RGB i przekształcamy do formatu, który może być wykorzystany przez algorytm K-średnich. Następnie wykorzystujemy funkcję \textit{KMeans} z biblioteki \textit{scikit-learn}, która zwraca nam listę dominujących kolorów. Na koniec konwertujemy kolory do formatu HEX i zapisujemy je w bazie danych.
 
 \section{Implementacja interfejsu użytkownika}
+
+Interfejs użytkownika zawiera dwa widoki - widok ze stroną główną, przez który można wysłać zdjęcie do powiększenia rozdzielczości oraz widok z wynikami, w którym można porównać obraz oryginalny z przetworzonymi wersjami. W tym rozdziale opiszę jak zostały zaimplementowane te funkcjonalności.
+
+
+
+
+\subsection*{Widok ze stroną główną}
+
+
+
+
+
+
+\subsection*{Widok z wynikami}
+
+
+
 
 
 \section{Testowanie aplikacji}

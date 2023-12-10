@@ -10,10 +10,6 @@
         </div>
     </div>
 
-
-
-
-
     <div :class="divClasses" class="w-1/2">
         <div class="flex-initial bg-[rgba(20,20,20,0.75)] rounded-xl  h-full justify-self-end left-0 p-5 ">
             

@@ -71,7 +71,11 @@
                 <magnifying-glass-icon v-else-if="currentSvgIcon === 'magnifying-glass'"/>
                 <down-to-bracket-icon v-else-if="currentSvgIcon === 'down-to-bracket'"/>
             </div>
-            <div class="circle" /> <div class="circle" /> <div class="circle" /> <div class="circle" /> <div class="circle" /> <div class="circle" /> <div class="circle" /> <div class="circle" /> <div class="circle" /> <div class="circle" /> <div class="circle" /> <div class="circle" /> <div class="circle" /> <div class="circle" /> <div class="circle" />
+            <div class="circle" /> <div class="circle" /> <div class="circle" /> 
+            <div class="circle" /> <div class="circle" /> <div class="circle" /> 
+            <div class="circle" /> <div class="circle" /> <div class="circle" /> 
+            <div class="circle" /> <div class="circle" /> <div class="circle" /> 
+            <div class="circle" /> <div class="circle" /> <div class="circle" />
         </div>
     </body>
 </template>
