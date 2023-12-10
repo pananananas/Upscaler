@@ -422,13 +422,13 @@ Kursor ma kilka stanów do interakcji nad obiektami oznaczonymi klasą \textit{i
 
 \begin{figure}[ht]
     \centering
-    \begin{minipage}[t]{0.45\linewidth}
+    \begin{minipage}[t]{0.47\linewidth}
         \includegraphics[width=\linewidth]{Rozdziały/06.Aplikacja/Obrazy/kursor-link.jpg}
         \caption{Kursor w stanie Hover (link)}
         \label{fig:image89}
     \end{minipage}
     \hspace{0.5cm}
-    \begin{minipage}[t]{0.45\linewidth}
+    \begin{minipage}[t]{0.47\linewidth}
         \includegraphics[width=\linewidth]{Rozdziały/06.Aplikacja/Obrazy/kursor-scrabb.jpg}
         \caption{Kursor w stanie Hover (obraz)}
         \label{fig:image90}
@@ -437,22 +437,22 @@ Kursor ma kilka stanów do interakcji nad obiektami oznaczonymi klasą \textit{i
 
 \begin{figure}[ht]
     \centering
-    \begin{minipage}[t]{0.45\linewidth}
+    \begin{minipage}[t]{0.47\linewidth}
         \includegraphics[width=\linewidth]{Rozdziały/06.Aplikacja/Obrazy/kursor-question.jpg}
         \caption{Kursor w stanie Hover (przycisk)}
         \label{fig:image91}
     \end{minipage}
     \hspace{0.5cm}
-    \begin{minipage}[t]{0.45\linewidth}
+    \begin{minipage}[t]{0.47\linewidth}
         \includegraphics[width=\linewidth]{Rozdziały/06.Aplikacja/Obrazy/kurssor-upload.jpg}
         \caption{Kursor w stanie DragOver}
         \label{fig:image92}
     \end{minipage}
 \end{figure}
 
-
+Ikony z których korzystam są z bibliotek \textit{Font Awesome}, oraz \textit{Heroicons} i są one wykorzystywane w zależności od tego nad jakim elementem znajduje się wskaźnik myszy.
 Stan \textbf{DragOver} bardzo uprzyjemnia korzystanie z aplikacji, gdyż kiedy użytkownik tylko przeciągnie obraz nad okno przeglądarki, kursor podąża za nim, więc użytkownik może upuścić obraz w dowolnym miejscu na stronie a obraz się prześle.
-
+\newpage
 Gdy obraz zostaje upuszczony, uruchamiana jest funkcja, która odpowiada za sprawdzenie ile plików zostało przesłanych, czy jest to obraz jest wspieranego typu i jeśli wszystko się zgadza wysyła obraz do serwera Backend. Wtedy oczekuje odpowiedzi z Backendu, jeśli wszystko się powiedzie, czyli obraz zostanie zapisany w bazie danych, to Frontend otrzymuje ID obrazka i router zmienia adres na "upload-image/:id". 
 
 
@@ -461,10 +461,10 @@ Gdy obraz zostaje upuszczony, uruchamiana jest funkcja, która odpowiada za spra
 
 Drugi widok w aplikacji jest dużo ważniejszy i bardziej rozbudowany, gdyż odpowiada za porównanie wyników powiększenia obrazów. Widok ten składa się z dwóch części - z wybranego obrazu który jest wyświetlony, oraz z menu bocznego [Rys \ref{fig:image93}].
 
+Największą część ekranu zajmuje aktualnie wyświetlany obraz wynikowy, ale tak naprawdę najważniejsze w tym widoku jest menu boczne. Widać na nim podstawowe informacje o obrazie takie jak miniatura, nazwa, nowa (powiększona) rozdzielczość, przycisk do pobrania obrazu oraz co najważniejsze - kafelki z przetworzonymi obrazami. Kafelki te są interaktywne, więc po kliknięciu w nie, obraz jest wyświetlany w głównym obszarze widoku, ale co jeszcze ważniejsze - przybliżony na kafelku fragment obrazu jest fragmentem, który jest pod kursorem myszy. 
 
-
-
-
+Kursor w tym widoku wizualnie jest bardziej złożony, zawiera ikonę sugerującą że działa jak lupa, która wyświetla się w stanie domyślnym. Oprócz tego w lewą górną stronę rozciąga się "szkło" lupy które jest animowane i porusza się wraz z kursorem. 
+Dodatkowo zaimplementowałem obsługę scorlla oraz przycisków "+" i "-", która pozwala na przybliżenie i oddalenie obrazu lupy, co sprawia że całe narzędzie jest intuicyjne [Rys \ref{fig:image94}]. Pasek postępu widoczny jest jedynie gdy użytkownik przybliża lub oddala obraz. 
 
 \begin{figure}[H]
     \centering
@@ -473,13 +473,17 @@ Drugi widok w aplikacji jest dużo ważniejszy i bardziej rozbudowany, gdyż odp
     \label{fig:image93}
 \end{figure}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{Rozdziały/06.Aplikacja/Obrazy/display1.jpg}  
+    \caption{Widok z porównaniem wyników algorytmów}
+    \label{fig:image94}
+\end{figure}
 
+\newpage
+Kursor ma też opcję blokady w miejscu, która jest aktywowana po przytrzymaniu klawisza spacji lub po kliknięciu myszą. Sprawia ona że kursor nie porusza się wraz z myszą, więc użytkownik może swobodnie poruszać się po aplikacji. W stanie blokady na kursorze wyświetla się ikona z kłódką, która sugeruje blokadę kursora
 
-
-
-
-
-\section{Testowanie aplikacji}
+Działanie szkła powiększającego jest istotne w tej aplikacji i od samego projektu bardzo się na tym skupiłem. 
 
 
 \section{Plany na przyszłość} \label{sec:plans}
