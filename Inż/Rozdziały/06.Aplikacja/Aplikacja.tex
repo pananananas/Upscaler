@@ -382,21 +382,98 @@ def extract_dominant_colors(input_image_path, image_instance):
 
 W pierwszej kolejności wczytujemy obraz, następnie przekształcamy go do formatu RGB i przekształcamy do formatu, który może być wykorzystany przez algorytm K-średnich. Następnie wykorzystujemy funkcję \textit{KMeans} z biblioteki \textit{scikit-learn}, która zwraca nam listę dominujących kolorów. Na koniec konwertujemy kolory do formatu HEX i zapisujemy je w bazie danych.
 
+
+
 \section{Implementacja interfejsu użytkownika}
 
 Interfejs użytkownika zawiera dwa widoki - widok ze stroną główną, przez który można wysłać zdjęcie do powiększenia rozdzielczości oraz widok z wynikami, w którym można porównać obraz oryginalny z przetworzonymi wersjami. W tym rozdziale opiszę jak zostały zaimplementowane te funkcjonalności.
 
 
 
-
 \subsection*{Widok ze stroną główną}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{Rozdziały/06.Aplikacja/Obrazy/kursor-move.jpg}  
+    \caption{Widok strony głównej aplikacji}
+    \label{fig:image88}
+\end{figure}
+
+Widok ten wydaje się drobny i prosty, lecz w rzeczywistości jest rozbudowany. W idei skupić się ma na tym co najważniejsze, czyli na przesłaniu obrazu do powiększenia. Mam sporo pomysłów na ot jak go rozbudować na bazie istniejących interakcji i jakie dodatkowe funkcjonalności można by dodać, ale o tym w rozdziale \ref{sec:plans}.
+
+Widok ten składa się z dwóch części - z tytułu aplikacji oraz przycisków i z obrazów przykładowych [Rys \ref{fig:image88}]. 
+
+W aplikacji znajdziemy dwie czcionki: \textit{Abril Fatface} z Google Fonts i \textit{Larken} z Adobe Fonts. Pierwsza z nich jest używana do tytułu aplikacji, a druga do reszty tekstu, przycisków itp.
+Niżej na stronie znajdują się dwa przyciski, jeden do przesłania obrazu, a drugi do wyświetlenia informacji o aplikacji. Przycisk do przesłania obrazu jest wyróżniony kolorem, więc od razy zwraca na siebie uwagę, zaś przycisk z informacjami jest w kolorze szarym, więc jest mniej widoczny. Póki co przycisk z informacjami nie ma żadnej funkcjonalności, ale o tym w rozdziale \ref{sec:plans}. 
+
+Prawa część ekranu składa się z obrazów przykładowych, które mają zachęcić użytkownika do przesłania obrazu. Część z nich jest wysokiej rozdzielczości, a część niższej, aby pokazać różnicę między obrazem oryginalnym a przetworzonym przez aplikację. Obrazy te wyłamują się poza siatkę strony, aby nadać stronie dynamiki.
+
+Tło tego widoku, tak jak wspomniałem wcześniej, nawiązuje do szumu na zdjęciach analogowych, dodatkowo składa się z animowanych kształtów które znajdują się za warstwą szumu. Animacja tła jest subtelna i składają się na nią trzy kształty, które poruszają się pomiędzy wyszczególnionymi za pomocą \textit{@keyframes} punktami. W ten sposób uzyskujemy efekt, że kształty poruszają się w sposób płynny i nie przewidywalny.
+
+Kolejnym istotnym elementem na stronie jest kursor. Ma on wbudowane funkcjonalności, które dają szerokie pole do popisu w kwestii interakcji z użytkownikiem. Kursor zmienia swój wygląd w zależności od tego nad jakim elementem znajduje się wskaźnik myszy. Na przykład gdy wskaźnik znajduje się nad przyciskiem, kursor powiększa się i wyświetla się wewnątrz niego ikona. 
+Kursor ma kilka stanów do interakcji nad obiektami oznaczonymi klasą \textit{interactable}:
+
+\begin{itemize}
+    \item \textbf{Init} - stan początkowy, gdy wskaźnik znajduje się na ekranie, skaluje się od 0 do 1.2 i po osiągnięciu 1.2 zmienia się na stan \textbf{Default}.
+    \item \textbf{Default} - stan domyślny, gdy wskaźnik nie znajduje się nad żadnym specjalnym elementem. Warto w tym miejscu dodać, że kursor tak naprawdę składa się z piętnastu elementów, które ciągną cię za miejscem w którym znajduje się wskaźnik. Dzięki temu za każdym ruchem pozostaje ślad, który uprzyjemnia interakcje z aplikacją [Rys \ref{fig:image88}].
+    \item \textbf{Hover} - stan nad elementem, gdy wskaźnik znajduje się nad elementem oznaczonym klasą \textit{interactable}, kursor powiększa się i wyświetla się wewnątrz niego ikona w zależności od tego nad czym się znajduje [Rys \ref{fig:image89}, \ref{fig:image90}, \ref{fig:image91}].
+    \item \textbf{DragOver} - stan gdy do aplikacji chcemy przeciągnąć obraz, kursor zmienia swój kolor, skaluje się na dużo większy i wyświetla się wewnątrz niego ikona [Rys \ref{fig:image92}].
+\end{itemize}
+
+\begin{figure}[ht]
+    \centering
+    \begin{minipage}[t]{0.45\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/06.Aplikacja/Obrazy/kursor-link.jpg}
+        \caption{Kursor w stanie Hover (link)}
+        \label{fig:image89}
+    \end{minipage}
+    \hspace{0.5cm}
+    \begin{minipage}[t]{0.45\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/06.Aplikacja/Obrazy/kursor-scrabb.jpg}
+        \caption{Kursor w stanie Hover (obraz)}
+        \label{fig:image90}
+    \end{minipage}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \begin{minipage}[t]{0.45\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/06.Aplikacja/Obrazy/kursor-question.jpg}
+        \caption{Kursor w stanie Hover (przycisk)}
+        \label{fig:image91}
+    \end{minipage}
+    \hspace{0.5cm}
+    \begin{minipage}[t]{0.45\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/06.Aplikacja/Obrazy/kurssor-upload.jpg}
+        \caption{Kursor w stanie DragOver}
+        \label{fig:image92}
+    \end{minipage}
+\end{figure}
+
+
+Stan \textbf{DragOver} bardzo uprzyjemnia korzystanie z aplikacji, gdyż kiedy użytkownik tylko przeciągnie obraz nad okno przeglądarki, kursor podąża za nim, więc użytkownik może upuścić obraz w dowolnym miejscu na stronie a obraz się prześle.
+
+Gdy obraz zostaje upuszczony, uruchamiana jest funkcja, która odpowiada za sprawdzenie ile plików zostało przesłanych, czy jest to obraz jest wspieranego typu i jeśli wszystko się zgadza wysyła obraz do serwera Backend. Wtedy oczekuje odpowiedzi z Backendu, jeśli wszystko się powiedzie, czyli obraz zostanie zapisany w bazie danych, to Frontend otrzymuje ID obrazka i router zmienia adres na "upload-image/:id". 
+
+
+
+\subsection*{Widok z porównaniem wyników powiększenia obrazów}
+
+Drugi widok w aplikacji jest dużo ważniejszy i bardziej rozbudowany, gdyż odpowiada za porównanie wyników powiększenia obrazów. Widok ten składa się z dwóch części - z wybranego obrazu który jest wyświetlony, oraz z menu bocznego [Rys \ref{fig:image93}].
 
 
 
 
 
-\subsection*{Widok z wynikami}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{Rozdziały/06.Aplikacja/Obrazy/display4.jpg}  
+    \caption{Widok z porównaniem wyników algorytmów}
+    \label{fig:image93}
+\end{figure}
+
+
 
 
 
