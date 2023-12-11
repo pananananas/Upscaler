@@ -256,8 +256,7 @@ Stworzone zostały cztery funkcje - \textit{run\_bilinear}, \textit{run\_dwsr}, 
 
 \subsection*{Algorytm Interpolacji Dwuliniowej}
 
-Pierwszy z algorytmów, który został zaimplementowany to algorytm Interpolacji Dwuliniowej omawiany w rozdziale
-TODO: Końcowe: Daj ref do podstaw teoretycznych Bilinear.
+Pierwszy z algorytmów, który został zaimplementowany to algorytm Interpolacji Dwuliniowej omawiany w rozdziale Podstawy Teoretyczne w sekcji \ref{sec:przeglad_metod_powiekszania_obrazow}.
 Jest to najmniej skomplikowany algorytm, więc implementacja jego nie była trudna [\ref{lst:bilinear}].
 
 \begin{lstlisting}[language=Python, caption=Implementacja algorytmu Bilinear., label={lst:bilinear}]
@@ -278,8 +277,7 @@ W pierwszej kolejności wczytujemy obraz do powiększenia, następnie pobieramy 
 
 \subsection*{Algorytm DWSR}
 
-Kolejnym algorytmem jest algorytm DWSR, który został opisany w rozdziale 
-TODO: Końcowe: Daj ref do DWSR.
+Kolejnym algorytmem jest algorytm DWSR, który został opisany w rozdziale \ref{{chap:DWSR}}.
 Implementacja tego algorytmu jest bardziej skomplikowana, ponieważ wymaga on zainstalowania modelu, który jest wykorzystywany do przetwarzania obrazów, oraz wymagała przepisania skryptów napisanych w Matlabie na język Python [\ref{lst:dwsr}].
 
 
@@ -330,8 +328,7 @@ Te przewidziane detale są następnie łączone z oryginalnymi współczynnikami
 
 \subsection*{Algorytm ESRGAN}
 
-Ostatnim algorytmem Super-Rozdzielczości implementowanym w aplikacji jest algorytm ESRGAN, który został opisany w rozdziale 
-TODO: Końcowe: Daj ref do ESRGAN.
+Ostatnim algorytmem Super-Rozdzielczości implementowanym w aplikacji jest algorytm ESRGAN, który został opisany w rozdziale \ref{{chap:ESRGAN}}.
 Implementacja tego algorytmu była prosta, ponieważ wymagała jedynie zapisu modelu, który jest wykorzystywany do przetwarzania obrazów, oraz jako że model jest już napisany w języku Python, nie było potrzeby przepisywania go na inny język [\ref{lst:esrgan}]. Do tej funkcji nie podajemy skali powiększenia, ponieważ model ESRGAN jest w stanie powiększyć obraz czterokrotnie.
 
 \begin{lstlisting}[language=Python, caption=Implementacja algorytmu ESRGAN., label={lst:esrgan}]    
@@ -359,8 +356,7 @@ def process_image_with_esrgan(model, device, input_image_path):
 
 \subsection*{Algorytm K-średnich}
 
-Algorytm K-średnich został opisany w rozdziale
-TODO: Końcowe: Daj ref do K-średnich.
+Algorytm K-średnich został opisany w rozdziale Podstawy Teoretyczne w sekcji \ref{sec:przeglad_metod_powiekszania_obrazow}.
 Jest to algorytm, który wykorzystujemy do wydobycia informacji o obrazie, a dokładniej do wydobycia listy dominujących kolorów. Implementacja tego algorytmu jest bardzo prosta, gdyż wykorzystałem bibliotekę \textit{scikit-learn}, która zawiera w sobie algorytm [\ref{lst:kmeans}].
 
 \begin{lstlisting}[language=Python, caption=Implementacja algorytmu K-średnich., label={lst:kmeans}]
