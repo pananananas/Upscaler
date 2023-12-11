@@ -2,7 +2,6 @@
 <div class="background-container">
 <div v-for="(style, index) in gradientStyles" :key="index" :style="style"/>
 <div class="relative w-full h-screen flex gap-10">
-    
 
     <div class="flex-initial mx-auto h-full w-3/4 ml-10">
         <div class="flex justify-center items-center gap-1 h-full">
@@ -74,13 +73,13 @@
             </div>
         </div>
     </div>
+
 </div>
 
 <div class="magnify-cursor">
     <div :style="{ top: cursorY + 'px', left: cursorX + 'px', transform: 'translate(-100%, -100%)', width: magnifyWindowSize + 'px', height: magnifyWindowSize + 'px' }" class="bg-[rgba(217,217,217,0.30)] rounded-lg border-solid border-[rgba(255,255,255,0.54)] border absolute drop-shadow-4xl pointer-events-none mix-blend-lighten"/>
     <magnify-round-icon :style="{ top: cursorY + 'px', left: cursorX + 'px', transform: 'translate(-50%, -50%)' }" :locked="isFrozen" class="absolute drop-shadow-4xl pointer-events-none"/>
     <scale-progress-bar :cursorX="cursorX" :cursorY="cursorY" :magnifyWindowSize="magnifyWindowSize" :scaleValue="scaleValue" />
-    
 </div>
 </div>
 </template>
@@ -125,7 +124,7 @@ export default defineComponent({
         const magnifyWindowSize = ref(80);
 
         let aspectRatio = 0
-        let effectiveX: number, effectiveY: number;
+        // let effectiveX: number, effectiveY: number;
         let rect: DOMRect;
 
 
@@ -154,19 +153,17 @@ export default defineComponent({
                     return;
             }
 
-            if (!isFrozen.value) {
-                // Clamp the cursor's coordinates within the image's bounds
-                effectiveX = Math.min(Math.max(e.clientX, rect.left + magnifyWindowSize.value), rect.right);
-                effectiveY = Math.min(Math.max(e.clientY, rect.top + magnifyWindowSize.value), rect.bottom);
-                cursorX.value = effectiveX;
-                cursorY.value = effectiveY;
-            } else {
-                effectiveX = cursorX.value;
-                effectiveY = cursorY.value;
-            }
-            // Calculate the relative position of the cursor within the image
+            // Clamp the cursor's coordinates within the image's bounds
+            let effectiveX:number = Math.min(Math.max(e.clientX, rect.left + magnifyWindowSize.value), rect.right);
+            let effectiveY:number = Math.min(Math.max(e.clientY, rect.top + magnifyWindowSize.value), rect.bottom);
+            cursorX.value = effectiveX;
+            cursorY.value = effectiveY;
+            console.log("cursorX", cursorX.value, "cursorY", cursorY.value);
+
+            // Calculate the cursor's position as a percentage of the image's dimensions
             const relativeX = (effectiveX - magnifyWindowSize.value / 2 - rect.left) / rect.width;
             const relativeY = (effectiveY - magnifyWindowSize.value / 2 - rect.top) / rect.height;
+            console.log("relativeX", relativeX, "relativeY", relativeY);
 
             if (aspectRatio < 1) {
                 percentX.value = (relativeX * scaleValue.value * aspectRatio) - 0.5 * scaleValue.value * aspectRatio;
@@ -175,7 +172,7 @@ export default defineComponent({
                 percentX.value = (relativeX * scaleValue.value) - 0.5 * scaleValue.value;
                 percentY.value = (relativeY * scaleValue.value / aspectRatio) - 0.5 * scaleValue.value / aspectRatio;
             }
-            // console.log("percentX", percentX.value, "percentY", percentY.value);
+            console.log("percentX", percentX.value, "percentY", percentY.value);
         };
 
         const updateMousePosition = (e: MouseEvent) => {
@@ -286,7 +283,7 @@ export default defineComponent({
             calculateMousePos(e);
         };
 
-        const generateGradientStyles = (colors: any[]) => {
+        const generateGradientStyles = (colors: string[]) => {
             const angles = ['45deg', '135deg', '-45deg', '90deg', '0deg'];
             return colors.map((color: any, index: number) => ({
                 backgroundImage: `linear-gradient(${angles[index]}, ${color} 0%, transparent 100%)`,
@@ -351,7 +348,7 @@ export default defineComponent({
 
                 const link = document.createElement('a');
                 link.href = url;
-                link.download = this.imageTitle + '_' + this.getAlgorithmName(this.selectedAlgorithm) + '.png';
+                link.download = this.imageTitle;
 
                 document.body.appendChild(link);
                 link.click();

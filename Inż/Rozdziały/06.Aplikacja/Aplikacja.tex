@@ -229,13 +229,13 @@ try:
     input_image_path = form.image.path
     
     thread1 = threading.Thread(target = run_bilinear, 
-                                args = (input_image_path, 4, form))
+                               args = (input_image_path, 4, form))
     thread2 = threading.Thread(target = run_dwsr, 
-                                args = (input_image_path, 4, form))
+                               args = (input_image_path, 4, form))
     thread3 = threading.Thread(target = run_esrgan, 
-                                args = (input_image_path, form))
+                               args = (input_image_path, form))
     thread4 = threading.Thread(target = extract_image_info, 
-                                args = (input_image_path, form))
+                               args = (input_image_path, form))
     thread1.start()
     thread2.start()
     thread3.start()
@@ -483,7 +483,107 @@ Dodatkowo zaimplementowałem obsługę scorlla oraz przycisków "+" i "-", któr
 \newpage
 Kursor ma też opcję blokady w miejscu, która jest aktywowana po przytrzymaniu klawisza spacji lub po kliknięciu myszą. Sprawia ona że kursor nie porusza się wraz z myszą, więc użytkownik może swobodnie poruszać się po aplikacji. W stanie blokady na kursorze wyświetla się ikona z kłódką, która sugeruje blokadę kursora
 
-Działanie szkła powiększającego jest istotne w tej aplikacji i od samego projektu bardzo się na tym skupiłem. 
+Tłem widoku jest gradient kolorów dominujących na obrazie. Kolory te są wyliczane przez algorytm K-średnich na Backendzie i zapisywane w bazie danych, dzięki temu Frontend może je wykorzystać. 
+
+\begin{lstlisting}[language=TypeScript, caption=Wyznaczanie gradientów z kolorów dominujących., label={lst:colors}]
+const generateGradientStyles = (colors: string[]) => {
+    const angles = ['45deg', '135deg', '-45deg', '90deg', '0deg'];
+    return colors.map((color: any, index: number) => ({
+        backgroundImage: `linear-gradient(${angles[index]}, ${color} 0%, transparent 100%)`,
+        position: 'absolute', top: '0', right: '0', bottom: '0', left: '0',
+    }));
+};
+\end{lstlisting}
+
+\begin{lstlisting}[language=HTML, caption=Rysowanie kolorów dominujących (HTML).]
+<div v-for="(style, index) in gradientStyles" :key="index" :style="style"/>
+\end{lstlisting}
+
+Po odczytaniu kolorów wywoływana jest funkcja \textit{generateGradientStyles}, która zwraca tablicę obiektów, które są wykorzystywane w szablonie HTML. W ten sposób uzyskujemy gradienty, które są wyświetlane w tle widoku.
+
+Kolejną ważną rzeczą w interfejsie użytkownika jest działanie szkła powiększającego, czyli jeden z głównych elementów, które mają na celu ułatwić użytkownikowi porównanie wyników.
+
+\begin{lstlisting}[language=TypeScript, caption=Implementacja szkła powiększającego (TypeScript)., label={lst:zoom}]
+const updateMagnifyLocation = (e: MouseEvent) => {
+    // Clamp the cursor's coordinates within the image's bounds
+    const effectiveX:number = Math.min(Math.max(e.clientX, image.left   
+                                                + magnifySize), image.right);
+    const effectiveY:number = Math.min(Math.max(e.clientY, image.top    
+                                                + magnifySize), image.bottom);
+    cursorPosXInImg = effectiveX;
+    cursorPosYInImg = effectiveY;
+
+    // Calculate the position as a percentage of the image's dimensions
+    const percentX:number = (effectiveX-magnifySize/2-image.left)/image.width;
+    const percentY:number = (effectiveY-magnifySize/2-image.top)/image.height;
+
+    if (aspectRatio < 1) {
+        magnifyWindowX = (percentX * scaleValue * aspectRatio) 
+                         -0.5 * scaleValue * aspectRatio;
+        magnifyWindowY = (percentY * scaleValue) 
+                         -0.5 * scaleValue;
+    } else {
+        magnifyWindowX = (percentX * scaleValue) 
+                         -0.5 * scaleValue;
+        magnifyWindowY = (percentY * scaleValue / aspectRatio) 
+                         -0.5 * scaleValue / aspectRatio;
+    }
+}
+\end{lstlisting}
+
+Jeśli kursor nie jest w stanie blokady przy ruchu myszy wywoływana jest funkcja \textit{updateMagnifyLocation}, która odpowiada za wyliczenie pozycji szkła powiększającego. W pierwszej kolejności obliczamy pozycję kursora wewnątrz obrazu. Następnie przekształcamy tę wartość na procentową pozycję wewnątrz obrazu. Na koniec obliczamy pozycję szkła powiększającego w zależności od proporcji obrazu i skali powiększenia.
+
+\begin{lstlisting}[language=HTML, caption=Implementacja szkła powiększającego (HTML)., label={lst:zoom}]
+<div class="magnifying_glass">
+    <div v-for="type in imageTypes" 
+        :key="type" 
+        @click="updatePreview(type)">
+        <div class="w-full aspect-square rounded-lg z-[10] highlight" 
+             :class="{ 'selected-image': type == selectedAlgorithm }">
+            <div class="miniature-view">
+                <img class="miniature-image" 
+                     :src="imageUrls[type]" 
+                     :style="{ transform: `scale(${scaleValue})              translate(${-magnifyWindowX * 100}%, ${-magnifyWindowY * 100}%)`}">
+            </div>    
+        </div>
+    </div>
+</div>
+\end{lstlisting}
+
+W następnej kolejności wartości \textit{magnifyWindowX} i \textit{magnifyWindowY} są używane przez szablon HTML, gdzie są wykorzystywane do wyświetlenia szkła powiększającego. W tym miejscu wykorzystujemy \textit{v-for} do wyświetlenia wszystkich obrazów, które są przetworzone przez algorytmy. Każdy obraz jest wyświetlany w osobnym kafelku, który jest interaktywny. Po kliknięciu w kafelek, obraz jest wybierany jako algorytm do pobrania, wyświetlany w głównym obszarze widoku, a kafelek jest podświetlany.
+
+Aby pobrać wybrany obraz wystarczy nacisnąć przycisk "Download" w menu bocznym, co wywołuje funkcję \textit{downloadImage}, która pobiera obraz z serwera Backend.
+
+\begin{lstlisting}[language=TypeScript, caption=Pobieranie obrazu., label={lst:download}]
+async downloadImage() {
+    try {
+        const response = await fetch(this.imageUrls[this.selectedAlgorithm]);
+        if (!response.ok) throw new Error('Failed to fetch the image.');
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+        const link = document.createElement('a');
+
+        link.href = url;
+        link.download = this.imageTitle;
+        document.body.appendChild(link);
+        link.click();
+
+        window.URL.revokeObjectURL(url);
+        document.body.removeChild(link);
+    } catch (error) {
+        console.error('Error downloading the image:', error);
+    }
+}
+\end{lstlisting}
+
+W pierwszej kolejności pobieramy obraz z serwera Backend, następnie tworzymy link do obrazu i nadajemy mu nazwę. Na koniec tworzymy element \textit{<a>} i nadajemy mu atrybuty \textit{href} i \textit{download} oraz klikamy w ten link. W ten sposób pobieramy obraz na nasz komputer. 
+
+
+
+
+
+
+
 
 
 \section{Plany na przyszłość} \label{sec:plans}

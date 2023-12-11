@@ -152,6 +152,15 @@
 
 \lstdefinelanguage{TypeScript}{
   language=Python,
-  morekeywords={export, function, boolean, number, async, await, const, let}, % Add any TypeScript-specific keywords
+  morekeywords={export, function, boolean, number, async, await, const, let, catch}, % Add any TypeScript-specific keywords
+  sensitive=true,
+  morecomment=[l]{//},
 }
 
+\lstdefinelanguage{HTML}{
+  language=Python,
+  morekeywords={html, head, body, script, src, div, canvas, style, width, height, img, onload, onerror, class, id, type, button, onclick, span, h1, h2, h3, h4, h5, h6, p, br, ul, li, a, href, target, rel, title, meta, charset, content, name, http-equiv, link, rel, href, content, rel, sizes, typ, v-for},
+  sensitive=true,
+  morecomment=[s]{<!--}{-->},
+  morestring=[b]",
+}
