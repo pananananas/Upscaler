@@ -576,18 +576,76 @@ async downloadImage() {
 }
 \end{lstlisting}
 
-W pierwszej kolejności pobieramy obraz z serwera Backend, następnie tworzymy link do obrazu i nadajemy mu nazwę. Na koniec tworzymy element \textit{<a>} i nadajemy mu atrybuty \textit{href} i \textit{download} oraz klikamy w ten link. W ten sposób pobieramy obraz na nasz komputer. 
-
-
-
-
-
-
-
+W pierwszej kolejności pobieramy obraz z serwera Backend, następnie tworzymy link do obrazu i nadajemy mu nazwę. Na koniec tworzymy element \textit{<a>} i nadajemy mu atrybuty \textit{href} i \textit{download} oraz klikamy w ten link.
 
 
 \section{Plany na przyszłość} \label{sec:plans}
 
-Opis błędów, rzeczy do poprawy w aplikacji. Omówienie jakie są plany rozbudowy aplikacji.
+W stanie aktualnym aplikacja spełnia wszystkie założenia koncepcyjne. Użytkownik może przesłać obraz do powiększenia, a następnie porównać wyniki. W tym rozdziale opiszę jakie funkcjonalności mam w planie dodać do tego narzędzia w przyszłości.
 
-Przyciski nawigacji z widoku do widoku
+\subsection*{Usprawnienia widoku głównego}
+
+Do widoku głównego chciałbym dodać kilka funkcjonalności, które przedstawią działanie aplikacji i zachęcą użytkownika do skorzystania z serwisu.
+
+\begin{itemize}
+    \item Pierwszą i najważniejszą kwestią będzie dodanie do widoku informacji o tym jak działa aplikacja i zaimplementowane w niej algorytmy. Odnieść się do tego przez kogo zostały te metody opracowane, jakie są ich zalety i wady.
+    \item Drugim usprawnieniem będzie dodanie interakcji z obrazami przykładowymi i możliwość sprawdzenia jak działa aplikacja na ich podstawie. Użytkownik będzie mógł przesunąć obraz myszką, aby zobaczyć jak działa szkło powiększające lub przesunąć suwakiem nad obrazem żeby porównać "przed i po" [Rys \ref{fig:image95}].
+    % \begin{figure}[H]
+    %     \centering
+    %     \includegraphics[width=0.2\linewidth]{Rozdziały/06.Aplikacja/Obrazy/slider.png}  
+    %     \caption{Suwak prezentujący obraz przed i po przetworzeniu}
+    %     \label{fig:image95}
+    % \end{figure}
+    \item Kolejną dużą zmianą będzie możliwość dodania do aplikacji kilku obrazów jednocześnie w celu powiększenia rozdzielczości. Ta zmiana wymaga modyfikacji w Backendzie, ponieważ obecnie aplikacja obsługuje przyjęcie i przechowanie tylko jednego obrazu na raz.
+\end{itemize}
+
+\subsection*{Usprawnienia widoku z wynikami}
+
+\begin{itemize}
+    \item Przede wszystkim chciałbym dodać możliwość wyświetlenia kilku obrazów po przetworzeniu. Obecnie widok wyświetla tylko jeden obraz, ale możliwość przedstawienia użytkownikowi wielu obrazów byłaby użyteczna i praktyczna. Możliwa implementacja jak na obrazie \ref{fig:image97}, lub integracja tej części interfejsu w pasku bocznym.
+    \item Kolejną zmianą będzie lekka zmiana UI związanego z kursorem i szkłem powiększającym. Chciałbym żeby design całej aplikacji był spójny, więc dobrym pomysłem byłaby implementacja mechanizmów kursora z głównego ekranu do tego widoku. Dodatkowo myślę, że szkło powiększające powinno wyświetlać przybliżony fragment obrazu przy kursorze a nie wyłącznie na pasku bocznym, byłoby to bardziej intuicyjne dla użytkownika [Rys \ref{fig:image96}].
+    % \begin{figure}[H]
+    %     \centering
+    %     \includegraphics[width=0.2\linewidth]{Rozdziały/06.Aplikacja/Obrazy/concept-zoom.jpg}
+    %     \caption{Koncepcja szkła powiększającego}
+    %     \label{fig:image96}
+    % \end{figure}
+    \item Kolejną kwestią będzie optymalizacja wyświetlania obrazów. Obecnie obrazy są wyświetlane w pełnej rozdzielczości i w formacie oryginalnym, co jest niepotrzebne i powoduje spowolnienie działania aplikacji. W przyszłości chciałbym dodać mechanizm, który będzie wyświetlał obrazy w zależności od rozdzielczości ekranu użytkownika i w formacie webp, który jest mniej zasobożerny.
+    \item Ostatnią zmianą będzie ulepszenie animacji ładowania tak żeby użytkownik wiedział, że aplikacja pracuje nad przetworzeniem obrazu. Obecnie animacja jest bardzo prosta i nie daje użytkownikowi żadnej informacji o tym co się dzieje.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{Rozdziały/06.Aplikacja/Obrazy/concept-display.png}
+    \caption{Koncepcja widoku prezentacji wyników z obsługą wielu obrazów jednocześnie}
+    \label{fig:image97}
+\end{figure}
+\begin{figure}[ht]
+    \centering
+    \begin{minipage}[t]{0.3\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/06.Aplikacja/Obrazy/slider.png}
+        \caption{Suwak pokazujący obraz przed i po}
+        \label{fig:image95}
+    \end{minipage}
+    \hspace{0.5cm}
+    \begin{minipage}[t]{0.5\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/06.Aplikacja/Obrazy/concept-zoom.jpg}
+        \caption{Koncepcja szkła powiększającego}
+        \label{fig:image96}
+    \end{minipage}
+\end{figure}
+
+
+\subsection*{Zmiany obejmujące całą aplikację}
+
+W tym dziale przedstawię jakie zmiany obejmujące cały projekt chciałbym wprowadzić i dlaczego.
+
+\begin{itemize}
+    \item Pierwszą i najważniejszą zmianą ogólną w aplikacji będzie lepsza obsługa błędów. Póki co gdy coś jest nie tak przeglądarka wyświetla komunikat o błędzie, który jest czytelny dla mnie, ale nie dla użytkownika. W przyszłości chciałbym dodać własne komunikaty o błędach, które będą bardziej przyjazne dla użytkownika.
+    \item Jedną z istotniejszych zmian w aplikacji będzie ukrycie id obrazka, gdyż w aktualnej wersji możemy przeglądać wszystkie obrazy w bazie danych na podstawie numeru ID w adresie. 
+    \item Kolejną rzeczą wymagającą sporo pracy będzie dostosowanie aplikacji do urządzeń mobilnych. Obecnie aplikacja wyświetla się poprawnie tylko na komputerach, ale w przyszłości chciałbym żeby interfejs użytkownika był dostosowany również do urządzeń mobilnych.
+    \item Kolejną zmianą będzie modyfikacja backendu, tak żeby serwer obsługiwał przesłanie więcej niż jednego obrazu jednocześnie. 
+    \item A propos Backendu, chciałbym żeby serwer nie przechowywał wszystkich obrazów w bazie danych, tylko po zamknięciu sesji żeby obrazy były usuwane.
+    \item Następną zmianą będzie dodanie dwóch widoków: dokumentacji i o mnie. Widok dokumentacji wydaje mi się konieczny w tego typu projekcie, bo chciałbym w nim odnieść się do autorów wykorzystanych rozwiązań i podziękować im za ich pracę. Widok o mnie jest opcjonalny, ale chciałbym go dodać, aby użytkownik mógł dowiedzieć się więcej o mojej pracy i miał możliwość skontaktowania się ze mną.
+    \item Ostatnią kwestią gdy już uda się zaimplementować wszystkie funkcjonalności będzie udostępnienie tej aplikacji w Internecie.
+\end{itemize}
