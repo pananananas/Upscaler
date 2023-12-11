@@ -34,26 +34,26 @@ Super-rozdzielczość (ang. Super-Resolution) odnosi się do procesu poprawy roz
 
 W kontekście praktycznym, techniki super-rozdzielczości znalazły zastosowanie w wielu dziedzinach. Przykładowo, w branży rozrywkowej, technika ta umożliwia remastering starych gier, filmów czy materiałów wideo do standardów HD czy 4K.
 
-W ostatnich miesiącach popularne stało się generowanie obrazów z użyciem sztucznej inteligencji na podstawie podanego opisu tekstowego. Generowane w ten sposób obrazy są określonej wielkości i popularne modele takie jak \textbf{DALL-E} czy \textbf{Midjourney} nie pozwalają na zwiększenie jej. W tym miejscu z pomocą przychodzi super-rozdzielczość, która pozwala na powiększenie obrazów wygenerowanych w ten sposób.
+W ostatnich miesiącach popularne stało się generowanie obrazów z użyciem sztucznej inteligencji na podstawie podanego opisu tekstowego. Generowane w ten sposób obrazy są określonej wielkości i popularne modele takie jak \textbf{DALL-E} czy \textbf{Midjourney} nie pozwalają na zwiększenie jej. W tym miejscu z pomocą przychodzi super-rozdzielczość, która pozwala na powiększenie takich obrazów.
 
 
 \section{Przegląd metod powiększania obrazów}
 
 
-Istnieje wiele metod powiększania rozdzielczości obrazów. Najprostszą z nich jest \textbf{interpolacja najbliższego sąsiada}, która polega na powieleniu pobliskich pikseli w celu zwiększenia rozdzielczości obrazu. \\
+Istnieje wiele metod powiększania rozdzielczości obrazów. Najprostszą z nich jest \textbf{interpolacja najbliższego sąsiada (Nearest Neighbor, NN)}, która polega na powieleniu pobliskich pikseli w celu zwiększenia rozdzielczości obrazu. \\
 Metoda ta jest bardzo prosta w implementacji, jednakże nie daje ona zadowalających rezultatów. Obraz powiększony w ten sposób wygląda jak obraz o niskiej rozdzielczości z większymi pikselami [Rys \ref{fig:image5}]. 
 
 \begin{figure}[ht]
     \centering
-    \begin{minipage}[t]{0.32\linewidth}
+    \begin{minipage}[t]{0.25\linewidth}
         \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic.png}
         \caption{Obraz oryginalny}
         \label{fig:image4}
     \end{minipage}
     \hspace{0.5cm}
-    \begin{minipage}[t]{0.32\linewidth}
+    \begin{minipage}[t]{0.25\linewidth}
         \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic_NN_x4.png}
-        \caption{Obraz powiększony metodą najbliższego sąsiada}
+        \caption{Obraz powiększony metodą NN}
         \label{fig:image5}
     \end{minipage}
   \end{figure}
@@ -61,7 +61,25 @@ Metoda ta jest bardzo prosta w implementacji, jednakże nie daje ona zadowalają
 
 Aby poprawić jakość obrazu, można zastosować \textbf{interpolację dwuliniową}. Metoda ta rozszerza interpolację liniową na interpolację funkcji dwóch zmiennych [Rys \ref{fig:image6}]. 
 
-\begin{figure}[ht]
+
+
+W efekcie polega to na wyznaczeniu średniej ważonej pikseli sąsiadujących z pikselem, który chcemy powielić. Współczynniki wag są wyznaczane na podstawie odległości od piksela, który chcemy powielić.
+Kroki algorytmu:
+\begin{enumerate}
+    \item Przeprowadzana jest interpolacja liniowa wzdłuż osi $O X$:
+    $$
+    \begin{array}{llll}
+    f\left(R_1\right) \approx \frac{x_2-x}{x_2-x_1} f\left(Q_{11}\right)+\frac{x-x_1}{x_2-x_1} f\left(Q_{21}\right) & \text { gdzie } & R_1=\left(x, y_1\right), \\ \\
+    f\left(R_2\right) \approx \frac{x_2-x}{x_2-x_1} f\left(Q_{12}\right)+\frac{x-x_1}{x_2-x_1} f\left(Q_{22}\right) & \text { gdzie } & R_2=\left(x, y_2\right) .
+    \end{array}
+    $$
+    \item Następnie przeprowadzana jest interpolacja wzdłuż osi $O Y$:
+    $$
+    f(P) \approx \frac{y_2-y}{y_2-y_1} f\left(R_1\right)+\frac{y-y_1}{y_2-y_1} f\left(R_2\right) .
+    $$
+\end{enumerate}
+
+\begin{figure}[H]
     \centering
     \begin{tikzpicture}[scale=1.3, dot/.style={circle,fill=black,minimum size=4pt,inner sep=0pt,outer sep=-1pt},]
 
@@ -142,82 +160,100 @@ Aby poprawić jakość obrazu, można zastosować \textbf{interpolację dwulinio
     \label{fig:image6}
 \end{figure}
 
-
-W efekcie polega to na wyznaczeniu średniej ważonej pikseli sąsiadujących z pikselem, który chcemy powielić. Współczynniki wag są wyznaczane na podstawie odległości od piksela, który chcemy powielić.
-Kroki algorytmu:
-\begin{enumerate}
-    \item Przeprowadzana jest interpolacja liniowa wzdłuż osi $O X$:
-    
-    $$
-    \begin{array}{llll}
-    f\left(R_1\right) \approx \frac{x_2-x}{x_2-x_1} f\left(Q_{11}\right)+\frac{x-x_1}{x_2-x_1} f\left(Q_{21}\right) & \text { gdzie } & R_1=\left(x, y_1\right), \\ \\
-    f\left(R_2\right) \approx \frac{x_2-x}{x_2-x_1} f\left(Q_{12}\right)+\frac{x-x_1}{x_2-x_1} f\left(Q_{22}\right) & \text { gdzie } & R_2=\left(x, y_2\right) .
-    \end{array}
-    $$
-    \item Następnie przeprowadzana jest interpolacja wzdłuż osi $O Y$:
-    $$
-    f(P) \approx \frac{y_2-y}{y_2-y_1} f\left(R_1\right)+\frac{y-y_1}{y_2-y_1} f\left(R_2\right) .
-    $$
-\end{enumerate}
-
-
 W efekcie otrzymujemy obraz wyglądający następująco [Rys \ref{fig:image8},  \ref{fig:image10}].
 
-
-\begin{figure}[ht]
+\begin{figure}[H]
     \centering
-    \begin{minipage}[t]{0.33\linewidth}
+    \begin{minipage}[t]{0.35\linewidth}
         \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/Obrazy/bilinear_original.png}
         \caption{Obraz wejściowy}
         \label{fig:image7}
     \end{minipage}
     \hspace{0.5cm}
-    \begin{minipage}[t]{0.33\linewidth}
+    \begin{minipage}[t]{0.35\linewidth}
         \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/Obrazy/bilinear_enlarged.png}
         \caption{Obraz powiększony przez interpolację dwuliniową}
         \label{fig:image8}
     \end{minipage}
 \end{figure}
 
-\begin{figure}[ht]
+\begin{figure}[H]
     \centering
-    \begin{minipage}[t]{0.33\linewidth}
+    \begin{minipage}[t]{0.35\linewidth}
         \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic.png}
         \caption{Obraz wejściowy}
         \label{fig:image9}
     \end{minipage}
     \hspace{0.5cm}
-    \begin{minipage}[t]{0.33\linewidth}
+    \begin{minipage}[t]{0.35\linewidth}
         \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic_BILINEARx4.png}
         \caption{Obraz powiększony przez interpolację dwuliniową}
         \label{fig:image10}
     \end{minipage}
 \end{figure}
 
-
+\newpage
 Metoda ta daje lepsze rezultaty niż interpolacja najbliższego sąsiada, jednakże wprowadziła ona duże rozmycie, które jest szczególnie widoczne na krawędziach obiektów i obszarach wysokiej częstotliwości.
 
 
+Kolejnym algorytmem, jaki można zastosować w zadaniu Super-Rozdzielczości jest \textbf{interpolacja dwusześcienna (bicubic)}. Ta metoda interpolacji polega na wykorzystaniu funkcji sklejanych trzeciego stopnia w celu wygładzenia przejść między pikselami. W przeciwieństwie do interpolacji dwuliniowej, która bierze pod uwagę tylko 4 najbliższe piksele, interpolacja dwusześcienna bierze pod uwagę 16 pikseli sąsiadujących z pikselem docelowym, co pozwala na bardziej płynne przejścia.
 
-TODO: napisz o interpolacji dwusześciennej (bicubic)
+Kroki algorytmu interpolacji dwusześciennej:
+\begin{enumerate}
+    \item Dla każdej osi (X i Y) obliczana jest wartość interpolowana przy użyciu funkcji sklejanych trzeciego stopnia:
+    $$
+    f(x, y) \approx \sum_{i=0}^{3} \sum_{j=0}^{3} a_{ij} x^i y^j
+    $$
+    gdzie współczynniki \( a_{ij} \) są obliczane na podstawie wartości i pochodnych funkcji w punktach sąsiednich.
 
+    \item Interpolacja jest przeprowadzana osobno dla każdego kanału koloru, co pozwala na uzyskanie wysokiej jakości wyników, zwłaszcza w przypadku obrazów o dużym nasyceniu barw.
+\end{enumerate}
 
+\textit{Uwaga:} Interpolacja dwusześcienna jest bardziej obliczeniowo intensywna niż dwuliniowa, ale oferuje znacznie lepszą jakość, szczególnie przy znacznym powiększaniu obrazów.
 
+\begin{figure}[H]
+    \centering
+    \begin{minipage}[t]{0.38\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic.png}
+        \caption{Obraz wejściowy}
+        \label{fig:image900}
+    \end{minipage}
+    \hspace{0.5cm}
+    \begin{minipage}[t]{0.38\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/Obrazy/cobic_bicubic.png}
+        \caption{Obraz powiększony przez interpolację dwusześcienną}
+        \label{fig:image1000}
+    \end{minipage}
+\end{figure}
 
+Na pierwszy rzut oka na obrazie [Rys \ref{fig:image1000}] widać, że jest on bardziej wygładzony niż obraz powiększony metodą dwuliniową [Rys \ref{fig:image10}]. Różnicę między omówionymi algorytmami widać lepiej na przykładzie obrazu bardzo małego [Rys \ref{fig:image7000}, \ref{fig:image8000}, \ref{fig:image9000}].
 
+\begin{figure}[H]
+    \centering
+    \begin{minipage}[t]{0.28\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/Obrazy/nearest_neighbor_square.png}
+        \caption{Obraz powiększony przez NN}
+        \label{fig:image7000}
+    \end{minipage}
+    \hspace{0.5cm}
+    \begin{minipage}[t]{0.28\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/Obrazy/bilinear_square.png}
+        \caption{Obraz powiększony przez Bilinear}
+        \label{fig:image8000}
+    \end{minipage}
+    \hspace{0.5cm}
+    \begin{minipage}[t]{0.28\linewidth}
+        \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/Obrazy/bicubic_square.png}
+        \caption{Obraz powiększony przez Bicubic}
+        \label{fig:image9000}
+    \end{minipage}
+\end{figure}
 
-
-
-
-
-
-
-
-
+Na przykładzie powyższych wyników możemy stwierdzić, że każda kolejna metoda daje lepiej rozmyty obraz, wartości są coraz bardziej wygładzone. Jednakże wraz z wygładzeniem obrazu, tracimy na szczegółach. W przypadku obrazów o niskiej rozdzielczości, szczegóły są bardzo ważne, ponieważ są one jedynymi informacjami, które możemy wykorzystać do odtworzenia obrazu o wysokiej rozdzielczości.
 
 \subsection*{Teoria informacji}
 
-W teorii informacji istnieje koncepcja zwana \textbf{nierównością przetwarzania danych}. Zgodnie z nią niezależnie od sposobu przetwarzania danych, \textbf{nie można dodać informacji, której nie ma w oryginalnej serii danych}  [Wzór 2.1].
+W teorii informacji istnieje koncepcja zwana \textbf{nierównością przetwarzania danych}. Zgodnie z nią niezależnie od sposobu przetwarzania, \textbf{nie można dodać informacji, której nie ma w oryginalnej serii danych}  [Wzór 2.1].
 
 \begin{equation}
     \begin{gathered}
@@ -226,14 +262,13 @@ W teorii informacji istnieje koncepcja zwana \textbf{nierównością przetwarzan
     \end{gathered}
 \end{equation}
 
-Oznacza to, że brakujących danych nie można odzyskać poprzez dalsze przetwarzanie. Czy to oznacza, że super-rozdzielczość jest teoretycznie niemożliwa? 
-
+Oznacza to, że brakujących danych nie można odzyskać poprzez dalsze przetwarzanie. Czy to oznacza, że super-rozdzielczość odwzorowująca szczegóły obrazów jest teoretycznie niemożliwa? 
 Nie, jeśli mamy dodatkowe źródło informacji. 
 
 
 % \newpage
 
-\section{Wprowadzenie do głębokiego uczenia się w przetwarzaniu obrazów}
+\section{Głębokie uczenie w przetwarzaniu obrazów}
 
 
 Głębokie uczenie rewolucjonizuje przetwarzanie obrazów, wprowadzając modele zdolne do uczenia się cech z serii danych. W przetwarzaniu obrazów, głębokie sieci neuronowe są wykorzystywane do zadań takich jak detekcja obiektów, segmentacja, klasyfikacja obrazów, czy właśnie super-rozdzielczość [Rys \ref{fig:image12},  \ref{fig:image13}].
@@ -269,37 +304,32 @@ Głębokie uczenie, będące zaawansowaną formą uczenia maszynowego, wykorzyst
 
 
 \subsubsection*{Architektura Sieci Neuronowych}
-Architektura sieci neuronowych w głębokim uczeniu charakteryzuje się wieloma ukrytymi warstwami, które pozwalają na przetwarzanie danych na różnych poziomach abstrakcji. Każda warstwa składa się z wielu neuronów, z których każdy otrzymuje dane wejściowe, przetwarza je i przekazuje dalej. Istnieją różne rodzaje warstw, w tym:
-\begin{itemize}
-    \item \textbf{Warstwy konwolucyjne (Convolutional Layers)}: Są fundamentem sieci konwolucyjnych (CNNs), które są szeroko stosowane w przetwarzaniu obrazów. Te warstwy stosują filtr konwolucyjny do danych wejściowych, wydobywając lokalne cechy, takie jak krawędzie, kształty czy tekstury.
-    \item \textbf{Warstwy pooling (Pooling Layers)}: Redukują wymiarowość danych, jednocześnie zachowując ważne informacje. Najczęściej stosowanymi są max pooling i average pooling.
-    \item \textbf{Warstwy w pełni połączone (Fully Connected Layers)}: Każdy neuron w tych warstwach jest połączony ze wszystkimi neuronami w poprzedniej warstwie, co pozwala na integrację nauczonej wiedzy z poprzednich warstw.
-\end{itemize}
+Architektura sieci neuronowych w głębokim uczeniu charakteryzuje się wieloma ukrytymi warstwami, które pozwalają na przetwarzanie danych na różnych poziomach abstrakcji. Każda warstwa składa się z wielu neuronów, z których każdy otrzymuje dane wejściowe, przetwarza je i przekazuje dalej. Istnieją różne rodzaje warstw, w tym między innymi textbf{Warstwy konwolucyjne (Convolutional Layers)}, które są fundamentem sieci konwolucyjnych. Są szeroko stosowane w przetwarzaniu obrazów, stosują filtr konwolucyjny do danych wejściowych wydobywając lokalne cechy takie jak krawędzie, kształty czy tekstury.
 
 
 \subsubsection*{Funkcje Aktywacji}
 Funkcje aktywacji w sieciach neuronowych to nieliniowe transformacje stosowane do wyjść neuronów. Pozwalają one na modelowanie złożonych zależności między danymi wejściowymi a wyjściowymi. W głębokim uczeniu stosuje się różne funkcje aktywacji, w tym:
 \begin{itemize}
     \item \textbf{ReLU (Rectified Linear Unit)}: Przekształca wszystkie ujemne wartości na zero, podczas gdy wartości dodatnie pozostają niezmienione  [Rys \ref{fig:image14}].
-    \item \textbf{Sigmoid}: Przyjmuje wartości wejściowe i konwertuje je na wartości z zakresu od 0 do 1 [Rys \ref{fig:image15}].
+    \item \textbf{Sigmoid}: Konwertuje wartości wejściowe na te z zakresu od 0 do 1 [Rys \ref{fig:image15}].
     \item \textbf{Tanh (Hyperbolic Tangent)}: Podobnie jak sigmoid, ale konwertuje wartości na zakres od -1 do 1 [Rys \ref{fig:image16}].
 \end{itemize}
 
-\begin{figure}[ht]
+\begin{figure}[H]
     \centering
-    \begin{minipage}[t]{0.3\linewidth}
+    \begin{minipage}[t]{0.27\linewidth}
         \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/Obrazy/relu.png}
         \caption{ReLU}
         \label{fig:image14}
     \end{minipage}
     \hspace{0.5cm}
-    \begin{minipage}[t]{0.3\linewidth}
+    \begin{minipage}[t]{0.27\linewidth}
         \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/Obrazy/sigmoid.png}
         \caption{Sigmoid}
         \label{fig:image15}
     \end{minipage}
     \hspace{0.5cm}
-    \begin{minipage}[t]{0.3\linewidth}
+    \begin{minipage}[t]{0.27\linewidth}
         \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/Obrazy/tanh.png}
         \caption{Tanh}
         \label{fig:image16}
@@ -396,6 +426,20 @@ Rozwiązaniem tego może być inna miara błędu, która bierze pod uwagę róż
 \begin{equation}
     SSIM(x,y) = [l(x,y)][c(x,y)][s(x,y)] \label{eq:2}
 \end{equation}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 \newpage
