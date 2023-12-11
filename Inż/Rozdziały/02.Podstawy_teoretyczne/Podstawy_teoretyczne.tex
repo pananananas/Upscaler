@@ -1,7 +1,5 @@
 \chapter{Podstawy teoretyczne}
 
-TODO: Napisz o k-means
-
 Celem rozdziału jest przedstawienie podstawowych definicji, wytłumaczenie aparatu matematycznego oraz metod wykorzystywanych w algorytmach na których skupia się praca. Dodatkowo ma on na celu ułatwienie dalszego czytania poprzez zapoznanie czytelnika z przyjętymi konwencjami, oznaczeniami oraz symbolami, które mogą pojawić się w kolejnych rozdziałach. 
 
 
@@ -428,21 +426,21 @@ Rozwiązaniem tego może być inna miara błędu, która bierze pod uwagę róż
 \end{equation}
 
 
+\subsection*{Algorytm k-średnich}
 
+Algorytm k-średnich jest jednym z najprostszych algorytmów grupowania. Polega na podziale zbioru danych na k grup, w którym każdy punkt danych należy do grupy z najbliższym środkiem. Środki grup są obliczane jako średnia wszystkich punktów danych należących do grupy.
 
+Algorytm k-średnich jest algorytmem iteracyjnym, który działa w następujący sposób:
 
+\begin{enumerate}
+    \item Wybierz k punktów jako środki grup.
+    \item Przypisz każdy punkt danych do najbliższego środka grupy.
+    \item Dla każdej grupy oblicz nowy środek grupy, biorąc średnią wszystkich punktów danych należących do tej grupy.
+    \item Powtarzaj kroki 2 i 3, aż do momentu, gdy środki grup nie będą się już zmieniać lub zmiany będą poniżej pewnego progu.
+\end{enumerate}
 
+Algorytm ten jest stosowany w aplikacji do wyznaczania dominujących kolorów występujących na obrazie. Więcej na ten temat opisane w części traktującej o aplikacji [Rozdział \ref{chap:app}].
 
-
-
-
-
-
-
-
-
-
-\newpage
 
 \section{Wstęp do transformacji falkowej}
 
@@ -475,7 +473,7 @@ W kontekście super rozdzielczości, funkcje falkowe są wykorzystywane do zwię
 % Korzystając z funkcji falkowych mamy informacje o kierunkach częstotliwości w analizowanym obrazie, co sprawia że wiemy jak ukierunkowane są krawędzie i tekstury. 
 % Dzięki swoim właściwościom, falki potrafią efektywnie oddzielać istotne cechy sygnału od szumu, co jest istotne w procesie zwiększania rozdzielczości.
 
-
+\newpage
 \subsubsection{Dziedzina czasu i częstotliwości}
 
 Dziedzina czasu odnosi się do analizy sygnału w zakresie czasu, co oznacza, że sygnał jest przedstawiany i analizowany w kontekście jego zmian w czasie. Jest to intuicyjna forma reprezentacji sygnałów, niemniej jednak nie daje ona nam pełnej informacji o sygnale. Z drugiej strony sygnał możemy określić w dziedzinie częstotliwości, która koncentruje się na analizie częstotliwościowych składników sygnału.
@@ -531,9 +529,9 @@ Transformacja Fouriera jest operacją odwracalną, co oznacza, że można ją wy
 \subsubsection{Ograniczenia Transformacji Fouriera}
 
 Zgodnie z zasadą nieoznaczoności Heisenberga nie można jednocześnie precyzyjnie określić i lokalizować zjawisk zarówno w dziedzinie czasu, jak i częstotliwości, zawsze mamy do czynienia z kompromisem. 
-\begin{equation}
-    \Delta f \Delta t \geq 1
-\end{equation}
+% \begin{equation}
+%     \Delta f \Delta t \geq 1
+% \end{equation}
 Możemy albo dokładnie określić wartość sygnału w czasie, albo dokładnie określić jego częstotliwość, ale nie możemy zrobić obu jednocześnie.
 
 W rezultacie, podczas gdy Transformata Fouriera oferuje doskonałą rozdzielczość częstotliwościową, traci na zdolności do lokalizacji zjawisk w czasie. Oznacza to, że badając sygnał wyłącznie w dziedzinie częstotliwości, wiemy jakie częstotliwości występują, ale nie jesteśmy w stanie określić kiedy występuje dana częstotliwość.
@@ -545,15 +543,15 @@ Czy istnieje narzędzie pozwalające nam na dokładniejszą analizę sygnału? K
 
 Gdy wykonujemy transformatę Fouriera rozdzielamy sygnał na sumę sinusoid i cosinusoid o różnych częstotliwościach. Funkcje falkowe są podobne do funkcji sinusoidalnych, ale różnią się od nich tym, że mają skończoną długość i są ograniczone do określonego obszaru [Rys \ref{fig:image27}, \ref{fig:image28}].
 
-\begin{figure}[ht]
+\begin{figure}[H]
     \centering
-    \begin{minipage}[t]{0.45\linewidth}
+    \begin{minipage}[t]{0.3\linewidth}
         \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/Obrazy/sine_wave.png}
         \caption{Sinusoida}
         \label{fig:image27}
     \end{minipage}
     \hspace{0.5cm}
-    \begin{minipage}[t]{0.45\linewidth}
+    \begin{minipage}[t]{0.3\linewidth}
         \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/Obrazy/morlet_wavelet.png}
         \caption{Falka Morlet}
         \label{fig:image28}
@@ -589,14 +587,14 @@ Część rzeczywista Morlet składa się funkcji cosinus (określająca częstot
     \end{minipage}
 \end{figure}
 
-Falka Morlet jest funkcją zespoloną, co oznacza, że składa się z części rzeczywistej i urojonej. Całość jest zdefiniowana następująco:
+Falka Morlet jest funkcją zespoloną, co oznacza, że składa się z części rzeczywistej i urojonej. Całość jest zdefiniowana następująco [Rys \ref{fig:image30}]:
 \begin{equation}
     \Psi(t)=k e^{i \omega_0 t} \cdot e^{-\frac{t^2}{2}}
 \end{equation}
 
-\begin{figure}[ht]
+\begin{figure}[H]
     \centering
-    \begin{tikzpicture}[scale=0.8]
+    \begin{tikzpicture}[scale=0.77]
         \begin{axis}[
           ylabel={Re($\Psi$)},
           zlabel={Im($\Psi$)},
@@ -655,7 +653,7 @@ gdzie:
 \end{itemize}
 
 
-\begin{figure}[ht]
+\begin{figure}[H]
     \centering
     \begin{minipage}[t]{0.47\linewidth}
         \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/Obrazy/morlet_bez_przesuniecia.png}
@@ -670,7 +668,7 @@ gdzie:
     \end{minipage}
 \end{figure}
 
-\begin{figure}[ht]
+\begin{figure}[H]
     \centering
     \begin{minipage}[t]{0.46\linewidth}
         \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/Obrazy/f_shift_morlet.png}
@@ -722,7 +720,7 @@ W rezultacie funkcja $ \tilde{s}_{\Psi}\left(a,b\right)$ składa się na mapę w
     \caption{Skalogram falkowy w przestrzeni 3D}
     \label{fig:image39}
 \end{figure}
-\newpage
+
 Rozdzielczość czasu i rozdzielczości w transformacji falkowej nie jest idealna, widać że mamy do czynienia z kompromisem pomiędzy tymi wartościami, szczególnie przy analizy zwykłej funkcji sinus. Skalogram dla sinusa [Rys \ref{fig:image40}] nie przedstawia jednoznacznie częstotliwości sygnału, jest to jedynie przybliżenie co widać na krawędziach skalogramu.
 
 \begin{figure}[ht]
@@ -787,13 +785,13 @@ Jeśli chcemy wykonać odwrotną transformację falkową na obrazie, wystarczy w
 
 \begin{figure}[ht]
     \centering
-    \begin{minipage}[t]{0.35\linewidth}
+    \begin{minipage}[t]{0.48\linewidth}
         \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/Obrazy/level_1_decomposition_LL.png}
         \caption{LL (niskie częstotliwości)}
         \label{fig:image42}
     \end{minipage}
     \centering
-    \begin{minipage}[t]{0.35\linewidth}
+    \begin{minipage}[t]{0.48\linewidth}
         \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/Obrazy/level_1_decomposition_LH.png}
         \caption{LH (poziome detale)}
         \label{fig:image43}
@@ -802,13 +800,13 @@ Jeśli chcemy wykonać odwrotną transformację falkową na obrazie, wystarczy w
 
 \begin{figure}[ht]
     \centering
-    \begin{minipage}[t]{0.35\linewidth}
+    \begin{minipage}[t]{0.48\linewidth}
         \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/Obrazy/level_1_decomposition_HL.png}
         \caption{HL (pionowe detale)}
         \label{fig:image44}
     \end{minipage}
     \centering
-    \begin{minipage}[t]{0.35\linewidth}
+    \begin{minipage}[t]{0.48\linewidth}
         \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/Obrazy/level_1_decomposition_HH.png}
         \caption{HH (diagonalne detale)}
         \label{fig:image45}
