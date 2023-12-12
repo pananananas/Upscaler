@@ -1,8 +1,8 @@
 upscaler_django_backend/images
 upscaler_django_backend/upscaled_images
-Inż/output
-Inż/Bibliografia
-Inż/Skrypty/DIV2K
-Inż/Rozdziały/06.Aplikacja/output
+docs/output
+docs/Bibliografia
+docs/Skrypty/DIV2K
+docs/Rozdziały/06.Aplikacja/output
 .vscode
 .DS_Store

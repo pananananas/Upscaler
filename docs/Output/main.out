@@ -1,31 +1,9 @@
 \BOOKMARK [0][-]{chapter.1}{Wstęp}{}% 1
-\BOOKMARK [0][-]{chapter.2}{Podstawy\040teoretyczne}{}% 2
-\BOOKMARK [1][-]{section.2.1}{Definicja super-rozdzielczości}{chapter.2}% 3
-\BOOKMARK [1][-]{section.2.2}{Przegląd metod powiększania obrazów}{chapter.2}% 4
-\BOOKMARK [1][-]{section.2.3}{Głębokie uczenie w przetwarzaniu obrazów}{chapter.2}% 5
-\BOOKMARK [1][-]{section.2.4}{Wstęp do transformacji falkowej}{chapter.2}% 6
-\BOOKMARK [0][-]{chapter.3}{Deep\040Wavelet\040Super\040Resolution}{}% 7
-\BOOKMARK [1][-]{section.3.1}{Architektura\040DWSR}{chapter.3}% 8
-\BOOKMARK [1][-]{section.3.2}{Proces\040treningu}{chapter.3}% 9
-\BOOKMARK [1][-]{section.3.3}{Przykłady zastosowań i rezultaty}{chapter.3}% 10
-\BOOKMARK [0][-]{chapter.4}{Enhanced\040Super-Resolution\040Generative\040Adversarial\040Network}{}% 11
-\BOOKMARK [1][-]{section.4.1}{Architektura\040ESRGAN}{chapter.4}% 12
-\BOOKMARK [1][-]{section.4.2}{Proces\040treningu}{chapter.4}% 13
-\BOOKMARK [1][-]{section.4.3}{Przykłady zastosowań i rezultaty}{chapter.4}% 14
-\BOOKMARK [0][-]{chapter.5}{Aplikacja webowa do powiększania rozdzielczości obrazów}{}% 15
-\BOOKMARK [1][-]{section.5.1}{Projektowanie\040aplikacji}{chapter.5}% 16
-\BOOKMARK [1][-]{section.5.2}{Wybór narzędzi i technologii}{chapter.5}% 17
-\BOOKMARK [1][-]{section.5.3}{Vue.js:\040Frontend}{chapter.5}% 18
-\BOOKMARK [1][-]{section.5.4}{Django:\040Backend}{chapter.5}% 19
-\BOOKMARK [1][-]{section.5.5}{Implementacja\040aplikacji}{chapter.5}% 20
-\BOOKMARK [1][-]{section.5.6}{Integracja algorytmów super-rozdzielczości}{chapter.5}% 21
-\BOOKMARK [1][-]{section.5.7}{Implementacja interfejsu użytkownika}{chapter.5}% 22
-\BOOKMARK [1][-]{section.5.8}{Plany na przyszłość}{chapter.5}% 23
-\BOOKMARK [0][-]{chapter.6}{Porównanie algorytmów ESRGAN i DWSR}{}% 24
-\BOOKMARK [1][-]{section.6.1}{Jakość odtwarzania obrazów}{chapter.6}% 25
-\BOOKMARK [1][-]{section.6.2}{Analiza wydajności}{chapter.6}% 26
-\BOOKMARK [1][-]{section.6.3}{Ograniczenia\040i\040wyzwania}{chapter.6}% 27
-\BOOKMARK [0][-]{chapter.7}{Podsumowanie\040i\040wnioski}{}% 28
-\BOOKMARK [1][-]{section.7.1}{Dyskusja wyników}{chapter.7}% 29
-\BOOKMARK [1][-]{section.7.2}{Rekomendacje i kierunki dalszych badań}{chapter.7}% 30
-\BOOKMARK [0][-]{section.7.2}{Bibliografia}{}% 31
+\BOOKMARK [0][-]{chapter.2}{Porównanie algorytmów ESRGAN i DWSR}{}% 2
+\BOOKMARK [1][-]{section.2.1}{Jakość odtwarzania obrazów}{chapter.2}% 3
+\BOOKMARK [1][-]{section.2.2}{Analiza wydajności}{chapter.2}% 4
+\BOOKMARK [1][-]{section.2.3}{Ograniczenia\040i\040wyzwania}{chapter.2}% 5
+\BOOKMARK [0][-]{chapter.3}{Podsumowanie\040i\040wnioski}{}% 6
+\BOOKMARK [1][-]{section.3.1}{Dyskusja wyników}{chapter.3}% 7
+\BOOKMARK [1][-]{section.3.2}{Rekomendacje i kierunki dalszych badań}{chapter.3}% 8
+\BOOKMARK [0][-]{section.3.2}{Bibliografia}{}% 9

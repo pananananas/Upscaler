@@ -1,10 +1,10 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2020.10.22)  12 DEC 2023 21:44
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2020.10.22)  12 DEC 2023 23:06
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**/Users/erykwojcik/Documents/GitHub/Upscaler/Inż/main
-(/Users/erykwojcik/Documents/GitHub/Upscaler/Inż/main.tex
+**/Users/erykwojcik/Documents/GitHub/Upscaler/docs/main
+(/Users/erykwojcik/Documents/GitHub/Upscaler/docs/main.tex
 LaTeX2e <2020-02-02> patch level 5
 L3 programming layer <2020-03-06> (./mgr.cls
 Document Class: mgr 2005/12/01 Non-Standard LaTeX document class
@@ -620,11 +620,7 @@ File: listings.cfg 2020/03/24 1.8d listings configuration
 ))
 Package: listings 2020/03/24 1.8d (Carsten Heinz)
 ) (output/main.aux
-(output/Rozdziały/01.Wstep/Wstep.aux) (output/Rozdziały/02.Podstawy_teoretyczne/Podstawy_teoretyczne.aux) (output/Rozdziały/03.DWSR/DWSR.aux) (output/Rozdziały/04.ESRGAN/ESRGAN.aux) (output/Rozdziały/06.Aplikacja/Aplikacja.aux
-
-LaTeX Warning: Label `lst:zoom' multiply defined.
-
-) (output/Rozdziały/05.Porownanie_algorytmow/Porownanie_algorytmow.aux) (output/Rozdziały/07.Podsumowanie/Podsumowanie.aux))
+(output/Rozdziały/01.Wstep/Wstep.aux) (output/Rozdziały/05.Porownanie_algorytmow/Porownanie_algorytmow.aux) (output/Rozdziały/07.Podsumowanie/Podsumowanie.aux))
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 3.
@@ -794,367 +790,78 @@ File: se-ascii-print.def 2019/11/29 v1.12 stringenc: Printable ASCII characters
 ]
 Rozdzia\PlPrIeC {\l } 1.
 ) [3]
-\openout2 = `Rozdziały/02.Podstawy_teoretyczne/Podstawy_teoretyczne.aux'.
+\openout2 = `Rozdziały/05.Porownanie_algorytmow/Porownanie_algorytmow.aux'.
 
- (./Rozdziały/02.Podstawy_teoretyczne/Podstawy_teoretyczne.tex [4
+ (./Rozdziały/05.Porownanie_algorytmow/Porownanie_algorytmow.tex [4
 
 
 
 
 ]
 Rozdzia\PlPrIeC {\l } 2.
-File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic.png Graphic file (type bmp)
-<Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic.png>
-File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic_ESRGAN_x4.png Graphic file (type bmp)
-<Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic_ESRGAN_x4.png>
-File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic_ESRGAN_x16.png Graphic file (type bmp)
-<Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic_ESRGAN_x16.png>
 [5]
-File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic.png Graphic file (type bmp)
-<Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic.png>
-File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic_NN_x4.png Graphic file (type bmp)
-<Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic_NN_x4.png>
- [6]
-File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/bilinear_original.png Graphic file (type bmp)
-<Rozdziały/02.Podstawy_teoretyczne/Obrazy/bilinear_original.png>
-File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/bilinear_enlarged.png Graphic file (type bmp)
-<Rozdziały/02.Podstawy_teoretyczne/Obrazy/bilinear_enlarged.png>
-
-Underfull \hbox (badness 7415) in paragraph at lines 173--173
-[]\TU/lmr/m/n/12 Rys 8. |Obraz powiększony
- []
-
-File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic.png Graphic file (type bmp)
-<Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic.png>
-File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic_BILINEARx4.png Graphic file (type bmp)
-<Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic_BILINEARx4.png>
-
-Underfull \hbox (badness 3271) in paragraph at lines 188--188
-[]\TU/lmr/m/n/12 Rys 10. |Obraz powiększony
- []
-
-[7]
-File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic.png Graphic file (type bmp)
-<Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic.png>
-File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/cobic_bicubic.png Graphic file (type bmp)
-<Rozdziały/02.Podstawy_teoretyczne/Obrazy/cobic_bicubic.png>
-File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/nearest_neighbor_square.png Graphic file (type bmp)
-<Rozdziały/02.Podstawy_teoretyczne/Obrazy/nearest_neighbor_square.png>
-File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/bilinear_square.png Graphic file (type bmp)
-<Rozdziały/02.Podstawy_teoretyczne/Obrazy/bilinear_square.png>
-File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/bicubic_square.png Graphic file (type bmp)
-<Rozdziały/02.Podstawy_teoretyczne/Obrazy/bicubic_square.png>
- [8]
-File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic.png Graphic file (type bmp)
-<Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic.png>
-File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic_DWSR_x4.png Graphic file (type bmp)
-<Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic_DWSR_x4.png>
-File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic_ESRGAN_x4.png Graphic file (type bmp)
-<Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic_ESRGAN_x4.png>
- [9]
-File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/relu.png Graphic file (type bmp)
-<Rozdziały/02.Podstawy_teoretyczne/Obrazy/relu.png>
-File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/sigmoid.png Graphic file (type bmp)
-<Rozdziały/02.Podstawy_teoretyczne/Obrazy/sigmoid.png>
-File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/tanh.png Graphic file (type bmp)
-<Rozdziały/02.Podstawy_teoretyczne/Obrazy/tanh.png>
- [10]
-File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/overfitting.png Graphic file (type bmp)
-<Rozdziały/02.Podstawy_teoretyczne/Obrazy/overfitting.png>
- [11]
-Overfull \hbox (14.80795pt too wide) in paragraph at lines 388--389
-\TU/lmr/m/n/12 Aby stworzyć algorytm głębokiego uczenia do zastosowania w problemie Super-Rozdzielczości
- []
-
-File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/SR_CNN.png Graphic file (type bmp)
-<Rozdziały/02.Podstawy_teoretyczne/Obrazy/SR_CNN.png>
-[12]
-File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/MSE.png Graphic file (type bmp)
-<Rozdziały/02.Podstawy_teoretyczne/Obrazy/MSE.png>
- [13]
-File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/horizontal_detail.png Graphic file (type bmp)
-<Rozdziały/02.Podstawy_teoretyczne/Obrazy/horizontal_detail.png>
-File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/vertical_detail.png Graphic file (type bmp)
-<Rozdziały/02.Podstawy_teoretyczne/Obrazy/vertical_detail.png>
-File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/diagonal_detail.png Graphic file (type bmp)
-<Rozdziały/02.Podstawy_teoretyczne/Obrazy/diagonal_detail.png>
- [14]
-File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/time-frequency-domain.png Graphic file (type bmp)
-<Rozdziały/02.Podstawy_teoretyczne/Obrazy/time-frequency-domain.png>
-File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/fft.png Graphic file (type bmp)
-<Rozdziały/02.Podstawy_teoretyczne/Obrazy/fft.png>
-File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic_DWSR_x4.png Graphic file (type bmp)
-<Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic_DWSR_x4.png>
-File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/fft_magnitude.png Graphic file (type bmp)
-<Rozdziały/02.Podstawy_teoretyczne/Obrazy/fft_magnitude.png>
-File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/fft_phase.png Graphic file (type bmp)
-<Rozdziały/02.Podstawy_teoretyczne/Obrazy/fft_phase.png>
- [15]
-File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/sine_wave.png Graphic file (type bmp)
-<Rozdziały/02.Podstawy_teoretyczne/Obrazy/sine_wave.png>
-File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/morlet_wavelet.png Graphic file (type bmp)
-<Rozdziały/02.Podstawy_teoretyczne/Obrazy/morlet_wavelet.png>
- [16]
-File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/morlet_e.png Graphic file (type bmp)
-<Rozdziały/02.Podstawy_teoretyczne/Obrazy/morlet_e.png>
-Missing character: There is no . in font nullfont!
-Missing character: There is no 0 in font nullfont!
-Missing character: There is no 1 in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no t in font nullfont!
-PGFPlots: reading {Rozdziały/02.Podstawy_teoretyczne/Obrazy/wave_data.txt}
-File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/wavelet_fbsp1-1.5-1.0.png Graphic file (type bmp)
-<Rozdziały/02.Podstawy_teoretyczne/Obrazy/wavelet_fbsp1-1.5-1.0.png>
-File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/wavelet_mexh.png Graphic file (type bmp)
-<Rozdziały/02.Podstawy_teoretyczne/Obrazy/wavelet_mexh.png>
-File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/wavelet_gaus1.png Graphic file (type bmp)
-<Rozdziały/02.Podstawy_teoretyczne/Obrazy/wavelet_gaus1.png>
- [17]
-File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/morlet_bez_przesuniecia.png Graphic file (type bmp)
-<Rozdziały/02.Podstawy_teoretyczne/Obrazy/morlet_bez_przesuniecia.png>
-File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/time_shift_morlet.png Graphic file (type bmp)
-<Rozdziały/02.Podstawy_teoretyczne/Obrazy/time_shift_morlet.png>
-File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/f_shift_morlet.png Graphic file (type bmp)
-<Rozdziały/02.Podstawy_teoretyczne/Obrazy/f_shift_morlet.png>
-File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/t_and_f_shift_morlet.png Graphic file (type bmp)
-<Rozdziały/02.Podstawy_teoretyczne/Obrazy/t_and_f_shift_morlet.png>
- [18]
-File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/skalogram.png Graphic file (type bmp)
-<Rozdziały/02.Podstawy_teoretyczne/Obrazy/skalogram.png>
-PGFPlots: reading {Rozdziały/02.Podstawy_teoretyczne/Obrazy/wavelet_coefficients_magnitude.txt}
-File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/skalogram_sinus.png Graphic file (type bmp)
-<Rozdziały/02.Podstawy_teoretyczne/Obrazy/skalogram_sinus.png>
- [19]
-File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/DWT_dekompozycja.png Graphic file (type bmp)
-<Rozdziały/02.Podstawy_teoretyczne/Obrazy/DWT_dekompozycja.png>
- [20]
-File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/level_1_decomposition_LL.png Graphic file (type bmp)
-<Rozdziały/02.Podstawy_teoretyczne/Obrazy/level_1_decomposition_LL.png>
-File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/level_1_decomposition_LH.png Graphic file (type bmp)
-<Rozdziały/02.Podstawy_teoretyczne/Obrazy/level_1_decomposition_LH.png>
-File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/level_1_decomposition_HL.png Graphic file (type bmp)
-<Rozdziały/02.Podstawy_teoretyczne/Obrazy/level_1_decomposition_HL.png>
-File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/level_1_decomposition_HH.png Graphic file (type bmp)
-<Rozdziały/02.Podstawy_teoretyczne/Obrazy/level_1_decomposition_HH.png>
-) [21] [22]
-\openout2 = `Rozdziały/03.DWSR/DWSR.aux'.
-
- (./Rozdziały/03.DWSR/DWSR.tex
-Rozdzia\PlPrIeC {\l } 3.
-File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic.png Graphic file (type bmp)
-<Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic.png>
-File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic_DWSR_x4.png Graphic file (type bmp)
-<Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic_DWSR_x4.png>
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [23
-
-
-
-
-]
-File: Rozdziały/03.DWSR/Obrazy/konstrukcja_2dDWT.png Graphic file (type bmp)
-<Rozdziały/03.DWSR/Obrazy/konstrukcja_2dDWT.png>
- [24]
-File: Rozdziały/03.DWSR/Obrazy/strultura_DWSR.png Graphic file (type bmp)
-<Rozdziały/03.DWSR/Obrazy/strultura_DWSR.png>
- [25] [26]
-File: Rozdziały/03.DWSR/Obrazy/0904x4.png Graphic file (type bmp)
-<Rozdziały/03.DWSR/Obrazy/0904x4.png>
-File: Rozdziały/03.DWSR/Obrazy/0904x4_DWSRx4.png Graphic file (type bmp)
-<Rozdziały/03.DWSR/Obrazy/0904x4_DWSRx4.png>
-File: Rozdziały/03.DWSR/Obrazy/0913x4.png Graphic file (type bmp)
-<Rozdziały/03.DWSR/Obrazy/0913x4.png>
-File: Rozdziały/03.DWSR/Obrazy/0913x4_DWSRx4.png Graphic file (type bmp)
-<Rozdziały/03.DWSR/Obrazy/0913x4_DWSRx4.png>
-File: Rozdziały/03.DWSR/Obrazy/0999x4.png Graphic file (type bmp)
-<Rozdziały/03.DWSR/Obrazy/0999x4.png>
-File: Rozdziały/03.DWSR/Obrazy/0999x4_DWSRx4.png Graphic file (type bmp)
-<Rozdziały/03.DWSR/Obrazy/0999x4_DWSRx4.png>
-) [27] [28]
-\openout2 = `Rozdziały/04.ESRGAN/ESRGAN.aux'.
-
- (./Rozdziały/04.ESRGAN/ESRGAN.tex
-Rozdzia\PlPrIeC {\l } 4.
-File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic.png Graphic file (type bmp)
-<Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic.png>
-File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic_ESRGAN_x4.png Graphic file (type bmp)
-<Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic_ESRGAN_x4.png>
-[29
-
-
-
-
-]
-File: Rozdziały/04.ESRGAN/Obrazy/Architektura SRGAN.png Graphic file (type bmp)
-<Rozdziały/04.ESRGAN/Obrazy/Architektura SRGAN.png>
-File: Rozdziały/04.ESRGAN/Obrazy/Architektura ESRGAN 1.png Graphic file (type bmp)
-<Rozdziały/04.ESRGAN/Obrazy/Architektura ESRGAN 1.png>
- [30]
-File: Rozdziały/04.ESRGAN/Obrazy/Batch normalization artefacts.png Graphic file (type bmp)
-<Rozdziały/04.ESRGAN/Obrazy/Batch normalization artefacts.png>
-File: Rozdziały/04.ESRGAN/Obrazy/relatywistyczny dyskryminator.png Graphic file (type bmp)
-<Rozdziały/04.ESRGAN/Obrazy/relatywistyczny dyskryminator.png>
-File: Rozdziały/04.ESRGAN/Obrazy/mapa aktywacji.png Graphic file (type bmp)
-<Rozdziały/04.ESRGAN/Obrazy/mapa aktywacji.png>
- [31]
-File: Rozdziały/03.DWSR/Obrazy/0904x4.png Graphic file (type bmp)
-<Rozdziały/03.DWSR/Obrazy/0904x4.png>
-File: Rozdziały/03.DWSR/Obrazy/0904x4_ESRGANx4.png Graphic file (type bmp)
-<Rozdziały/03.DWSR/Obrazy/0904x4_ESRGANx4.png>
-File: Rozdziały/03.DWSR/Obrazy/0913x4.png Graphic file (type bmp)
-<Rozdziały/03.DWSR/Obrazy/0913x4.png>
-File: Rozdziały/03.DWSR/Obrazy/0913x4_ESRGANx4.png Graphic file (type bmp)
-<Rozdziały/03.DWSR/Obrazy/0913x4_ESRGANx4.png>
-File: Rozdziały/03.DWSR/Obrazy/0999x4.png Graphic file (type bmp)
-<Rozdziały/03.DWSR/Obrazy/0999x4.png>
-File: Rozdziały/03.DWSR/Obrazy/0999x4_ESRGANx4.png Graphic file (type bmp)
-<Rozdziały/03.DWSR/Obrazy/0999x4_ESRGANx4.png>
-) [32] [33]
-\openout2 = `Rozdziały/06.Aplikacja/Aplikacja.aux'.
-
- (./Rozdziały/06.Aplikacja/Aplikacja.tex [34
-
-
-
-
-]
-Rozdzia\PlPrIeC {\l } 5.
-[35]
-File: Rozdziały/06.Aplikacja/Obrazy/kursor-link.jpg Graphic file (type bmp)
-<Rozdziały/06.Aplikacja/Obrazy/kursor-link.jpg>
-File: Rozdziały/06.Aplikacja/Obrazy/display5.jpg Graphic file (type bmp)
-<Rozdziały/06.Aplikacja/Obrazy/display5.jpg>
- [36]
-File: Rozdziały/06.Aplikacja/Obrazy/user-flow.png Graphic file (type bmp)
-<Rozdziały/06.Aplikacja/Obrazy/user-flow.png>
-File: Rozdziały/06.Aplikacja/Obrazy/UX upload.png Graphic file (type bmp)
-<Rozdziały/06.Aplikacja/Obrazy/UX upload.png>
-File: Rozdziały/06.Aplikacja/Obrazy/UX display.png Graphic file (type bmp)
-<Rozdziały/06.Aplikacja/Obrazy/UX display.png>
- [37]
-File: Rozdziały/06.Aplikacja/Obrazy/UI 1.png Graphic file (type bmp)
-<Rozdziały/06.Aplikacja/Obrazy/UI 1.png>
- [38]
-File: Rozdziały/06.Aplikacja/Obrazy/UI 1 dsiplay .png Graphic file (type bmp)
-<Rozdziały/06.Aplikacja/Obrazy/UI 1 dsiplay .png>
-
-Underfull \vbox (badness 1622) has occurred while \output is active []
-
- [39] [40] [41]
-File: Rozdziały/06.Aplikacja/Obrazy/mechanizm_aplikacji.png Graphic file (type bmp)
-<Rozdziały/06.Aplikacja/Obrazy/mechanizm_aplikacji.png>
- [42] [43] (/usr/local/texlive/2020/texmf-dist/tex/latex/listings/lstlang1.sty
-File: lstlang1.sty 2020/03/24 1.8d listings language file
-) (/usr/local/texlive/2020/texmf-dist/tex/latex/listings/lstmisc.sty
-File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
-)
-Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 223.
-Package microtype Info: Loading generic protrusion settings for font family
-(microtype)             `lmtt' (encoding: TU).
-(microtype)             For optimal results, create family-specific settings.
-(microtype)             See the microtype manual for details.
- [44]
-
-LaTeX Warning: Reference `{chap:DWSR}' on page 45 undefined on input line 280.
-
-[45]
-
-LaTeX Warning: Reference `{chap:ESRGAN}' on page 46 undefined on input line 331.
-
-[46]
-File: Rozdziały/06.Aplikacja/Obrazy/kursor-move.jpg Graphic file (type bmp)
-<Rozdziały/06.Aplikacja/Obrazy/kursor-move.jpg>
- [47]
-File: Rozdziały/06.Aplikacja/Obrazy/kursor-link.jpg Graphic file (type bmp)
-<Rozdziały/06.Aplikacja/Obrazy/kursor-link.jpg>
-File: Rozdziały/06.Aplikacja/Obrazy/kursor-scrabb.jpg Graphic file (type bmp)
-<Rozdziały/06.Aplikacja/Obrazy/kursor-scrabb.jpg>
-File: Rozdziały/06.Aplikacja/Obrazy/kursor-question.jpg Graphic file (type bmp)
-<Rozdziały/06.Aplikacja/Obrazy/kursor-question.jpg>
-File: Rozdziały/06.Aplikacja/Obrazy/kurssor-upload.jpg Graphic file (type bmp)
-<Rozdziały/06.Aplikacja/Obrazy/kurssor-upload.jpg>
- [48]
-File: Rozdziały/06.Aplikacja/Obrazy/display4.jpg Graphic file (type bmp)
-<Rozdziały/06.Aplikacja/Obrazy/display4.jpg>
- [49]
-File: Rozdziały/06.Aplikacja/Obrazy/display1.jpg Graphic file (type bmp)
-<Rozdziały/06.Aplikacja/Obrazy/display1.jpg>
- [50] [51] [52]
-File: Rozdziały/06.Aplikacja/Obrazy/concept-display.png Graphic file (type bmp)
-<Rozdziały/06.Aplikacja/Obrazy/concept-display.png>
-File: Rozdziały/06.Aplikacja/Obrazy/slider.png Graphic file (type bmp)
-<Rozdziały/06.Aplikacja/Obrazy/slider.png>
-File: Rozdziały/06.Aplikacja/Obrazy/concept-zoom.jpg Graphic file (type bmp)
-<Rozdziały/06.Aplikacja/Obrazy/concept-zoom.jpg>
- [53] [54]) [55]
-\openout2 = `Rozdziały/05.Porownanie_algorytmow/Porownanie_algorytmow.aux'.
-
- (./Rozdziały/05.Porownanie_algorytmow/Porownanie_algorytmow.tex [56
-
-
-
-
-]
-Rozdzia\PlPrIeC {\l } 6.
-[57]
 File: Rozdziały/05.Porownanie_algorytmow/Obrazy/Zrzut ekranu 2023-12-12 o 14.13.48.jpg Graphic file (type bmp)
 <Rozdziały/05.Porownanie_algorytmow/Obrazy/Zrzut ekranu 2023-12-12 o 14.13.48.jpg>
 File: Rozdziały/05.Porownanie_algorytmow/Obrazy/Zrzut ekranu 2023-12-12 o 14.11.49.jpg Graphic file (type bmp)
 <Rozdziały/05.Porownanie_algorytmow/Obrazy/Zrzut ekranu 2023-12-12 o 14.11.49.jpg>
- [58]
+ [6]
 File: Rozdziały/05.Porownanie_algorytmow/Obrazy/Zrzut ekranu 2023-12-12 o 14.12.47.jpg Graphic file (type bmp)
 <Rozdziały/05.Porownanie_algorytmow/Obrazy/Zrzut ekranu 2023-12-12 o 14.12.47.jpg>
 File: Rozdziały/05.Porownanie_algorytmow/Obrazy/Zrzut ekranu 2023-12-12 o 14.12.20.jpg Graphic file (type bmp)
 <Rozdziały/05.Porownanie_algorytmow/Obrazy/Zrzut ekranu 2023-12-12 o 14.12.20.jpg>
- [59]
+ [7]
 File: Rozdziały/05.Porownanie_algorytmow/Obrazy/Zrzut ekranu comic.jpg Graphic file (type bmp)
 <Rozdziały/05.Porownanie_algorytmow/Obrazy/Zrzut ekranu comic.jpg>
 File: Rozdziały/05.Porownanie_algorytmow/Obrazy/Zrzut ekranu 2023-12-12 o 14.20.22.jpg Graphic file (type bmp)
 <Rozdziały/05.Porownanie_algorytmow/Obrazy/Zrzut ekranu 2023-12-12 o 14.20.22.jpg>
- [60]
+ [8]
 PGFPlots: reading {Rozdziały/05.Porownanie_algorytmow/Obrazy/image_data.csv}
 PGFPlots: reading {Rozdziały/05.Porownanie_algorytmow/Obrazy/image_data.csv}
 PGFPlots: reading {Rozdziały/05.Porownanie_algorytmow/Obrazy/image_data.csv}
- [61]) [62]
+
+
+LaTeX Warning: Reference `chap:ESRGAN' on page 9 undefined on input line 116.
+
+[9]) [10]
 \openout2 = `Rozdziały/07.Podsumowanie/Podsumowanie.aux'.
 
  (./Rozdziały/07.Podsumowanie/Podsumowanie.tex
-Rozdzia\PlPrIeC {\l } 7.
-) [63
+Rozdzia\PlPrIeC {\l } 3.
+) [11
 
 
 
 
-] (output/main.bbl [64
+] (output/main.bbl [12
 
 
 
-] [65]) [66]
+]
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `lmtt' (encoding: TU).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+) [13]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 24.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 24.
- (output/main.aux (output/Rozdziały/01.Wstep/Wstep.aux) (output/Rozdziały/02.Podstawy_teoretyczne/Podstawy_teoretyczne.aux) (output/Rozdziały/03.DWSR/DWSR.aux) (output/Rozdziały/04.ESRGAN/ESRGAN.aux) (output/Rozdziały/06.Aplikacja/Aplikacja.aux) (output/Rozdziały/05.Porownanie_algorytmow/Porownanie_algorytmow.aux) (output/Rozdziały/07.Podsumowanie/Podsumowanie.aux))
+ (output/main.aux (output/Rozdziały/01.Wstep/Wstep.aux) (output/Rozdziały/05.Porownanie_algorytmow/Porownanie_algorytmow.aux) (output/Rozdziały/07.Podsumowanie/Podsumowanie.aux))
 Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 24.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 24.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: F88A2B75A7C4F91DE91B871EE2B2B413;2277.
+(rerunfilecheck)             Checksum: 3025BAF4A3A788DDBB7B8250594B3452;588.
 
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: There were multiply-defined labels.
-
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 24.
  ) 
 Here is how much of TeX's memory you used:
- 37765 strings out of 479418
- 904454 string characters out of 5884584
- 3390419 words of memory out of 5000000
- 54518 multiletter control sequences out of 15000+600000
- 537495 words of font info for 62 fonts, out of 8000000 for 9000
+ 36477 strings out of 479418
+ 868876 string characters out of 5884584
+ 1336008 words of memory out of 5000000
+ 53361 multiletter control sequences out of 15000+600000
+ 537471 words of font info for 59 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 84i,17n,140p,893b,2966s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 84i,17n,140p,810b,2340s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on output/main.pdf (68 pages).
+Output written on output/main.pdf (15 pages).
