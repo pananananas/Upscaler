@@ -1,28 +1,72 @@
 \chapter{Porównanie algorytmów ESRGAN i DWSR} \label{chap:porownanie_algorytmow}
 
-Skoro mamy narzędzie pozwalające korzystać algorytmów \textbf{ESRGAN} i \textbf{DWSR} do zadania super-rozdzielczości, to warto porównać te metody. W tym rozdziale zostaną przedstawione kryteria porównawcze, na podstawie których zostaną ocenione oba algorytmy. Następnie zostanie przeprowadzona analiza wydajności obu metod w różnych warunkach. Na koniec zostanie oceniona jakość obrazów generowanych przez oba algorytmy, uwzględniając różne aspekty jakości wizualnej.
+Skoro mamy narzędzie pozwalające korzystać algorytmów \textbf{DWSR} \cite{guo2017deep} i \textbf{ESRGAN} \cite{wang2018esrgan} do zadania super-rozdzielczości, to warto porównać te metody. W tym rozdziale zostanie przeprowadzona analiza porównawcza algorytmów, oceniona zostanie jakość rekonstruowanych obrazów, szybkość działania oraz złożoność implementacji algorytmów.
 
-
-\section{Kryteria porównawcze}
-
-
-Ustalenie kryteriów, które będą stosowane do oceny i porównania skuteczności i efektywności algorytmów super rozdzielczości.
-
-
-\cite{wang2018esrgan}
-
-
-\section{Analiza wydajności}
-
-
-Bezpośrednie porównanie wydajności obu metod w różnych warunkach, bazujące na ustalonych kryteriach.
-
-
+Do testów algorytmów wykorzystałem zestaw testowy z repozytorium \textbf{DWSR} \cite{guo2017deep}. Wybór padł na ten zestaw, gdyż obrazy te nie były wykorzystywane w treningu żadnej z implementowanych sieci. Obrazy w tym zestawie minimalnie różnią się od siebie rozdzielczością, co pozwala na dokładniejsze porównanie algorytmów zwłaszcza w kontekście analizy wydajności.
 
 \section{Jakość odtwarzania obrazów}
 
+W tym rozdziale przedstawię wyniki testów jakości odtwarzania obrazów przez algorytmy \textbf{DWSR} i \textbf{ESRGAN}.
+Dokonałem selekcji obrazów - wybrałem te, które najlepiej obrazują różnice pomiędzy wynikami działania algorytmów.
 
-Ocena jakości obrazów generowanych przez oba algorytmy, uwzględniając różne aspekty jakości wizualnej.
+
+Na obrazie \ref{fig:image100}. możemy sprawdzić jak algorytmy radzą sobie z rekonstrukcją tekstur drzew i liści. Widać, że algorytm \textbf{DWSR} radzi sobie bardzo dobrze z zachowaniem kierunku tekstur, co zawdzięcza transformacji falkowej, lecz detale nie są odwzorowane idealnie. Algorytm \textbf{ESRGAN} dużo lepiej poradził sobie z odwzorowaniem detali i tekstur. Obrazy odwzorowane przez ten algorytm są bardzo ostre, miejscami aż nienaturalnie. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{Rozdziały/05.Porownanie_algorytmow/Obrazy/Zrzut ekranu 2023-12-12 o 14.13.48.jpg}  
+    \caption{Obraz \textit{0997x4.png} z zestawu testowego \cite{guo2017deep}}
+    \label{fig:image100}
+\end{figure}
+
+Na obrazie \ref{fig:image101} możemy sprawdzić jak algorytmy radzą sobie z rekonstrukcją detali twarzy. Na tym przykładzie widać, że algorytm \textbf{ESRGAN} halucynuje detale twarzy i te wyglądają bardzo nienaturalnie, jednak braz wygenerowany przez ten algorytm jest bardzo ostry. Algorytm \textbf{DWSR} radzi sobie dużo lepiej z zachowaniem naturalnego wyglądu twarzy, lecz nie odwzorowuje detali tak dobrze jak \textbf{ESRGAN}.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.9\linewidth]{Rozdziały/05.Porownanie_algorytmow/Obrazy/Zrzut ekranu 2023-12-12 o 14.11.49.jpg}  
+    \caption{Obraz \textit{0917x4.png} z zestawu testowego \cite{guo2017deep}}
+    \label{fig:image101}
+\end{figure}
+
+Na obrazie \ref{fig:image102} możemy się przekonać jak algorytmy radzą sobie z powiększeniem obrazu, na którym zdecydowanie dominują niskie częstotliwości, ale występują też krzywe z ostrzejszymi krawędziami. Tutaj świetnie sprawdził się algorytm \textbf{DWSR}, który zachował naturalny wygląd obrazu, dodatkowo zachowując ostrość krawędzi. Algorytm \textbf{ESRGAN} również poradził sobie bardzo dobrze. Na tego typu obrazach algorytm \textbf{Bilinear} (interpolacja dwuliniowa), również radzi sobie rozsądnie, ale niestety krawędzie w obrazie wynikowym są bardzo rozmyte.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{Rozdziały/05.Porownanie_algorytmow/Obrazy/Zrzut ekranu 2023-12-12 o 14.12.47.jpg}  
+    \caption{Obraz \textit{0911x4.png} z zestawu testowego \cite{guo2017deep}}
+    \label{fig:image102}
+\end{figure}
+
+Obraz testowy \ref{fig:image103} jest bardzo dobrym przykładem scenerii z dużą ilością detali i tekstur. Algorytm \textbf{ESRGAN} bezbłędnie poradził sobie z rekonstrukcją detali takich jak budynki, czy ulice. Algorytm \textbf{DWSR} również poradził sobie dobrze, jednak obraz nie jest nawet bliski ostrości jaką osiągnął algorytm \textbf{ESRGAN}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{Rozdziały/05.Porownanie_algorytmow/Obrazy/Zrzut ekranu 2023-12-12 o 14.12.20.jpg}  
+    \caption{Obraz \textit{0930x4.png} z zestawu testowego \cite{guo2017deep}}
+    \label{fig:image103}
+\end{figure}
+
+Obraz testowy \ref{fig:image104} jest przykładem działania algorytmów, gdy mamy do czynienia z obrazem o bardzo niskiej rozdzielczości. Algorytm \textbf{ESRGAN} poradził sobie bardzo dobrze ze stworzeniem detali. Dokładnie zarysowane są wszystkie linie, ale obraz miejscami odbiega od oryginału, widać to między innymi na oku postaci. Algorytm \textbf{DWSR} poradził sobie dobrze, odtworzenie detali jest bliskie oryginałowi ale obraz jest bardzo rozmyty.
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{Rozdziały/05.Porownanie_algorytmow/Obrazy/Zrzut ekranu comic.jpg}  
+    \caption{Obraz \textit{comic.png} z zestawu testowego Set14 \cite{zeyde2010single}}
+    \label{fig:image104}
+\end{figure}
+
+Ostatnim przykładem będzie rysunek techniczny z obrazu \ref{fig:image105}. Algorytm \textbf{ESRGAN} jest bardzo wrażliwy na kompresję jpg, w wyniku czego obraz wygląda nieprzyjemnie a czcionki są zbyt ostre.  Algorytm \textbf{DWSR} poradził sobie dużo lepiej z rekonstrukcją obrazu, czcionki są wyraźne i czytelne, a obraz nie jest mocno zniekształcony.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\linewidth]{Rozdziały/05.Porownanie_algorytmow/Obrazy/Zrzut ekranu 2023-12-12 o 14.20.22.jpg}  
+    \caption{Schemat techniczny silnika z turbosprężarką ze strony \cite{zssplus} }
+    \label{fig:image105}
+\end{figure}
+
+\section{Analiza wydajności}
+
 
 
 
