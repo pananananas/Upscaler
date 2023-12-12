@@ -3,6 +3,7 @@ from upscaler_django_backend.upscale_models.DWSR.FinalColorSR import generate_co
 from upscaler_django_backend.upscale_models.DWSR.DWSRx4 import process_image_x4
 from upscaler_django_backend.upscale_models.DWSR.DWSRx2 import process_image
 from django.core.files import File
+import time
 import os
 
 
@@ -18,6 +19,7 @@ def run_dwsr(input_image_path, scale, image_instance):
         if not os.path.exists(dir_path):
             os.makedirs(dir_path)
 
+    start = time.time()
 
     # 1. Generate enlarged LR images
     generate_enlarged_lr(input_image_path, enlarged_lr_dir, scale) 
@@ -33,6 +35,9 @@ def run_dwsr(input_image_path, scale, image_instance):
     # 3. Generate color SR
     final_img_path = generate_color_sr(input_image_path, sr_lum_dir, output_dir, scale) 
 
+    end = time.time()
+    image_instance.dwsr_time = end - start
+    
     print(f'Final image path: {final_img_path}')
 
     # 4. Save image to database

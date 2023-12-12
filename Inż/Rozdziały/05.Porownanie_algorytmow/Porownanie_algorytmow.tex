@@ -28,7 +28,7 @@ Na obrazie \ref{fig:image101} możemy sprawdzić jak algorytmy radzą sobie z re
     \label{fig:image101}
 \end{figure}
 
-Na obrazie \ref{fig:image102} możemy się przekonać jak algorytmy radzą sobie z powiększeniem obrazu, na którym zdecydowanie dominują niskie częstotliwości, ale występują też krzywe z ostrzejszymi krawędziami. Tutaj świetnie sprawdził się algorytm \textbf{DWSR}, który zachował naturalny wygląd obrazu, dodatkowo zachowując ostrość krawędzi. Algorytm \textbf{ESRGAN} również poradził sobie bardzo dobrze. Na tego typu obrazach algorytm \textbf{Bilinear} (interpolacja dwuliniowa), również radzi sobie rozsądnie, ale niestety krawędzie w obrazie wynikowym są bardzo rozmyte.
+Na obrazie \ref{fig:image102} możemy się przekonać jak algorytmy radzą sobie z powiększeniem obrazu, na którym zdecydowanie dominują niskie częstotliwości, ale występują też krzywe z ostrzejszymi krawędziami. Tutaj świetnie sprawdził się algorytm \textbf{DWSR}, który zachował naturalny wygląd obrazu, dodatkowo zachowując ostrość krawędzi. Algorytm \textbf{ESRGAN} również poradził sobie bardzo dobrze. Na tego typu obrazach algorytm \textbf{Bilinear} (interpolacja dwuliniowa), również radzi sobie przyzwoicie, ale niestety krawędzie w obrazie wynikowym są bardzo rozmyte.
 
 \begin{figure}[H]
     \centering
@@ -67,7 +67,35 @@ Ostatnim przykładem będzie rysunek techniczny z obrazu \ref{fig:image105}. Alg
 
 \section{Analiza wydajności}
 
+Na podstawie rozdziałów traktujących o strukturach algorytmów \textbf{DWSR} i \textbf{ESRGAN} można zauważyć, że algorytm \textbf{ESRGAN} jest dużo bardziej skomplikowany. W związku z tym można przypuszczać, że algorytm \textbf{DWSR} będzie działał szybciej. W tym rozdziale sprawdzę jak wygląda wydajność obu algorytmów.
 
+Do testów wydajności wykorzystałem obrazy z zestawu testowego \cite{guo2017deep} oraz \cite{zeyde2010single}. Testy zostały przeprowadzone na komputerze z procesorem \textbf{Intel Core i7-9750H} z systemem \textbf{MacOS}, więc niestety nie mogłem wykorzystać GPU do przyspieszenia obliczeń, ponieważ biblioteka \textbf{PyTorch} nie wspiera kart graficznych \textbf{AMD}, w którą wyposażony jest sprzęt.
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            xlabel={Rozdzielczość oryginalna (piksele)},
+            ylabel={Czas (sekundy)},
+            legend style={at={(rel axis cs:0,1)},anchor=north west}, % Zmienione położenie legendy
+            ymajorgrids=true,
+            grid style=dashed,
+            width=0.95\textwidth, % Szerokość wykresu dopasowana do szerokości tekstu
+            height=8cm, % Ustaw wysokość jeśli to potrzebne
+        ]
+        \addplot table [x=resolution, y=bilinear_time, col sep=comma] {Rozdziały/05.Porownanie_algorytmow/Obrazy/image_data.csv};
+        \addlegendentry{Bilinear}
+        \addplot table [x=resolution, y=dwsr_time, col sep=comma] {Rozdziały/05.Porownanie_algorytmow/Obrazy/image_data.csv};
+        \addlegendentry{DWSR}
+        \addplot table [x=resolution, y=esrgan_time, col sep=comma] {Rozdziały/05.Porownanie_algorytmow/Obrazy/image_data.csv};
+        \addlegendentry{ESRGAN}
+        \end{axis}
+    \end{tikzpicture}
+
+    \caption{Wykres czasu przetwarzania obrazów w zależności od rozdzielczości oryginalnej}
+    \label{fig:time_chart}
+\end{figure}
+    
 
 
 \section{Ograniczenia i wyzwania}

@@ -1,17 +1,23 @@
+from django.core.files import File
+import time
 import cv2
 import os
-from django.core.files import File
+
 
 def run_bilinear(input_image_path, scale, image_instance):
+    start = time.time()
     # Read the uploaded image file
     img = cv2.imread(input_image_path, cv2.IMREAD_COLOR)
     
     # Calculate the new dimensions
     height, width = img.shape[:2]
     new_width, new_height = width * scale, height * scale
-
+    
     # Resize the image using bilinear interpolation
     img_resized = cv2.resize(img, (new_width, new_height), interpolation=cv2.INTER_LINEAR)
+
+    end = time.time()
+    image_instance.bilinear_time = end - start
 
     # Construct the output file path
     base_name = os.path.splitext(os.path.basename(input_image_path))[0]

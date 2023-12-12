@@ -2,6 +2,7 @@ from upscaler_django_backend.upscale_models.ESRGAN import RRDBNet_arch as arch
 from django.core.files import File
 import numpy as np
 import torch
+import time
 import cv2
 import os
 
@@ -48,6 +49,9 @@ def save_output_image(output, input_image_path, image_instance):
 
 
 def run_esrgan(input_image_path, image_instance):
+    start = time.time()
     model, device = initialize_esrgan_model()
     output = process_image_with_esrgan(model, device, input_image_path)
+    end = time.time()
+    image_instance.esrgan_time = end - start
     save_output_image(output, input_image_path, image_instance)

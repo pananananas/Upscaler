@@ -13,6 +13,9 @@ class Image(models.Model):
     original_width = models.PositiveIntegerField(null=True, blank=True)
     dominant_colors = models.TextField(null=True, blank=True)  # This will store the JSON string of dominant colors
 
+    bilinear_time = models.FloatField(null=True, blank=True) # This will store the time taken to upscale the image
+    dwsr_time = models.FloatField(null=True, blank=True)
+    esrgan_time = models.FloatField(null=True, blank=True)
 
     def __str__(self):
         return f"Image {self.id}"  # String representation for the admin site and any time you use print on an instance of your model.
