@@ -1,0 +1,94 @@
+\begin{thebibliography}{10}
+
+\bibitem{Agustsson_2017_CVPR_Workshops}
+E.~Agustsson,  R.~Timofte.
+\newblock Ntire 2017 challenge on single image super-resolution: Dataset and
+  study.
+\newblock {\em The IEEE Conference on Computer Vision and Pattern Recognition
+  (CVPR) Workshops}, July 2017.
+
+\bibitem{bevilacqua2012low}
+M.~Bevilacqua, A.~Roumy, C.~Guillemot, M.~L. Alberi-Morel.
+\newblock Low-complexity single-image super-resolution based on nonnegative
+  neighbor embedding.
+\newblock 2012.
+
+\bibitem{zssplus}
+D.~Bukowski.
+\newblock Doładowanie silników spalinowych.
+\newblock \url{https://www.zssplus.pl/transport/referaty/referat_07.htm},
+  2004/2005.
+
+\bibitem{guo2017deep}
+T.~Guo, H.~S. Mousavi, T.~H. Vu, V.~Monga.
+\newblock Deep wavelet prediction for image super-resolution.
+\newblock {\em The IEEE Conference on Computer Vision and Pattern Recognition
+  (CVPR) Workshops}, 2017.
+
+\bibitem{Huang_2015_CVPR}
+J.-B. Huang, A.~Singh, N.~Ahuja.
+\newblock Single image super-resolution from transformed self-exemplars.
+\newblock {\em Proceedings of the IEEE Conference on Computer Vision and
+  Pattern Recognition (CVPR)}, June 2015.
+
+\bibitem{jolicoeurmartineau2018relativistic}
+A.~Jolicoeur-Martineau.
+\newblock The relativistic discriminator: a key element missing from standard
+  gan, 2018.
+
+\bibitem{Ledig_2017_CVPR}
+C.~Ledig, L.~Theis, F.~Huszar, J.~Caballero, A.~Cunningham, A.~Acosta,
+  A.~Aitken, A.~Tejani, J.~Totz, Z.~Wang, W.~Shi.
+\newblock Photo-realistic single image super-resolution using a generative
+  adversarial network.
+\newblock {\em Proceedings of the IEEE Conference on Computer Vision and
+  Pattern Recognition (CVPR)}, July 2017.
+
+\bibitem{martin2001database}
+D.~Martin, C.~Fowlkes, D.~Tal, J.~Malik.
+\newblock A database of human segmented natural images and its application to
+  evaluating segmentation algorithms and measuring ecological statistics.
+\newblock {\em Proceedings Eighth IEEE International Conference on Computer
+  Vision. ICCV 2001}, wolumen~2, strony 416--423. IEEE, 2001.
+
+\bibitem{8014883}
+R.~Timofte, E.~Agustsson, L.~V. Gool, M.-H. Yang, L.~Zhang, B.~Lim, S.~Son,
+  H.~Kim, S.~Nah, K.~M. Lee, X.~Wang, Y.~Tian, K.~Yu, Y.~Zhang, S.~Wu, C.~Dong,
+  L.~Lin, Y.~Qiao, C.~C. Loy, W.~Bae, J.~Yoo, Y.~Han, J.~C. Ye, J.-S. Choi,
+  M.~Kim, Y.~Fan, J.~Yu, W.~Han, D.~Liu, H.~Yu, Z.~Wang, H.~Shi, X.~Wang, T.~S.
+  Huang, Y.~Chen, K.~Zhang, W.~Zuo, Z.~Tang, L.~Luo, S.~Li, M.~Fu, L.~Cao,
+  W.~Heng, G.~Bui, T.~Le, Y.~Duan, D.~Tao, R.~Wang, X.~Lin, J.~Pang, J.~Xu,
+  Y.~Zhao, X.~Xu, J.~Pan, D.~Sun, Y.~Zhang, X.~Song, Y.~Dai, X.~Qin, X.-P.
+  Huynh, T.~Guo, H.~S. Mousavi, T.~H. Vu, V.~Monga, C.~Cruz, K.~Egiazarian,
+  V.~Katkovnik, R.~Mehta, A.~K. Jain, A.~Agarwalla, C.~V.~S. Praveen, R.~Zhou,
+  H.~Wen, C.~Zhu, Z.~Xia, Z.~Wang, Q.~Guo.
+\newblock Ntire 2017 challenge on single image super-resolution: Methods and
+  results.
+\newblock {\em 2017 IEEE Conference on Computer Vision and Pattern Recognition
+  Workshops (CVPRW)}, strony 1110--1121, 2017.
+
+\bibitem{wang2018esrgan}
+X.~Wang, K.~Yu, S.~Wu, J.~Gu, Y.~Liu, C.~Dong, Y.~Qiao, C.~C. Loy.
+\newblock Esrgan: Enhanced super-resolution generative adversarial networks.
+\newblock {\em The European Conference on Computer Vision Workshops (ECCVW)},
+  September 2018.
+
+\bibitem{1284395}
+Z.~Wang, A.~Bovik, H.~Sheikh, E.~Simoncelli.
+\newblock Image quality assessment: from error visibility to structural
+  similarity.
+\newblock {\em IEEE Transactions on Image Processing}, 13(4):600--612, 2004.
+
+\bibitem{4775883}
+Z.~Wang,  A.~C. Bovik.
+\newblock Mean squared error: Love it or leave it? a new look at signal
+  fidelity measures.
+\newblock {\em IEEE Signal Processing Magazine}, 26(1):98--117, 2009.
+
+\bibitem{zeyde2010single}
+R.~Zeyde, M.~Elad, M.~Protter.
+\newblock On single image scale-up using sparse-representations.
+\newblock {\em International conference on curves and surfaces}, strony
+  711--730. Springer, 2010.
+
+\end{thebibliography}

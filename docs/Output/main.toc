@@ -1,0 +1,34 @@
+\contentsline {chapter}{\numberline {1}Wstęp}{3}{chapter.1}%
+\contentsline {chapter}{\numberline {2}Podstawy teoretyczne}{5}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Definicja super-rozdzielczości}{5}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Przegląd metod powiększania obrazów}{6}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Głębokie uczenie w przetwarzaniu obrazów}{9}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Wstęp do transformacji falkowej}{14}{section.2.4}%
+\contentsline {subsubsection}{Dziedzina czasu i częstotliwości}{15}{section*.27}%
+\contentsline {subsubsection}{Ograniczenia Transformacji Fouriera}{16}{section*.32}%
+\contentsline {subsubsection}{Dyskretna Transformacja Falkowa}{20}{section*.44}%
+\contentsline {chapter}{\numberline {3}Deep Wavelet Super Resolution}{23}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Architektura DWSR}{24}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Proces treningu}{25}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Przykłady zastosowań i rezultaty}{27}{section.3.3}%
+\contentsline {chapter}{\numberline {4}Enhanced Super-Resolution Generative Adversarial Network}{29}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Architektura ESRGAN}{30}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Proces treningu}{32}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Przykłady zastosowań i rezultaty}{32}{section.4.3}%
+\contentsline {chapter}{\numberline {5}Aplikacja webowa do powiększania rozdzielczości obrazów}{35}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Projektowanie aplikacji}{37}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Wybór narzędzi i technologii}{39}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Vue.js: Frontend}{40}{section.5.3}%
+\contentsline {section}{\numberline {5.4}Django: Backend}{41}{section.5.4}%
+\contentsline {section}{\numberline {5.5}Implementacja aplikacji}{42}{section.5.5}%
+\contentsline {section}{\numberline {5.6}Integracja algorytmów super-rozdzielczości}{44}{section.5.6}%
+\contentsline {section}{\numberline {5.7}Implementacja interfejsu użytkownika}{47}{section.5.7}%
+\contentsline {section}{\numberline {5.8}Plany na przyszłość}{53}{section.5.8}%
+\contentsline {chapter}{\numberline {6}Porównanie algorytmów ESRGAN i DWSR}{57}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Jakość odtwarzania obrazów}{57}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Analiza wydajności}{61}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Ograniczenia i wyzwania}{62}{section.6.3}%
+\contentsline {chapter}{\numberline {7}Podsumowanie i wnioski}{63}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Dyskusja wyników}{63}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Rekomendacje i kierunki dalszych badań}{63}{section.7.2}%
+\contentsline {chapter}{Bibliografia}{64}{section.7.2}%

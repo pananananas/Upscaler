@@ -1,0 +1,55 @@
+This is BibTeX, Version 0.99d (TeX Live 2020)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: output/main.aux
+The style file: plabbrv.bst
+A level-1 auxiliary file: Rozdziały/01.Wstep/Wstep.aux
+A level-1 auxiliary file: Rozdziały/02.Podstawy_teoretyczne/Podstawy_teoretyczne.aux
+A level-1 auxiliary file: Rozdziały/03.DWSR/DWSR.aux
+A level-1 auxiliary file: Rozdziały/04.ESRGAN/ESRGAN.aux
+A level-1 auxiliary file: Rozdziały/06.Aplikacja/Aplikacja.aux
+A level-1 auxiliary file: Rozdziały/05.Porownanie_algorytmow/Porownanie_algorytmow.aux
+A level-1 auxiliary file: Rozdziały/07.Podsumowanie/Podsumowanie.aux
+Database file #1: bibliografia.bib
+Warning--empty journal in bevilacqua2012low
+You've used 13 entries,
+            2129 wiz_defined-function locations,
+            583 strings with 8086 characters,
+and the built_in function-call counts, 7528 in all, are:
+= -- 702
+> -- 657
+< -- 4
++ -- 263
+- -- 248
+* -- 637
+:= -- 1246
+add.period$ -- 40
+call.type$ -- 13
+change.case$ -- 163
+chr.to.int$ -- 0
+cite$ -- 14
+duplicate$ -- 187
+empty$ -- 381
+format.name$ -- 248
+if$ -- 1517
+int.to.chr$ -- 0
+int.to.str$ -- 13
+missing$ -- 11
+newline$ -- 67
+num.names$ -- 26
+pop$ -- 198
+preamble$ -- 1
+purify$ -- 150
+quote$ -- 0
+skip$ -- 241
+stack$ -- 0
+substring$ -- 206
+swap$ -- 50
+text.length$ -- 4
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 52
+warning$ -- 1
+while$ -- 36
+width$ -- 15
+write$ -- 137
+(There was 1 warning)

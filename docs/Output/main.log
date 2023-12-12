@@ -1,0 +1,1160 @@
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2020.10.22)  12 DEC 2023 21:44
+entering extended mode
+ restricted \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**/Users/erykwojcik/Documents/GitHub/Upscaler/Inż/main
+(/Users/erykwojcik/Documents/GitHub/Upscaler/Inż/main.tex
+LaTeX2e <2020-02-02> patch level 5
+L3 programming layer <2020-03-06> (./mgr.cls
+Document Class: mgr 2005/12/01 Non-Standard LaTeX document class
+(/usr/local/texlive/2020/texmf-dist/tex/latex/base/bk12.clo
+File: bk12.clo 2019/12/20 v1.4l Standard LaTeX file (size option)
+)
+\c@part=\count163
+\c@chapter=\count164
+\c@section=\count165
+\c@subsection=\count166
+\c@subsubsection=\count167
+\c@paragraph=\count168
+\c@subparagraph=\count169
+\c@figure=\count170
+\c@table=\count171
+\abovecaptionskip=\skip47
+\belowcaptionskip=\skip48
+\bibindent=\dimen134
+)
+\@input{header.aux}
+\openout2 = `header.aux'.
+
+(./header.tex (/usr/local/texlive/2020/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count172
+\float@exts=\toks15
+\float@box=\box45
+\@float@everytoks=\toks16
+\@floatcapt=\box46
+) (/usr/local/texlive/2020/texmf-dist/tex/latex/polski/polski.sty
+Package: polski 2017/05/04 v1.3.4 Polish language package
+) (/usr/local/texlive/2020/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2019/11/30 v1.2a Enhanced LaTeX Graphics (DPC,SPQR)
+ (/usr/local/texlive/2020/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks17
+) (/usr/local/texlive/2020/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2019/11/30 v1.4a Standard LaTeX Graphics (DPC,SPQR)
+ (/usr/local/texlive/2020/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+) (/usr/local/texlive/2020/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: xetex.def on input line 105.
+ (/usr/local/texlive/2020/texmf-dist/tex/latex/graphics-def/xetex.def
+File: xetex.def 2017/06/24 v5.0h Graphics/color driver for xetex
+))
+\Gin@req@height=\dimen135
+\Gin@req@width=\dimen136
+) (/usr/local/texlive/2020/texmf-dist/tex/latex/subfigure/subfigure.sty
+Package: subfigure 2002/03/15 v2.1.5 subfigure package
+\subfigtopskip=\skip49
+\subfigcapskip=\skip50
+\subfigcaptopadj=\dimen137
+\subfigbottomskip=\skip51
+\subfigcapmargin=\dimen138
+\subfiglabelskip=\skip52
+\c@subfigure=\count173
+\c@lofdepth=\count174
+\c@subtable=\count175
+\c@lotdepth=\count176
+
+****************************************
+* Local config file subfigure.cfg used *
+****************************************
+(/usr/local/texlive/2020/texmf-dist/tex/latex/subfigure/subfigure.cfg)
+\subfig@top=\skip53
+\subfig@bottom=\skip54
+) (/usr/local/texlive/2020/texmf-dist/tex/latex/psfrag/psfrag.sty
+Package: psfrag 1998/04/11 v3.04 PSfrag (MCG)
+\pfg@pcount=\count177
+\pfg@scount=\count178
+\pfg@temp=\write3
+) (/usr/local/texlive/2020/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2020/01/20 v2.17e AMS math features
+\@mathmargin=\skip55
+
+For additional information on amsmath, use the `?' option.
+(/usr/local/texlive/2020/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01 AMS text
+ (/usr/local/texlive/2020/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks18
+\ex@=\dimen139
+)) (/usr/local/texlive/2020/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen140
+) (/usr/local/texlive/2020/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 2016/03/08 v2.02 operator names
+)
+\inf@bad=\count179
+LaTeX Info: Redefining \frac on input line 227.
+\uproot@=\count180
+\leftroot@=\count181
+LaTeX Info: Redefining \overline on input line 389.
+\classnum@=\count182
+\DOTSCASE@=\count183
+LaTeX Info: Redefining \ldots on input line 486.
+LaTeX Info: Redefining \dots on input line 489.
+LaTeX Info: Redefining \cdots on input line 610.
+\Mathstrutbox@=\box47
+\strutbox@=\box48
+\big@size=\dimen141
+LaTeX Font Info:    Redeclaring font encoding OML on input line 733.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 734.
+\macc@depth=\count184
+\c@MaxMatrixCols=\count185
+\dotsspace@=\muskip16
+\c@parentequation=\count186
+\dspbrk@lvl=\count187
+\tag@help=\toks19
+\row@=\count188
+\column@=\count189
+\maxfields@=\count190
+\andhelp@=\toks20
+\eqnshift@=\dimen142
+\alignsep@=\dimen143
+\tagshift@=\dimen144
+\tagwidth@=\dimen145
+\totwidth@=\dimen146
+\lineht@=\dimen147
+\@envbody=\toks21
+\multlinegap=\skip56
+\multlinetaggap=\skip57
+\mathdisplay@stack=\toks22
+LaTeX Info: Redefining \[ on input line 2859.
+LaTeX Info: Redefining \] on input line 2860.
+) (/usr/local/texlive/2020/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+) (/usr/local/texlive/2020/texmf-dist/tex/latex/supertabular/supertabular.sty
+Package: supertabular 2020/02/02 v4.1g the supertabular environment
+\c@tracingst=\count191
+\ST@wd=\dimen148
+\ST@rightskip=\skip58
+\ST@leftskip=\skip59
+\ST@parfillskip=\skip60
+\ST@pageleft=\dimen149
+\ST@headht=\dimen150
+\ST@tailht=\dimen151
+\ST@pagesofar=\dimen152
+\ST@pboxht=\dimen153
+\ST@lineht=\dimen154
+\ST@prevht=\dimen155
+\ST@toadd=\dimen156
+\ST@dimen=\dimen157
+\ST@pbox=\box49
+) (/usr/local/texlive/2020/texmf-dist/tex/latex/tools/array.sty
+Package: array 2019/08/31 v2.4l Tabular extension package (FMi)
+\col@sep=\dimen158
+\ar@mcellbox=\box50
+\extrarowheight=\dimen159
+\NC@list=\toks23
+\extratabsurround=\skip61
+\backup@length=\skip62
+\ar@cellbox=\box51
+) (/usr/local/texlive/2020/texmf-dist/tex/latex/tools/tabularx.sty
+Package: tabularx 2020/01/15 v2.11c `tabularx' package (DPC)
+\TX@col@width=\dimen160
+\TX@old@table=\dimen161
+\TX@old@col=\dimen162
+\TX@target=\dimen163
+\TX@delta=\dimen164
+\TX@cols=\count192
+\TX@ftn=\toks24
+) (/usr/local/texlive/2020/texmf-dist/tex/latex/tools/hhline.sty
+Package: hhline 2020/01/04 v2.04 Table rule package (DPC)
+) (/usr/local/texlive/2020/texmf-dist/tex/latex/microtype/microtype.sty
+Package: microtype 2019/11/18 v2.7d Micro-typographical refinements (RS)
+\MT@toks=\toks25
+\MT@count=\count193
+LaTeX Info: Redefining \textls on input line 790.
+\MT@outer@kern=\dimen165
+LaTeX Info: Redefining \textmicrotypecontext on input line 1354.
+\MT@listname@count=\count194
+ (/usr/local/texlive/2020/texmf-dist/tex/latex/microtype/microtype-xetex.def
+File: microtype-xetex.def 2019/11/18 v2.7d Definitions specific to xetex (RS)
+LaTeX Info: Redefining \lsstyle on input line 258.
+)
+Package microtype Info: Loading configuration file microtype.cfg.
+ (/usr/local/texlive/2020/texmf-dist/tex/latex/microtype/microtype.cfg
+File: microtype.cfg 2019/11/18 v2.7d microtype main configuration file (RS)
+))
+\c@theorem=\count195
+ (/usr/local/texlive/2020/texmf-dist/tex/latex/fontspec/fontspec.sty (/usr/local/texlive/2020/texmf-dist/tex/latex/l3packages/xparse/xparse.sty (/usr/local/texlive/2020/texmf-dist/tex/latex/l3kernel/expl3.sty
+Package: expl3 2020-03-06 L3 programming layer (loader) 
+ (/usr/local/texlive/2020/texmf-dist/tex/latex/l3backend/l3backend-xdvipdfmx.def
+File: l3backend-xdvipdfmx.def 2020-03-12 L3 backend support: xdvipdfmx
+\g__graphics_track_int=\count196
+\l__pdf_internal_box=\box52
+\g__pdf_backend_object_int=\count197
+\g__pdf_backend_annotation_int=\count198
+))
+Package: xparse 2020-03-06 L3 Experimental document command parser
+\l__xparse_current_arg_int=\count199
+\g__xparse_grabber_int=\count266
+\l__xparse_m_args_int=\count267
+\l__xparse_v_nesting_int=\count268
+)
+Package: fontspec 2020/02/21 v2.7i Font selection for XeLaTeX and LuaLaTeX
+ (/usr/local/texlive/2020/texmf-dist/tex/latex/fontspec/fontspec-xetex.sty
+Package: fontspec-xetex 2020/02/21 v2.7i Font selection for XeLaTeX and LuaLaTeX
+\l__fontspec_script_int=\count269
+\l__fontspec_language_int=\count270
+\l__fontspec_strnum_int=\count271
+\l__fontspec_tmp_int=\count272
+\l__fontspec_tmpa_int=\count273
+\l__fontspec_tmpb_int=\count274
+\l__fontspec_tmpc_int=\count275
+\l__fontspec_em_int=\count276
+\l__fontspec_emdef_int=\count277
+\l__fontspec_strong_int=\count278
+\l__fontspec_strongdef_int=\count279
+\l__fontspec_tmpa_dim=\dimen166
+\l__fontspec_tmpb_dim=\dimen167
+\l__fontspec_tmpc_dim=\dimen168
+ (/usr/local/texlive/2020/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2020/02/11 v2.0o Standard LaTeX package
+) (/usr/local/texlive/2020/texmf-dist/tex/latex/fontspec/fontspec.cfg))) (/usr/local/texlive/2020/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2020/01/14 v7.00d Hypertext links for LaTeX
+ (/usr/local/texlive/2020/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2019/12/15 v1.24 LaTeX kernel commands for general use (HO)
+) (/usr/local/texlive/2020/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2020/03/06 v1.0d TeX engine tests
+) (/usr/local/texlive/2020/texmf-dist/tex/latex/pdftexcmds/pdftexcmds.sty
+Package: pdftexcmds 2019/11/24 v0.31 Utility functions of pdfTeX for LuaTeX (HO)
+ (/usr/local/texlive/2020/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode not found.
+) (/usr/local/texlive/2020/texmf-dist/tex/generic/kvsetkeys/kvsetkeys.sty
+Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
+) (/usr/local/texlive/2020/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+) (/usr/local/texlive/2020/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
+) (/usr/local/texlive/2020/texmf-dist/tex/latex/hycolor/hycolor.sty
+Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
+) (/usr/local/texlive/2020/texmf-dist/tex/latex/letltxmacro/letltxmacro.sty
+Package: letltxmacro 2019/12/03 v1.6 Let assignment for LaTeX macros (HO)
+) (/usr/local/texlive/2020/texmf-dist/tex/latex/auxhook/auxhook.sty
+Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
+) (/usr/local/texlive/2020/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+Package: kvoptions 2019/11/29 v3.13 Key value format for package options (HO)
+)
+\@linkdim=\dimen169
+\Hy@linkcounter=\count280
+\Hy@pagecounter=\count281
+ (/usr/local/texlive/2020/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2020/01/14 v7.00d Hyperref: PDFDocEncoding definition (HO)
+) (/usr/local/texlive/2020/texmf-dist/tex/generic/intcalc/intcalc.sty
+Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
+) (/usr/local/texlive/2020/texmf-dist/tex/generic/etexcmds/etexcmds.sty
+Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
+)
+\Hy@SavedSpaceFactor=\count282
+Package hyperref Info: Hyper figures OFF on input line 4547.
+Package hyperref Info: Link nesting OFF on input line 4552.
+Package hyperref Info: Hyper index ON on input line 4555.
+Package hyperref Info: Plain pages OFF on input line 4562.
+Package hyperref Info: Backreferencing OFF on input line 4567.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4800.
+\c@Hy@tempcnt=\count283
+ (/usr/local/texlive/2020/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip17
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 5159.
+\XeTeXLinkMargin=\dimen170
+ (/usr/local/texlive/2020/texmf-dist/tex/generic/bitset/bitset.sty
+Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
+ (/usr/local/texlive/2020/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
+Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO)
+))
+\Fld@menulength=\count284
+\Field@Width=\dimen171
+\Fld@charsize=\dimen172
+Package hyperref Info: Hyper figures OFF on input line 6430.
+Package hyperref Info: Link nesting OFF on input line 6435.
+Package hyperref Info: Hyper index ON on input line 6438.
+Package hyperref Info: backreferencing OFF on input line 6445.
+Package hyperref Info: Link coloring OFF on input line 6450.
+Package hyperref Info: Link coloring with OCG OFF on input line 6455.
+Package hyperref Info: PDF/A mode OFF on input line 6460.
+LaTeX Info: Redefining \ref on input line 6500.
+LaTeX Info: Redefining \pageref on input line 6504.
+ (/usr/local/texlive/2020/texmf-dist/tex/generic/atbegshi/atbegshi.sty
+Package: atbegshi 2019/12/05 v1.19 At begin shipout hook (HO)
+)
+\Hy@abspage=\count285
+\c@Item=\count286
+\c@Hfootnote=\count287
+)
+Package hyperref Info: Driver (autodetected): hxetex.
+ (/usr/local/texlive/2020/texmf-dist/tex/latex/hyperref/hxetex.def
+File: hxetex.def 2020/01/14 v7.00d Hyperref driver for XeTeX
+ (/usr/local/texlive/2020/texmf-dist/tex/latex/hyperref/puenc.def
+File: puenc.def 2020/01/14 v7.00d Hyperref: PDF Unicode definition (HO)
+) (/usr/local/texlive/2020/texmf-dist/tex/generic/stringenc/stringenc.sty
+Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO)
+)
+\pdfm@box=\box53
+\c@Hy@AnnotLevel=\count288
+\HyField@AnnotCount=\count289
+\Fld@listcount=\count290
+\c@bookmark@seq@number=\count291
+ (/usr/local/texlive/2020/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+Package: rerunfilecheck 2019/12/05 v1.9 Rerun checks for auxiliary files (HO)
+ (/usr/local/texlive/2020/texmf-dist/tex/latex/atveryend/atveryend.sty
+Package: atveryend 2019-12-11 v1.11 Hooks at the very end of document (HO)
+Package atveryend Info: \enddocument detected (standard20110627).
+) (/usr/local/texlive/2020/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
+Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
+)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 286.
+)
+\Hy@SectionHShift=\skip63
+)
+Package hyperref Info: Option `colorlinks' set `true' on input line 71.
+ (/usr/local/texlive/2020/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2020/01/03 v3.4h Customizing captions (AR)
+ (/usr/local/texlive/2020/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2020/01/03 v1.8h caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 61.
+\captionmargin=\dimen173
+\captionmargin@=\dimen174
+\captionwidth=\dimen175
+\caption@tempdima=\dimen176
+\caption@indent=\dimen177
+\caption@parindent=\dimen178
+\caption@hangindent=\dimen179
+Package caption Info: Unknown document class (or package),
+(caption)             standard defaults will be used.
+Package caption Info: \@makecaption = \long macro:#1#2->\vskip \abovecaptionskip \sbox \@tempboxa {#1~~#2}\ifdim \wd \@tempboxa >\hsize #1~~#2\par \else \global \@minipagefalse \hb@xt@ \hsize {\hfil \box \@tempboxa \hfil }\fi \vskip \belowcaptionskip  on input line 1082.
+)
+
+Package caption Warning: Unknown document class (or package),
+(caption)                standard defaults will be used.
+See the caption package documentation for explanation.
+
+\c@caption@flags=\count292
+\c@continuedfloat=\count293
+Package caption Info: float package is loaded.
+Package caption Info: hyperref package is loaded.
+Package caption Info: subfigure package is loaded.
+Package caption Info: supertabular package is loaded.
+) (/usr/local/texlive/2020/texmf-dist/tex/latex/pgfplots/pgfplots.sty (/usr/local/texlive/2020/texmf-dist/tex/generic/pgfplots/pgfplots.revision.tex)
+Package: pgfplots 2020/02/29 v1.17 Data Visualization (1.17)
+ (/usr/local/texlive/2020/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty (/usr/local/texlive/2020/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty (/usr/local/texlive/2020/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
+\pgfutil@everybye=\toks26
+\pgfutil@tempdima=\dimen180
+\pgfutil@tempdimb=\dimen181
+ (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/utilities/pgfutil-common-lists.tex)) (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
+\pgfutil@abb=\box54
+ (/usr/local/texlive/2020/texmf-dist/tex/latex/ms/everyshi.sty
+Package: everyshi 2001/05/15 v3.00 EveryShipout Package (MS)
+)) (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/pgf.revision.tex)
+Package: pgfrcs 2020/01/08 v3.1.5b (3.1.5b)
+))
+Package: pgf 2020/01/08 v3.1.5b (3.1.5b)
+ (/usr/local/texlive/2020/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty (/usr/local/texlive/2020/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
+Package: pgfsys 2020/01/08 v3.1.5b (3.1.5b)
+ (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+\pgfkeys@pathtoks=\toks27
+\pgfkeys@temptoks=\toks28
+ (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/utilities/pgfkeysfiltered.code.tex
+\pgfkeys@tmptoks=\toks29
+))
+\pgf@x=\dimen182
+\pgf@y=\dimen183
+\pgf@xa=\dimen184
+\pgf@ya=\dimen185
+\pgf@xb=\dimen186
+\pgf@yb=\dimen187
+\pgf@xc=\dimen188
+\pgf@yc=\dimen189
+\pgf@xd=\dimen190
+\pgf@yd=\dimen191
+\w@pgf@writea=\write4
+\r@pgf@reada=\read2
+\c@pgf@counta=\count294
+\c@pgf@countb=\count295
+\c@pgf@countc=\count296
+\c@pgf@countd=\count297
+\t@pgf@toka=\toks30
+\t@pgf@tokb=\toks31
+\t@pgf@tokc=\toks32
+\pgf@sys@id@count=\count298
+ (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
+File: pgf.cfg 2020/01/08 v3.1.5b (3.1.5b)
+)
+Driver file for pgf: pgfsys-xetex.def
+ (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-xetex.def
+File: pgfsys-xetex.def 2020/01/08 v3.1.5b (3.1.5b)
+ (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-dvipdfmx.def
+File: pgfsys-dvipdfmx.def 2020/01/08 v3.1.5b (3.1.5b)
+ (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.def
+File: pgfsys-common-pdf.def 2020/01/08 v3.1.5b (3.1.5b)
+)
+\pgfsys@objnum=\count299
+))) (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex
+File: pgfsyssoftpath.code.tex 2020/01/08 v3.1.5b (3.1.5b)
+\pgfsyssoftpath@smallbuffer@items=\count300
+\pgfsyssoftpath@bigbuffer@items=\count301
+) (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex
+File: pgfsysprotocol.code.tex 2020/01/08 v3.1.5b (3.1.5b)
+)) (/usr/local/texlive/2020/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
+ (/usr/local/texlive/2020/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: xetex.def on input line 225.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
+Package xcolor Info: Model `RGB' extended on input line 1364.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1366.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1367.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
+) (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
+Package: pgfcore 2020/01/08 v3.1.5b (3.1.5b)
+ (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex) (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
+\pgfmath@dimen=\dimen192
+\pgfmath@count=\count302
+\pgfmath@box=\box55
+\pgfmath@toks=\toks33
+\pgfmath@stack@operand=\toks34
+\pgfmath@stack@operation=\toks35
+) (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code.tex) (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonometric.code.tex) (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.code.tex) (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison.code.tex) (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.tex) (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code.tex) (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.tex) (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerarithmetics.code.tex))) (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
+\c@pgfmathroundto@lastzeros=\count303
+)) (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/math/pgfint.code.tex) (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.tex
+File: pgfcorepoints.code.tex 2020/01/08 v3.1.5b (3.1.5b)
+\pgf@picminx=\dimen193
+\pgf@picmaxx=\dimen194
+\pgf@picminy=\dimen195
+\pgf@picmaxy=\dimen196
+\pgf@pathminx=\dimen197
+\pgf@pathmaxx=\dimen198
+\pgf@pathminy=\dimen199
+\pgf@pathmaxy=\dimen256
+\pgf@xx=\dimen257
+\pgf@xy=\dimen258
+\pgf@yx=\dimen259
+\pgf@yy=\dimen260
+\pgf@zx=\dimen261
+\pgf@zy=\dimen262
+) (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.code.tex
+File: pgfcorepathconstruct.code.tex 2020/01/08 v3.1.5b (3.1.5b)
+\pgf@path@lastx=\dimen263
+\pgf@path@lasty=\dimen264
+) (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage.code.tex
+File: pgfcorepathusage.code.tex 2020/01/08 v3.1.5b (3.1.5b)
+\pgf@shorten@end@additional=\dimen265
+\pgf@shorten@start@additional=\dimen266
+) (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.tex
+File: pgfcorescopes.code.tex 2020/01/08 v3.1.5b (3.1.5b)
+\pgfpic=\box56
+\pgf@hbox=\box57
+\pgf@layerbox@main=\box58
+\pgf@picture@serial@count=\count304
+) (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.code.tex
+File: pgfcoregraphicstate.code.tex 2020/01/08 v3.1.5b (3.1.5b)
+\pgflinewidth=\dimen267
+) (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformations.code.tex
+File: pgfcoretransformations.code.tex 2020/01/08 v3.1.5b (3.1.5b)
+\pgf@pt@x=\dimen268
+\pgf@pt@y=\dimen269
+\pgf@pt@temp=\dimen270
+) (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.code.tex
+File: pgfcorequick.code.tex 2020/01/08 v3.1.5b (3.1.5b)
+) (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.code.tex
+File: pgfcoreobjects.code.tex 2020/01/08 v3.1.5b (3.1.5b)
+) (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathprocessing.code.tex
+File: pgfcorepathprocessing.code.tex 2020/01/08 v3.1.5b (3.1.5b)
+) (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.tex
+File: pgfcorearrows.code.tex 2020/01/08 v3.1.5b (3.1.5b)
+\pgfarrowsep=\dimen271
+) (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
+File: pgfcoreshade.code.tex 2020/01/08 v3.1.5b (3.1.5b)
+\pgf@max=\dimen272
+\pgf@sys@shading@range@num=\count305
+\pgf@shadingcount=\count306
+) (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
+File: pgfcoreimage.code.tex 2020/01/08 v3.1.5b (3.1.5b)
+ (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.tex
+File: pgfcoreexternal.code.tex 2020/01/08 v3.1.5b (3.1.5b)
+\pgfexternal@startupbox=\box59
+)) (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.tex
+File: pgfcorelayers.code.tex 2020/01/08 v3.1.5b (3.1.5b)
+) (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransparency.code.tex
+File: pgfcoretransparency.code.tex 2020/01/08 v3.1.5b (3.1.5b)
+) (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.code.tex
+File: pgfcorepatterns.code.tex 2020/01/08 v3.1.5b (3.1.5b)
+) (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/basiclayer/pgfcorerdf.code.tex
+File: pgfcorerdf.code.tex 2020/01/08 v3.1.5b (3.1.5b)
+))) (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
+File: pgfmoduleshapes.code.tex 2020/01/08 v3.1.5b (3.1.5b)
+\pgfnodeparttextbox=\box60
+) (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex
+File: pgfmoduleplot.code.tex 2020/01/08 v3.1.5b (3.1.5b)
+) (/usr/local/texlive/2020/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65.sty
+Package: pgfcomp-version-0-65 2020/01/08 v3.1.5b (3.1.5b)
+\pgf@nodesepstart=\dimen273
+\pgf@nodesepend=\dimen274
+) (/usr/local/texlive/2020/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18.sty
+Package: pgfcomp-version-1-18 2020/01/08 v3.1.5b (3.1.5b)
+)) (/usr/local/texlive/2020/texmf-dist/tex/latex/pgf/utilities/pgffor.sty (/usr/local/texlive/2020/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex)) (/usr/local/texlive/2020/texmf-dist/tex/latex/pgf/math/pgfmath.sty (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)) (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
+Package: pgffor 2020/01/08 v3.1.5b (3.1.5b)
+ (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)
+\pgffor@iter=\dimen275
+\pgffor@skip=\dimen276
+\pgffor@stack=\toks36
+\pgffor@toks=\toks37
+)) (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
+Package: tikz 2020/01/08 v3.1.5b (3.1.5b)
+ (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers.code.tex
+File: pgflibraryplothandlers.code.tex 2020/01/08 v3.1.5b (3.1.5b)
+\pgf@plot@mark@count=\count307
+\pgfplotmarksize=\dimen277
+)
+\tikz@lastx=\dimen278
+\tikz@lasty=\dimen279
+\tikz@lastxsaved=\dimen280
+\tikz@lastysaved=\dimen281
+\tikz@lastmovetox=\dimen282
+\tikz@lastmovetoy=\dimen283
+\tikzleveldistance=\dimen284
+\tikzsiblingdistance=\dimen285
+\tikz@figbox=\box61
+\tikz@figbox@bg=\box62
+\tikz@tempbox=\box63
+\tikz@tempbox@bg=\box64
+\tikztreelevel=\count308
+\tikznumberofchildren=\count309
+\tikznumberofcurrentchild=\count310
+\tikz@fig@count=\count311
+ (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
+File: pgfmodulematrix.code.tex 2020/01/08 v3.1.5b (3.1.5b)
+\pgfmatrixcurrentrow=\count312
+\pgfmatrixcurrentcolumn=\count313
+\pgf@matrix@numberofcolumns=\count314
+)
+\tikz@expandcount=\count315
+ (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopaths.code.tex
+File: tikzlibrarytopaths.code.tex 2020/01/08 v3.1.5b (3.1.5b)
+))) (/usr/local/texlive/2020/texmf-dist/tex/generic/pgfplots/pgfplots.code.tex (/usr/local/texlive/2020/texmf-dist/tex/generic/pgfplots/pgfplotscore.code.tex
+\t@pgfplots@toka=\toks38
+\t@pgfplots@tokb=\toks39
+\t@pgfplots@tokc=\toks40
+\pgfplots@tmpa=\dimen286
+\c@pgfplots@coordindex=\count316
+\c@pgfplots@scanlineindex=\count317
+ (/usr/local/texlive/2020/texmf-dist/tex/generic/pgfplots/sys/pgfplotssysgeneric.code.tex)) (/usr/local/texlive/2020/texmf-dist/tex/generic/pgfplots/libs/pgfplotslibrary.code.tex) (/usr/local/texlive/2020/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldpgfsupp_loader.code.tex (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/libraries/pgflibraryfpu.code.tex)) (/usr/local/texlive/2020/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.code.tex (/usr/local/texlive/2020/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsliststructure.code.tex) (/usr/local/texlive/2020/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsliststructureext.code.tex) (/usr/local/texlive/2020/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsarray.code.tex
+\c@pgfplotsarray@tmp=\count318
+) (/usr/local/texlive/2020/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsmatrix.code.tex) (/usr/local/texlive/2020/texmf-dist/tex/generic/pgfplots/numtable/pgfplotstableshared.code.tex
+\c@pgfplotstable@counta=\count319
+\t@pgfplotstable@a=\toks41
+) (/usr/local/texlive/2020/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsdeque.code.tex) (/usr/local/texlive/2020/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.code.tex (/usr/local/texlive/2020/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.data.code.tex)) (/usr/local/texlive/2020/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.verb.code.tex) (/usr/local/texlive/2020/texmf-dist/tex/generic/pgfplots/libs/pgflibrarypgfplots.surfshading.code.tex
+\c@pgfplotslibrarysurf@no=\count320
+ (/usr/local/texlive/2020/texmf-dist/tex/generic/pgfplots/sys/pgflibrarypgfplots.surfshading.pgfsys-xetex.def (/usr/local/texlive/2020/texmf-dist/tex/generic/pgfplots/sys/pgflibrarypgfplots.surfshading.pgfsys-dvipdfmx.def
+\c@pgfplotslibrarysurf@streamlen=\count321
+)))) (/usr/local/texlive/2020/texmf-dist/tex/generic/pgfplots/util/pgfplotscolormap.code.tex (/usr/local/texlive/2020/texmf-dist/tex/generic/pgfplots/util/pgfplotscolor.code.tex)) (/usr/local/texlive/2020/texmf-dist/tex/generic/pgfplots/pgfplotsstackedplots.code.tex) (/usr/local/texlive/2020/texmf-dist/tex/generic/pgfplots/pgfplotsplothandlers.code.tex (/usr/local/texlive/2020/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplothandler.code.tex (/usr/local/texlive/2020/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplotimage.code.tex))) (/usr/local/texlive/2020/texmf-dist/tex/generic/pgfplots/pgfplots.scaling.code.tex) (/usr/local/texlive/2020/texmf-dist/tex/generic/pgfplots/pgfplotscoordprocessing.code.tex) (/usr/local/texlive/2020/texmf-dist/tex/generic/pgfplots/pgfplots.errorbars.code.tex) (/usr/local/texlive/2020/texmf-dist/tex/generic/pgfplots/pgfplots.markers.code.tex) (/usr/local/texlive/2020/texmf-dist/tex/generic/pgfplots/pgfplotsticks.code.tex) (/usr/local/texlive/2020/texmf-dist/tex/generic/pgfplots/pgfplots.paths.code.tex) (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.code.tex (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/modules/pgfmoduledecorations.code.tex
+\pgfdecoratedcompleteddistance=\dimen287
+\pgfdecoratedremainingdistance=\dimen288
+\pgfdecoratedinputsegmentcompleteddistance=\dimen289
+\pgfdecoratedinputsegmentremainingdistance=\dimen290
+\pgf@decorate@distancetomove=\dimen291
+\pgf@decorate@repeatstate=\count322
+\pgfdecorationsegmentamplitude=\dimen292
+\pgfdecorationsegmentlength=\dimen293
+)
+\tikz@lib@dec@box=\box65
+) (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.pathmorphing.code.tex (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.pathmorphing.code.tex)) (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.pathreplacing.code.tex (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.pathreplacing.code.tex))
+\pgfplots@numplots=\count323
+\pgfplots@xmin@reg=\dimen294
+\pgfplots@xmax@reg=\dimen295
+\pgfplots@ymin@reg=\dimen296
+\pgfplots@ymax@reg=\dimen297
+\pgfplots@zmin@reg=\dimen298
+\pgfplots@zmax@reg=\dimen299
+) (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryplotmarks.code.tex
+File: tikzlibraryplotmarks.code.tex 2020/01/08 v3.1.5b (3.1.5b)
+ (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/libraries/pgflibraryplotmarks.code.tex
+File: pgflibraryplotmarks.code.tex 2020/01/08 v3.1.5b (3.1.5b)
+))) (/usr/local/texlive/2020/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count324
+\lst@gtempboxa=\box66
+\lst@token=\toks42
+\lst@length=\count325
+\lst@currlwidth=\dimen300
+\lst@column=\count326
+\lst@pos=\count327
+\lst@lostspace=\dimen301
+\lst@width=\dimen302
+\lst@newlines=\count328
+\lst@lineno=\count329
+\lst@maxwidth=\dimen303
+ (/usr/local/texlive/2020/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
+\c@lstnumber=\count330
+\lst@skipnumbers=\count331
+\lst@framebox=\box67
+) (/usr/local/texlive/2020/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2020/03/24 1.8d listings configuration
+))
+Package: listings 2020/03/24 1.8d (Carsten Heinz)
+) (output/main.aux
+(output/Rozdziały/01.Wstep/Wstep.aux) (output/Rozdziały/02.Podstawy_teoretyczne/Podstawy_teoretyczne.aux) (output/Rozdziały/03.DWSR/DWSR.aux) (output/Rozdziały/04.ESRGAN/ESRGAN.aux) (output/Rozdziały/06.Aplikacja/Aplikacja.aux
+
+LaTeX Warning: Label `lst:zoom' multiply defined.
+
+) (output/Rozdziały/05.Porownanie_algorytmow/Porownanie_algorytmow.aux) (output/Rozdziały/07.Podsumowanie/Podsumowanie.aux))
+\openout1 = `main.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 3.
+LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 3.
+ (/usr/local/texlive/2020/texmf-dist/tex/latex/base/ts1cmr.fd
+File: ts1cmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+)
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Info: Redefining \microtypecontext on input line 3.
+Package microtype Info: Character protrusion enabled (level 2).
+Package microtype Info: Using default protrusion set `alltext'.
+Package microtype Info: No adjustment of tracking.
+Package microtype Info: No adjustment of spacing.
+Package microtype Info: No adjustment of kerning.
+ (/usr/local/texlive/2020/texmf-dist/tex/latex/microtype/mt-LatinModernRoman.cfg
+File: mt-LatinModernRoman.cfg 2013/03/13 v1.0 microtype config. file: Latin Modern Roman (RS)
+)
+
+Package fontspec Info: Adjusting the maths setup (use [no-math] to avoid
+(fontspec)             this).
+
+\symlegacymaths=\mathgroup6
+LaTeX Font Info:    Overwriting symbol font `legacymaths' in version `bold'
+(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 3.
+LaTeX Font Info:    Redeclaring math accent \acute on input line 3.
+LaTeX Font Info:    Redeclaring math accent \grave on input line 3.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 3.
+LaTeX Font Info:    Redeclaring math accent \tilde on input line 3.
+LaTeX Font Info:    Redeclaring math accent \bar on input line 3.
+LaTeX Font Info:    Redeclaring math accent \breve on input line 3.
+LaTeX Font Info:    Redeclaring math accent \check on input line 3.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 3.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 3.
+LaTeX Font Info:    Redeclaring math accent \mathring on input line 3.
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 3.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 3.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 3.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 3.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 3.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 3.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 3.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 3.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 3.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 3.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 3.
+LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 3.
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 3.
+LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
+(Font)              `operators' in the math version `normal' on input line 3.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> TU/lmr/m/n on input line 3.
+LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
+(Font)              `operators' in the math version `bold' on input line 3.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/bx/n --> TU/lmr/m/n on input line 3.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  TU/lmr/m/n --> TU/lmr/m/n on input line 3.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/cmr/m/it --> TU/lmr/m/it on input line 3.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/cmr/bx/n --> TU/lmr/b/n on input line 3.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
+(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 3.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 3.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  TU/lmr/m/n --> TU/lmr/b/n on input line 3.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmr/bx/it --> TU/lmr/b/it on input line 3.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/cmss/bx/n --> TU/lmss/b/n on input line 3.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/b/n on input line 3.
+\AtBeginShipoutBox=\box68
+Package hyperref Info: Link coloring ON on input line 3.
+ (/usr/local/texlive/2020/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
+ (/usr/local/texlive/2020/texmf-dist/tex/latex/refcount/refcount.sty
+Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
+) (/usr/local/texlive/2020/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
+)
+\c@section@level=\count332
+)
+LaTeX Info: Redefining \ref on input line 3.
+LaTeX Info: Redefining \pageref on input line 3.
+LaTeX Info: Redefining \nameref on input line 3.
+ (output/main.out) (output/main.out)
+\@outlinefile=\write5
+\openout5 = `main.out'.
+
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: listings package is loaded.
+Package caption Info: End \AtBeginDocument code.
+ ABD: EveryShipout initializing macros
+Package pgfplots notification 'compat/show suggested version=true': document has been generated with the most recent feature set (\pgfplotsset{compat=1.17}).
+
+\c@lstlisting=\count333
+\@temphbadness=\count334
+\@tempvbadness=\count335
+\@temphfuzz=\skip64
+\@temptextwidth=\skip65
+\@temptextheight=\skip66
+\@temptopmargin=\skip67
+\@tempheadheight=\skip68
+\@tempheadsep=\skip69
+\@tempoddsidemargin=\skip70
+\@tempevensidemargin=\skip71
+LaTeX Font Info:    Trying to load font information for U+msa on input line 7.
+(/usr/local/texlive/2020/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+) (/usr/local/texlive/2020/texmf-dist/tex/latex/microtype/mt-msa.cfg
+File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 7.
+ (/usr/local/texlive/2020/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+) (/usr/local/texlive/2020/texmf-dist/tex/latex/microtype/mt-msb.cfg
+File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
+) (/usr/local/texlive/2020/texmf-dist/tex/latex/microtype/mt-cmr.cfg
+File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman (RS)
+)
+\@tempheightkier=\skip72
+\@tempheighttkier=\skip73
+\@tempheightspec=\skip74
+\@tempheighttspec=\skip75
+ (/usr/local/texlive/2020/texmf-dist/tex/generic/stringenc/se-ascii-print.def
+File: se-ascii-print.def 2019/11/29 v1.12 stringenc: Printable ASCII characters
+) [1
+
+
+
+
+
+] [0] (output/main.toc)
+\tf@toc=\write6
+\openout6 = `main.toc'.
+
+ [1
+
+
+]
+\openout2 = `Rozdziały/01.Wstep/Wstep.aux'.
+
+ (./Rozdziały/01.Wstep/Wstep.tex [2
+
+
+
+]
+Rozdzia\PlPrIeC {\l } 1.
+) [3]
+\openout2 = `Rozdziały/02.Podstawy_teoretyczne/Podstawy_teoretyczne.aux'.
+
+ (./Rozdziały/02.Podstawy_teoretyczne/Podstawy_teoretyczne.tex [4
+
+
+
+
+]
+Rozdzia\PlPrIeC {\l } 2.
+File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic.png Graphic file (type bmp)
+<Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic.png>
+File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic_ESRGAN_x4.png Graphic file (type bmp)
+<Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic_ESRGAN_x4.png>
+File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic_ESRGAN_x16.png Graphic file (type bmp)
+<Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic_ESRGAN_x16.png>
+[5]
+File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic.png Graphic file (type bmp)
+<Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic.png>
+File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic_NN_x4.png Graphic file (type bmp)
+<Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic_NN_x4.png>
+ [6]
+File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/bilinear_original.png Graphic file (type bmp)
+<Rozdziały/02.Podstawy_teoretyczne/Obrazy/bilinear_original.png>
+File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/bilinear_enlarged.png Graphic file (type bmp)
+<Rozdziały/02.Podstawy_teoretyczne/Obrazy/bilinear_enlarged.png>
+
+Underfull \hbox (badness 7415) in paragraph at lines 173--173
+[]\TU/lmr/m/n/12 Rys 8. |Obraz powiększony
+ []
+
+File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic.png Graphic file (type bmp)
+<Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic.png>
+File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic_BILINEARx4.png Graphic file (type bmp)
+<Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic_BILINEARx4.png>
+
+Underfull \hbox (badness 3271) in paragraph at lines 188--188
+[]\TU/lmr/m/n/12 Rys 10. |Obraz powiększony
+ []
+
+[7]
+File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic.png Graphic file (type bmp)
+<Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic.png>
+File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/cobic_bicubic.png Graphic file (type bmp)
+<Rozdziały/02.Podstawy_teoretyczne/Obrazy/cobic_bicubic.png>
+File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/nearest_neighbor_square.png Graphic file (type bmp)
+<Rozdziały/02.Podstawy_teoretyczne/Obrazy/nearest_neighbor_square.png>
+File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/bilinear_square.png Graphic file (type bmp)
+<Rozdziały/02.Podstawy_teoretyczne/Obrazy/bilinear_square.png>
+File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/bicubic_square.png Graphic file (type bmp)
+<Rozdziały/02.Podstawy_teoretyczne/Obrazy/bicubic_square.png>
+ [8]
+File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic.png Graphic file (type bmp)
+<Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic.png>
+File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic_DWSR_x4.png Graphic file (type bmp)
+<Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic_DWSR_x4.png>
+File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic_ESRGAN_x4.png Graphic file (type bmp)
+<Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic_ESRGAN_x4.png>
+ [9]
+File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/relu.png Graphic file (type bmp)
+<Rozdziały/02.Podstawy_teoretyczne/Obrazy/relu.png>
+File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/sigmoid.png Graphic file (type bmp)
+<Rozdziały/02.Podstawy_teoretyczne/Obrazy/sigmoid.png>
+File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/tanh.png Graphic file (type bmp)
+<Rozdziały/02.Podstawy_teoretyczne/Obrazy/tanh.png>
+ [10]
+File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/overfitting.png Graphic file (type bmp)
+<Rozdziały/02.Podstawy_teoretyczne/Obrazy/overfitting.png>
+ [11]
+Overfull \hbox (14.80795pt too wide) in paragraph at lines 388--389
+\TU/lmr/m/n/12 Aby stworzyć algorytm głębokiego uczenia do zastosowania w problemie Super-Rozdzielczości
+ []
+
+File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/SR_CNN.png Graphic file (type bmp)
+<Rozdziały/02.Podstawy_teoretyczne/Obrazy/SR_CNN.png>
+[12]
+File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/MSE.png Graphic file (type bmp)
+<Rozdziały/02.Podstawy_teoretyczne/Obrazy/MSE.png>
+ [13]
+File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/horizontal_detail.png Graphic file (type bmp)
+<Rozdziały/02.Podstawy_teoretyczne/Obrazy/horizontal_detail.png>
+File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/vertical_detail.png Graphic file (type bmp)
+<Rozdziały/02.Podstawy_teoretyczne/Obrazy/vertical_detail.png>
+File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/diagonal_detail.png Graphic file (type bmp)
+<Rozdziały/02.Podstawy_teoretyczne/Obrazy/diagonal_detail.png>
+ [14]
+File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/time-frequency-domain.png Graphic file (type bmp)
+<Rozdziały/02.Podstawy_teoretyczne/Obrazy/time-frequency-domain.png>
+File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/fft.png Graphic file (type bmp)
+<Rozdziały/02.Podstawy_teoretyczne/Obrazy/fft.png>
+File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic_DWSR_x4.png Graphic file (type bmp)
+<Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic_DWSR_x4.png>
+File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/fft_magnitude.png Graphic file (type bmp)
+<Rozdziały/02.Podstawy_teoretyczne/Obrazy/fft_magnitude.png>
+File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/fft_phase.png Graphic file (type bmp)
+<Rozdziały/02.Podstawy_teoretyczne/Obrazy/fft_phase.png>
+ [15]
+File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/sine_wave.png Graphic file (type bmp)
+<Rozdziały/02.Podstawy_teoretyczne/Obrazy/sine_wave.png>
+File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/morlet_wavelet.png Graphic file (type bmp)
+<Rozdziały/02.Podstawy_teoretyczne/Obrazy/morlet_wavelet.png>
+ [16]
+File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/morlet_e.png Graphic file (type bmp)
+<Rozdziały/02.Podstawy_teoretyczne/Obrazy/morlet_e.png>
+Missing character: There is no . in font nullfont!
+Missing character: There is no 0 in font nullfont!
+Missing character: There is no 1 in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no t in font nullfont!
+PGFPlots: reading {Rozdziały/02.Podstawy_teoretyczne/Obrazy/wave_data.txt}
+File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/wavelet_fbsp1-1.5-1.0.png Graphic file (type bmp)
+<Rozdziały/02.Podstawy_teoretyczne/Obrazy/wavelet_fbsp1-1.5-1.0.png>
+File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/wavelet_mexh.png Graphic file (type bmp)
+<Rozdziały/02.Podstawy_teoretyczne/Obrazy/wavelet_mexh.png>
+File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/wavelet_gaus1.png Graphic file (type bmp)
+<Rozdziały/02.Podstawy_teoretyczne/Obrazy/wavelet_gaus1.png>
+ [17]
+File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/morlet_bez_przesuniecia.png Graphic file (type bmp)
+<Rozdziały/02.Podstawy_teoretyczne/Obrazy/morlet_bez_przesuniecia.png>
+File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/time_shift_morlet.png Graphic file (type bmp)
+<Rozdziały/02.Podstawy_teoretyczne/Obrazy/time_shift_morlet.png>
+File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/f_shift_morlet.png Graphic file (type bmp)
+<Rozdziały/02.Podstawy_teoretyczne/Obrazy/f_shift_morlet.png>
+File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/t_and_f_shift_morlet.png Graphic file (type bmp)
+<Rozdziały/02.Podstawy_teoretyczne/Obrazy/t_and_f_shift_morlet.png>
+ [18]
+File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/skalogram.png Graphic file (type bmp)
+<Rozdziały/02.Podstawy_teoretyczne/Obrazy/skalogram.png>
+PGFPlots: reading {Rozdziały/02.Podstawy_teoretyczne/Obrazy/wavelet_coefficients_magnitude.txt}
+File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/skalogram_sinus.png Graphic file (type bmp)
+<Rozdziały/02.Podstawy_teoretyczne/Obrazy/skalogram_sinus.png>
+ [19]
+File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/DWT_dekompozycja.png Graphic file (type bmp)
+<Rozdziały/02.Podstawy_teoretyczne/Obrazy/DWT_dekompozycja.png>
+ [20]
+File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/level_1_decomposition_LL.png Graphic file (type bmp)
+<Rozdziały/02.Podstawy_teoretyczne/Obrazy/level_1_decomposition_LL.png>
+File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/level_1_decomposition_LH.png Graphic file (type bmp)
+<Rozdziały/02.Podstawy_teoretyczne/Obrazy/level_1_decomposition_LH.png>
+File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/level_1_decomposition_HL.png Graphic file (type bmp)
+<Rozdziały/02.Podstawy_teoretyczne/Obrazy/level_1_decomposition_HL.png>
+File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/level_1_decomposition_HH.png Graphic file (type bmp)
+<Rozdziały/02.Podstawy_teoretyczne/Obrazy/level_1_decomposition_HH.png>
+) [21] [22]
+\openout2 = `Rozdziały/03.DWSR/DWSR.aux'.
+
+ (./Rozdziały/03.DWSR/DWSR.tex
+Rozdzia\PlPrIeC {\l } 3.
+File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic.png Graphic file (type bmp)
+<Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic.png>
+File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic_DWSR_x4.png Graphic file (type bmp)
+<Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic_DWSR_x4.png>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [23
+
+
+
+
+]
+File: Rozdziały/03.DWSR/Obrazy/konstrukcja_2dDWT.png Graphic file (type bmp)
+<Rozdziały/03.DWSR/Obrazy/konstrukcja_2dDWT.png>
+ [24]
+File: Rozdziały/03.DWSR/Obrazy/strultura_DWSR.png Graphic file (type bmp)
+<Rozdziały/03.DWSR/Obrazy/strultura_DWSR.png>
+ [25] [26]
+File: Rozdziały/03.DWSR/Obrazy/0904x4.png Graphic file (type bmp)
+<Rozdziały/03.DWSR/Obrazy/0904x4.png>
+File: Rozdziały/03.DWSR/Obrazy/0904x4_DWSRx4.png Graphic file (type bmp)
+<Rozdziały/03.DWSR/Obrazy/0904x4_DWSRx4.png>
+File: Rozdziały/03.DWSR/Obrazy/0913x4.png Graphic file (type bmp)
+<Rozdziały/03.DWSR/Obrazy/0913x4.png>
+File: Rozdziały/03.DWSR/Obrazy/0913x4_DWSRx4.png Graphic file (type bmp)
+<Rozdziały/03.DWSR/Obrazy/0913x4_DWSRx4.png>
+File: Rozdziały/03.DWSR/Obrazy/0999x4.png Graphic file (type bmp)
+<Rozdziały/03.DWSR/Obrazy/0999x4.png>
+File: Rozdziały/03.DWSR/Obrazy/0999x4_DWSRx4.png Graphic file (type bmp)
+<Rozdziały/03.DWSR/Obrazy/0999x4_DWSRx4.png>
+) [27] [28]
+\openout2 = `Rozdziały/04.ESRGAN/ESRGAN.aux'.
+
+ (./Rozdziały/04.ESRGAN/ESRGAN.tex
+Rozdzia\PlPrIeC {\l } 4.
+File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic.png Graphic file (type bmp)
+<Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic.png>
+File: Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic_ESRGAN_x4.png Graphic file (type bmp)
+<Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic_ESRGAN_x4.png>
+[29
+
+
+
+
+]
+File: Rozdziały/04.ESRGAN/Obrazy/Architektura SRGAN.png Graphic file (type bmp)
+<Rozdziały/04.ESRGAN/Obrazy/Architektura SRGAN.png>
+File: Rozdziały/04.ESRGAN/Obrazy/Architektura ESRGAN 1.png Graphic file (type bmp)
+<Rozdziały/04.ESRGAN/Obrazy/Architektura ESRGAN 1.png>
+ [30]
+File: Rozdziały/04.ESRGAN/Obrazy/Batch normalization artefacts.png Graphic file (type bmp)
+<Rozdziały/04.ESRGAN/Obrazy/Batch normalization artefacts.png>
+File: Rozdziały/04.ESRGAN/Obrazy/relatywistyczny dyskryminator.png Graphic file (type bmp)
+<Rozdziały/04.ESRGAN/Obrazy/relatywistyczny dyskryminator.png>
+File: Rozdziały/04.ESRGAN/Obrazy/mapa aktywacji.png Graphic file (type bmp)
+<Rozdziały/04.ESRGAN/Obrazy/mapa aktywacji.png>
+ [31]
+File: Rozdziały/03.DWSR/Obrazy/0904x4.png Graphic file (type bmp)
+<Rozdziały/03.DWSR/Obrazy/0904x4.png>
+File: Rozdziały/03.DWSR/Obrazy/0904x4_ESRGANx4.png Graphic file (type bmp)
+<Rozdziały/03.DWSR/Obrazy/0904x4_ESRGANx4.png>
+File: Rozdziały/03.DWSR/Obrazy/0913x4.png Graphic file (type bmp)
+<Rozdziały/03.DWSR/Obrazy/0913x4.png>
+File: Rozdziały/03.DWSR/Obrazy/0913x4_ESRGANx4.png Graphic file (type bmp)
+<Rozdziały/03.DWSR/Obrazy/0913x4_ESRGANx4.png>
+File: Rozdziały/03.DWSR/Obrazy/0999x4.png Graphic file (type bmp)
+<Rozdziały/03.DWSR/Obrazy/0999x4.png>
+File: Rozdziały/03.DWSR/Obrazy/0999x4_ESRGANx4.png Graphic file (type bmp)
+<Rozdziały/03.DWSR/Obrazy/0999x4_ESRGANx4.png>
+) [32] [33]
+\openout2 = `Rozdziały/06.Aplikacja/Aplikacja.aux'.
+
+ (./Rozdziały/06.Aplikacja/Aplikacja.tex [34
+
+
+
+
+]
+Rozdzia\PlPrIeC {\l } 5.
+[35]
+File: Rozdziały/06.Aplikacja/Obrazy/kursor-link.jpg Graphic file (type bmp)
+<Rozdziały/06.Aplikacja/Obrazy/kursor-link.jpg>
+File: Rozdziały/06.Aplikacja/Obrazy/display5.jpg Graphic file (type bmp)
+<Rozdziały/06.Aplikacja/Obrazy/display5.jpg>
+ [36]
+File: Rozdziały/06.Aplikacja/Obrazy/user-flow.png Graphic file (type bmp)
+<Rozdziały/06.Aplikacja/Obrazy/user-flow.png>
+File: Rozdziały/06.Aplikacja/Obrazy/UX upload.png Graphic file (type bmp)
+<Rozdziały/06.Aplikacja/Obrazy/UX upload.png>
+File: Rozdziały/06.Aplikacja/Obrazy/UX display.png Graphic file (type bmp)
+<Rozdziały/06.Aplikacja/Obrazy/UX display.png>
+ [37]
+File: Rozdziały/06.Aplikacja/Obrazy/UI 1.png Graphic file (type bmp)
+<Rozdziały/06.Aplikacja/Obrazy/UI 1.png>
+ [38]
+File: Rozdziały/06.Aplikacja/Obrazy/UI 1 dsiplay .png Graphic file (type bmp)
+<Rozdziały/06.Aplikacja/Obrazy/UI 1 dsiplay .png>
+
+Underfull \vbox (badness 1622) has occurred while \output is active []
+
+ [39] [40] [41]
+File: Rozdziały/06.Aplikacja/Obrazy/mechanizm_aplikacji.png Graphic file (type bmp)
+<Rozdziały/06.Aplikacja/Obrazy/mechanizm_aplikacji.png>
+ [42] [43] (/usr/local/texlive/2020/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2020/03/24 1.8d listings language file
+) (/usr/local/texlive/2020/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
+)
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 223.
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `lmtt' (encoding: TU).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+ [44]
+
+LaTeX Warning: Reference `{chap:DWSR}' on page 45 undefined on input line 280.
+
+[45]
+
+LaTeX Warning: Reference `{chap:ESRGAN}' on page 46 undefined on input line 331.
+
+[46]
+File: Rozdziały/06.Aplikacja/Obrazy/kursor-move.jpg Graphic file (type bmp)
+<Rozdziały/06.Aplikacja/Obrazy/kursor-move.jpg>
+ [47]
+File: Rozdziały/06.Aplikacja/Obrazy/kursor-link.jpg Graphic file (type bmp)
+<Rozdziały/06.Aplikacja/Obrazy/kursor-link.jpg>
+File: Rozdziały/06.Aplikacja/Obrazy/kursor-scrabb.jpg Graphic file (type bmp)
+<Rozdziały/06.Aplikacja/Obrazy/kursor-scrabb.jpg>
+File: Rozdziały/06.Aplikacja/Obrazy/kursor-question.jpg Graphic file (type bmp)
+<Rozdziały/06.Aplikacja/Obrazy/kursor-question.jpg>
+File: Rozdziały/06.Aplikacja/Obrazy/kurssor-upload.jpg Graphic file (type bmp)
+<Rozdziały/06.Aplikacja/Obrazy/kurssor-upload.jpg>
+ [48]
+File: Rozdziały/06.Aplikacja/Obrazy/display4.jpg Graphic file (type bmp)
+<Rozdziały/06.Aplikacja/Obrazy/display4.jpg>
+ [49]
+File: Rozdziały/06.Aplikacja/Obrazy/display1.jpg Graphic file (type bmp)
+<Rozdziały/06.Aplikacja/Obrazy/display1.jpg>
+ [50] [51] [52]
+File: Rozdziały/06.Aplikacja/Obrazy/concept-display.png Graphic file (type bmp)
+<Rozdziały/06.Aplikacja/Obrazy/concept-display.png>
+File: Rozdziały/06.Aplikacja/Obrazy/slider.png Graphic file (type bmp)
+<Rozdziały/06.Aplikacja/Obrazy/slider.png>
+File: Rozdziały/06.Aplikacja/Obrazy/concept-zoom.jpg Graphic file (type bmp)
+<Rozdziały/06.Aplikacja/Obrazy/concept-zoom.jpg>
+ [53] [54]) [55]
+\openout2 = `Rozdziały/05.Porownanie_algorytmow/Porownanie_algorytmow.aux'.
+
+ (./Rozdziały/05.Porownanie_algorytmow/Porownanie_algorytmow.tex [56
+
+
+
+
+]
+Rozdzia\PlPrIeC {\l } 6.
+[57]
+File: Rozdziały/05.Porownanie_algorytmow/Obrazy/Zrzut ekranu 2023-12-12 o 14.13.48.jpg Graphic file (type bmp)
+<Rozdziały/05.Porownanie_algorytmow/Obrazy/Zrzut ekranu 2023-12-12 o 14.13.48.jpg>
+File: Rozdziały/05.Porownanie_algorytmow/Obrazy/Zrzut ekranu 2023-12-12 o 14.11.49.jpg Graphic file (type bmp)
+<Rozdziały/05.Porownanie_algorytmow/Obrazy/Zrzut ekranu 2023-12-12 o 14.11.49.jpg>
+ [58]
+File: Rozdziały/05.Porownanie_algorytmow/Obrazy/Zrzut ekranu 2023-12-12 o 14.12.47.jpg Graphic file (type bmp)
+<Rozdziały/05.Porownanie_algorytmow/Obrazy/Zrzut ekranu 2023-12-12 o 14.12.47.jpg>
+File: Rozdziały/05.Porownanie_algorytmow/Obrazy/Zrzut ekranu 2023-12-12 o 14.12.20.jpg Graphic file (type bmp)
+<Rozdziały/05.Porownanie_algorytmow/Obrazy/Zrzut ekranu 2023-12-12 o 14.12.20.jpg>
+ [59]
+File: Rozdziały/05.Porownanie_algorytmow/Obrazy/Zrzut ekranu comic.jpg Graphic file (type bmp)
+<Rozdziały/05.Porownanie_algorytmow/Obrazy/Zrzut ekranu comic.jpg>
+File: Rozdziały/05.Porownanie_algorytmow/Obrazy/Zrzut ekranu 2023-12-12 o 14.20.22.jpg Graphic file (type bmp)
+<Rozdziały/05.Porownanie_algorytmow/Obrazy/Zrzut ekranu 2023-12-12 o 14.20.22.jpg>
+ [60]
+PGFPlots: reading {Rozdziały/05.Porownanie_algorytmow/Obrazy/image_data.csv}
+PGFPlots: reading {Rozdziały/05.Porownanie_algorytmow/Obrazy/image_data.csv}
+PGFPlots: reading {Rozdziały/05.Porownanie_algorytmow/Obrazy/image_data.csv}
+ [61]) [62]
+\openout2 = `Rozdziały/07.Podsumowanie/Podsumowanie.aux'.
+
+ (./Rozdziały/07.Podsumowanie/Podsumowanie.tex
+Rozdzia\PlPrIeC {\l } 7.
+) [63
+
+
+
+
+] (output/main.bbl [64
+
+
+
+] [65]) [66]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 24.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 24.
+ (output/main.aux (output/Rozdziały/01.Wstep/Wstep.aux) (output/Rozdziały/02.Podstawy_teoretyczne/Podstawy_teoretyczne.aux) (output/Rozdziały/03.DWSR/DWSR.aux) (output/Rozdziały/04.ESRGAN/ESRGAN.aux) (output/Rozdziały/06.Aplikacja/Aplikacja.aux) (output/Rozdziały/05.Porownanie_algorytmow/Porownanie_algorytmow.aux) (output/Rozdziały/07.Podsumowanie/Podsumowanie.aux))
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 24.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 24.
+Package rerunfilecheck Info: File `main.out' has not changed.
+(rerunfilecheck)             Checksum: F88A2B75A7C4F91DE91B871EE2B2B413;2277.
+
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 24.
+ ) 
+Here is how much of TeX's memory you used:
+ 37765 strings out of 479418
+ 904454 string characters out of 5884584
+ 3390419 words of memory out of 5000000
+ 54518 multiletter control sequences out of 15000+600000
+ 537495 words of font info for 62 fonts, out of 8000000 for 9000
+ 1348 hyphenation exceptions out of 8191
+ 84i,17n,140p,893b,2966s stack positions out of 5000i,500n,10000p,200000b,80000s
+
+Output written on output/main.pdf (68 pages).
