@@ -4,14 +4,18 @@ Skoro mamy narzędzie pozwalające korzystać algorytmów \textbf{DWSR} \cite{gu
 
 Do testów algorytmów wykorzystałem zestaw testowy z repozytorium \textbf{DWSR} \cite{guo2017deep}. Wybór padł na ten zestaw, gdyż obrazy te nie były wykorzystywane w treningu żadnej z implementowanych sieci. Obrazy w tym zestawie minimalnie różnią się od siebie rozdzielczością, co pozwala na dokładniejsze porównanie algorytmów zwłaszcza w kontekście analizy wydajności.
 
+Na potrzebę wykonania testów wydajności algorytmów zostały wprowadzone zmiany w bazie danych w tabeli \textit{Image}. Dodano pola \textit{bilinear\_time}, \textit{dwsr\_time} oraz \textit{esrgan\_time}, które przechowują czasy przetwarzania obrazu przez algorytmy. Czas przetwarzania został zmierzony również z etapami preprocessingu i postprocessingu obrazu, co ma znaczenie w przypadku algorytmu \textbf{DWSR}, który wymaga przeprowadzenia transformacji falkowej. Taki pomiar jest też bliższy rzeczywistości, gdyż w przypadku aplikacji webowej liczy się czas całego etapu przetwarzania obrazu, a nie samego powiększania.
+
 \section{Jakość odtwarzania obrazów}
 
 W tym rozdziale przedstawię wyniki testów jakości odtwarzania obrazów przez algorytmy \textbf{DWSR} i \textbf{ESRGAN}.
 Dokonałem selekcji obrazów - wybrałem te, które najlepiej obrazują różnice pomiędzy wynikami działania algorytmów.
 
 
-Na obrazie \ref{fig:image100}. możemy sprawdzić jak algorytmy radzą sobie z rekonstrukcją tekstur drzew i liści. Widać, że algorytm \textbf{DWSR} radzi sobie bardzo dobrze z zachowaniem kierunku tekstur, co zawdzięcza transformacji falkowej, lecz detale nie są odwzorowane idealnie. Algorytm \textbf{ESRGAN} dużo lepiej poradził sobie z odwzorowaniem detali i tekstur. Obrazy odwzorowane przez ten algorytm są bardzo ostre, miejscami aż nienaturalnie. 
+Na obrazie \ref{fig:image100}. możemy sprawdzić jak algorytmy radzą sobie z rekonstrukcją tekstur drzew i liści. Są to detale wysokiej częstotliwości, które są trudne do odwzorowania, ale badane algorytmy potrafią sobie z nimi poradzić.
+Widać, że algorytm \textbf{DWSR} radzi sobie bardzo dobrze z zachowaniem kierunku tekstur, co zawdzięcza transformacji falkowej, lecz detale nie są odwzorowane idealnie. Algorytm \textbf{ESRGAN} dużo lepiej poradził sobie z odwzorowaniem detali i tekstur. Obrazy odwzorowane przez ten algorytm są bardzo ostre, miejscami aż nienaturalnie. 
 
+\newpage
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\linewidth]{Rozdziały/05.Porownanie_algorytmow/Obrazy/Zrzut ekranu 2023-12-12 o 14.13.48.jpg}  
@@ -75,8 +79,8 @@ Do testów wydajności wykorzystałem obrazy z zestawu testowego \cite{guo2017de
     \centering
     \begin{tikzpicture}
         \begin{axis}[
-            xlabel={Rozdzielczość oryginalna (piksele)},
-            ylabel={Czas (sekundy)},
+            xlabel={Rozdzielczość oryginalna ($W \cdot H$) [piksele]},
+            ylabel={Czas [sekundy]},
             legend style={at={(rel axis cs:0,1)},anchor=north west}, % Zmienione położenie legendy
             ymajorgrids=true,
             grid style=dashed,
@@ -109,10 +113,14 @@ Jak widać na wynikach przedstawionych na wykresie \ref{fig:time_chart}, algoryt
 
 Warto zaznaczyć, że badania wydajnościowe na wykresie \ref{fig:time_chart} zawierają czas działania nie tylko samego powiększania obrazów, ale również czas \textit{preprocessingu} i \textit{postprocessingu} obrazów, co ma znaczenie w przypadku algorytmu \textbf{DWSR}, który wymaga przeprowadzenia transformacji falkowej i odwróconej transformacji falkowej.
 
-Algorytm \textbf{ESRGAN} natomiast był dużo łatwiejszy w implementacji - nie wymagał żadnych dodatkowych bibliotek, a jedynym wymaganiem było zainstalowanie biblioteki \textbf{PyTorch}. Algorytm \textbf{DWSR} wymagał zainstalowania biblioteki \textbf{PyWavelets} do przeprowadzenia transformacji falkowej, oraz przepisania funkcji pre i postprocessingu z języka \textbf{MATLAB} do \textbf{Pythona}.
+Algorytm \textbf{ESRGAN} natomiast był dużo łatwiejszy w implementacji, jedynym wymaganiem było zainstalowanie wspomnianych w rozdziale \ref{chap:ESRGAN} bibliotek. Algorytm \textbf{DWSR} wymagał nie tylko implementacji biblioteki \textbf{PyWavelets} do przeprowadzenia transformacji falkowej, ale również przepisania programów do pre i postprocessingu z języka \textbf{MATLAB} do \textbf{Pythona}.
 
 
+\newpage
 \section{Ograniczenia i wyzwania}
 
+Obydwa algorytmy mają swoje wady i zalety. Algorytm \textbf{DWSR} jest dużo szybszy, ale nie jest w stanie odwzorować detali tak dobrze jak \textbf{ESRGAN}. \textbf{ESRGAN} jest dużo wolniejszy, zdecydowanie lepiej odwzorowuje szczegóły, ale często robi to w sposób nienaturalny, czego efektem mogą być obrazy wyglądające mniej przyjemnie niż \textbf{DWSR}. 
 
-Dyskusja na temat ograniczeń obu metod i potencjalnych wyzwań w ich stosowaniu.
+Zauważyłem również problem z aliasingiem i nienaturalną ostrością na obrazach wygenerowanych przez \textbf{ESRGAN}. Problemy nie występują nagminnie, ale gdy występują sprawiają, że obraz wygląda sztucznie.
+
+Algorytmy równie dobrze radzą sobie z zaszumionymi obrazami, ale w przypadku obrazów mocno zniekształconych przez kompresję, algorytm \textbf{ESRGAN} radzi sobie dużo gorzej, gdyż podbija te fragmenty. Algorytm \textbf{DWSR} radzi sobie dużo lepiej, gdyż nie podbija tak mocno zniekształconych fragmentów, ale osłabia ich widoczność.
