@@ -83,19 +83,33 @@ Do testów wydajności wykorzystałem obrazy z zestawu testowego \cite{guo2017de
             width=0.95\textwidth, % Szerokość wykresu dopasowana do szerokości tekstu
             height=8cm, % Ustaw wysokość jeśli to potrzebne
         ]
-        \addplot table [x=resolution, y=bilinear_time, col sep=comma] {Rozdziały/05.Porownanie_algorytmow/Obrazy/image_data.csv};
+        \addplot table [x=resolution, 
+                        y=bilinear_time, 
+                        col sep=comma] 
+                        {Rozdziały/05.Porownanie_algorytmow/Obrazy/image_data.csv};
         \addlegendentry{Bilinear}
-        \addplot table [x=resolution, y=dwsr_time, col sep=comma] {Rozdziały/05.Porownanie_algorytmow/Obrazy/image_data.csv};
+        \addplot table [x=resolution, 
+                        y=dwsr_time, 
+                        col sep=comma] 
+                        {Rozdziały/05.Porownanie_algorytmow/Obrazy/image_data.csv};
         \addlegendentry{DWSR}
-        \addplot table [x=resolution, y=esrgan_time, col sep=comma] {Rozdziały/05.Porownanie_algorytmow/Obrazy/image_data.csv};
+        \addplot table [x=resolution, 
+                        y=esrgan_time, 
+                        col sep=comma] 
+                        {Rozdziały/05.Porownanie_algorytmow/Obrazy/image_data.csv};
         \addlegendentry{ESRGAN}
         \end{axis}
     \end{tikzpicture}
 
-    \caption{Wykres czasu przetwarzania obrazów w zależności od rozdzielczości oryginalnej}
+    \caption{Wykres czasu przetwarzania obrazów przez algorytmy w zależności od rozdzielczości}
     \label{fig:time_chart}
 \end{figure}
-    
+
+Jak widać na wynikach przedstawionych na wykresie \ref{fig:time_chart}, algorytm \textbf{Bilinear} działa najszybciej, ale nie jest to zaskoczeniem, ponieważ jest to najprostsza metoda. Algorytm \textbf{DWSR} działa zdecydowanie szybciej niż \textbf{ESRGAN} i moim zdaniem do w wielu przypadkach jest wystarczający. Widzimy tutaj kolejną zaletę korzystania z współczynników falkowych, których estymacja jest zdecydowanie szybsza niż rekonstrukcja całego obrazu przez sieć neuronową.
+
+Warto zaznaczyć, że badania wydajnościowe na wykresie \ref{fig:time_chart} zawierają czas działania nie tylko samego powiększania obrazów, ale również czas \textit{preprocessingu} i \textit{postprocessingu} obrazów, co ma znaczenie w przypadku algorytmu \textbf{DWSR}, który wymaga przeprowadzenia transformacji falkowej i odwróconej transformacji falkowej.
+
+Algorytm \textbf{ESRGAN} natomiast był dużo łatwiejszy w implementacji - nie wymagał żadnych dodatkowych bibliotek, a jedynym wymaganiem było zainstalowanie biblioteki \textbf{PyTorch}. Algorytm \textbf{DWSR} wymagał zainstalowania biblioteki \textbf{PyWavelets} do przeprowadzenia transformacji falkowej, oraz przepisania funkcji pre i postprocessingu z języka \textbf{MATLAB} do \textbf{Pythona}.
 
 
 \section{Ograniczenia i wyzwania}
