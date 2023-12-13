@@ -6,3 +6,4 @@ docs/Skrypty/DIV2K
 docs/Rozdziały/06.Aplikacja/output
 .vscode
 .DS_Store
+.gitignore
