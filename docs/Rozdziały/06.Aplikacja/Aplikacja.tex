@@ -93,7 +93,7 @@ Dodatkowo Backend pozwala na przechowywanie obrazów w bazie danych, co jest ist
 
 \section{Vue.js: Frontend}
 
-Do implementacji Frontendu zdecydowałem się na użycie frameworku \textbf{Vue.js}
+Do implementacji Frontendu zdecydowałem się na użycie frameworku \textbf{Vue.js} \cite{vusjs}.
 
 
 \textbf{Vue.js} to progresywny framework JavaScript służący do budowania interfejsów użytkownika. Został stworzony przez Evana You i jest utrzymywany przez niezależnych współtwórców z całego świata. Jego elastyczność pozwala na łatwą integrację z innymi bibliotekami lub istniejącymi projektami, a także jest świetny do tworzenia zaawansowanych aplikacji jednostronicowych (SPA - Single Page Applications). Swietnie nada się do tego projektu, gdyż jest to niewielka aplikacja, która będzie korzystać z wielu bibliotek i narzędzi. W kolejnych podrozdziałach opiszę dlaczego Vue.js jest dobrym wyborem do tego projektu.
@@ -123,7 +123,7 @@ Vue ma rozbudowany ekosystem, w skład którego wchodzą takie narzędzia jak Vu
 \newpage
 \section{Django: Backend}
 
-Do implementacji Backendu zdecydowałem się na użycie frameworku \textbf{Django}. 
+Do implementacji Backendu zdecydowałem się na użycie frameworku \textbf{Django} \cite{django}.
 
 \textbf{Django} to wysokopoziomowy framework webowy napisany w Pythonie, który umożliwia szybkie tworzenie bezpiecznych i łatwych w utrzymaniu stron internetowych. Został zaprojektowany z myślą o uproszczeniu zadań związanych z tworzeniem aplikacji internetowych, dzięki czemu deweloperzy mogą skupić się po prostu na pisaniu aplikacji. W kolejnych podrozdziałach opiszę dlaczego Django jest dobrym wyborem do tego projektu.
 
@@ -151,9 +151,6 @@ Django zawiera wbudowany ORM, który pozwala na interakcję z bazami danych za p
 
 Django oferuje wiele wbudowanych funkcji, takich jak system uwierzytelniania użytkowników, mapowanie URL na widoki, mechanizm szablonów, system administrowania itd. Dzięki temu można szybko rozpocząć pracę nad projektem, mając już na starcie zestaw potrzebnych narzędzi.
 
-\subsubsection*{Bezpieczeństwo}
-
-Bezpieczeństwo jest jedną z głównych zalet Django. Framework ten automatycznie chroni aplikacje przed wieloma powszechnymi zagrożeniami, takimi jak SQL Injection, Cross-site Scripting (XSS), Cross-site Request Forgery (CSRF) i Clickjacking, dzięki czemu deweloperzy mogą skupić się na budowaniu aplikacji, nie martwiąc się o podstawowe kwestie bezpieczeństwa.
 
 \subsubsection*{Skalowalność}
 
@@ -212,13 +209,15 @@ Baza danych w aplikacji jest bardzo prosta, przy przesłaniu każdego zdjęcia w
 
 Jak widać w bazie danych przechowywane są obrazy w formacie \textit{ImageField}, który jest dostarczany przez bibliotekę Django. Jest to pole, które przechowuje ścieżkę do pliku na dysku serwera. Zapisujemy również informacje o oryginalnych wymiarach obrazu, które są wyświetlane użytkownikowi przez Frontend. 
 
-Dodatkowo w bazie danych przechowujemy listę dominujących kolorów, które są wykrywane przez algorytm K-średnie \textit{K-means}, o którym opowiem w kolejnym rozdziale [\ref{sec:implementation-s-r}]. Jest to lista kolorów w formacie HEX, które wykorzystuje Frontend do wyświetlenia kolorowych gradientów tła.
+Dodatkowo w bazie danych przechowujemy listę dominujących kolorów, które są wykrywane przez algorytm K-średnie \textit{K-means} \cite{sklearn} , o którym opowiem w kolejnym rozdziale [\ref{sec:implementation-s-r}]. Jest to lista kolorów w formacie HEX, które wykorzystuje Frontend do wyświetlenia kolorowych gradientów tła.
 
 
-\newpage
+
 \section{Integracja algorytmów super-rozdzielczości} \label{sec:implementation-s-r}
 
 Gdy obraz jest już zapisany w bazie danych, serwer Backend zleca wykonanie algorytmów super-rozdzielczości na osobnych wątkach [\ref{lst:save_image}]. W tym rozdziale opiszę w jaki sposób zostały zaimplementowane algorytmy w aplikacji.
+
+W części Backendu aplikacji korzystam z bibliotek \textbf{OpenCV2} \cite{opencv}, \textbf{numpy} \cite{numpy}, \textbf{PyWavelets} \cite{pywavelets} oraz \textbf{PyTorch} \cite{pytorch}.
 
 \begin{lstlisting}[language=Python, caption=Obsługa zapisu i przetwarzania obrazów., label={lst:save_image}]
 def upload_image(request):
@@ -322,7 +321,7 @@ def process_image(input_image_path, output_dir, scale):
 
 \end{lstlisting}
 
-Przetwarzanie obrazu przez model DWSR rozpoczyna się od załadowania wytrenowanego modelu i obrazu powiększonego przez Bicubic. Następnie obraz jest dekomponowany na współczynniki falkowe (z użyciem biblioteki PyWavelets), które są przekształcane do formatu odpowiedniego dla modelu. Model prognozuje ulepszone detale tych współczynników. 
+Przetwarzanie obrazu przez model DWSR rozpoczyna się od załadowania wytrenowanego modelu i obrazu powiększonego przez Bicubic. Następnie obraz jest dekomponowany na współczynniki falkowe (z użyciem biblioteki PyWavelets \cite{pywavelets}), które są przekształcane do formatu odpowiedniego dla modelu. Model prognozuje ulepszone detale tych współczynników. 
 Te przewidziane detale są następnie łączone z oryginalnymi współczynnikami, tworząc obraz o wyższej rozdzielczości. Wynikowy obraz jest zapisywany w tymczasowej lokalizacji a w kolejnym kroku jest on konwertowany ze skali szarości do RGB i zapisywany w bazie danych.
 
 
@@ -357,7 +356,7 @@ def process_image_with_esrgan(model, device, input_image_path):
 \subsection*{Algorytm K-średnich}
 
 Algorytm K-średnich został opisany w rozdziale Podstawy Teoretyczne w sekcji \ref{sec:przeglad_metod_powiekszania_obrazow}.
-Jest to algorytm, który wykorzystujemy do wydobycia informacji o obrazie, a dokładniej do wydobycia listy dominujących kolorów. Implementacja tego algorytmu jest bardzo prosta, gdyż wykorzystałem bibliotekę \textit{scikit-learn}, która zawiera w sobie algorytm [\ref{lst:kmeans}].
+Jest to algorytm, który wykorzystujemy do wydobycia informacji o obrazie, a dokładniej do wydobycia listy dominujących kolorów. Implementacja tego algorytmu jest bardzo prosta, gdyż wykorzystałem bibliotekę \textit{scikit-learn} \cite{sklearn}, która zawiera w sobie ten algorytm [\ref{lst:kmeans}].
 
 \begin{lstlisting}[language=Python, caption=Implementacja algorytmu K-średnich., label={lst:kmeans}]
 def extract_dominant_colors(input_image_path, image_instance):
@@ -376,7 +375,7 @@ def extract_dominant_colors(input_image_path, image_instance):
         image_instance.save()
 \end{lstlisting}
 
-W pierwszej kolejności wczytujemy obraz, następnie przekształcamy go do formatu RGB i przekształcamy do formatu, który może być wykorzystany przez algorytm K-średnich. Następnie wykorzystujemy funkcję \textit{KMeans} z biblioteki \textit{scikit-learn}, która zwraca nam listę dominujących kolorów. Na koniec konwertujemy kolory do formatu HEX i zapisujemy je w bazie danych.
+W pierwszej kolejności wczytujemy obraz, następnie przekształcamy go do formatu RGB i przekształcamy do formatu, który może być wykorzystany przez algorytm K-średnich. Następnie wykorzystujemy funkcję \textit{KMeans} z biblioteki \textit{scikit-learn} \cite{sklearn}, która zwraca nam listę dominujących kolorów. Na koniec konwertujemy kolory do formatu HEX i zapisujemy je w bazie danych.
 
 
 
@@ -384,7 +383,7 @@ W pierwszej kolejności wczytujemy obraz, następnie przekształcamy go do forma
 
 Interfejs użytkownika zawiera dwa widoki - widok ze stroną główną, przez który można wysłać zdjęcie do powiększenia rozdzielczości oraz widok z wynikami, w którym można porównać obraz oryginalny z przetworzonymi wersjami. W tym rozdziale opiszę jak zostały zaimplementowane te funkcjonalności.
 
-
+Do implementacji Frontendu korzystałem z rowiązań bibliotek \textbf{Vue.js} \cite{vusjs}, \textbf{fontaswesome} \cite{fontaswesome} i \textbf{Heroicons} \cite{heroicons} do ikon, \textbf{Adobe Fonts} \cite{adobefonts} i \textbf{Google Fonts} \cite{googlefonts} do czcionek oraz \textbf{Tailwind CSS} \cite{tailwindcss} do stylowania aplikacji.
 
 \subsection*{Widok ze stroną główną}
 
@@ -399,7 +398,7 @@ Widok ten wydaje się drobny i prosty, lecz w rzeczywistości jest rozbudowany. 
 
 Widok ten składa się z dwóch części - z tytułu aplikacji oraz przycisków i z obrazów przykładowych [Rys \ref{fig:image88}]. 
 
-W aplikacji znajdziemy dwie czcionki: \textit{Abril Fatface} z Google Fonts i \textit{Larken} z Adobe Fonts. Pierwsza z nich jest używana do tytułu aplikacji, a druga do reszty tekstu, przycisków itp.
+W aplikacji znajdziemy dwie czcionki: \textit{Abril Fatface} z Google Fonts \cite{googlefonts} i \textit{Larken} z Adobe Fonts \cite{adobefonts}. Pierwsza z nich jest używana do tytułu aplikacji, a druga do reszty tekstu, przycisków itp.
 Niżej na stronie znajdują się dwa przyciski, jeden do przesłania obrazu, a drugi do wyświetlenia informacji o aplikacji. Przycisk do przesłania obrazu jest wyróżniony kolorem, więc od razy zwraca na siebie uwagę, zaś przycisk z informacjami jest w kolorze szarym, więc jest mniej widoczny. Póki co przycisk z informacjami nie ma żadnej funkcjonalności, ale o tym w rozdziale \ref{sec:plans}. 
 
 Prawa część ekranu składa się z obrazów przykładowych, które mają zachęcić użytkownika do przesłania obrazu. Część z nich jest wysokiej rozdzielczości, a część niższej, aby pokazać różnicę między obrazem oryginalnym a przetworzonym przez aplikację. Obrazy te wyłamują się poza siatkę strony, aby nadać stronie dynamiki.
@@ -446,7 +445,7 @@ Kursor ma kilka stanów do interakcji nad obiektami oznaczonymi klasą \textit{i
     \end{minipage}
 \end{figure}
 
-Ikony z których korzystam są z bibliotek \textit{Font Awesome}, oraz \textit{Heroicons} i są one wykorzystywane w zależności od tego nad jakim elementem znajduje się wskaźnik myszy.
+Ikony z których korzystam są z bibliotek \textit{Font Awesome} \cite{fontawesome}, oraz \textit{Heroicons} \cite{heroicons} i są one wykorzystywane w zależności od tego nad jakim elementem znajduje się wskaźnik myszy.
 Stan \textbf{DragOver} bardzo uprzyjemnia korzystanie z aplikacji, gdyż kiedy użytkownik tylko przeciągnie obraz nad okno przeglądarki, kursor podąża za nim, więc użytkownik może upuścić obraz w dowolnym miejscu na stronie a obraz się prześle.
 \newpage
 Gdy obraz zostaje upuszczony, uruchamiana jest funkcja, która odpowiada za sprawdzenie ile plików zostało przesłanych, czy jest to obraz jest wspieranego typu i jeśli wszystko się zgadza wysyła obraz do serwera Backend. Wtedy oczekuje odpowiedzi z Backendu, jeśli wszystko się powiedzie, czyli obraz zostanie zapisany w bazie danych, to Frontend otrzymuje ID obrazka i router zmienia adres na "upload-image/:id". 
