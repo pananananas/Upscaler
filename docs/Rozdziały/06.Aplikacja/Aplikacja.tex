@@ -219,6 +219,7 @@ Gdy obraz jest już zapisany w bazie danych, serwer Backend zleca wykonanie algo
 
 W części Backendu aplikacji korzystam z bibliotek \textbf{OpenCV2} \cite{opencv}, \textbf{numpy} \cite{numpy}, \textbf{PyWavelets} \cite{pywavelets} oraz \textbf{PyTorch} \cite{pytorch}.
 
+\newpage
 \begin{lstlisting}[language=Python, caption=Obsługa zapisu i przetwarzania obrazów., label={lst:save_image}]
 def upload_image(request):
 try:
@@ -271,7 +272,7 @@ def run_bilinear(input_image_path, scale, image_instance):
     save_output_image(output, input_image_path, image_instance)
 \end{lstlisting}
 
-W pierwszej kolejności wczytujemy obraz do powiększenia, następnie pobieramy jego wymiary i mnożymy je przez skalę powiększenia otrzymując nową wielkość obrazu. W kolejnym kroku wykorzystujemy funkcję \textit{cv2.resize} z biblioteki OpenCV2, która pozwala na zmianę rozmiaru obrazu. W tym miejscu wykorzystujemy parametr \\ \textit{interpolation=cv2.INTER\_LINEAR}, który odpowiada za wybór algorytmu interpolacji. W tym wypadku wybraliśmy algorytm Interpolacji Dwuliniowej. Na koniec zapisujemy obraz w bazie danych.
+Wczytujemy obraz do powiększenia, następnie pobieramy jego wymiary i mnożymy je przez skalę otrzymując nową wielkość obrazu. W kolejnym kroku wykorzystujemy funkcję \textit{cv2.resize} z biblioteki OpenCV2, która pozwala na zmianę rozmiaru obrazu. W tym miejscu wykorzystujemy parametr \textit{interpolation=cv2.INTER\_LINEAR}, który odpowiada za wybór algorytmu interpolacji. Na koniec zapisujemy obraz w bazie danych.
 
 
 \subsection*{Algorytm DWSR}
@@ -321,8 +322,7 @@ def process_image(input_image_path, output_dir, scale):
 
 \end{lstlisting}
 
-Przetwarzanie obrazu przez model DWSR rozpoczyna się od załadowania wytrenowanego modelu i obrazu powiększonego przez Bicubic. Następnie obraz jest dekomponowany na współczynniki falkowe (z użyciem biblioteki PyWavelets \cite{pywavelets}), które są przekształcane do formatu odpowiedniego dla modelu. Model prognozuje ulepszone detale tych współczynników. 
-Te przewidziane detale są następnie łączone z oryginalnymi współczynnikami, tworząc obraz o wyższej rozdzielczości. Wynikowy obraz jest zapisywany w tymczasowej lokalizacji a w kolejnym kroku jest on konwertowany ze skali szarości do RGB i zapisywany w bazie danych.
+Przetwarzanie obrazu przez model DWSR rozpoczyna się od załadowania wytrenowanego modelu i obrazu powiększonego przez Bicubic. Następnie obraz jest dekomponowany na współczynniki falkowe (z użyciem biblioteki PyWavelets \cite{pywavelets}), które są przekształcane do formatu odpowiedniego dla modelu. Model prognozuje ulepszone detale tych współczynników, które następnie są łączone z oryginalnymi współczynnikami, tworząc obraz o wyższej rozdzielczości. Wynikowy obraz jest zapisywany w tymczasowej lokalizacji a w kolejnym kroku jest on konwertowany ze skali szarości do RGB i zapisywany w bazie danych.
 
 
 \subsection*{Algorytm ESRGAN}
@@ -415,6 +415,9 @@ Kursor ma kilka stanów do interakcji nad obiektami oznaczonymi klasą \textit{i
     \item \textbf{DragOver} - stan gdy do aplikacji chcemy przeciągnąć obraz, kursor zmienia swój kolor, skaluje się na dużo większy i wyświetla się wewnątrz niego ikona [Rys \ref{fig:image92}].
 \end{itemize}
 
+Ikony z których korzystam są z bibliotek \textit{Font Awesome} \cite{fontawesome}, oraz \textit{Heroicons} \cite{heroicons} i są one wykorzystywane w zależności od tego nad jakim elementem znajduje się wskaźnik myszy.
+Stan \textbf{DragOver} bardzo uprzyjemnia korzystanie z aplikacji, gdyż kiedy użytkownik tylko przeciągnie obraz nad okno przeglądarki, kursor podąża za nim, więc użytkownik może upuścić obraz w dowolnym miejscu na stronie a obraz się prześle.
+
 \begin{figure}[ht]
     \centering
     \begin{minipage}[t]{0.47\linewidth}
@@ -445,9 +448,7 @@ Kursor ma kilka stanów do interakcji nad obiektami oznaczonymi klasą \textit{i
     \end{minipage}
 \end{figure}
 
-Ikony z których korzystam są z bibliotek \textit{Font Awesome} \cite{fontawesome}, oraz \textit{Heroicons} \cite{heroicons} i są one wykorzystywane w zależności od tego nad jakim elementem znajduje się wskaźnik myszy.
-Stan \textbf{DragOver} bardzo uprzyjemnia korzystanie z aplikacji, gdyż kiedy użytkownik tylko przeciągnie obraz nad okno przeglądarki, kursor podąża za nim, więc użytkownik może upuścić obraz w dowolnym miejscu na stronie a obraz się prześle.
-\newpage
+
 Gdy obraz zostaje upuszczony, uruchamiana jest funkcja, która odpowiada za sprawdzenie ile plików zostało przesłanych, czy jest to obraz jest wspieranego typu i jeśli wszystko się zgadza wysyła obraz do serwera Backend. Wtedy oczekuje odpowiedzi z Backendu, jeśli wszystko się powiedzie, czyli obraz zostanie zapisany w bazie danych, to Frontend otrzymuje ID obrazka i router zmienia adres na "upload-image/:id". 
 
 
@@ -609,12 +610,6 @@ Do widoku głównego chciałbym dodać kilka funkcjonalności, które przedstawi
     \item Ostatnią zmianą będzie ulepszenie animacji ładowania tak żeby użytkownik wiedział, że aplikacja pracuje nad przetworzeniem obrazu. Obecnie animacja jest bardzo prosta i nie daje użytkownikowi żadnej informacji o tym co się dzieje.
 \end{itemize}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.9\linewidth]{Rozdziały/06.Aplikacja/Obrazy/concept-display.png}
-    \caption{Koncepcja widoku prezentacji wyników z obsługą wielu obrazów jednocześnie}
-    \label{fig:image97}
-\end{figure}
 \begin{figure}[ht]
     \centering
     \begin{minipage}[t]{0.3\linewidth}
@@ -629,6 +624,13 @@ Do widoku głównego chciałbym dodać kilka funkcjonalności, które przedstawi
         \label{fig:image96}
     \end{minipage}
 \end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{Rozdziały/06.Aplikacja/Obrazy/concept-display.png}
+    \caption{Koncepcja widoku prezentacji wyników z obsługą wielu obrazów jednocześnie}
+    \label{fig:image97}
+\end{figure}
+
 
 
 \subsection*{Zmiany obejmujące całą aplikację}
