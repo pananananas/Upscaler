@@ -1,23 +1,36 @@
 \chapter{Podsumowanie i wnioski} \label{chap:podsumowanie}
 
-Celem pracy było stworzenie aplikacji webowej umożliwiającej powiększenie rozdzielczości obrazów. Wszystkie przedstawione cele udało się zrealizować. W ramach pracy powstała aplikacja webowa, która rozwiązanie problemu super-rozdzielczości umożliwia z poziomu przeglądarki internetowej. 
+Celem pracy było stworzenie aplikacji webowej umożliwiającej powiększenie rozdzielczości obrazów z wykorzystaniem algorytmów opartych o funkcje falkowe i uczenie maszynowe. Ponadto aplikacja miała umożliwiać porównanie wyników działania algorytmów, być łatwa w obsłudze oraz dostępna z poziomu przeglądarki internetowej.
+
+Wszystkie cele udało się zrealizować. 
+
+W ramach pracy powstała aplikacja, która pozwala na rozwiązanie problemu super rozdzielczości przy użyciu dwóch algorytmów \textbf{DWSR} \cite{guo2017deep} oraz \textbf{ESRGAN} \cite{wang2018esrgan}. Algorytmy te pracują na backendzie aplikacji, który został zaimplementowany w języku Python z użyciem frameworka Django \cite{django}. Do stworzenia interfejsu użytkownika (warstwy frontendu) wykorzystano framework vue.js \cite{vue}. 
+
+Technologie te okazały się dobrym wyborem, ponieważ świetnie nadają się do tej skali projektu, pozwoliły skupić się na pracy nad algorytmami i implementacją aplikacji, oferując wiele gotowych rozwiązań które znacznie przyspieszyły pracę.
 
 
 \section{Dyskusja wyników}
 
-Testy przeprowadzone w rozdziale \ref{chap:porownanie_algorytmow} potwierdziły skuteczność zaimplementowanych algorytmów DWSR \cite{guo2017deep} oraz ESRGAN \cite{wang2018esrgan}. 
+W rozdziale \ref{chap:porownanie_algorytmow}. przeprowadzono testy, które potwierdziły skuteczność zaimplementowanych algorytmów DWSR \cite{guo2017deep} oraz ESRGAN \cite{wang2018esrgan}. Wyniki pokazały, że oba algorytmy są w stanie zwiększyć rozdzielczość obrazów, poprawiając ich jakość i szczegółowość. Algorytm DWSR osiągnął lepsze wyniki pod względem wydajności, natomiast ESRGAN wypadł lepiej w zakresie jakości produkując ostrzejsze obrazy z dokładniejszymi detalami.
 
+Wnioski te potwierdzają, że zastosowanie funkcji falkowych i uczenia maszynowego w procesie powiększania rozdzielczości obrazów jest skuteczną metodą (podejście proponowane przez DWSR \cite{guo2017deep}). Estymacja współczynników falkowych przez sieć neuronową pozwala na zachowanie kierunków krawędzi i tekstur, które są charakterystyczne dla danego obrazu, oraz zapobiega powstawaniu artefaktów, które są często widoczne w obrazach powiększonych przy użyciu tradycyjnych metod. Jednocześnie jest to bardziej ekonomiczna metoda pod względem ilości parametrów, a co za tym idzie czasu potrzebnego na powiększenie obrazu.
 
+Wyniki testów pokazują również, że zastosowanie generatywnych sieci przestawnych w procesie powiększania rozdzielczości obrazów (podejście proponowane przez ESRGAN \cite{wang2018esrgan}) jest skuteczną metodą pod względem odtwarzania szczegółów i tekstur. 
 
+% Warto jednak zauważyć, że różnica w czasie działania obu algorytmów jest duża, biorąc pod uwagę że często algorytm \textbf{DWSR} jest w stanie wygenerować obraz o mniejszej ilości zniekształceń w krótszym czasie niż algorytm \textbf{ESRGAN}. 
 
-
-
-
-% Krytyczna analiza uzyskanych wyników w kontekście celów pracy oraz istniejących badań i literatury w dziedzinie.
+Stworzona aplikacja pozwalająca na porównanie działania bardzo dobrze sprawdza się w swojej roli. Wbudowane narzędzie lupy pozwala na proste i intuicyjne porównanie obrazów. 
 
 
 
 \section{Rekomendacje i kierunki dalszych badań}
 
+W ramach pracy udało się zrealizować wszystkie postawione cele, jednak istnieje wiele obszarów, które mogą być przedmiotem dalszego rozwoju i badań. Przede wszystkim, warto rozważyć integrację nowszych algorytmów super-rozdzielczości, takich jak przedstawione w załączonym dokumencie "2023 Challenge on Image Super-Resolution x4 Methods and Results" \cite{NTIRE2023}, które mogą oferować lepszą jakość obrazu lub wydajność.
 
-Sugestie dotyczące potencjalnych ulepszeń i obszarów, które wymagają dalszych badań, w oparciu o obserwacje i wyniki badań.
+Dodatkowo, istotnym kierunkiem badań jest dalsze doskonalenie interfejsu użytkownika, aby uczynić aplikację jeszcze bardziej intuicyjną i przystępną dla szerokiego grona użytkowników. Możliwe jest również rozwijanie funkcjonalności aplikacji poprzez dodanie więcej opcji przetwarzania obrazów, takich jak przeciwdziałanie aliasingowi czy redukcja szumów. O planach rozwoju aplikacji można przeczytać w rozdziale \ref{sec:plans}.
+
+Kolejnym ważnym aspektem jest optymalizacja wydajności aplikacji, szczególnie w kontekście przetwarzania obrazów w dużych rozmiarach lub w wysokiej rozdzielczości. 
+
+\section*{Podsumowanie}
+
+Praca dostarcza wkład w dziedzinie przetwarzania obrazów, demonstrując skuteczność zastosowania algorytmów DWSR i ESRGAN w procesie zwiększania rozdzielczości obrazów. Stworzona aplikacja webowa nie tylko umożliwia uzyskanie wyższej jakości obrazów, ale również stanowi narzędzie pomocne w porównywaniu różnych metod super-rozdzielczości, będąc jednocześnie narzędziem przystępnym dla szerokiego grona użytkowników.

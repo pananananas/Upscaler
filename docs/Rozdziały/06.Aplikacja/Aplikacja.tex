@@ -93,7 +93,7 @@ Dodatkowo Backend pozwala na przechowywanie obrazów w bazie danych, co jest ist
 
 \section{Vue.js: Frontend}
 
-Do implementacji Frontendu zdecydowałem się na użycie frameworku \textbf{Vue.js} \cite{vusjs}.
+Do implementacji Frontendu zdecydowałem się na użycie frameworku \textbf{Vue.js} \cite{vue}.
 
 
 \textbf{Vue.js} to progresywny framework JavaScript służący do budowania interfejsów użytkownika. Został stworzony przez Evana You i jest utrzymywany przez niezależnych współtwórców z całego świata. Jego elastyczność pozwala na łatwą integrację z innymi bibliotekami lub istniejącymi projektami, a także jest świetny do tworzenia zaawansowanych aplikacji jednostronicowych (SPA - Single Page Applications). Swietnie nada się do tego projektu, gdyż jest to niewielka aplikacja, która będzie korzystać z wielu bibliotek i narzędzi. W kolejnych podrozdziałach opiszę dlaczego Vue.js jest dobrym wyborem do tego projektu.
@@ -277,7 +277,7 @@ Wczytujemy obraz do powiększenia, następnie pobieramy jego wymiary i mnożymy 
 
 \subsection*{Algorytm DWSR}
 
-Kolejnym algorytmem jest algorytm DWSR, który został opisany w rozdziale \ref{{chap:DWSR}}.
+Kolejnym algorytmem jest algorytm DWSR, który został opisany w rozdziale \ref{chap:DWSR}.
 Implementacja tego algorytmu jest bardziej skomplikowana, ponieważ wymaga on zainstalowania modelu, który jest wykorzystywany do przetwarzania obrazów, oraz wymagała przepisania skryptów napisanych w Matlabie na język Python [\ref{lst:dwsr}].
 
 
@@ -327,7 +327,7 @@ Przetwarzanie obrazu przez model DWSR rozpoczyna się od załadowania wytrenowan
 
 \subsection*{Algorytm ESRGAN}
 
-Ostatnim algorytmem Super-Rozdzielczości implementowanym w aplikacji jest algorytm ESRGAN, który został opisany w rozdziale \ref{{chap:ESRGAN}}.
+Ostatnim algorytmem Super-Rozdzielczości implementowanym w aplikacji jest algorytm ESRGAN, który został opisany w rozdziale \ref{chap:ESRGAN}.
 Implementacja tego algorytmu była prosta, ponieważ wymagała jedynie zapisu modelu, który jest wykorzystywany do przetwarzania obrazów, oraz jako że model jest już napisany w języku Python, nie było potrzeby przepisywania go na inny język [\ref{lst:esrgan}]. Do tej funkcji nie podajemy skali powiększenia, ponieważ model ESRGAN jest w stanie powiększyć obraz czterokrotnie.
 
 \begin{lstlisting}[language=Python, caption=Implementacja algorytmu ESRGAN., label={lst:esrgan}]    
@@ -383,7 +383,7 @@ W pierwszej kolejności wczytujemy obraz, następnie przekształcamy go do forma
 
 Interfejs użytkownika zawiera dwa widoki - widok ze stroną główną, przez który można wysłać zdjęcie do powiększenia rozdzielczości oraz widok z wynikami, w którym można porównać obraz oryginalny z przetworzonymi wersjami. W tym rozdziale opiszę jak zostały zaimplementowane te funkcjonalności.
 
-Do implementacji Frontendu korzystałem z rowiązań bibliotek \textbf{Vue.js} \cite{vusjs}, \textbf{fontaswesome} \cite{fontaswesome} i \textbf{Heroicons} \cite{heroicons} do ikon, \textbf{Adobe Fonts} \cite{adobefonts} i \textbf{Google Fonts} \cite{googlefonts} do czcionek oraz \textbf{Tailwind CSS} \cite{tailwindcss} do stylowania aplikacji.
+Do implementacji Frontendu korzystałem z rowiązań bibliotek \textbf{Vue.js} \cite{vue}, \textbf{fontaswesome} \cite{fonta} i \textbf{Heroicons} \cite{heroicons} do ikon, \textbf{Adobe Fonts} \cite{adobefonts} i \textbf{Google Fonts} \cite{googlefonts} do czcionek oraz \textbf{Tailwind CSS} \cite{tailwind} do stylowania aplikacji.
 
 \subsection*{Widok ze stroną główną}
 
@@ -415,7 +415,7 @@ Kursor ma kilka stanów do interakcji nad obiektami oznaczonymi klasą \textit{i
     \item \textbf{DragOver} - stan gdy do aplikacji chcemy przeciągnąć obraz, kursor zmienia swój kolor, skaluje się na dużo większy i wyświetla się wewnątrz niego ikona [Rys \ref{fig:image92}].
 \end{itemize}
 
-Ikony z których korzystam są z bibliotek \textit{Font Awesome} \cite{fontawesome}, oraz \textit{Heroicons} \cite{heroicons} i są one wykorzystywane w zależności od tego nad jakim elementem znajduje się wskaźnik myszy.
+Ikony z których korzystam są z bibliotek \textit{Font Awesome} \cite{fonta}, oraz \textit{Heroicons} \cite{heroicons} i są one wykorzystywane w zależności od tego nad jakim elementem znajduje się wskaźnik myszy.
 Stan \textbf{DragOver} bardzo uprzyjemnia korzystanie z aplikacji, gdyż kiedy użytkownik tylko przeciągnie obraz nad okno przeglądarki, kursor podąża za nim, więc użytkownik może upuścić obraz w dowolnym miejscu na stronie a obraz się prześle.
 
 \begin{figure}[ht]
@@ -529,7 +529,7 @@ const updateMagnifyLocation = (e: MouseEvent) => {
 
 Jeśli kursor nie jest w stanie blokady przy ruchu myszy wywoływana jest funkcja \textit{updateMagnifyLocation}, która odpowiada za wyliczenie pozycji szkła powiększającego. W pierwszej kolejności obliczamy pozycję kursora wewnątrz obrazu. Następnie przekształcamy tę wartość na procentową pozycję wewnątrz obrazu. Na koniec obliczamy pozycję szkła powiększającego w zależności od proporcji obrazu i skali powiększenia.
 
-\begin{lstlisting}[language=HTML, caption=Implementacja szkła powiększającego (HTML)., label={lst:zoom}]
+\begin{lstlisting}[language=HTML, caption=Implementacja szkła powiększającego (HTML)., label={lst:zoom2}]
 <div class="magnifying_glass">
     <div v-for="type in imageTypes" 
         :key="type" 
