@@ -24,7 +24,7 @@
                     </div>
                     <div class="interactable" data-svg-icon="arrow-up-right">
                         <input type="file" ref="fileInput" class="hidden" id="fileInput" @change="uploadImage" accept="image/*" />
-                        <upload-button label="Upload image" shape="round" class="cursor-none"/>
+                        <upload-button label="Upload image" shape="round" class="cursor-none" />
                     </div>
                 </div>
             </div>
@@ -33,21 +33,21 @@
                 <div class="flex gap-4 absolute">
                     <img src="../assets/imgs/1_downscaled.jpg" alt="Image1" class="object-cover rounded-[10px] w-[180px] h-[180px] ml-4 float-1 interactable image-not-dragable" data-fa-icon="fa-arrows-left-right" />
                     <!-- <img src="../assets/imgs/1.jpg" alt="Image1" class="object-cover rounded-[10px] w-[180px] h-[180px]  ml-4 float-1 absolute"> -->
-                    <img src="../assets/imgs/2.jpg" alt="Image2" class="object-cover rounded-[10px] w-[204px] h-[135.6px] float-2 interactable image-not-dragable" data-fa-icon="fa-arrows-left-right"  />
-                    <img src="../assets/imgs/3_downscaled.jpg" alt="Image3" class="object-cover rounded-[10px] w-[102px] h-[135.6px] float-3 interactable image-not-dragable" data-fa-icon="fa-arrows-left-right"  />
-                    <img src="../assets/imgs/4.jpg" alt="Image4" class="object-cover rounded-[10px] w-[180px] h-[135.6px] float-4 interactable image-not-dragable" data-fa-icon="fa-arrows-left-right"  />
+                    <img src="../assets/imgs/2.jpg" alt="Image2" class="object-cover rounded-[10px] w-[204px] h-[135.6px] float-2 interactable image-not-dragable" data-fa-icon="fa-arrows-left-right" />
+                    <img src="../assets/imgs/3_downscaled.jpg" alt="Image3" class="object-cover rounded-[10px] w-[102px] h-[135.6px] float-3 interactable image-not-dragable" data-fa-icon="fa-arrows-left-right" />
+                    <img src="../assets/imgs/4.jpg" alt="Image4" class="object-cover rounded-[10px] w-[180px] h-[135.6px] float-4 interactable image-not-dragable" data-fa-icon="fa-arrows-left-right" />
                 </div>
                 <div class="flex gap-6 absolute top-[154px]">
-                    <img src="../assets/imgs/5_downscaled.jpg" alt="Image5" class="object-cover rounded-[10px] w-[180px] h-[120px] bottom-0 absolute float-5 interactable image-not-dragable" data-fa-icon="fa-arrows-left-right"  />
-                    <img src="../assets/imgs/6.jpg" alt="Image6" class="object-cover rounded-[10px] w-[127.2px] h-[192px] ml-[218px] float-6 interactable image-not-dragable" data-fa-icon="fa-arrows-left-right"  />
-                    <img src="../assets/imgs/7_downscaled.jpg" alt="Image7" class="object-cover rounded-[10px] w-[135.6px] h-[135.6px] float-7 interactable image-not-dragable" data-fa-icon="fa-arrows-left-right"  />
-                    <img src="../assets/imgs/8.jpg" alt="Image8" class="object-cover rounded-[10px] w-[102px] h-[135.6px] float-8 interactable image-not-dragable" data-fa-icon="fa-arrows-left-right"  />
-                    <img src="../assets/imgs/9_downscaled.jpg" alt="Image9" class="object-cover rounded-[10px] w-[135.6px] h-[135.6px] float-9 interactable image-not-dragable" data-fa-icon="fa-arrows-left-right"  />
+                    <img src="../assets/imgs/5_downscaled.jpg" alt="Image5" class="object-cover rounded-[10px] w-[180px] h-[120px] bottom-0 absolute float-5 interactable image-not-dragable" data-fa-icon="fa-arrows-left-right" />
+                    <img src="../assets/imgs/6.jpg" alt="Image6" class="object-cover rounded-[10px] w-[127.2px] h-[192px] ml-[218px] float-6 interactable image-not-dragable" data-fa-icon="fa-arrows-left-right" />
+                    <img src="../assets/imgs/7_downscaled.jpg" alt="Image7" class="object-cover rounded-[10px] w-[135.6px] h-[135.6px] float-7 interactable image-not-dragable" data-fa-icon="fa-arrows-left-right" />
+                    <img src="../assets/imgs/8.jpg" alt="Image8" class="object-cover rounded-[10px] w-[102px] h-[135.6px] float-8 interactable image-not-dragable" data-fa-icon="fa-arrows-left-right" />
+                    <img src="../assets/imgs/9_downscaled.jpg" alt="Image9" class="object-cover rounded-[10px] w-[135.6px] h-[135.6px] float-9 interactable image-not-dragable" data-fa-icon="fa-arrows-left-right" />
                 </div>
                 <div class="flex gap-6 absolute top-[328px]">
                     <img src="../assets/imgs/10.jpg" alt="Image10" class="object-cover rounded-[10px] w-[320.4px] h-[135.6px] bottom-0 absolute ml-6 float-10 interactable image-not-dragable" data-fa-icon="fa-arrows-left-right" />
-                    <img src="../assets/imgs/11_downscaled.jpg" alt="Image11" class="object-cover rounded-[10px] w-[135.6px] h-[180px] ml-[366px] float-11 interactable image-not-dragable" data-fa-icon="fa-arrows-left-right"  />
-                    <img src="../assets/imgs/12.jpg" alt="Image12" class="object-cover rounded-[10px] w-[273.6px] h-[180px] float-12 interactable image-not-dragable" data-fa-icon="fa-arrows-left-right"  />
+                    <img src="../assets/imgs/11_downscaled.jpg" alt="Image11" class="object-cover rounded-[10px] w-[135.6px] h-[180px] ml-[366px] float-11 interactable image-not-dragable" data-fa-icon="fa-arrows-left-right" />
+                    <img src="../assets/imgs/12.jpg" alt="Image12" class="object-cover rounded-[10px] w-[273.6px] h-[180px] float-12 interactable image-not-dragable" data-fa-icon="fa-arrows-left-right" />
                 </div>
             </div>
         </div>
@@ -66,16 +66,26 @@
 
         <div class="cursor shadow-2xl" @drop.prevent="onDrop">
             <div class="first-circle">
-                <i v-if="currentIconClass" :class="['fa', currentIconClass]"/>
-                <arrow-up-right-icon v-else-if="currentSvgIcon === 'arrow-up-right'"/>
-                <magnifying-glass-icon v-else-if="currentSvgIcon === 'magnifying-glass'"/>
-                <down-to-bracket-icon v-else-if="currentSvgIcon === 'down-to-bracket'"/>
+                <i v-if="currentIconClass" :class="['fa', currentIconClass]" />
+                <arrow-up-right-icon v-else-if="currentSvgIcon === 'arrow-up-right'" />
+                <magnifying-glass-icon v-else-if="currentSvgIcon === 'magnifying-glass'" />
+                <down-to-bracket-icon v-else-if="currentSvgIcon === 'down-to-bracket'" />
             </div>
-            <div class="circle" /> <div class="circle" /> <div class="circle" /> 
-            <div class="circle" /> <div class="circle" /> <div class="circle" /> 
-            <div class="circle" /> <div class="circle" /> <div class="circle" /> 
-            <div class="circle" /> <div class="circle" /> <div class="circle" /> 
-            <div class="circle" /> <div class="circle" /> <div class="circle" />
+            <div class="circle" />
+            <div class="circle" />
+            <div class="circle" />
+            <div class="circle" />
+            <div class="circle" />
+            <div class="circle" />
+            <div class="circle" />
+            <div class="circle" />
+            <div class="circle" />
+            <div class="circle" />
+            <div class="circle" />
+            <div class="circle" />
+            <div class="circle" />
+            <div class="circle" />
+            <div class="circle" />
         </div>
     </body>
 </template>
@@ -87,7 +97,7 @@ import UploadButton from "@/components/UploadButton.vue";
 import ArrowUpRightIcon from "@/components/ArrowUpRightIcon.vue";
 import DownToBracketIcon from "@/components/DownToBracketIcon.vue";
 import MagnifyingGlassIcon from "@/components/MagnifyingGlassIcon.vue";
-import { gsap } from 'gsap';
+import { gsap } from "gsap";
 
 export default defineComponent({
     components: {
@@ -114,20 +124,16 @@ export default defineComponent({
 
         onMounted(() => {
             cursor.value = document.querySelector(".cursor") as HTMLElement;
-            firstCircleEl.value = document.querySelector(
-                ".first-circle"
-            ) as HTMLElement;
-            circles.value = Array.from(
-                document.querySelectorAll(".circle")
-            ) as HTMLElement[];
+            firstCircleEl.value = document.querySelector(".first-circle") as HTMLElement;
+            circles.value = Array.from(document.querySelectorAll(".circle")) as HTMLElement[];
             circlePositions.value = circles.value.map(() => ({ x: 0, y: 0 }));
             animateCursorCircles();
             document.addEventListener("mousemove", calculateMousePos);
-            document.body.style.cursor = 'none';
+            document.body.style.cursor = "none";
         });
 
         onBeforeUnmount(() => {
-            document.body.style.cursor = 'default';
+            document.body.style.cursor = "default";
         });
 
         onUnmounted(() => {
@@ -183,32 +189,29 @@ export default defineComponent({
                 cursorTail.value = 0.1;
                 setCursorIcon(interactableElement);
                 return;
-            } 
-                firstCircleEl.value.classList.remove("interacting", "interacting-scale-2");
-                firstCircleEl.value.classList.remove("drop-zone");
-                firstCircleEl.value.classList.add("visible");
-                cursorTail.value = 0.3;
-                clearCursorIcons();
-            
+            }
+            firstCircleEl.value.classList.remove("interacting", "interacting-scale-2");
+            firstCircleEl.value.classList.remove("drop-zone");
+            firstCircleEl.value.classList.add("visible");
+            cursorTail.value = 0.3;
+            clearCursorIcons();
         };
 
-
-        const setCursorIcon = (element: Element, toSvgIcon: string = '') => {
+        const setCursorIcon = (element: Element, toSvgIcon: string = "") => {
             const faIconName = element.getAttribute("data-fa-icon");
             const svgIconName = element.getAttribute("data-svg-icon");
             if (toSvgIcon) {
                 currentSvgIcon.value = toSvgIcon;
                 currentIconClass.value = ""; // Clear FontAwesome icon
-            } else 
-                if (faIconName) {
-                    currentIconClass.value = faIconName;
-                    currentSvgIcon.value = ""; // Clear SVG icon
-                } else if (svgIconName) {
-                    currentSvgIcon.value = svgIconName;
-                    currentIconClass.value = ""; // Clear FontAwesome icon
-                } else {
-                    clearCursorIcons();
-                }
+            } else if (faIconName) {
+                currentIconClass.value = faIconName;
+                currentSvgIcon.value = ""; // Clear SVG icon
+            } else if (svgIconName) {
+                currentSvgIcon.value = svgIconName;
+                currentIconClass.value = ""; // Clear FontAwesome icon
+            } else {
+                clearCursorIcons();
+            }
         };
 
         const clearCursorIcons = () => {
@@ -217,8 +220,7 @@ export default defineComponent({
         };
 
         const calculateMousePos = (e: MouseEvent) => {
-            if (cursorX.value === null || cursorY.value === null)
-                initializeMousePosition(e);
+            if (cursorX.value === null || cursorY.value === null) initializeMousePosition(e);
             else updateMousePosition(e);
             handleInteractableElements(e);
         };
@@ -233,14 +235,11 @@ export default defineComponent({
             circles.value.forEach((circle, index) => {
                 circle.style.left = `${x - 8}px`;
                 circle.style.top = `${y - 8}px`;
-                const scale =
-                    (circles.value.length - index) / circles.value.length;
+                const scale = (circles.value.length - index) / circles.value.length;
                 ``;
                 circle.style.transform = `scale(${scale})`;
                 circlePositions.value[index] = { x, y };
-                const nextCircle =
-                    circlePositions.value[index + 1] ||
-                    circlePositions.value[0];
+                const nextCircle = circlePositions.value[index + 1] || circlePositions.value[0];
                 x += (nextCircle.x - x) * cursorTail.value;
                 y += (nextCircle.y - y) * cursorTail.value;
             });
@@ -267,14 +266,14 @@ export default defineComponent({
     methods: {
         onDragOver(event: Event) {
             event.preventDefault();
-            
+
             console.log("Drag over");
 
             this.calculateMousePos(event as MouseEvent);
             // change firstcircle to drop-zone
             if (!this.firstCircleEl) return;
             this.firstCircleEl.classList.add("drop-zone");
-            this.setCursorIcon(event.target as Element, 'down-to-bracket');
+            this.setCursorIcon(event.target as Element, "down-to-bracket");
 
             // Change pointer events on cursor for the duration of the drag
             if (this.cursor) {
@@ -378,8 +377,7 @@ body::before {
 }
 
 .blob {
-	
-  	filter: blur(15px);
+    filter: blur(15px);
 }
 
 .yellow,
@@ -551,7 +549,7 @@ body::before {
 .first-circle.drop-zone {
     visibility: visible;
     transform: scale(6);
-    background-color: #FC8585;
+    background-color: #fc8585;
     mix-blend-mode: normal;
 }
 
