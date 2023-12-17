@@ -32,7 +32,7 @@ Super-rozdzielczość (ang. Super-Resolution) odnosi się do procesu poprawy roz
 
 W kontekście praktycznym, techniki super-rozdzielczości znalazły zastosowanie w wielu dziedzinach. Przykładowo, w branży rozrywkowej, technika ta umożliwia remastering starych gier, filmów czy materiałów wideo do standardów HD czy 4K.
 
-W ostatnich miesiącach popularne stało się generowanie obrazów z użyciem sztucznej inteligencji na podstawie podanego opisu tekstowego. Generowane w ten sposób obrazy są określonej wielkości i popularne modele takie jak \textbf{DALL-E} czy \textbf{Midjourney} nie pozwalają na zwiększenie jej. W tym miejscu z pomocą przychodzi super-rozdzielczość, która pozwala na powiększenie takich obrazów.
+W ostatnich miesiącach popularne stało się generowanie obrazów z użyciem sztucznej inteligencji na podstawie podanego opisu tekstowego. Generowane w ten sposób obrazy są określonej wielkości i popularne modele takie jak \textit{DALL-E} \cite{dalle} czy \textit{Midjourney} \cite{midjourney} nie pozwalają na zwiększenie jej. W tym miejscu z pomocą przychodzi super-rozdzielczość, która pozwala na powiększenie takich obrazów.
 
 
 \section{Przegląd metod powiększania obrazów} \label{sec:przeglad_metod_powiekszania_obrazow}
@@ -269,7 +269,7 @@ Nie, jeśli mamy dodatkowe źródło informacji.
 \section{Głębokie uczenie w przetwarzaniu obrazów}
 
 
-Głębokie uczenie rewolucjonizuje przetwarzanie obrazów, wprowadzając modele zdolne do uczenia się cech z serii danych. W przetwarzaniu obrazów, głębokie sieci neuronowe są wykorzystywane do zadań takich jak detekcja obiektów, segmentacja, klasyfikacja obrazów, czy właśnie super-rozdzielczość [Rys \ref{fig:image12},  \ref{fig:image13}].
+Głębokie uczenie zrewolucjonizowało przetwarzanie obrazów, wprowadzając modele zdolne do uczenia się cech z serii danych. W przetwarzaniu obrazów, głębokie sieci neuronowe są wykorzystywane do zadań takich jak detekcja obiektów, segmentacja, klasyfikacja obrazów, czy właśnie super-rozdzielczość [Rys \ref{fig:image12},  \ref{fig:image13}].
 
 \begin{figure}[ht]
     \centering
@@ -281,13 +281,13 @@ Głębokie uczenie rewolucjonizuje przetwarzanie obrazów, wprowadzając modele 
     \hspace{0.5cm}
     \begin{minipage}[t]{0.3\linewidth}
         \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic_DWSR_x4.png}
-        \caption{Obraz powiększony algorytmem DWSR}
+        \caption{Obraz powiększony metodą DWSR \cite{guo2017deep}}
         \label{fig:image12}
     \end{minipage}
     \hspace{0.5cm}
     \begin{minipage}[t]{0.3\linewidth}
         \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic_ESRGAN_x4.png}
-        \caption{Obraz powiększony algorytmem ESRGAN}
+        \caption{Obraz powiększony metodą ESRGAN \cite{wang2018esrgan}}
         \label{fig:image13}
     \end{minipage}
 \end{figure}
@@ -302,7 +302,7 @@ Głębokie uczenie, będące zaawansowaną formą uczenia maszynowego, wykorzyst
 
 
 \subsubsection*{Architektura Sieci Neuronowych}
-Architektura sieci neuronowych w głębokim uczeniu charakteryzuje się wieloma ukrytymi warstwami, które pozwalają na przetwarzanie danych na różnych poziomach abstrakcji. Każda warstwa składa się z wielu neuronów, z których każdy otrzymuje dane wejściowe, przetwarza je i przekazuje dalej. Istnieją różne rodzaje warstw, w tym między innymi textbf{Warstwy konwolucyjne (Convolutional Layers)}, które są fundamentem sieci konwolucyjnych. Są szeroko stosowane w przetwarzaniu obrazów, stosują filtr konwolucyjny do danych wejściowych wydobywając lokalne cechy takie jak krawędzie, kształty czy tekstury.
+Architektura sieci neuronowych w głębokim uczeniu charakteryzuje się wieloma ukrytymi warstwami, które pozwalają na przetwarzanie danych na różnych poziomach abstrakcji. Każda warstwa składa się z wielu neuronów, z których każdy otrzymuje dane wejściowe, przetwarza je i przekazuje dalej. Istnieją różne rodzaje warstw, w tym między innymi Warstwy konwolucyjne (Convolutional Layers), które są fundamentem sieci konwolucyjnych. Są szeroko stosowane w przetwarzaniu obrazów, stosują filtr konwolucyjny do danych wejściowych wydobywając lokalne cechy takie jak krawędzie, kształty czy tekstury.
 
 
 \subsubsection*{Funkcje Aktywacji}
@@ -411,7 +411,7 @@ Niestety błąd średniokwadratowy nie wyraża dobrze ludzkiego postrzegania wie
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.55\linewidth]{Rozdziały/02.Podstawy_teoretyczne/Obrazy/MSE.png}
-    \caption{Przykład sieci neuronowej do super-rozdzielczości}
+    \caption{Błąd średniokwadratowy \cite{4775883}}
     \label{fig:image56}
 \end{figure}
 
@@ -445,7 +445,7 @@ Algorytm ten jest stosowany w aplikacji do wyznaczania dominujących kolorów wy
 \section{Wstęp do transformacji falkowej}
 
 
-Transformacja falkowa (wavelet transform) stanowi istotne narzędzie w analizie sygnałów i przetwarzaniu obrazów, zwłaszcza w kontekście zastosowań takich jak super rozdzielczość. Charakterystyczna dla funkcji falkowych jest ich zdolność do dostosowania się do wymagań analizy sygnału. W przeciwieństwie do transformacji Fouriera, która skupia się wyłącznie na częstotliwości, falki pozwalają na efektywną lokalizację zjawisk w sygnale, uwzględniając zmiany zarówno w czasie, jak i częstotliwości.
+Transformacja falkowa (wavelet transform) stanowi istotne narzędzie w analizie sygnałów i przetwarzaniu obrazów, zwłaszcza w kontekście zastosowań takich jak super-rozdzielczość. Charakterystyczna dla funkcji falkowych jest ich zdolność do dostosowania się do wymagań analizy sygnału. W przeciwieństwie do transformacji Fouriera, która skupia się wyłącznie na częstotliwości, falki pozwalają na efektywną lokalizację zjawisk w sygnale, uwzględniając zmiany zarówno w czasie, jak i częstotliwości.
 
 \begin{figure}[ht]
     \centering
@@ -469,7 +469,7 @@ Transformacja falkowa (wavelet transform) stanowi istotne narzędzie w analizie 
     \end{minipage}
 \end{figure}\
 
-W kontekście super rozdzielczości, funkcje falkowe są wykorzystywane do zwiększania jakości obrazów i sygnałów poprzez umożliwienie dokładniejszej analizy i rekonstrukcji ich składowych. Mamy informacje o kierunkach i wielkościach częstotliwości w analizowanym obrazie [Rys \ref{fig:image19}, \ref{fig:image20} \ref{fig:image21}]. 
+W kontekście super-rozdzielczości, funkcje falkowe są wykorzystywane do zwiększania jakości obrazów i sygnałów poprzez umożliwienie dokładniejszej analizy i rekonstrukcji ich składowych. Mamy informacje o kierunkach i wielkościach częstotliwości w analizowanym obrazie [Rys \ref{fig:image19}, \ref{fig:image20} \ref{fig:image21}]. 
 % Korzystając z funkcji falkowych mamy informacje o kierunkach częstotliwości w analizowanym obrazie, co sprawia że wiemy jak ukierunkowane są krawędzie i tekstury. 
 % Dzięki swoim właściwościom, falki potrafią efektywnie oddzielać istotne cechy sygnału od szumu, co jest istotne w procesie zwiększania rozdzielczości.
 
@@ -506,7 +506,7 @@ W kontekście przetwarzania obrazów, transformata Fouriera jest stosowana przek
     \centering
     \begin{minipage}[t]{0.325\linewidth}
         \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/Obrazy/comic_DWSR_x4.png}
-        \caption{Obraz wejściowy (obraz z \cite{zeyde2010single})}
+        \caption{Obraz wejściowy \cite{zeyde2010single}}
         \label{fig:image24}
     \end{minipage}
     % \hspace{0.5cm}
@@ -609,6 +609,7 @@ Falka Morlet jest funkcją zespoloną, co oznacza, że składa się z części r
     \label{fig:image30}
 \end{figure}
 
+\newpage
 Inne funkcje falkowe:
 
 \begin{figure}[ht]
@@ -786,13 +787,13 @@ Jeśli chcemy wykonać odwrotną transformację falkową na obrazie, wystarczy w
 
 \begin{figure}[ht]
     \centering
-    \begin{minipage}[t]{0.40\linewidth}
+    \begin{minipage}[t]{0.35\linewidth}
         \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/Obrazy/level_1_decomposition_LL.png}
-        \caption{LL (niskie częstotliwości) (obraz z \cite{zeyde2010single})}
+        \caption{LL (niskie częstotliwości) \cite{zeyde2010single}}
         \label{fig:image42}
     \end{minipage}
     \centering
-    \begin{minipage}[t]{0.40\linewidth}
+    \begin{minipage}[t]{0.35\linewidth}
         \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/Obrazy/level_1_decomposition_LH.png}
         \caption{LH (poziome detale)}
         \label{fig:image43}
@@ -801,13 +802,13 @@ Jeśli chcemy wykonać odwrotną transformację falkową na obrazie, wystarczy w
 
 \begin{figure}[ht]
     \centering
-    \begin{minipage}[t]{0.40\linewidth}
+    \begin{minipage}[t]{0.35\linewidth}
         \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/Obrazy/level_1_decomposition_HL.png}
         \caption{HL (pionowe detale)}
         \label{fig:image44}
     \end{minipage}
     \centering
-    \begin{minipage}[t]{0.40\linewidth}
+    \begin{minipage}[t]{0.35\linewidth}
         \includegraphics[width=\linewidth]{Rozdziały/02.Podstawy_teoretyczne/Obrazy/level_1_decomposition_HH.png}
         \caption{HH (diagonalne detale)}
         \label{fig:image45}

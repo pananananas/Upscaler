@@ -1,16 +1,16 @@
 \chapter{Aplikacja webowa do powiększania rozdzielczości obrazów} \label{chap:app}
 
-Podczas korzystania z Internetu miałem kilka sytuacji w których potrzebowałem narzędzia, które pozwoli mi na powiększenie rozdzielczości obrazów. Stron internetowych tego typu jest wiele, sporo aplikacji do edycji zdjęć umożliwia powiększenie rozdzielczości obrazów, przykładem może być \textbf{Adobe Photoshop}.
+Gdy potrzebne staje się narzędzie które pozwoli na powiększenie rozdzielczości obrazów okazuje się, że stron internetowych tego typu jest wiele. Wiele aplikacji do edycji zdjęć umożliwia powiększenie rozdzielczości obrazów, przykładem mogą być rozwiązania firmy \textit{Adobe} \cite{adobefonts}.
 
-Korzystając z rozwiązań ogólnodostępnych zauważyłem, że darmowe aplikacje nie gwarantują wysokiej jakości obrazów wyjściowych, zaś bardziej rozbudowane rozwiązania są płatne lub mają dostępne tylko jedno powiększenie obrazu na dobę. 
+Korzystając z rozwiązań ogólnodostępnych można zauważyć, że darmowe aplikacje nie gwarantują wysokiej jakości obrazów wyjściowych, zaś bardziej rozbudowane rozwiązania są płatne lub umożliwiają tylko jednorazowe użycie. 
 
-Postanowiłem więc wykorzystac ogólnodostępne algorytmy rozwiązujące problem super-rozdzielczości, następnie użyć ich do aplikacji która w domyśle będzie darmowa i będzie dawała możliwość porównania wyników działania kilku algorytmów. Nie zawsze jedna z wdrożonych metod będzie dawać najlepsze wyniki, więc chciałbym żeby użytkownik miał wybór a pro po tego którą metodę chce wykorzystać.
+W ramach tej pracy postanowiłem wykorzystac ogólnodostępne algorytmy rozwiązujące problem super-rozdzielczości, następnie użyć ich do aplikacji która w domyśle będzie otwarta do użytku przez każdego i będzie dawała możliwość porównania wyników działania kilku algorytmów. Nie zawsze jedna z wdrożonych metod gwarantuje najlepsze wyniki, więc dobrze zadbać o to żeby użytkownik miał wybór a pro po tego którą metodę chce wykorzystać.
 
-Głównym założeniem aplikacji jest intuicyjność i minimalizacja interakcji potrzebnych do powiększenia obrazu; zauważyłem, że rozwiązania konkurencji wymagają akceptacji regulaminów, lub dopiero po przejściu kilku ekranów możemy wysłać obraz, którego rozdzielczość chcemy powiększyć. Uznałem to za bardzo ważne, gdyż użytkownicy chcą szybko dostać wynik, użytkownik nie będzie czekał nie wiadomo jak długo na wynik.
+Głównym założeniem aplikacji jest intuicyjność i minimalizacja interakcji potrzebnych do powiększenia obrazu. Sprawdzając działanie dostępnych programów można zauważyć, że rozwiązania te wymagają przejścia kilku ekranów, logowania lub subskrypcji aby powiększyć rozdzielczość obrazu. Aplikacja przedstawiona w tej pracy nie ma tego problemu, gdyż docelowo nie będzie zbierać obrazów użytkowników i nie potrzebne są zgody na przetwarzanie danych osobowych.
 
-Nie spotkałem się z tym, żeby aplikacje innych firm pozwalały na porównanie wyników różnych algorytmów ze sobą. Uważam że to jest istotne gdy chcemy uzyskać wynik najwyższej jakości, bo jak wspomniałem nie ma rozwiązań idealnych i nie zawsze jedna z wdrożonych metod będzie dawać najlepsze wyniki.
+Robiąc badania nie spotkałem się z możliwością porównania wyników działania różnych algorytmów w rozwiązaniach innych aplikacji. Uważam że to jest istotne gdy chcemy uzyskać wynik najwyższej jakości, gdyż nie ma rozwiązań idealnych i nie zawsze jedna z wdrożonych metod będzie dawać najlepsze wyniki.
 
-Ważne jest dla mnie, żeby aplikacja była estetyczna i przyjemna dla oka. Dużo chętniej korzystamy z narzędzi czy urządzeń które lepiej wyglądają, bardziej się nam podobają i chciałbym żeby tak było w tym przypadku. W planie również jest dbanie o animacje i o to żeby interakcje z narzędziem były przyjemne i satysfakcjonujące.
+Ważne jest dla mnie, żeby aplikacja była estetyczna i przyjemna dla oka. Dużo chętniej korzystamy z narzędzi czy urządzeń które lepiej wyglądają, bardziej się nam podobają i chciałbym żeby tak było w tym przypadku. Tworząc aplikacje dbałem również o animacje, aby aplikacja sprawiała satysfakcję z użytkowania.
 
 \newpage
 \begin{figure}[H]
@@ -38,11 +38,11 @@ Pierwszym etapem tworzenia aplikacji było stworzenie diagramu przepływu użytk
     \label{fig:image82}
 \end{figure}
 
-Diagram ten przedstawia wszystkie interakcje, które użytkownik może wykonać w aplikacji. Te interakcje nie muszą być wykorzystane, ale są dostępne dla użytkownika.
+Diagram ten przedstawia wszystkie interakcje, które użytkownik może wykonać w aplikacji. Te interakcje nie muszą być wykonane, ale są dostępne dla użytkownika.
 
 Kolejnym krokiem był projekt interfejsu użytkownika. Zdecydowałem, że narzędzie będzie składać się z dwóch ekranów: ekranu głównego \ref{fig:image80}, oraz widoku prezentacji obrazu wynikowego \ref{fig:image81}.
 
-Projekt wyglądu aplikacji rozpocząłem od rozrysowania wireframe'ów [Rys \ref{fig:image83}] z użyciem narzędzia \textbf{Figma}, służącym do projektów graficznych między innymi aplikacji. Wireframe'y to proste szkice, które pozwalają na zobrazowanie układu elementów na stronie. Elementy te odpowiadają za funkcjonalność, a nie wygląd aplikacji i są ściśle powiązane z diagramem przepływu użytkownika.
+Projekt wyglądu aplikacji rozpocząłem od rozrysowania makiety strony [Rys \ref{fig:image83}, \ref{fig:image84}], czyli prostych szkiców obrazujących rozkład elementów na stronie. To zadanie zostało wykonane z użyciem narzędzia \textit{Figma} \cite{figma}, służącym do projektów graficznych między innymi aplikacji. Elementy te odpowiadają za funkcjonalność, a nie wygląd aplikacji i są ściśle powiązane z diagramem przepływu użytkownika.
 
 \begin{figure}[ht]
     \centering
@@ -60,7 +60,7 @@ Projekt wyglądu aplikacji rozpocząłem od rozrysowania wireframe'ów [Rys \ref
 
 Pierwotny rozkład elementów na stronie różni się od tego jak to wygląda teraz. Wraz z rozwojem aplikacji zmieniałem układ elementów, usprawniałem interakcję z użytkownikiem i poprawiałem rozkład elementów na ekranach aplikacji.
 
-Kolejnym etapem pracy był projekt graficzny aplikacji. Zdecydowałem, że aplikacja będzie w ciemnym motywie, gdyż taki styl pomaga nam skupić się na tym co jest na ekranie, zwłaszcza w kontekście edycji zdjęć. Zależało mi na tym, żeby aplikacja nie była jednowymiarowa i żeby wyglądała nowocześnie. Początkowo eksperymentowałem z grafikami wektorowymi w tle [Rys \ref{fig:image85}], lecz ten wygląd nie przekonywał mnie. Eksperymentując z wyglądem pomyślałem, że w nawiązaniu do szumu na zdjęciach analogowych, tło aplikacji może mieć szum, zaś jako że mamy do czynienia z nowoczesnym narzędziem to kursor i elementy UI będą przejrzyste i czyste. W ten sposób aplikacja zyskuje na głębi i tak wygląda aktualna wersja, którą postanowiłem zaimplementować [Rys \ref{fig:image80}].
+Kolejnym etapem pracy był projekt graficzny. Zdecydowałem, że aplikacja będzie w ciemnym motywie, gdyż taki styl pomaga nam skupić się na tym co jest na ekranie, zwłaszcza w kontekście edycji zdjęć. Zależało mi na tym, żeby aplikacja miała pewną głębię i żeby wyglądała nowocześnie. Początkowo eksperymentowałem z grafikami wektorowymi w tle [Rys \ref{fig:image85}], lecz ten wygląd nie przekonywał mnie. Eksperymentując z wyglądem pomyślałem, że w nawiązaniu do szumu na zdjęciach analogowych, tło aplikacji może mieć szum, zaś jako że mamy do czynienia z nowoczesnym narzędziem to kursor i elementy UI będą przejrzyste i czyste. W ten sposób aplikacja zyskuje na głębi i tak wygląda aktualna wersja, którą postanowiłem zaimplementować [Rys \ref{fig:image80}].
 
 \begin{figure}[H]
     \centering
@@ -71,7 +71,6 @@ Kolejnym etapem pracy był projekt graficzny aplikacji. Zdecydowałem, że aplik
 
 Podobnie wyglądał proces projektowania ekranu prezentacji wyników [Rys \ref{fig:image86}]. Zdecydowałem, żeby na ekranie prezentacji wyników były tylko istotne elementy interfejsu, żeby użytkownik nie pogubił się w nadmiarze informacji. Zależało mi na tym, żeby użytkownik mógł łatwo porównać wyniki różnych algorytmów, dlatego zdecydowałem się na układ kafelków, które można wybrać i porównać z sobą. Dodatkowo w tych kafelkach uznałem, że świetnie sprawdzi się widok z bliska, który pozwoli na dokładne przyjrzenie się szczegółom obrazu, tak powstała lupka, która podąża za kursorem gdy wskaźnik znajduje się nad obrazem. 
 
-
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\linewidth]{Rozdziały/06.Aplikacja/Obrazy/UI 1 dsiplay .png}  
@@ -79,7 +78,7 @@ Podobnie wyglądał proces projektowania ekranu prezentacji wyników [Rys \ref{f
     \label{fig:image86}
 \end{figure}
 
-W kolejnej wersji widoku prezentacji wyników postanowiłem zmienić wygląd tła. Zainspirowany aplikacjami typu \textbf{Apple Music} czy \textbf{Spotify} zdecydowałem się na zmianę tła na gradient z kolorów występujących na obrazie. W ten sposób aplikacja zyskuje na głębi i wygląda bardziej nowocześnie [Rys \ref{fig:image81}]. W tym miejscu projekt aplikacji uznałem za gotowy do implementacji, gdzieś trzeba się zatrzymać, żeby sprawdzić jak działają mechanizmy w praktyce. O planach rozbudowy aplikacji traktuję rozdział \ref{sec:plans}.
+W kolejnej wersji widoku prezentacji wyników postanowiłem zmienić wygląd tła na gradient z kolorów występujących na obrazie. W ten sposób aplikacja zyskuje na głębi i wygląda bardziej nowocześnie [Rys \ref{fig:image81}]. W tym miejscu projekt aplikacji został uznany za gotowy do implementacji.
 
 
 
@@ -87,25 +86,25 @@ W kolejnej wersji widoku prezentacji wyników postanowiłem zmienić wygląd tł
 
 Kolejnym krokiem w tworzeniu aplikacji jest decyzja odnośnie używanych technologii i narzędzi. W tym rozdziale opiszę jakie technologie wybrałem do stworzenia aplikacji webowej. 
 
-Aplikacja dzieli się na Frontend i Backend, gdyż zadanie Super-Rozdzielczości, podobnie jak inne zadania z dziedziny uczenia maszynowego, wymaga dużej mocy obliczeniowej. Z tego powodu implementowane algorytmy będą działać po stronie Backendu, a Frontend będzie odpowiedzialny za interfejs użytkownika, wyświetlenie wyników i komunikację z Backendem. 
+Aplikacja dzieli się na Frontend i Backend, gdyż zadanie Super-Rozdzielczości, podobnie jak inne zadania z dziedziny uczenia maszynowego, wymaga dużej mocy obliczeniowej. Z tego powodu implementowane algorytmy będą działać po stronie Backendu, a Frontend będzie odpowiedzialny za interfejs użytkownika oraz wyświetlenie wyników.
 Dodatkowo Backend pozwala na przechowywanie obrazów w bazie danych, co jest istotne gdy chcemy porównać wyniki różnych algorytmów ze sobą od strony administratora.
 
-
+\newpage
 \section{Vue.js: Frontend}
 
-Do implementacji Frontendu zdecydowałem się na użycie frameworku \textbf{Vue.js} \cite{vue}.
+Do implementacji Frontendu zdecydowałem się na użycie frameworku \textit{Vue.js} \cite{vue}.
 
 
-\textbf{Vue.js} to progresywny framework JavaScript służący do budowania interfejsów użytkownika. Został stworzony przez Evana You i jest utrzymywany przez niezależnych współtwórców z całego świata. Jego elastyczność pozwala na łatwą integrację z innymi bibliotekami lub istniejącymi projektami, a także jest świetny do tworzenia zaawansowanych aplikacji jednostronicowych (SPA - Single Page Applications). Swietnie nada się do tego projektu, gdyż jest to niewielka aplikacja, która będzie korzystać z wielu bibliotek i narzędzi. W kolejnych podrozdziałach opiszę dlaczego Vue.js jest dobrym wyborem do tego projektu.
+\textit{Vue.js} to progresywny framework JavaScript służący do budowania interfejsów użytkownika. Został stworzony przez Evana You i jest utrzymywany przez niezależnych współtwórców z całego świata. Jego elastyczność pozwala na łatwą integrację z innymi bibliotekami lub istniejącymi projektami, a także jest świetny do tworzenia zaawansowanych aplikacji jednostronicowych (SPA - Single Page Applications). Swietnie nada się do tego projektu, gdyż jest to niewielka aplikacja, która będzie korzystać z wielu bibliotek i narzędzi. W kolejnych podrozdziałach opiszę dlaczego Vue.js jest dobrym wyborem do tego projektu.
 
 
 \subsubsection*{Architektura i Komponenty}
 
 Architektura Vue opiera się na systemie komponentów. Komponenty w Vue są blokami wielokrotnego użytku z własnym stanem, metodami i szablonami. Dzięki temu łatwo jest tworzyć interfejsy składające się z mniejszych, niezależnych części, co znacznie ułatwia zarządzanie, utrzymanie i czytelność kodu.
 
-\subsubsection*{Reaktywność i Dwukierunkowe Wiązanie Danych}
+\subsubsection*{Reaktywność}
 
-Jedną z kluczowych cech Vue.js jest jego reaktywny system, który zapewnia automatyczną aktualizację interfejsu użytkownika w odpowiedzi na zmiany stanu aplikacji. Framework ten używa systemu dwukierunkowego wiązania danych (two-way data binding), co oznacza, że zmiany w modelu danych od razu są odzwierciedlane w widoku i na odwrót.
+Jedną z kluczowych cech Vue.js jest jego reaktywny system, który zapewnia automatyczną aktualizację interfejsu użytkownika w odpowiedzi na zmiany stanu aplikacji. 
 
 \subsubsection*{Deklaratywne Renderowanie}
 
@@ -123,22 +122,22 @@ Vue ma rozbudowany ekosystem, w skład którego wchodzą takie narzędzia jak Vu
 \newpage
 \section{Django: Backend}
 
-Do implementacji Backendu zdecydowałem się na użycie frameworku \textbf{Django} \cite{django}.
+Do implementacji Backendu zdecydowałem się na użycie frameworku \textit{Django} \cite{django}.
 
-\textbf{Django} to wysokopoziomowy framework webowy napisany w Pythonie, który umożliwia szybkie tworzenie bezpiecznych i łatwych w utrzymaniu stron internetowych. Został zaprojektowany z myślą o uproszczeniu zadań związanych z tworzeniem aplikacji internetowych, dzięki czemu deweloperzy mogą skupić się po prostu na pisaniu aplikacji. W kolejnych podrozdziałach opiszę dlaczego Django jest dobrym wyborem do tego projektu.
+\textit{Django} to wysokopoziomowy framework webowy napisany w Pythonie, który umożliwia szybkie tworzenie bezpiecznych i łatwych w utrzymaniu stron internetowych. Został zaprojektowany z myślą o uproszczeniu zadań związanych z tworzeniem aplikacji internetowych, dzięki czemu deweloperzy mogą skupić się po prostu na pisaniu aplikacji. W kolejnych podrozdziałach opiszę dlaczego Django jest dobrym wyborem do tego projektu.
 
 
 \subsubsection*{Python}
 
-Django jest napisane w języku Python, który jest jednym z najpopularniejszych i najbardziej lubianych języków programowania. W języku tym zostały zaimplementowane algorytmy DWSR i ESRGAN, więc wykorzystanie Django pozwoli na łatwą integrację tych algorytmów z aplikacją.
+Django pracuje w języku Python, który jest jednym z najpopularniejszych i najbardziej lubianych języków programowania, zwłaszcza w zastosowaniach uczenia maszynowego. W języku tym zostały zaimplementowane algorytmy DWSR i ESRGAN, więc wykorzystanie Django pozwoli na łatwą integrację tych algorytmów z aplikacją.
 
-\subsubsection*{Architektura Wzorca Projektowego MTV}
+\subsubsection*{Architektura Wzorca Projektowego MVT}
 
-Django wykorzystuje wzorzec projektowy "Model-Template-View" (MTV), który jest podobny do popularnego wzorca MVC. W tym podejściu:
+Django wykorzystuje wzorzec projektowy "Model-View-Template" (MVT), który jest podobny do popularnego wzorca MVC. W tym podejściu:
 \begin{itemize}
     \item \textbf{Model} odpowiada za strukturę danych oraz ich walidację.
-    \item \textbf{Template} odpowiada za prezentację danych.
-    \item \textbf{View} odpowiada za logikę aplikacji, odbierając żądania od użytkownika i zwracając odpowiednie odpowiedzi.
+    \item \textbf{View} odpowiada za logikę aplikacji, odbierając żądania i zwracając odpowiedzi.
+    \item \textbf{Template} odpowiada za prezentację danych oraz interakcję z użytkownikiem.
 \end{itemize}
 
 W tego typu projektach warto stosować wzorce projektowe, ponieważ ułatwiają one zarządzanie kodem i zwiększają jego czytelność. Ponadto, stosowanie wzorców projektowych jest dobrym zwyczajem, który pozwala na łatwiejsze utrzymanie aplikacji w przyszłości.
@@ -149,12 +148,12 @@ Django zawiera wbudowany ORM, który pozwala na interakcję z bazami danych za p
 
 \subsubsection*{Wbudowane Funkcje}
 
-Django oferuje wiele wbudowanych funkcji, takich jak system uwierzytelniania użytkowników, mapowanie URL na widoki, mechanizm szablonów, system administrowania itd. Dzięki temu można szybko rozpocząć pracę nad projektem, mając już na starcie zestaw potrzebnych narzędzi.
+Django oferuje wiele wbudowanych funkcji, takich jak rozbudowany panel administracyjny, system uwierzytelniania użytkowników, mapowanie URL na widoki itd. Dzięki temu można szybko rozpocząć pracę nad projektem, mając już na starcie zestaw potrzebnych narzędzi.
 
 
 \subsubsection*{Skalowalność}
 
-Django jest skalowalny i może obsługiwać zarówno małe, jak i duże projekty. Ponadto, framework ten wspiera koncept wersjonowania API, co jest kluczowe przy rozwijaniu i utrzymywaniu dużych aplikacji.
+Django jest skalowalny i może obsługiwać zarówno małe, jak i duże projekty.
 
 \subsubsection*{Wsparcie Społeczności i Dokumentacji}
 
@@ -169,7 +168,7 @@ Po wyborze stosu technologicznego kolejnym krokiem jest skupienie się na implem
 
 Aplikacja składa się z dwóch części - Frontendu i Backendu. Przy tworzeniu takiego projektu warto zadbać o to, żeby każda część była od siebie niezależna i żeby komunikacja między nimi była jak najmniej skomplikowana.
 
-W tym miejscu wracamy do diagramu przepływu użytkownika [Rys \ref{fig:image82}], jak na nim widać użytkownik nie może wykonać zbyt wiele akcji, struktura aplikacji jest liniowa. Na podstawie diagramu przepływu użytkownika można stworzyć schemat blokowy aplikacji [Rys \ref{fig:image87}], który pozwoli zrozumieć zachowanie programu.
+W tym miejscu wracamy do diagramu przepływu użytkownika [Rys \ref{fig:image82}], jak na nim widać struktura aplikacji jest bardzo prosta. Na podstawie diagramu przepływu użytkownika można stworzyć schemat blokowy aplikacji [Rys \ref{fig:image87}], który pozwoli zrozumieć zachowanie programu.
 
 \begin{figure}[H]
     \centering
@@ -180,7 +179,7 @@ W tym miejscu wracamy do diagramu przepływu użytkownika [Rys \ref{fig:image82}
 
 W pierwszej kolejności użytkownik wysyła obraz do serwera Backend, który zapisuje go w bazie danych. Następnie serwer zleca wykonanie algorytmów na osobnych wątkach, o czym opowiem w dalszej części rozdziału [\ref{sec:implementation-s-r}]. Gdy algorytmy rozpoczną pracę, serwer zwraca do Frontendu informację o tym że operacja zapisu się powiodła i podaje numer ID obrazu. 
 
-Frontend zmienia widok na ten z wynikami i wysyła zapytanie do Backendu o obraz oryginalny i przetworzone. Następnie jeśli serwer zwróci obrazy, Frontend je wyświetla. W przeciwnym wypadku próbuje je pozyskać ponownie aż do skutku. Dzieje się tak, dlatego że zadanie super-rozdzielczości jest czasochłonne i czasem może zająć kilka sekund a w innych wypadkach nawet kilka minut, wszystko w zależności od rozdzielczości obrazów. W tym czasie użytkownik może porównywać uzyskane wyniki i wybrać najlepszy. 
+Frontend zmienia widok na ten z wynikami i wysyła zapytanie do Backendu o obraz oryginalny i przetworzone. Następnie jeśli serwer zwróci obrazy, Frontend je wyświetla. W przeciwnym wypadku próbuje je pozyskać ponownie aż do skutku. Dzieje się tak, dlatego że zadanie super-rozdzielczości jest czasochłonne i może zająć kilka sekund a w innych wypadkach nawet kilka minut, wszystko w zależności od rozdzielczości obrazów oraz sprzętu na którym wykonywane są obliczenia. W tym czasie użytkownik może porównywać uzyskane wyniki i wybrać najlepszy. 
 
 Gdy użytkownik wybierze obraz, może go pobrać na swój komputer. Wtedy Frontend wysyła zapytanie do serwera o obraz w pełnej rozdzielczości, a serwer zwraca obraz, który przeglądarka automatycznie pobiera.
 
@@ -217,7 +216,7 @@ Dodatkowo w bazie danych przechowujemy listę dominujących kolorów, które są
 
 Gdy obraz jest już zapisany w bazie danych, serwer Backend zleca wykonanie algorytmów super-rozdzielczości na osobnych wątkach [\ref{lst:save_image}]. W tym rozdziale opiszę w jaki sposób zostały zaimplementowane algorytmy w aplikacji.
 
-W części Backendu aplikacji korzystam z bibliotek \textbf{OpenCV2} \cite{opencv}, \textbf{numpy} \cite{numpy}, \textbf{PyWavelets} \cite{pywavelets} oraz \textbf{PyTorch} \cite{pytorch}.
+W części Backendu aplikacji korzystam z bibliotek \textit{OpenCV2} \cite{opencv}, \textit{numpy} \cite{numpy}, \textit{PyWavelets} \cite{pywavelets} oraz \textit{PyTorch} \cite{pytorch}.
 
 \newpage
 \begin{lstlisting}[language=Python, caption=Obsługa zapisu i przetwarzania obrazów., label={lst:save_image}]
@@ -383,7 +382,7 @@ W pierwszej kolejności wczytujemy obraz, następnie przekształcamy go do forma
 
 Interfejs użytkownika zawiera dwa widoki - widok ze stroną główną, przez który można wysłać zdjęcie do powiększenia rozdzielczości oraz widok z wynikami, w którym można porównać obraz oryginalny z przetworzonymi wersjami. W tym rozdziale opiszę jak zostały zaimplementowane te funkcjonalności.
 
-Do implementacji Frontendu korzystałem z rowiązań bibliotek \textbf{Vue.js} \cite{vue}, \textbf{fontaswesome} \cite{fonta} i \textbf{Heroicons} \cite{heroicons} do ikon, \textbf{Adobe Fonts} \cite{adobefonts} i \textbf{Google Fonts} \cite{googlefonts} do czcionek oraz \textbf{Tailwind CSS} \cite{tailwind} do stylowania aplikacji.
+Do implementacji Frontendu korzystałem z rowiązań bibliotek \textit{Vue.js} \cite{vue}, \textit{fontaswesome} \cite{fonta} i \textit{Heroicons} \cite{heroicons} do ikon, \textit{Adobe Fonts} \cite{adobefonts} i \textit{Google Fonts} \cite{googlefonts} do czcionek oraz \textit{Tailwind CSS} \cite{tailwind} do stylowania aplikacji.
 
 \subsection*{Widok ze stroną główną}
 
@@ -394,12 +393,12 @@ Do implementacji Frontendu korzystałem z rowiązań bibliotek \textbf{Vue.js} \
     \label{fig:image88}
 \end{figure}
 
-Widok ten wydaje się drobny i prosty, lecz w rzeczywistości jest rozbudowany. W idei skupić się ma na tym co najważniejsze, czyli na przesłaniu obrazu do powiększenia. Mam sporo pomysłów na ot jak go rozbudować na bazie istniejących interakcji i jakie dodatkowe funkcjonalności można by dodać, ale o tym w rozdziale \ref{sec:plans}.
+Widok ten wydaje się drobny i prosty, lecz w rzeczywistości jest rozbudowany. Skupia się ma na tym co najważniejsze, czyli na przesłaniu obrazu do powiększenia.
 
 Widok ten składa się z dwóch części - z tytułu aplikacji oraz przycisków i z obrazów przykładowych [Rys \ref{fig:image88}]. 
 
 W aplikacji znajdziemy dwie czcionki: \textit{Abril Fatface} z Google Fonts \cite{googlefonts} i \textit{Larken} z Adobe Fonts \cite{adobefonts}. Pierwsza z nich jest używana do tytułu aplikacji, a druga do reszty tekstu, przycisków itp.
-Niżej na stronie znajdują się dwa przyciski, jeden do przesłania obrazu, a drugi do wyświetlenia informacji o aplikacji. Przycisk do przesłania obrazu jest wyróżniony kolorem, więc od razy zwraca na siebie uwagę, zaś przycisk z informacjami jest w kolorze szarym, więc jest mniej widoczny. Póki co przycisk z informacjami nie ma żadnej funkcjonalności, ale o tym w rozdziale \ref{sec:plans}. 
+Niżej na stronie znajdują się dwa przyciski, jeden do przesłania obrazu, a drugi do wyświetlenia informacji o aplikacji. Przycisk do przesłania obrazu jest wyróżniony kolorem, więc od razu zwraca na siebie uwagę, zaś przycisk z informacjami jest w kolorze szarym, więc jest mniej widoczny. Póki co przycisk z informacjami jeszcze nie ma zaimplementowanej funkcji, ale o tym w rozdziale \ref{sec:plans}. 
 
 Prawa część ekranu składa się z obrazów przykładowych, które mają zachęcić użytkownika do przesłania obrazu. Część z nich jest wysokiej rozdzielczości, a część niższej, aby pokazać różnicę między obrazem oryginalnym a przetworzonym przez aplikację. Obrazy te wyłamują się poza siatkę strony, aby nadać stronie dynamiki.
 
@@ -409,14 +408,14 @@ Kolejnym istotnym elementem na stronie jest kursor. Ma on wbudowane funkcjonalno
 Kursor ma kilka stanów do interakcji nad obiektami oznaczonymi klasą \textit{interactable}:
 
 \begin{itemize}
-    \item \textbf{Init} - stan początkowy, gdy wskaźnik znajduje się na ekranie, skaluje się od 0 do 1.2 i po osiągnięciu 1.2 zmienia się na stan \textbf{Default}.
-    \item \textbf{Default} - stan domyślny, gdy wskaźnik nie znajduje się nad żadnym specjalnym elementem. Warto w tym miejscu dodać, że kursor tak naprawdę składa się z piętnastu elementów, które ciągną cię za miejscem w którym znajduje się wskaźnik. Dzięki temu za każdym ruchem pozostaje ślad, który uprzyjemnia interakcje z aplikacją [Rys \ref{fig:image88}].
+    \item \textbf{Init} - stan początkowy, gdy wskaźnik pojawia się po raz pierwszy na ekranie, skaluje się od 0 do 1.2 i po osiągnięciu 1.2 zmienia się na stan \textbf{Default}.
+    \item \textbf{Default} - stan domyślny, gdy wskaźnik nie znajduje się nad żadnym specjalnym elementem. Warto w tym miejscu dodać, że kursor tak naprawdę składa się z dziesięciu elementów, które ciągną cię za miejscem w którym znajduje się wskaźnik. Dzięki temu za każdym ruchem pozostaje ślad, który uprzyjemnia interakcje z aplikacją [Rys \ref{fig:image88}].
     \item \textbf{Hover} - stan nad elementem, gdy wskaźnik znajduje się nad elementem oznaczonym klasą \textit{interactable}, kursor powiększa się i wyświetla się wewnątrz niego ikona w zależności od tego nad czym się znajduje [Rys \ref{fig:image89}, \ref{fig:image90}, \ref{fig:image91}].
     \item \textbf{DragOver} - stan gdy do aplikacji chcemy przeciągnąć obraz, kursor zmienia swój kolor, skaluje się na dużo większy i wyświetla się wewnątrz niego ikona [Rys \ref{fig:image92}].
 \end{itemize}
 
 Ikony z których korzystam są z bibliotek \textit{Font Awesome} \cite{fonta}, oraz \textit{Heroicons} \cite{heroicons} i są one wykorzystywane w zależności od tego nad jakim elementem znajduje się wskaźnik myszy.
-Stan \textbf{DragOver} bardzo uprzyjemnia korzystanie z aplikacji, gdyż kiedy użytkownik tylko przeciągnie obraz nad okno przeglądarki, kursor podąża za nim, więc użytkownik może upuścić obraz w dowolnym miejscu na stronie a obraz się prześle.
+Stan \textbf{DragOver} bardzo uprzyjemnia korzystanie z aplikacji, gdyż kiedy użytkownik tylko przeciągnie obraz nad okno przeglądarki, kursor podąża za nim, więc użytkownik może upuścić obraz w dowolnym miejscu na stronie a obraz zostanie przesłany.
 
 \begin{figure}[ht]
     \centering
@@ -460,7 +459,7 @@ Drugi widok w aplikacji jest dużo ważniejszy i bardziej rozbudowany, gdyż odp
 Największą część ekranu zajmuje aktualnie wyświetlany obraz wynikowy, ale tak naprawdę najważniejsze w tym widoku jest menu boczne. Widać na nim podstawowe informacje o obrazie takie jak miniatura, nazwa, nowa (powiększona) rozdzielczość, przycisk do pobrania obrazu oraz co najważniejsze - kafelki z przetworzonymi obrazami. Kafelki te są interaktywne, więc po kliknięciu w nie, obraz jest wyświetlany w głównym obszarze widoku, ale co jeszcze ważniejsze - przybliżony na kafelku fragment obrazu jest fragmentem, który jest pod kursorem myszy. 
 
 Kursor w tym widoku wizualnie jest bardziej złożony, zawiera ikonę sugerującą że działa jak lupa, która wyświetla się w stanie domyślnym. Oprócz tego w lewą górną stronę rozciąga się "szkło" lupy które jest animowane i porusza się wraz z kursorem. 
-Dodatkowo zaimplementowałem obsługę scorlla oraz przycisków "+" i "-", która pozwala na przybliżenie i oddalenie obrazu lupy, co sprawia że całe narzędzie jest intuicyjne [Rys \ref{fig:image94}]. Pasek postępu widoczny jest jedynie gdy użytkownik przybliża lub oddala obraz. 
+Dodatkowo zaimplementowałem obsługę scorlla oraz przycisków "+" i "-", która pozwala na przybliżenie i oddalenie obrazu lupy, co sprawia że całe narzędzie jest intuicyjne [Rys \ref{fig:image94}]. Pasek postępu (widoczny przy kursorze na obrazku \ref{fig:image94}) widoczny jest jedynie gdy użytkownik przybliża lub oddala obraz. 
 
 \begin{figure}[H]
     \centering
@@ -479,7 +478,7 @@ Dodatkowo zaimplementowałem obsługę scorlla oraz przycisków "+" i "-", któr
 \newpage
 Kursor ma też opcję blokady w miejscu, która jest aktywowana po przytrzymaniu klawisza spacji lub po kliknięciu myszą. Sprawia ona że kursor nie porusza się wraz z myszą, więc użytkownik może swobodnie poruszać się po aplikacji. W stanie blokady na kursorze wyświetla się ikona z kłódką, która sugeruje blokadę kursora
 
-Tłem widoku jest gradient kolorów dominujących na obrazie. Kolory te są wyliczane przez algorytm K-średnich na Backendzie i zapisywane w bazie danych, dzięki temu Frontend może je wykorzystać. 
+Tłem widoku jest gradient kolorów dominujących na obrazie. Kolory te są wyliczane przez algorytm K-średnich w Backendzie i zapisywane w bazie danych, dzięki temu Frontend może je wykorzystać. 
 
 \begin{lstlisting}[language=TypeScript, caption=Wyznaczanie gradientów z kolorów dominujących., label={lst:colors}]
 const generateGradientStyles = (colors: string[]) => {
@@ -638,7 +637,7 @@ Do widoku głównego chciałbym dodać kilka funkcjonalności, które przedstawi
 W tym dziale przedstawię jakie zmiany obejmujące cały projekt chciałbym wprowadzić i dlaczego.
 
 \begin{itemize}
-    \item Pierwszą i najważniejszą zmianą ogólną w aplikacji będzie lepsza obsługa błędów. Póki co gdy coś jest nie tak przeglądarka wyświetla komunikat o błędzie, który jest czytelny dla mnie, ale nie dla użytkownika. W przyszłości chciałbym dodać własne komunikaty o błędach, które będą bardziej przyjazne dla użytkownika.
+    \item Pierwszą i najważniejszą zmianą ogólną w aplikacji będzie lepsza obsługa błędów. Póki co gdy coś jest nie tak przeglądarka wyświetla komunikat o błędzie, który jest czytelny dla programisty, ale nie dla użytkownika. W przyszłości chciałbym dodać własne komunikaty o błędach, które będą bardziej przyjazne dla użytkownika.
     \item Jedną z istotniejszych zmian w aplikacji będzie ukrycie id obrazka, gdyż w aktualnej wersji możemy przeglądać wszystkie obrazy w bazie danych na podstawie numeru ID w adresie. 
     \item Kolejną rzeczą wymagającą sporo pracy będzie dostosowanie aplikacji do urządzeń mobilnych. Obecnie aplikacja wyświetla się poprawnie tylko na komputerach, ale w przyszłości chciałbym żeby interfejs użytkownika był dostosowany również do urządzeń mobilnych.
     \item Kolejną zmianą będzie modyfikacja backendu, tak żeby serwer obsługiwał przesłanie więcej niż jednego obrazu jednocześnie. 
