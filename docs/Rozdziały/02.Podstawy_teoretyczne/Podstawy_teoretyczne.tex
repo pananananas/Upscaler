@@ -5,7 +5,7 @@ Celem rozdziału jest przedstawienie podstawowych definicji, wytłumaczenie apar
 
 \section{Definicja super-rozdzielczości}
 
-Super-rozdzielczość (ang. Super-Resolution) odnosi się do procesu poprawy rozdzielczości obrazu lub sekwencji obrazów. W kontekście cyfrowym, super-rozdzielczość jest często realizowana za pomocą algorytmów komputerowych, które mają na celu odtworzenie wysokiej rozdzielczości obrazu [Rys \ref{fig:image2}, \ref{fig:image3}] z jednego lub wielu obrazów o niskiej rozdzielczość [Rys \ref{fig:image1}].
+Super-rozdzielczość (ang. Super-Resolution) odnosi się do procesu poprawy rozdzielczości obrazu lub sekwencji obrazów. W kontekście cyfrowym, super-rozdzielczość jest często realizowana za pomocą algorytmów komputerowych, które mają na celu odtworzenie wysokiej rozdzielczości obrazu [Rys \ref{fig:image2}, \ref{fig:image3}] z jednego lub wielu obrazów o niskiej rozdzielczości [Rys \ref{fig:image1}].
 
 \begin{figure}[ht]
     \centering
@@ -65,16 +65,17 @@ W efekcie polega to na wyznaczeniu średniej ważonej pikseli sąsiadujących z 
 Kroki algorytmu:
 \begin{enumerate}
     \item Przeprowadzana jest interpolacja liniowa wzdłuż osi $O X$:
-    $$
+    \begin{equation}
     \begin{array}{llll}
     f\left(R_1\right) \approx \frac{x_2-x}{x_2-x_1} f\left(Q_{11}\right)+\frac{x-x_1}{x_2-x_1} f\left(Q_{21}\right) & \text { gdzie } & R_1=\left(x, y_1\right), \\ \\
     f\left(R_2\right) \approx \frac{x_2-x}{x_2-x_1} f\left(Q_{12}\right)+\frac{x-x_1}{x_2-x_1} f\left(Q_{22}\right) & \text { gdzie } & R_2=\left(x, y_2\right) .
     \end{array}
-    $$
+    \end{equation}
     \item Następnie przeprowadzana jest interpolacja wzdłuż osi $O Y$:
-    $$
+    \begin{equation}
     f(P) \approx \frac{y_2-y}{y_2-y_1} f\left(R_1\right)+\frac{y-y_1}{y_2-y_1} f\left(R_2\right) .
-    $$
+    \label{eq:interpolation2}
+    \end{equation}
 \end{enumerate}
 
 \begin{figure}[H]
@@ -199,9 +200,9 @@ Kolejnym algorytmem, jaki można zastosować w zadaniu Super-Rozdzielczości jes
 Kroki algorytmu interpolacji dwusześciennej:
 \begin{enumerate}
     \item Dla każdej osi (X i Y) obliczana jest wartość interpolowana przy użyciu funkcji sklejanych trzeciego stopnia:
-    $$
+    \begin{equation}
     f(x, y) \approx \sum_{i=0}^{3} \sum_{j=0}^{3} a_{ij} x^i y^j
-    $$
+    \end{equation}
     gdzie współczynniki \( a_{ij} \) są obliczane na podstawie wartości i pochodnych funkcji w punktach sąsiednich.
 
     \item Interpolacja jest przeprowadzana osobno dla każdego kanału koloru, co pozwala na uzyskanie wysokiej jakości wyników, zwłaszcza w przypadku obrazów o dużym nasyceniu barw.
