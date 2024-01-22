@@ -27,7 +27,7 @@ module.exports = {
         'port-lligat-slab': ['Port Lligat Slab', 'serif'],     
         'abril-fatface': ['Abril Fatface', 'serif'],
         'larken-sans':['larken', 'sans-serif'],       
-
+        
       },
 
       screens: {

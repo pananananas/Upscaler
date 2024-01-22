@@ -11,22 +11,12 @@ In this project I utilized two different algorithms to upscale images:
 - [DWSR](https://github.com/tT0NG/DWSRx4) - Deep Wavelet Super-Resolution
 
 
-
-
-
-
-
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-### Prerequisites
 
-- Node.js
-- Python 3.8.2
-- Django
-
-### Installing
+### Running the project
 
 #### Frontend
 
@@ -35,6 +25,7 @@ Navigate to the `upscaler_vue_frontend` directory and install the necessary pack
 ```sh
 cd upscaler_vue_frontend
 npm install
+npm run serve
 ```
 
 #### Backend 
