@@ -2,6 +2,15 @@
 
 Upscaler is a project that uses machine learning algorithms to upscale images. It consists of a Vue.js frontend and a Django backend.
 
+![Image](https://github.com/user-attachments/assets/93710b92-3b8e-4ce5-9785-1ed277c1beca)
+
+![Image](https://github.com/user-attachments/assets/13af5b67-35e4-44b0-b5f7-d18d8e87e12c)
+
+![Image](https://github.com/user-attachments/assets/f5fd3eef-a712-4945-9705-d9bd21e1c672)
+
+![Image](https://github.com/user-attachments/assets/782d5191-0090-4b8d-bcb6-6eeaac159939)
+
+
 ## Algorithms
 
 In this project I utilized two different algorithms to upscale images:
